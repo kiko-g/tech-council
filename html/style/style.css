@@ -1,0 +1,27 @@
+/* default elements */
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
+}
+
+#dummy {
+  padding: 1em 2em;
+}
+
+main {
+  width: 60em;
+  margin: auto;
+  border: 1px solid seagreen;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.mural {
+  padding: 1em;
+  background-color: rgb(255, 197, 197);
+}
+
+.sidebar {
+  padding: 1em;
+  background-color: rgba(169, 224, 255, 0.425);
+}
