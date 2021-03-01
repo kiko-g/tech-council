@@ -5,3 +5,27 @@
 .padding-right {
   padding-right: 10px;
 }
+
+.border-top-light {
+  border-top: 1px rgb(187, 247, 255) dashed;
+}
+
+.container-fluid.condensed {
+  /* border-top: 1px solid #323f45; */
+  padding: 0 10em;
+}
+
+.row.round {
+  border-radius: 30px;
+  border: 10px red dashed;
+}
+
+.nav-item {
+  margin: 0 5px;
+  border-radius: 10px;
+}
+
+.hover-invert-dark:hover {
+  color: #333;
+  background-color: whitesmoke;
+}

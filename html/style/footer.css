@@ -3,7 +3,7 @@ footer {
   color: #fff;
   background-color: #263238;
   min-height: 200px;
-  padding: 5px 0px 15px 0px;
+  padding: 2em 0;
 }
 
 footer p {
@@ -14,14 +14,19 @@ footer p {
 }
 
 .footer-section-header {
-  padding-top: 20px;
+  padding-top: 5px;
   margin-bottom: 20px;
+}
+
+.footer-section {
+  background: #343e44;
 }
 
 .footer-ul {
   margin: 0px;
   list-style-type: none;
   padding: 0px 0px 10px 0px;
+  font-size: small;
 }
 
 .footer-ul li {
@@ -35,10 +40,4 @@ footer p {
 .footer-ul li a:hover {
   color: rgb(187, 247, 255);
   text-decoration: none;
-}
-
-.container-fluid.condensed {
-  border-bottom: 1px solid #323f45;
-  margin: 0 5rem 20px 5rem;
-  padding: 5px;
 }

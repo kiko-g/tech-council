@@ -1,27 +1,48 @@
-/* default elements */
+/* default elements and more */
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: whitesmoke;
 }
 
-#dummy {
-  padding: 1em 2em;
-}
-
 main {
-  width: 60em;
-  margin: auto;
-  border: 1px solid seagreen;
+  width: 75%;
+  margin: 1em auto;
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
 
 .mural {
+  margin: 1em;
   padding: 1em;
-  background-color: rgb(255, 197, 197);
+  background-color: #f1f1f1;
+}
+
+.mural-component {
+  margin-bottom: 1em;
+  border: 1px solid teal;
+  background-color: #ddd;
 }
 
 .sidebar {
+  margin: 1em;
+  background-color: whitesmoke;
+}
+
+.sidebar-component {
+  margin: 1em;
   padding: 1em;
-  background-color: rgba(169, 224, 255, 0.425);
+  border: 1px solid teal;
+  background-color: #ddd;
+}
+
+.filters {
+  margin-bottom: 1em;
+}
+
+.themes {
+  margin-bottom: 1em;
+}
+
+.tags {
+  margin-bottom: 1em;
 }

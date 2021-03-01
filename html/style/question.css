@@ -1,0 +1,7 @@
+.question {
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 1px solid teal;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
