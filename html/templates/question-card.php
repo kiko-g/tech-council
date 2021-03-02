@@ -1,5 +1,5 @@
 <section class="question rounded">
-  <div class="question-side">
+  <div class="question-card-side">
     <div class="btn-group-vertical">
       <button href="#" type="button" class="btn btn-success padding-special"><i class="fas fa-chevron-up"></i></button>
       <e class="list-group-item list-group-item border-0 padding-special">29</e>
@@ -7,11 +7,10 @@
     </div>
   </div>
 
-  <div class="question-body">
+  <div class="question-card-body">
     <h3 class="question-title">Is Java a good programming language?</h3>
-    <p class="question-text">I was wondering if I should study it</p>
 
-    <div class="question-footer">
+    <div class="question-card-footer">
       <div class="question-tags">
         <div class="btn-group mr-2">
           <a href="#" type="button" class="btn btn-secondary mr-2">python</a>
@@ -25,5 +24,4 @@
       </div>
     </div>
   </div>
-
 </section>

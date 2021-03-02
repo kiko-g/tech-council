@@ -1,7 +1,15 @@
 <article class="mural rounded">
-  <?php require 'navbar.php'; ?>
+  <?php require 'filters.php'; ?>
 
   <div>
-    <?php require 'question.php'; ?>
+    <?php
+    for ($i = 0; $i < 5; $i++) {
+      require 'question-card.php';
+    }
+
+    // for ($i = 0; $i < 5; $i++) {
+    //   require 'question.php';
+    // }
+    ?>
   </div>
 </article>

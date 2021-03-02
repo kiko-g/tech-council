@@ -4,12 +4,13 @@
       <!-- DIV 1 -->
       <div class="footer-section rounded-left col-sm-4 col-md col-12 col p-4">
         <h5 class="footer-section-header">Find us</h5>
-        <p><i class="fa fa-location-arrow"></i>&nbsp; FEUP</p>
-        <p><i class="fa fa-phone"></i>&nbsp; +91 999 99 99</p>
-        <p><i class="fa fa fa-envelope"></i>&nbsp; lbaw2132@gmail.com</p>
-        <p class="mb10"> Tech Council policy </p>
-        <p class="border-top-light text-right pt-1"> Designed using Bootstrap5 by <a href="#">LBAW 2132</a>&nbsp;&copy;
-        </p>
+        <ul class="footer-ul">
+          <li><i class="fa fa-location-arrow"></i>&nbsp; FEUP</li>
+          <li><i class="fa fa-phone"></i>&nbsp; +91 999 99 99</li>
+          <li><i class="fa fa fa-envelope"></i>&nbsp; lbaw2132@gmail.com</li>
+          <br>
+          <li class="border-top-light text-end pt-1"> Designed using Bootstrap5 by <a href="#">LBAW 2132</a> &copy;</li>
+        </ul>
       </div>
 
       <!-- DIV 2 -->

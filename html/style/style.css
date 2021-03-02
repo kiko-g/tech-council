@@ -19,7 +19,7 @@ main {
 
 .mural-component {
   margin-bottom: 1em;
-  border: 1px solid teal;
+  border: 1px solid darkslategray;
   background-color: #ddd;
 }
 
@@ -31,7 +31,7 @@ main {
 .sidebar-component {
   margin: 1em;
   padding: 1em;
-  border: 1px solid teal;
+  border: 1px solid darkslategray;
   background-color: #ddd;
 }
 

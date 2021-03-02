@@ -34,10 +34,11 @@ footer p {
 }
 
 .footer-ul li a {
-  color: #aaa;
+  color: rgb(140, 222, 255, 0.6);
+  text-decoration: none;
 }
 
 .footer-ul li a:hover {
-  color: rgb(187, 247, 255);
+  color: rgb(140, 222, 255);
   text-decoration: none;
 }

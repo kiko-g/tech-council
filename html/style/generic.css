@@ -29,3 +29,7 @@
   color: #333;
   background-color: whitesmoke;
 }
+
+.padding-special {
+  padding: 4px 10px;
+}

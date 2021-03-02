@@ -1,7 +1,46 @@
+/* Full display question */
 .question {
-  padding: 1em;
   margin-bottom: 1em;
-  border: 1px solid teal;
+  border: 1px solid darkslategray;
   display: grid;
   grid-template-columns: 1fr 9fr;
+}
+
+.question-side {
+  padding: 1em;
+  margin-right: 1em;
+  background-color: #ddd;
+}
+
+.question-body {
+  padding: 1em;
+}
+
+.question-footer {
+  padding: 1em;
+  color: red;
+}
+
+.question-title {
+  padding: 2px 0;
+}
+
+.question-tags {
+  margin-top: 2em;
+}
+
+/* Card display question */
+.question-card-side {
+  padding: 1em;
+  margin-right: 1em;
+  background-color: #ddd;
+}
+
+.question-card-body {
+  padding: 1em;
+}
+
+.question-card-footer {
+  padding: 1em;
+  background-color: red;
 }

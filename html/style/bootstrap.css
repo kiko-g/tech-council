@@ -1,1 +1,6 @@
 /* Bootsrap overrides */
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 1px #eee solid;
+}
