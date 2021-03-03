@@ -1,0 +1,43 @@
+html, body {
+	height: 100%;
+}
+
+div.entry-form {
+  text-align: center;
+  background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957);
+  padding: 2em 20%;
+  height: 100%;
+	width: 100%;
+}
+
+.entry-header {
+  color: #fff;
+  text-align: center;
+}
+
+.form-header {
+	color: #fff;
+  text-align: left;
+	padding: 1em;
+}
+
+a.entry-redirect {
+  color: white;
+  text-decoration: none;
+}
+
+a.entry-redirect:hover {
+    text-decoration: underline;
+}
+
+div.form-redirect {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+div.entry-form > div {
+	position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}

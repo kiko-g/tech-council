@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="../style/generic.css" />
   <link rel="stylesheet" href="../style/question.css" />
   <link rel="stylesheet" href="../style/bootstrap.css" />
-
+  <link rel="stylesheet" href="../style/login.css" />
 
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
