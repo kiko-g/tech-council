@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="../style/bootstrap.css" />
   <link rel="stylesheet" href="../style/login.css" />
   <link rel="stylesheet" href="../style/moderator.css" />
+  <link rel="stylesheet" href="../style/aside.css" />
 
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
