@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="../style/question.css" />
   <link rel="stylesheet" href="../style/bootstrap.css" />
   <link rel="stylesheet" href="../style/login.css" />
+  <link rel="stylesheet" href="../style/moderator.css" />
 
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
