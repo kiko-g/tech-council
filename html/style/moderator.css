@@ -1,0 +1,34 @@
+.ban-area {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.user-card {
+    padding: 1em;
+}
+
+.users-or-tags-button {
+    width: 50%;
+}
+
+.users-or-tags-picker, .results-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.user-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-search-nav {
+    width: 75%;
+}
+
+.results-picker-toolbar > .btn-group.mr-2 {
+    padding: 0.2em;
+}

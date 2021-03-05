@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="../style/bootstrap.css" />
   <link rel="stylesheet" href="../style/login.css" />
   <link rel="stylesheet" href="../style/about.css" />
+  <link rel="stylesheet" href="../style/moderator.css" />
+  <link rel="stylesheet" href="../style/aside.css" />
 
 
   <!-- Bootstrap JS -->
