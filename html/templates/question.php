@@ -1,4 +1,4 @@
-<section class="question rounded">
+<section class="container question rounded">
   <div class="question-side">
     <div class="btn-group-vertical">
       <button href="#" type="button" class="btn btn-success padding-special"><i class="fas fa-chevron-up"></i></button>

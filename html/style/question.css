@@ -2,8 +2,6 @@
 .question {
   margin-bottom: 1em;
   border: 1px solid darkslategray;
-  display: grid;
-  grid-template-columns: 1fr 9fr;
 }
 
 .question-side {
@@ -17,7 +15,7 @@
 }
 
 .question-footer {
-  padding: 1em;
+  padding: 0.5em;
   color: red;
 }
 
@@ -30,17 +28,34 @@
 }
 
 /* Card display question */
-.question-card-side {
-  padding: 1em;
-  margin-right: 1em;
-  background-color: #ddd;
+.question-card {
+  margin-bottom: 1em;
+  border: 1px solid darkslategray;
 }
 
 .question-card-body {
   padding: 1em;
 }
 
+.question-card-title {
+  padding: 2px 0;
+}
+
 .question-card-footer {
-  padding: 1em;
-  background-color: red;
+  padding: 0 0.2em;
+  background-color: burlywood;
+}
+
+.question-card-details {
+  margin-top: 0;
+}
+
+.question-card-tags {
+  margin-top: 0;
+}
+
+.question-card-side {
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  background-color: #ddd;
 }

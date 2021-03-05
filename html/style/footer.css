@@ -1,12 +1,11 @@
-footer {
-  width: 100%;
+.footer {
   color: #fff;
   background-color: #263238;
   min-height: 200px;
   padding: 2em 0;
 }
 
-footer p {
+.footer p {
   font-size: 13px;
   color: #ccc;
   padding-bottom: 0px;

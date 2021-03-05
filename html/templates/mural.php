@@ -1,4 +1,4 @@
-<article class="mural rounded">
+<article class="col-lg-9 ">
   <?php require 'filters.php'; ?>
 
   <div>
@@ -7,9 +7,9 @@
       require 'question-card.php';
     }
 
-    // for ($i = 0; $i < 5; $i++) {
-    //   require 'question.php';
-    // }
+    for ($i = 0; $i < 5; $i++) {
+      require 'question.php';
+    }
     ?>
   </div>
 </article>

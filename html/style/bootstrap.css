@@ -1,6 +1,15 @@
 /* Bootsrap overrides */
 .navbar-expand-lg .navbar-nav .nav-link {
   padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: 1px #eee solid;
+  /* border-radius: 10px; */
+  /* border: 1px #eee solid; */
+}
+
+.blockquote {
+  font-size: small;
+  padding: 0.2em 0.3em;
+}
+
+.date {
+  font-style: oblique;
 }

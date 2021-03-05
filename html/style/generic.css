@@ -10,9 +10,13 @@
   border-top: 1px rgb(187, 247, 255) dashed;
 }
 
+.border-top-medium {
+  border-top: 1px rgb(99, 113, 114) dashed;
+}
+
 .container-fluid.condensed {
   /* border-top: 1px solid #323f45; */
-  padding: 0 10em;
+  padding: 0 5%;
 }
 
 .row.round {
@@ -31,5 +35,10 @@
 }
 
 .padding-special {
-  padding: 4px 10px;
+  padding: auto;
+  margin: auto;
+}
+
+.border-dsg {
+  border: 1px solid darkslategray;
 }

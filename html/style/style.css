@@ -5,10 +5,8 @@ body {
 }
 
 main {
-  width: 75%;
+  width: auto;
   margin: 1em auto;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
 }
 
 .mural {
@@ -35,14 +33,23 @@ main {
   background-color: #ddd;
 }
 
-.filters {
-  margin-bottom: 1em;
-}
-
-.themes {
-  margin-bottom: 1em;
-}
-
 .tags {
   margin-bottom: 1em;
+}
+
+#navbar-toggler {
+  border: none;
+}
+
+.upvote-downvote {
+  flex-shrink: 1;
+  justify-content: center;
+}
+
+.signature {
+  font-style: italic;
+}
+
+.my-btn-pad {
+  padding: 0;
 }
