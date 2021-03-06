@@ -38,5 +38,6 @@
 
   <!-- Scripts -->
   <script src="../js/script.js" defer></script>
+  <script src="../js/moderator-switch.js" defer></script>
 
 </head>
