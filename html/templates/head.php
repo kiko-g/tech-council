@@ -37,6 +37,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 
   <!-- Scripts -->
-  <script src="../js/script.js"></script>
+  <script src="../js/script.js" defer></script>
 
 </head>

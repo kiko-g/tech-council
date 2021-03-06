@@ -1,7 +1,7 @@
 /* default elements and more */
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: whitesmoke;
+  background-color: rgb(214, 214, 214);
 }
 
 main {
@@ -54,22 +54,17 @@ main {
   padding: 0 0.25em;
 }
 
+.my-btn-pad2 {
+  padding: 0.2em 0.5em;
+  font-size: smaller;
+}
+
 .btn.fake {
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1.5;
   color: #212529;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
+  display: inline-block;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
   user-select: none;
   background-color: transparent;
-  border: 1px solid transparent;
-  font-size: 1rem;
-  border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
