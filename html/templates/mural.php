@@ -1,5 +1,5 @@
 <article class="col-lg-9 ">
-  <?php require 'filters.php'; ?>
+  <?php require 'filter-bar.php'; ?>
 
   <div>
     <?php

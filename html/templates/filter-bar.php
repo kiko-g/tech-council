@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-petrol mb-3 rounded p-1">
+<nav class="navbar navbar-expand-sm navbar-dark bg-petrol mb-3 rounded p-2">
   <div class="container px-1">
     <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

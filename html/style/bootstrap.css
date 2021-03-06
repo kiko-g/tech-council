@@ -15,5 +15,9 @@
 }
 
 .bg-petrol {
-  background-color: rgb(22, 89, 105) !important;
+  background-color: rgb(32, 68, 85) !important;
+}
+
+.bg-navy {
+  background-color: rgb(111, 164, 180) !important;
 }

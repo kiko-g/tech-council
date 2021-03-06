@@ -39,10 +39,10 @@
   margin: auto;
 }
 
-.border-dsg {
-  border: 1px solid darkslategray;
+.border-dark {
+  border: 1px solid rgb(32, 68, 85);
 }
 
-.border-lsg {
+.border-light {
   border: 1px solid rgb(160, 164, 167);
 }
