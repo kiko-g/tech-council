@@ -2,16 +2,15 @@
   <div class="card-header"> Is Java a good programming language? </div>
   <div class="card-body">
     <p class="card-title">Brief description for card question</p>
-    <div>
-      <a href="#" class="btn btn-success my-btn-pad"><i class="fas fa-chevron-up"></i></a>
-      <a href="#" class="btn btn-danger my-btn-pad"><i class="fas fa-chevron-down"></i></a>
-      <span href="#" class="btn btn-dark my-btn-pad">29</span>
-    </div>
 
-    <div class="mt-1">
-      <a href="#" class="btn btn-success"><i class="fas fa-chevron-up"></i></a>
-      <a href="#" class="btn btn-danger"><i class="fas fa-chevron-down"></i></a>
-      <span href="#" class="btn btn-dark">29</span>
+    <div id="votes" class="btn-group mt-1">
+      <a id="upvote-button-<ID>" onclick="upvote(this)" href="#" class="btn btn-outline-success border-0 my-btn-pad">
+        <i class="fas fa-chevron-up"></i>
+      </a>
+      <a id="vote-ratio-<ID>" href="#" class="btn btn-outline-dark border-0 my-btn-pad fake">29</a>
+      <a id="downvote-count-<ID>" onclick="downvote(this)" href="#" class="btn btn-outline-danger border-0 my-btn-pad">
+        <i class="fas fa-chevron-down"></i>
+      </a>
     </div>
   </div>
 
@@ -21,3 +20,14 @@
     </blockquote>
   </div>
 </div>
+
+<!-- Vertical Buttons -->
+<!-- <div class="btn-group-vertical">
+  <a href="#" class="btn btn-outline-success border-0 my-btn-pad">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+  <span href="#" class="btn disabled btn-outline-dark border-0 my-btn-pad">29</span>
+  <a href="#" class="btn btn-outline-danger border-0 my-btn-pad">
+    <i class="fas fa-chevron-down"></i>
+  </a>
+</div> -->
