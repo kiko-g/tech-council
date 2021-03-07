@@ -21,13 +21,13 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <!-- Our CSS -->
-  <!-- <link rel="stylesheet" href="../style/fonts.css" /> -->
   <link rel="stylesheet" href="../style/colors.css" />
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/header.css" />
   <link rel="stylesheet" href="../style/footer.css" />
   <link rel="stylesheet" href="../style/generic.css" />
   <link rel="stylesheet" href="../style/question.css" />
+  <link rel="stylesheet" href="../style/bootstrap.css" />
   <link rel="stylesheet" href="../style/login.css" />
   <link rel="stylesheet" href="../style/about.css" />
   <link rel="stylesheet" href="../style/moderator.css" />

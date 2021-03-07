@@ -24,8 +24,7 @@
 
 		<form class="collapse" id="collapse<?= $identifier ?>">
 			<textarea class="form-control shadow-sm border border-2 bg-light" rows="2" placeholder="Type your comment"></textarea>
-			<div class="row">
-				<div class="text-end">
+				<div class="float-end">
 					<a class="btn bg-sky text-white mt-2 me-2" role="button" aria-expanded="false">
 						Submit
 					</a>
@@ -33,15 +32,10 @@
 						Close
 					</a>
 				</div>
-			</div>
 		</form>
-		<div class="row">
-			<div class="text-end">
-				<a class="btn bg-sky text-white add-comment me-2 mt-2" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
-					Add comment
-				</a>
-			</div>
-		</div>
+		<a class="float-end btn bg-sky text-white add-comment me-2 mt-2" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
+			Add comment
+		</a>
 	</div>
 
 <?php } ?>

@@ -23,24 +23,6 @@
 							</a>
 						</div>
 					</div>
-
-					<div id="interact" class="col-sm-auto">
-						<div class="btn-group mt-1 rounded">
-							<a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
-								<i class="far fa-comment-dots"></i>&nbsp;25
-							</a>
-						</div>
-						<div class="btn-group mt-1 rounded">
-							<a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
-								<i class="fas fa-reply"></i>&nbsp;25
-							</a>
-						</div>
-						<div class="btn-group mt-1 rounded">
-							<a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
-								<i class="fas fa-share"></i>&nbsp;Share
-							</a>
-						</div>
-					</div>
 				</div>
 
 			</div>

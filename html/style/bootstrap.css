@@ -1,0 +1,167 @@
+/* Bootstrap expansion */
+/*  */
+.btn.orange {
+  color: #fff;
+  background-color: #feb272;
+  border-color: #feb272;
+}
+.btn.orange:hover {
+  color: #fff;
+  background-color: #e68333;
+  border-color: #e68333;
+}
+.btn-check:focus + .btn.orange,
+.btn.orange:focus {
+  color: #fff;
+  background-color: #e68333;
+  border-color: #e68333;
+  box-shadow: 0 0 0 0.15rem #feb27288;
+}
+.btn-check:active + .btn.orange,
+.btn-check:checked + .btn.orange,
+.btn.orange.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+/*  */
+.btn.teal {
+  color: #fff;
+  background-color: #79dfc1;
+  border-color: #79dfc1;
+}
+.btn.teal:hover {
+  color: #fff;
+  background-color: #1aa179;
+  border-color: #1aa179;
+}
+.btn-check:focus + .btn.teal,
+.btn.teal:focus {
+  color: #fff;
+  background-color: #1aa179;
+  border-color: #1aa179;
+  box-shadow: 0 0 0 0.15rem #1aa17988;
+}
+.btn-check:active + .btn.teal,
+.btn-check:checked + .btn.teal,
+.btn.teal.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+/*  */
+.btn.blue {
+  color: #fff;
+  background-color: #6ea8fe;
+  border-color: #6ea8fe;
+}
+.btn.blue:hover {
+  color: #fff;
+  background-color: #578ad6;
+  border-color: #578ad6;
+}
+.btn-check:focus + .btn.blue,
+.btn.blue:focus {
+  color: #fff;
+  background-color: #578ad6;
+  border-color: #578ad6;
+  box-shadow: 0 0 0 0.15rem #578ad688;
+}
+.btn-check:active + .btn.blue,
+.btn-check:checked + .btn.blue,
+.btn.blue.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+/*  */
+.btn.red {
+  color: #fff;
+  background-color: #ea868f;
+  border-color: #ea868f;
+}
+.btn.red:hover {
+  color: #fff;
+  background-color: #b02a37;
+  border-color: #b02a37;
+}
+.btn-check:focus + .btn.red,
+.btn.red:focus {
+  color: #fff;
+  background-color: #b02a37;
+  border-color: #b02a37;
+  box-shadow: 0 0 0 0.15rem #b02a3788;
+}
+.btn-check:active + .btn.red,
+.btn-check:checked + .btn.red,
+.btn.red.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* Upvote */
+.btn-outline-success:focus.teal,
+.btn-outline-success:active.teal,
+.btn-outline-success.teal {
+  color: #5fd6b3;
+  background-color: #fff;
+  border-color: #5fd6b3;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.teal {
+  color: #fff;
+  background-color: #5fd6b3;
+  border-color: #5fd6b3;
+  box-shadow: none;
+}
+
+/* Upvote inverted */
+.btn-outline-success.active-teal,
+.btn-outline-success:active.active-teal,
+.btn-outline-success:focus.active-teal {
+  color: #fff;
+  background-color: #5fd6b3;
+  border-color: #5fd6b3;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.active-teal {
+  color: #fff;
+  background-color: #3e816d;
+  border-color: #3e816d;
+  box-shadow: none;
+}
+
+/* Downvote */
+.btn-outline-danger:focus.pink,
+.btn-outline-danger:active.pink,
+.btn-outline-danger.pink {
+  color: #ea868f;
+  background-color: #fff;
+  border-color: #ea868f;
+  box-shadow: none;
+}
+
+.btn-outline-danger:hover.pink {
+  color: #fff;
+  background-color: #ea868f;
+  border-color: #ea868f;
+  box-shadow: none;
+}
+
+/* Downvote inverted */
+.btn-outline-danger.active-pink {
+  color: #fff;
+  background-color: #ea868f;
+  border-color: #ea868f;
+  box-shadow: none;
+}
+
+.btn-outline-danger:hover.active-pink {
+  color: #fff;
+  background-color: #a9555c;
+  border-color: #a9555c;
+  box-shadow: none;
+}
