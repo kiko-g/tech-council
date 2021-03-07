@@ -43,6 +43,7 @@
   border: 1px solid rgb(32, 68, 85);
 }
 
-.border-light {
-  border: 1px solid rgb(160, 164, 167);
+.border-gray {
+  border: 1px solid rgb(201, 205, 209);
+  border-radius: 5px !important;
 }

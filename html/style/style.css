@@ -1,7 +1,22 @@
-/* default elements and more */
+/* Fonts */
+@import url("http://fonts.cdnfonts.com/css/uk-number-plate");
+@import url("http://fonts.cdnfonts.com/css/zilla-slab");
+@import url("http://fonts.cdnfonts.com/css/quattrocento-sans");
+@import url("http://fonts.cdnfonts.com/css/work-sans");
+@import url("http://fonts.cdnfonts.com/css/work-sans");
+@import url("http://fonts.cdnfonts.com/css/Lato");
+
+/* default elements */
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: rgb(214, 214, 214);
+  font-family: "Work Sans", Arial, sans-serif;
+  /* font-family: 'Open Sans', Arial, sans-serif; */
+  background-color: #dae0e6;
+  line-height: 1.4;
+  font-size: medium;
+}
+
+.font-open-sans {
+  font-family: "Open Sans", Arial, sans-serif;
 }
 
 main {
@@ -65,8 +80,56 @@ main {
   cursor: default;
   user-select: none;
   background-color: transparent;
+  border: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+a {
+  color: rgb(38, 155, 120);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(57, 223, 173);
+  text-decoration: none;
+}
+
+.vote-ratio {
+  color: palevioletred;
+  padding: 0 0.6em;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  /* border-radius: 10px; */
+  /* border: 1px #eee solid; */
+}
+
+.blockquote {
+  font-size: small;
+  padding: 0.2em 0.3em;
+}
+
+.btn-outline-light:hover {
+  color: rgb(55, 90, 110);
+}
+
+.badge {
+  font-family: "Lato", Arial, sans-serif;
+  width: auto;
+  height: auto;
+  vertical-align: 2px;
+  background-color: #57b999;
+  font-size: 0.75rem;
+  padding: 0.4em 0.4em;
+  margin-left: 2px;
+}
+
+.votes {
+  /* border: 1px solid rgb(216, 216, 216); */
+  /* border-radius: 0.33rem; */
+  padding: 0;
 }
 
 .title {

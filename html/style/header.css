@@ -1,13 +1,6 @@
 .home-header {
   color: #fff;
   text-align: center;
-  background-color: #159957;
   background-image: linear-gradient(120deg, #155799, #159957);
-  padding: 2em 3em;
-}
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .home-header {
-    padding: 1rem 2rem;
-  }
+  padding: 0.2em 1em;
 }

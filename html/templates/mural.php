@@ -1,10 +1,12 @@
+<?php include_once 'question-card.php' ?>
+
 <article class="col-lg-9 ">
-  <?php require 'filter-bar.php'; ?>
+  <?php require 'filters.php'; ?>
 
   <div>
     <?php
     for ($i = 0; $i < 5; $i++) {
-      require 'question-card.php';
+      buildQuestion(null);
     }
     ?>
   </div>
