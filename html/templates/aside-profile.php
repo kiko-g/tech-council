@@ -1,13 +1,12 @@
-<aside class="sidebar rounded">
-
+<aside class="col-lg-3">
 	<div class="position-relative">
 		<div class="position-absolute top-0 end-0 profile-tools">
 			<button type="button" class="btn btn-default">
-				<e href="#" class="fas fa-pen"></a>
+				<e href="#" class="fas fa-pen"></e>
 			</button>
 			<p>
 			<button type="button" class="btn btn-default">
-				<e href="#" class="fas fa-cog"></a>
+				<e href="#" class="fas fa-cog"></e>
 			</button>
 		</div>
 	</div>
