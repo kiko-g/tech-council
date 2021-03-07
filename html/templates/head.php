@@ -21,18 +21,18 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <!-- Our CSS -->
-  <link rel="stylesheet" href="../style/fonts.css" />
+  <!-- <link rel="stylesheet" href="../style/fonts.css" /> -->
   <link rel="stylesheet" href="../style/colors.css" />
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/header.css" />
   <link rel="stylesheet" href="../style/footer.css" />
   <link rel="stylesheet" href="../style/generic.css" />
   <link rel="stylesheet" href="../style/question.css" />
-  <link rel="stylesheet" href="../style/bootstrap.css" />
   <link rel="stylesheet" href="../style/login.css" />
   <link rel="stylesheet" href="../style/about.css" />
   <link rel="stylesheet" href="../style/moderator.css" />
   <link rel="stylesheet" href="../style/aside.css" />
+  <link rel="stylesheet" href="../style/question-page.css" />
 
   <!-- JS includes -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>

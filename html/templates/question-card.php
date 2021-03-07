@@ -1,7 +1,13 @@
+<?php function buildQuestion($comments) { ?>
 <div class="card mb-3 p-2-0 border-0 rounded">
   <div class="card-header bg-sky text-white"> Is Java a good programming language? </div>
   <div class="card-body">
     <p class="card-title">Brief description for card question</p>
+
+    <?php
+      if ($comments != null) buildCommentSection($comments, 1);
+    ?>
+
     <div class="row row-cols-3">
       <div class="col-sm">
         <div id="votes" class="btn-group border-secondary mt-1 rounded">
@@ -63,6 +69,7 @@
     </blockquote>
   </div>
 </div>
+<?php } ?>
 
 <!-- Vertical Buttons -->
 <!-- <div class="btn-group-vertical">
