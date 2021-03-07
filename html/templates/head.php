@@ -21,6 +21,8 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <!-- Our CSS -->
+  <link rel="stylesheet" href="../style/fonts.css" />
+  <link rel="stylesheet" href="../style/colors.css" />
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/header.css" />
   <link rel="stylesheet" href="../style/footer.css" />

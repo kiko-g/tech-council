@@ -1,7 +1,12 @@
-/* default elements and more */
+/* Fonts */
+@import url("http://fonts.cdnfonts.com/css/uk-number-plate");
+@import url("http://fonts.cdnfonts.com/css/zilla-slab");
+
+/* default elements */
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: rgb(214, 214, 214);
+  line-height: 1.4;
 }
 
 main {
@@ -67,4 +72,57 @@ main {
   background-color: transparent;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+a {
+  color: rgb(38, 155, 120);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(57, 223, 173);
+  text-decoration: none;
+}
+
+.vote-ratio {
+  color: palevioletred;
+  padding: 0 0.6em;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  /* border-radius: 10px; */
+  /* border: 1px #eee solid; */
+}
+
+.blockquote {
+  font-size: small;
+  padding: 0.2em 0.3em;
+}
+
+.btn-outline-light:hover {
+  color: rgb(55, 90, 110);
+}
+
+.badge {
+  width: auto;
+  height: auto;
+  vertical-align: 2px;
+  background-color: #479f76;
+  font-size: x-small;
+  font-weight: lighter;
+  padding: 0.3em;
+  margin-left: 2px;
+}
+
+/*  */
+.btn.orange {
+  color: #fff;
+  background-color: #feb272;
+  border-color: #feb272;
+}
+.btn.orange:hover {
+  color: #fff;
+  background-color: #ffa357;
+  border-color: #ffa357;
 }

@@ -1,0 +1,24 @@
+.bg-petrol {
+  background-color: rgb(32, 68, 85) !important;
+}
+
+.bg-sky {
+  background-color: rgb(111, 164, 180) !important;
+}
+
+/* Color pallette */
+.text-orange-300 {
+  color: #feb272;
+}
+
+.text-teal-200 {
+  color: #a6e9d5;
+}
+
+.text-red-400 {
+  color: #e35d6a;
+}
+
+.text-blue-300 {
+  color: #6ea8fe;
+}
