@@ -1,17 +1,17 @@
 <div class="card mb-3 p-2-0 border-0 rounded">
-  <div class="card-header bg-sky text-white"> Is Java a good programming language? </div>
+  <div class="card-header bg-sky text-white font-open-sans"> Is Java a good programming language? </div>
   <div class="card-body">
-    <p class="card-title">Brief description for card question</p>
+    <p class="card-title font-open-sans">Brief description for card question</p>
     <div class="row row-cols-3">
       <div class="col-sm">
-        <div id="votes" class="btn-group border-secondary mt-1 rounded">
-          <a class="upvote-button btn btn-outline-success my-btn-pad" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
+        <div id="votes" class="votes btn-group mt-1">
+          <a class="upvote-button my-btn-pad btn btn-outline-success teal" id="upvote-button-<ID>" onclick="vote('up', this.parentNode)" href="#">
             <i class="fas fa-chevron-up"></i>
           </a>
           <a id="vote-ratio-<ID>" href="#" class="vote-ratio btn btn-secondary my-btn-pad fake disabled">
             29
           </a>
-          <a class="downvote-button btn btn-outline-danger my-btn-pad" id="downvote-count-<ID>" onclick="downvote(this)" href="#">
+          <a class="downvote-button my-btn-pad btn btn-outline-danger pink" id="downvote-count-<ID>" onclick="vote('down', this.parentNode)" href="#">
             <i class="fas fa-chevron-down"></i>
           </a>
         </div>
@@ -19,17 +19,17 @@
 
       <div id="interact" class="col-sm-auto">
         <div class="btn-group mt-1 rounded">
-          <a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
+          <a class="upvote-button btn red my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
             <i class="far fa-comment-dots"></i>&nbsp;25
           </a>
         </div>
         <div class="btn-group mt-1 rounded">
-          <a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
-            <i class="fas fa-reply"></i>&nbsp;25
+          <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
+            <i class="fas fa-reply"></i>&nbsp;Reply
           </a>
         </div>
         <div class="btn-group mt-1 rounded">
-          <a class="upvote-button btn orange my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
+          <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" onclick="upvote(this)" href="#">
             <i class="fas fa-share"></i>&nbsp;Share
           </a>
         </div>
