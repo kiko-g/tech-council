@@ -1,3 +1,4 @@
+<?php include_once '../templates/question-card.php' ?>
 <?php require_once '../templates/head.php'; ?>
 
 <body>
@@ -16,7 +17,7 @@
                 </div>
             </div>
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs search-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-questions-tab" data-bs-toggle="tab" data-bs-target="#nav-questions" type="button" role="tab">Questions</button>
                     <button class="nav-link" id="nav-tags-tab" data-bs-toggle="tab" data-bs-target="#nav-tags" type="button" role="tab">Tags</button>
                     <button class="nav-link" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button" role="tab">Users</button>
@@ -32,11 +33,11 @@
                     <div class="tab-pane fade show active" id="nav-questions" role="tabpanel">
                         <?php require '../templates/filters.php'; ?>
                         <div>
-                            <?php
+                        <?php
                             for ($i = 0; $i < 5; $i++) {
-                                require '../templates/question-card.php';
+                            buildQuestion(null);
                             }
-                            ?>
+                        ?>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-tags" role="tabpanel">
