@@ -1,9 +1,13 @@
 .bg-petrol {
-  background-color: rgb(32, 68, 85) !important;
+  background-color: #47616d !important;
 }
 
 .bg-sky {
-  background-color: rgb(111, 164, 180) !important;
+  background-color: #5a93aa !important;
+}
+
+.bg-teal {
+  background-color: #56a08a !important;
 }
 
 /* Color pallette */
@@ -21,4 +25,8 @@
 
 .text-blue-300 {
   color: #6ea8fe;
+}
+
+.text-sky {
+  color: #6fa4b4;
 }

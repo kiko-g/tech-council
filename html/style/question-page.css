@@ -1,0 +1,28 @@
+.add-comment[aria-expanded="true"] {
+  display: none;
+}
+
+.show-more[aria-expanded="true"] {
+  display: none;
+}
+
+.show-less[aria-expanded="false"] {
+  display: none;
+}
+
+
+@media (max-width: 800px) {
+  .comment {
+    flex-direction: column;
+  }
+
+  .comment-footer {
+    text-align: right;
+  }
+
+  .question-clickables {
+    display: flex;
+		position: relative;
+		top: 2em;
+  }
+}

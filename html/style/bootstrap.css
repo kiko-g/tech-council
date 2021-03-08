@@ -1,0 +1,222 @@
+/* Bootstrap expansion */
+/* Orange button */
+.btn.orange {
+  color: #fff;
+  background-color: #feb272;
+  border-color: #feb272;
+}
+.btn.orange:hover {
+  color: #fff;
+  background-color: #e68333;
+  border-color: #e68333;
+}
+.btn-check:focus + .btn.orange,
+.btn.orange:focus {
+  color: #fff;
+  background-color: #e68333;
+  border-color: #e68333;
+  box-shadow: 0 0 0 0.15rem #feb27288;
+}
+.btn-check:active + .btn.orange,
+.btn-check:checked + .btn.orange,
+.btn.orange.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* Teal green button */
+.btn.teal {
+  color: #fff;
+  background-color: #4cb595;
+  border-color: #4cb595;
+}
+.btn.teal:hover {
+  color: #fff;
+  background-color: #1aa179;
+  border-color: #1aa179;
+}
+.btn-check:focus + .btn.teal,
+.btn.teal:focus {
+  color: #fff;
+  background-color: #1aa179;
+  border-color: #1aa179;
+  box-shadow: 0 0 0 0.15rem #1aa17988;
+}
+.btn-check:active + .btn.teal,
+.btn-check:checked + .btn.teal,
+.btn.teal.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* Blue button */
+.btn.blue {
+  color: #fff;
+  background-color: #6ea8fe;
+  border-color: #6ea8fe;
+}
+.btn.blue:hover {
+  color: #fff;
+  background-color: #578ad6;
+  border-color: #578ad6;
+}
+.btn-check:focus + .btn.blue,
+.btn.blue:focus {
+  color: #fff;
+  background-color: #578ad6;
+  border-color: #578ad6;
+  box-shadow: 0 0 0 0.15rem #578ad688;
+}
+.btn-check:active + .btn.blue,
+.btn-check:checked + .btn.blue,
+.btn.blue.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* Red button */
+.btn.red {
+  color: #fff;
+  background-color: #d86b74;
+  border-color: #d86b74;
+}
+.btn.red:hover {
+  color: #fff;
+  background-color: #b02a37;
+  border-color: #b02a37;
+}
+.btn-check:focus + .btn.red,
+.btn.red:focus {
+  color: #fff;
+  background-color: #b02a37;
+  border-color: #b02a37;
+  box-shadow: 0 0 0 0.15rem #b02a3788;
+}
+.btn-check:active + .btn.red,
+.btn-check:checked + .btn.red,
+.btn.red.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* Star */
+.btn-outline-success:focus.star,
+.btn-outline-success:active.star,
+.btn-outline-success.star {
+  color: #ebbe5d;
+  background-color: #fff;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.star {
+  color: #fff;
+  background-color: #ebbe5d;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+/* Star inverted */
+.btn-outline-success.active-star,
+.btn-outline-success:active.active-star,
+.btn-outline-success:focus.active-star {
+  color: #fff;
+  background-color: #ebbe5d;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.active-star {
+  color: #fff;
+  background-color: #b9964b;
+  border-color: #b9964b;
+  box-shadow: none;
+}
+
+/* Upvote */
+.btn-outline-success:focus.teal,
+.btn-outline-success:active.teal,
+.btn-outline-success.teal {
+  color: #4cb595;
+  background-color: #fff;
+  border-color: #4cb595;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.teal {
+  color: #fff;
+  background-color: #4cb595;
+  border-color: #4cb595;
+  box-shadow: none;
+}
+
+/* Upvote inverted */
+.btn-outline-success.active-teal,
+.btn-outline-success:active.active-teal,
+.btn-outline-success:focus.active-teal {
+  color: #fff;
+  background-color: #4cb595;
+  border-color: #4cb595;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.active-teal {
+  color: #fff;
+  background-color: #3e816d;
+  border-color: #3e816d;
+  box-shadow: none;
+}
+
+/* Downvote */
+.btn-outline-danger:focus.pink,
+.btn-outline-danger:active.pink,
+.btn-outline-danger.pink {
+  color: #d86b74;
+  background-color: #fff;
+  border-color: #d86b74;
+  box-shadow: none;
+}
+
+.btn-outline-danger:hover.pink {
+  color: #fff;
+  background-color: #d86b74;
+  border-color: #d86b74;
+  box-shadow: none;
+}
+
+/* Downvote inverted */
+.btn-outline-danger.active-pink {
+  color: #fff;
+  background-color: #d86b74;
+  border-color: #d86b74;
+  box-shadow: none;
+}
+
+.btn-outline-danger:hover.active-pink {
+  color: #fff;
+  background-color: #a9555c;
+  border-color: #a9555c;
+  box-shadow: none;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #5a93aa;
+}
+.nav-pills .nav-link {
+  background: 0 0;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #233d4b;
+  border-color: #233d4b;
+}
