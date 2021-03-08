@@ -51,7 +51,7 @@
             <tr>
                 <th scope="row">4</th>
                 <td>
-                    <a href="#" class="btn btn-secondary border-0 my-btn-pad2">msi</a>
+                    <a href="#" class="btn btn-secondary border-0 my-btn-pad2">amd</a>
                 </td>
                 <td>
                     <span>mpinto05</span>
