@@ -1,7 +1,7 @@
 <?php
 include_once 'comment-section.php';
 include_once 'answer.php';
-include_once __DIR__ . '/../question-card.php';
+include_once __DIR__ . '/../question.php';
 
 $question = array(
   "comments" => array(
@@ -18,7 +18,7 @@ $question = array(
   ),
   "answers" => array(
     array(
-      "content" => "The answer to this question is that 'it is impossible'. you can write a regular expression that accepts all palindromes that are smaller than some finite fixed length.",
+      "content" => "Resposta",
       "correct" => true,
       "comments" => array(
         array(

@@ -9,7 +9,6 @@
 /* default elements */
 body {
   font-family: "Work Sans", Arial, sans-serif;
-  /* font-family: 'Open Sans', Arial, sans-serif; */
   background-color: #dae0e6;
   line-height: 1.4;
   font-size: medium;
@@ -86,17 +85,17 @@ main {
 }
 
 a {
-  color: rgb(38, 155, 120);
-  text-decoration: none;
+  color: rgb(30, 58, 75);
+  text-decoration: underline;
 }
 
 a:hover {
-  color: rgb(57, 223, 173);
+  color: rgb(97, 176, 221);
   text-decoration: none;
 }
 
 .vote-ratio {
-  color: palevioletred;
+  width: auto;
   padding: 0 0.6em;
 }
 

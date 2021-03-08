@@ -1,5 +1,5 @@
 /* Bootstrap expansion */
-/*  */
+/* Orange button */
 .btn.orange {
   color: #fff;
   background-color: #feb272;
@@ -24,11 +24,12 @@
   background-color: #565e64;
   border-color: #51585e;
 }
-/*  */
+
+/* Teal green button */
 .btn.teal {
   color: #fff;
-  background-color: #79dfc1;
-  border-color: #79dfc1;
+  background-color: #4cb595;
+  border-color: #4cb595;
 }
 .btn.teal:hover {
   color: #fff;
@@ -49,7 +50,8 @@
   background-color: #565e64;
   border-color: #51585e;
 }
-/*  */
+
+/* Blue button */
 .btn.blue {
   color: #fff;
   background-color: #6ea8fe;
@@ -74,11 +76,12 @@
   background-color: #565e64;
   border-color: #51585e;
 }
-/*  */
+
+/* Red button */
 .btn.red {
   color: #fff;
-  background-color: #ea868f;
-  border-color: #ea868f;
+  background-color: #d86b74;
+  border-color: #d86b74;
 }
 .btn.red:hover {
   color: #fff;
@@ -100,20 +103,54 @@
   border-color: #51585e;
 }
 
+/* Star */
+.btn-outline-success:focus.star,
+.btn-outline-success:active.star,
+.btn-outline-success.star {
+  color: #ebbe5d;
+  background-color: #fff;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.star {
+  color: #fff;
+  background-color: #ebbe5d;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+/* Star inverted */
+.btn-outline-success.active-star,
+.btn-outline-success:active.active-star,
+.btn-outline-success:focus.active-star {
+  color: #fff;
+  background-color: #ebbe5d;
+  border-color: #ebbe5d;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.active-star {
+  color: #fff;
+  background-color: #b9964b;
+  border-color: #b9964b;
+  box-shadow: none;
+}
+
 /* Upvote */
 .btn-outline-success:focus.teal,
 .btn-outline-success:active.teal,
 .btn-outline-success.teal {
-  color: #5fd6b3;
+  color: #4cb595;
   background-color: #fff;
-  border-color: #5fd6b3;
+  border-color: #4cb595;
   box-shadow: none;
 }
 
 .btn-outline-success:hover.teal {
   color: #fff;
-  background-color: #5fd6b3;
-  border-color: #5fd6b3;
+  background-color: #4cb595;
+  border-color: #4cb595;
   box-shadow: none;
 }
 
@@ -122,8 +159,8 @@
 .btn-outline-success:active.active-teal,
 .btn-outline-success:focus.active-teal {
   color: #fff;
-  background-color: #5fd6b3;
-  border-color: #5fd6b3;
+  background-color: #4cb595;
+  border-color: #4cb595;
   box-shadow: none;
 }
 
@@ -138,24 +175,24 @@
 .btn-outline-danger:focus.pink,
 .btn-outline-danger:active.pink,
 .btn-outline-danger.pink {
-  color: #ea868f;
+  color: #d86b74;
   background-color: #fff;
-  border-color: #ea868f;
+  border-color: #d86b74;
   box-shadow: none;
 }
 
 .btn-outline-danger:hover.pink {
   color: #fff;
-  background-color: #ea868f;
-  border-color: #ea868f;
+  background-color: #d86b74;
+  border-color: #d86b74;
   box-shadow: none;
 }
 
 /* Downvote inverted */
 .btn-outline-danger.active-pink {
   color: #fff;
-  background-color: #ea868f;
-  border-color: #ea868f;
+  background-color: #d86b74;
+  border-color: #d86b74;
   box-shadow: none;
 }
 
@@ -164,4 +201,22 @@
   background-color: #a9555c;
   border-color: #a9555c;
   box-shadow: none;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #5a93aa;
+}
+.nav-pills .nav-link {
+  background: 0 0;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #233d4b;
+  border-color: #233d4b;
 }

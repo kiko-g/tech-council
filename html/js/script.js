@@ -54,6 +54,20 @@ function vote(vote, votes) {
   }
 }
 
+function toggleStar(starButton) {
+  if (starButton.children[0].classList.contains('far')) {
+    starButton.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>&nbsp;Saved'
+    starButton.classList.remove('star')
+    starButton.classList.add('active-star')
+  }
+  else {
+    starButton.innerHTML = '<i class="far fa-star" aria-hidden="true"></i>&nbsp;Save'
+    starButton.classList.remove('active-star')
+    starButton.classList.add('star')
+  }
+}
+
+
 // add event to buttons
 let buttons = document.getElementsByClassName("upvote-button");
 Array.from(buttons).forEach(function (element) {
