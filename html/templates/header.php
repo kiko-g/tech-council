@@ -11,7 +11,7 @@
 
       <div class="collapse navbar-collapse d-flex col-xs-4" id="navbarSupportedContent2">
         &nbsp;&nbsp;
-        <form class="d-flex justify-content-start">
+        <form class="d-flex justify-content-start" action="/pages/search.php">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-light border-0" type="submit"><i class="fas fa-search"></i></button>
         </form>

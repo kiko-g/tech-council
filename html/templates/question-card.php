@@ -12,11 +12,11 @@
       <div class="row row-cols-3 mb-1">
         <div class="col-sm flex-wrap">
           <div id="votes" class="votes btn-group mt-1 flex-wrap">
-            <a id="upvote-button" class="upvote-button my-btn-pad2 btn btn-outline-success active-teal" onclick="vote('up', this.parentNode)" href="#">
+            <a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
-            <a id="vote-ratio" class="vote-ratio btn btn-secondary border-0 my-btn-pad fake disabled">71</a>
-            <a id="downvote-button" class="downvote-button my-btn-pad2 btn btn-outline-danger pink" onclick="vote('down', this.parentNode)" href="#">
+            <a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled" style="width: 40px;"> 42 </a>
+            <a id="downvote-button" class="downvote-button my-btn-pad btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
               <i class="fas fa-chevron-down"></i>
             </a>
           </div>
