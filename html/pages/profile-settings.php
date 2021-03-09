@@ -51,7 +51,7 @@
 
             </div>
 
-            <?php require '../templates/aside-profile.php'; ?>
+            <?php require '../templates/aside-prof.php'; ?>
         </div>
 
     </main>
