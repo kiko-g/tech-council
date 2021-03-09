@@ -2,12 +2,8 @@
 	<div class="position-relative">
 		<div class="position-absolute top-0 end-0 profile-tools">
 			<button type="button" class="btn btn-default">
-				<e href="#" class="fas fa-pen"></e>
+				<e href="#" class="fas fa-cog"></e>
 			</button>
-			<p>
-				<button type="button" class="btn btn-default">
-					<e href="#" class="fas fa-cog"></e>
-				</button>
 		</div>
 	</div>
 
@@ -20,18 +16,8 @@
 				<p class="card-text">Joined: 11/09/2020</p>
 			</div>
 		</div>
+	</div>
 
-		<div class="card info-card">
-			<div class="card-body">
-				<ul class="footer-ul">
-					<li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">Home</a></li>
-					<li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">About</a></li>
-					<li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">Support</a></li>
-					<li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">FAQ</a></li>
-					<p>
-					<p>TechCouncil 2021</p>
-				</ul>
-			</div>
-		</div>
+	<?php require 'navigation.php' ?>
 
 </aside>
