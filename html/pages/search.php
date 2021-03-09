@@ -1,4 +1,5 @@
 <?php include_once '../templates/question-card.php' ?>
+<?php include_once '../templates/tag-card.php' ?>
 <?php require_once '../templates/head.php'; ?>
 
 <body>
@@ -41,10 +42,49 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-tags" role="tabpanel">
-                        ...
+                        <?php require '../templates/filters.php'; ?>
+                        <div>
+                        <?php
+                            for ($i = 0; $i < 5; $i++) {
+                            buildTag(null);
+                            }
+                        ?>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-users" role="tabpanel">
-                        ...
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                                <div class="col">
+                                    <?php require '../templates/user-card-simple.php'; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="#"><</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">></a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>            
