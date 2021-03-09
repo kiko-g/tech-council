@@ -9,15 +9,33 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent2">
         &nbsp;&nbsp;
-        <form class="d-flex justify-content-end" action="/pages/search.php">
+        <form class="d-flex " action="/pages/search.php">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-light border-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
-        <a href="pages/login.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
-        <a href="pages/register.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+        <div class="d-flex ">
+          <a href="pages/register.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+          <a href="pages/login.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
+        </div>
+      </div> -->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        &nbsp;&nbsp;
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light border-0" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="pages/register.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/login.php" class="btn btn-outline-light border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
+          </li>
+        </ul>
       </div>
+
 
     </div>
   </nav>

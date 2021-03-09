@@ -16,8 +16,8 @@
                         <nav class="user-search-nav navbar navbar-light">
                             <form class="container-fluid">
                                 <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                                <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username">
                                 </div>
                             </form>
                         </nav>
@@ -25,20 +25,20 @@
                     <div class="ban-users">
                         <div class="row">
                             <?php
-                                for ($i = 0; $i < 3; $i++) {
-                                    echo "<div class=\"col-sm\">";
-                                    require '../templates/user-card.php';
-                                    echo "</div>";
-                                }
+                            for ($i = 0; $i < 3; $i++) {
+                                echo "<div class=\"col-sm\">";
+                                require '../templates/user-card.php';
+                                echo "</div>";
+                            }
                             ?>
                         </div>
                         <div class="row">
                             <?php
-                                for ($i = 0; $i < 3; $i++) {
-                                    echo "<div class=\"col-sm\">";
-                                    require '../templates/user-card.php';
-                                    echo "</div>";
-                                }
+                            for ($i = 0; $i < 3; $i++) {
+                                echo "<div class=\"col-sm\">";
+                                require '../templates/user-card.php';
+                                echo "</div>";
+                            }
                             ?>
                         </div>
                     </div>
@@ -46,19 +46,19 @@
                         <nav>
                             <ul class="pagination">
                                 <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item active"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
@@ -69,8 +69,8 @@
                         <nav class="tag-search-nav navbar navbar-light">
                             <form class="container-fluid">
                                 <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                                <input type="text" class="form-control" placeholder="Tag" aria-label="Tag">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input type="text" class="form-control" placeholder="Tag" aria-label="Tag">
                                 </div>
                             </form>
                         </nav>
@@ -82,29 +82,29 @@
                         <nav>
                             <ul class="pagination">
                                 <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item active"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                </div>      
+                </div>
             </div>
             <?php require '../templates/aside.php'; ?>
         </div>
-        
-    </main> 
+
+    </main>
     <?php require '../templates/footer.php'; ?>
 </body>
 

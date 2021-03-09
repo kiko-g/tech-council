@@ -14,7 +14,7 @@
 </html>
 
 <!-- TO DO LIST | TODO
-- merge question card and question
+- Merge question card and question
 - Tag page
 - Collapse search bar
 - Cleanup code and pages

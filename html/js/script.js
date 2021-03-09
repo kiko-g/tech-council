@@ -1,4 +1,4 @@
-function vote(vote, votes) {
+const vote = (vote, votes) => {
   let upvoteButton = votes.children[0];
   let downvoteButton = votes.children[2];
   let ratio = parseInt(votes.children[1].innerHTML);
@@ -54,7 +54,7 @@ function vote(vote, votes) {
   }
 }
 
-function toggleStar(starButton) {
+const toggleStar = starButton => {
   if (starButton.children[0].classList.contains('far')) {
     starButton.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>&nbsp;Saved'
     starButton.classList.remove('star')
@@ -65,12 +65,12 @@ function toggleStar(starButton) {
     starButton.classList.remove('active-star')
     starButton.classList.add('star')
   }
-}
+};
 
 
 // add event to buttons
 let buttons = document.getElementsByClassName("upvote-button");
-Array.from(buttons).forEach(function (element) {
+Array.from(buttons).forEach(element => {
   element.addEventListener('click', function (event) {
     event.preventDefault();
     // DO SOMETHING WITH UPVOTE
@@ -78,7 +78,7 @@ Array.from(buttons).forEach(function (element) {
 });
 
 buttons = document.getElementsByClassName("downvote-button");
-Array.from(buttons).forEach(function (element) {
+Array.from(buttons).forEach(element => {
   element.addEventListener('click', function (event) {
     event.preventDefault();
     // DO SOMETHING WITH DOWNVOTE

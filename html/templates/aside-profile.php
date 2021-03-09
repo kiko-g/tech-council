@@ -5,9 +5,9 @@
 				<e href="#" class="fas fa-pen"></e>
 			</button>
 			<p>
-			<button type="button" class="btn btn-default">
-				<e href="#" class="fas fa-cog"></e>
-			</button>
+				<button type="button" class="btn btn-default">
+					<e href="#" class="fas fa-cog"></e>
+				</button>
 		</div>
 	</div>
 
