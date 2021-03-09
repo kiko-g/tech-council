@@ -10,7 +10,6 @@
   display: none;
 }
 
-
 @media (max-width: 800px) {
   .comment {
     flex-direction: column;
@@ -22,7 +21,7 @@
 
   .question-clickables {
     display: flex;
-		position: relative;
-		top: 2em;
+    position: relative;
+    top: 2em;
   }
 }

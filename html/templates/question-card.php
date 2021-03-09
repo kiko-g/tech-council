@@ -10,13 +10,13 @@
         Is <code>==</code> bad? When should it and should it not be used? What's the difference?
       </p>
       <div class="row row-cols-3 mb-1">
-        <div class="col-sm flex-wrap">
-          <div id="votes" class="votes btn-group mt-1 flex-wrap">
-            <a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
+        <div class="col-md flex-wrap">
+          <div id="votes" class="votes btn-group btn-group-vertical-when-responsive mt-1 flex-wrap">
+            <a id="upvote-button" class="upvote-button my-btn-pad rounded-when-responsive up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
-            <a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled" style="width: 40px;"> 42 </a>
-            <a id="downvote-button" class="downvote-button my-btn-pad btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
+            <a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled"> 42 </a>
+            <a id="downvote-button" class="downvote-button my-btn-pad rounded-when-responsive down btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
               <i class="fas fa-chevron-down"></i>
             </a>
           </div>
@@ -60,6 +60,9 @@
           <div class="btn-group mt-1">
             <a href="#" class="btn btn-secondary border-0 my-btn-pad2">nvidia</a>
           </div>
+          <div class="btn-group mt-1">
+            <a href="#" class="btn btn-secondary border-0 my-btn-pad2">react</a>
+          </div>
         </div>
       </div>
       <?php
@@ -79,14 +82,3 @@
     </div>
   </div>
 <?php } ?>
-
-<!-- Vertical Buttons -->
-<!-- <div class="btn-group-vertical">
-  <a href="#" class="btn btn-outline-success border-0 my-btn-pad">
-    <i class="fas fa-chevron-up"></i>
-  </a>
-  <span href="#" class="btn disabled btn-outline-dark border-0 my-btn-pad">29</span>
-  <a href="#" class="btn btn-outline-danger border-0 my-btn-pad">
-    <i class="fas fa-chevron-down"></i>
-  </a>
-</div> -->
