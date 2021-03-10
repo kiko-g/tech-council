@@ -1,6 +1,8 @@
 .home-header {
   color: #fff;
-  text-align: center;
-  background-image: linear-gradient(120deg, #155799, #159957);
+  background-image: linear-gradient(120deg, #155799, #1d8b66);
+  /* background-image: linear-gradient(120deg, #3d77b1, #1c5288); */
+  /* background-image: linear-gradient(120deg, #155799, #159957); */
+  /* text-align: center; */
   padding: 0.2em 1em;
 }

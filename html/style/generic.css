@@ -7,11 +7,11 @@
 }
 
 .border-top-light {
-  border-top: 1px rgb(187, 247, 255) dashed;
+  border-top: 1px #bbf7ff dashed;
 }
 
 .border-top-medium {
-  border-top: 1px rgb(99, 113, 114) dashed;
+  border-top: 1px #637172 dashed;
 }
 
 .container-fluid.condensed {

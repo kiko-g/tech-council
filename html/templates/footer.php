@@ -16,8 +16,9 @@
       <div class="footer-section col-sm-4 col-md col-12 col p-4">
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
-          <li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">Home</a></li>
-          <li><a href="https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="../pages/faq.php">FAQ</a></li>
+          <li><a href="../pages/about.php">About</a></li>
         </ul>
       </div>
 
@@ -25,10 +26,10 @@
       <div class="footer-section rounded-right col-sm-4 col-md col-12 col p-4">
         <h5 class="footer-section-header">Follow us</h5>
         <ul class="footer-ul">
-          <li><i class="fa fa-github"></i>&nbsp; <a href="https://github.com/">Francisco Friande </a></li>
-          <li><i class="fa fa-github"></i>&nbsp; <a href="https://github.com/kiko-g">Francisco Gonçalves </a></li>
-          <li><i class="fa fa-github"></i>&nbsp; <a href="https://github.com/">João Romão </a></li>
-          <li><i class="fa fa-github"></i>&nbsp; <a href="https://github.com/migueldelpinto">Miguel Pinto </a></li>
+          <li><i class="fa fa-github"></i>&nbsp; <a target="_blank" href="https://github.com/ffriande">Francisco Friande </a></li>
+          <li><i class="fa fa-github"></i>&nbsp; <a target="_blank" href="https://github.com/kiko-g">Francisco Gonçalves </a></li>
+          <li><i class="fa fa-github"></i>&nbsp; <a target="_blank" href="https://github.com/TsarkFC">João Romão </a></li>
+          <li><i class="fa fa-github"></i>&nbsp; <a target="_blank" href="https://github.com/migueldelpinto">Miguel Pinto </a></li>
         </ul>
       </div>
       <!-- DIV 1 -->

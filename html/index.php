@@ -14,9 +14,11 @@
 </html>
 
 <!-- TO DO LIST | TODO
+- Header, notifications, navigation
 - Merge question card and question
 - Tag page
-- Collapse search bar
+- Ask question page
+- User page, user aside
 - Cleanup code and pages
 - Cleanup wireframes
 - ER Review

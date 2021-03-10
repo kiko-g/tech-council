@@ -2,6 +2,10 @@
   background-color: #47616d !important;
 }
 
+.bg-darksea {
+  background-color: #46706b !important;
+}
+
 .bg-sky {
   background-color: #5a93aa !important;
 }
@@ -23,10 +27,30 @@
   color: #e35d6a;
 }
 
+.text-blue-100 {
+  color: #9eebfe;
+}
+
+.text-blue-200 {
+  color: #9ec5fe;
+}
+
 .text-blue-300 {
   color: #6ea8fe;
 }
 
+.text-wine {
+  color: #dd758b;
+}
+
 .text-sky {
   color: #6fa4b4;
+}
+
+.bg-main {
+  background-color: #dae0e6;
+}
+
+.bg-blue-300 {
+  background-color: #6ea8fe;
 }

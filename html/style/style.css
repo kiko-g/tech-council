@@ -85,17 +85,17 @@ main {
 }
 
 a {
-  color: rgb(30, 58, 75);
+  color: #1e3a4b;
   text-decoration: underline;
 }
 
 a:hover {
-  color: rgb(97, 176, 221);
+  color: #6ea8fe;
   text-decoration: none;
 }
 
 .vote-ratio {
-  width: 42px !important;
+  width: 40px !important;
   width: auto;
   padding: 0 0.6em;
 }
@@ -112,6 +112,19 @@ a:hover {
     border-radius: 0 0 5px 5px;
   }
 }
+
+@media (max-width: 1200px) {
+  .btn-group-special > .btn-group:not(:last-child) > .btn,
+  .btn-group-special > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .btn-group-special > .btn-group:not(:first-child) > .btn,
+  .btn-group-special > .btn:not(:first-child):not(.dropdown-toggle) {
+    border-radius: 0 0 5px 5px;
+  }
+}
+
 @media (max-width: 1200px) {
   .btn-group-vertical-when-responsive {
     flex-direction: column;
@@ -134,7 +147,7 @@ a:hover {
 }
 
 .btn-outline-light:hover {
-  color: rgb(55, 90, 110);
+  color: #375a6e;
 }
 
 .badge {
@@ -143,6 +156,7 @@ a:hover {
   height: auto;
   vertical-align: 2px;
   background-color: #57b999;
+  background-color: #b96257;
   font-size: 0.75rem;
   padding: 0.4em 0.4em;
   margin-left: 2px;
@@ -158,10 +172,24 @@ a:hover {
   color: darkslategray;
 }
 
-.navbar-collapse.lol {
-  flex-basis: 100%;
-}
-
 .flex-row-reverse.important {
   flex-direction: row-reverse !important;
+}
+
+.rounded-end.must {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+a.header {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a.header:hover {
+  opacity: 90%;
+}
+
+.mt-1dot5 {
+  margin-top: 0.4rem !important;
 }

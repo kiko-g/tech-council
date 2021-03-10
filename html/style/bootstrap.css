@@ -2,6 +2,7 @@
 /* Orange button */
 .btn.orange {
   color: #fff;
+  /* feb272 */
   background-color: #feb272;
   border-color: #feb272;
 }
@@ -20,6 +21,33 @@
 .btn-check:active + .btn.orange,
 .btn-check:checked + .btn.orange,
 .btn.orange.active {
+  color: #fff;
+  background-color: #565e64;
+  border-color: #51585e;
+}
+
+/* wine */
+.btn.wine {
+  color: #fff;
+  /* feb272 */
+  background-color: #c54f68;
+  border-color: #c54f68;
+}
+.btn.wine:hover {
+  color: #fff;
+  background-color: #913045;
+  border-color: #913045;
+}
+.btn-check:focus + .btn.wine,
+.btn.wine:focus {
+  color: #fff;
+  background-color: #913045;
+  border-color: #913045;
+  box-shadow: 0 0 0 0.15rem #91304588;
+}
+.btn-check:active + .btn.wine,
+.btn-check:checked + .btn.wine,
+.btn.wine.active {
   color: #fff;
   background-color: #565e64;
   border-color: #51585e;
@@ -49,6 +77,33 @@
   color: #fff;
   background-color: #565e64;
   border-color: #51585e;
+}
+
+/* blue alt button */
+.btn.blue-alt {
+  color: #fff;
+  background-color: #47616d;
+  border-color: #47616d;
+}
+.btn.blue-alt:hover {
+  color: #fff;
+  background-color: #4382b3;
+  border-color: #4382b3;
+}
+.btn-check:focus + .btn.blue-alt,
+.btn.blue-alt:focus {
+  color: #fff;
+  background-color: #0079d3;
+  border-color: #0079d3;
+  box-shadow: 0 0 0 0.15rem #0079d388;
+}
+.btn-check:active + .btn.blue-alt,
+.btn-check:checked + .btn.blue-alt,
+.btn.blue-alt.active {
+  color: #fff;
+  background-color: #4382b3;
+  border-color: #4382b3;
+  box-shadow: none;
 }
 
 /* Blue button */
@@ -206,7 +261,7 @@
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #5a93aa;
+  background-color: #4382b3;
 }
 .nav-pills .nav-link {
   background: 0 0;
@@ -217,6 +272,6 @@
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #233d4b;
-  border-color: #233d4b;
+  background-color: #4382b3;
+  border-color: #4382b3;
 }

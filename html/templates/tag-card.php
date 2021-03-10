@@ -18,13 +18,13 @@
             </a>
           </div>
           <div class="btn-group mt-1 rounded">
-            <a class="upvote-button btn red my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
+            <a class="upvote-button btn wine my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
               <i class="fas fa-fire"></i>&nbsp;21k
             </a>
           </div>
           <div class="btn-group mt-1 rounded">
             <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
-              <i class="fas fa-share"></i>&nbsp;Share
+              <i class="fas fa-share-alt"></i>&nbsp;Share
             </a>
           </div>
         </div>

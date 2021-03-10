@@ -33,7 +33,7 @@
 				</a>
 			</div>
 		</form>
-		<a class="float-end btn bg-sky text-white add-comment mt-3" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
+		<a class="float-end btn bg-blue-300 text-white add-comment mt-3" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
 			Add comment
 		</a>
 	</div>

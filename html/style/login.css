@@ -1,14 +1,15 @@
-html, body {
-	height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 .entry-form {
   text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957);
+  background-color: #1d8b66;
+  background-image: linear-gradient(120deg, #155799, #1d8b66);
   padding: 2em 20%;
   height: 100%;
-	width: 100%;
+  width: 100%;
 }
 
 .entry-anchor {

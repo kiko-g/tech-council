@@ -33,11 +33,11 @@
 }
 
 .footer-ul li a {
-  color: rgb(140, 222, 255, 0.6);
+  color: #8cdeff99;
   text-decoration: none;
 }
 
 .footer-ul li a:hover {
-  color: rgb(140, 222, 255);
+  color: #8cdeff;
   text-decoration: none;
 }
