@@ -16,9 +16,12 @@
       <div class="footer-section col-sm-4 col-md col-12 col p-4">
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
-          <li><a href="/">Home</a></li>
-          <li><a href="../pages/faq.php">FAQ</a></li>
-          <li><a href="../pages/about.php">About</a></li>
+          <li><i class="fas fa-home"></i>&nbsp; <a href="/">Home</a> </li>
+          <li><i class="fas fa-inbox"></i>&nbsp; <a href="../pages/profile.php">Inbox</a></li>
+          <li><i class="fas fa-tags"></i>&nbsp; <a href="../pages/tags.php">Tags</a></li>
+          <li><i class="fas fa-address-card"></i>&nbsp; <a href="../pages/profile.php">Profile</a></li>
+          <li><i class="fas fa-question-circle"></i>&nbsp; <a href="../pages/faq.php">FAQ</a></li>
+          <li><i class="fas fa-info-circle"></i>&nbsp; <a href="../pages/about.php">About</a></li>
         </ul>
       </div>
 
@@ -35,5 +38,4 @@
       <!-- DIV 1 -->
     </div>
   </div>
-
 </footer>

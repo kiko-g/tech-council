@@ -18,6 +18,6 @@
 		</div>
 	</div>
 
-	<?php require 'navigation.php' ?>
+	<?php require 'aside/navigation.php' ?>
 
 </aside>

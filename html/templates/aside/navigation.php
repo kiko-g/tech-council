@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<!-- <div class="card mb-3">
     <div class="card-header text-white bg-petrol font-open-sans"> Navigation </div>
     <ul class="nav flex-column py-2">
         <li class="nav-item">
@@ -13,8 +13,5 @@
         <li class="nav-item">
             <a class="nav-link" href="pages/moderator.php"><i class="fas fa-address-card"></i>&nbsp;Moderator</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/profile.php"><i class="fas fa-address-card"></i>&nbsp;Profile</a>
-        </li>
     </ul>
-</div>
+</div> -->

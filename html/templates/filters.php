@@ -24,10 +24,12 @@
     </div>
 
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="pose-question-radio" id="pose-question-radio2" autocomplete="off" href="pages/ask.php">
-      <label class="btn blue" for="pose-question-radio2">
-        Ask Question&nbsp;<i class="fas fa-plus-square fa-sm"></i>
-      </label>
+      <form action="../pages/ask.php">
+        <input type="submit" class="btn-check" id="ask-question">
+        <label class="btn blue" for="ask-question">
+          Ask Question&nbsp;<i class="fas fa-plus-square fa-sm"></i>
+        </label>
+      </form>
     </div>
   </div>
 </nav>
