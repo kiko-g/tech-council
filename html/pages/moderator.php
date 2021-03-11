@@ -27,7 +27,7 @@
 							<?php
 							for ($i = 0; $i < 3; $i++) {
 								echo "<div class=\"col-sm\">";
-								require '../templates/user-card.php';
+								require '../templates/users/user-card.php';
 								echo "</div>";
 							}
 							?>
@@ -36,7 +36,7 @@
 							<?php
 							for ($i = 0; $i < 3; $i++) {
 								echo "<div class=\"col-sm\">";
-								require '../templates/user-card.php';
+								require '../templates/users/user-card.php';
 								echo "</div>";
 							}
 							?>
@@ -44,18 +44,20 @@
 					</div>
 					<div class="results-picker">
 						<nav>
-							<ul class="pagination">
+							<ul class="pagination justify-content-center">
 								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
+									<a class="page-link petrol" href="#" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 									</a>
 								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item active"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
+
+								<li class="page-item"><a class="page-link petrol" href="#">1</a></li>
+								<li class="page-item"><a class="page-link petrol active" href="#">2</a></li>
+								<li class="page-item"><a class="page-link petrol" href="#">3</a></li>
+
 								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
+									<a class="page-link petrol" href="#" aria-label="Next">
 										<span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 									</a>
@@ -80,18 +82,20 @@
 					</div>
 					<div class="results-picker">
 						<nav>
-							<ul class="pagination">
+							<ul class="pagination justify-content-center">
 								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
+									<a class="page-link petrol" href="#" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 									</a>
 								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item active"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
+
+								<li class="page-item"><a class="page-link petrol" href="#">1</a></li>
+								<li class="page-item"><a class="page-link petrol active" href="#">2</a></li>
+								<li class="page-item"><a class="page-link petrol" href="#">3</a></li>
+
 								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
+									<a class="page-link petrol" href="#" aria-label="Next">
 										<span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 									</a>
