@@ -82,11 +82,13 @@
 /* blue alt button */
 .btn.blue-alt {
   color: #fff;
+  /* 47616d */
   background-color: #47616d;
   border-color: #47616d;
 }
 .btn.blue-alt:hover {
   color: #fff;
+  /* 4382b3 */
   background-color: #4382b3;
   border-color: #4382b3;
 }

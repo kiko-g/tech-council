@@ -25,7 +25,7 @@ require '../templates/head.php';
 					</ul>
 				</nav>
 			</article>
-			<?php require '../templates/aside-profile.php'; ?>
+			<?php require '../templates/users/user-aside.php'; ?>
 		</div>
 	</main>
 	<?php require '../templates/footer.php'; ?>
