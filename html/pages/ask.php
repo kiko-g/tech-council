@@ -1,3 +1,5 @@
+<?php require_once '../templates/head.php'; ?>
+
 <?php function buildQuestion($comments)
 { ?>
   <div class="card mb-4 p-2-0 border-0 rounded">
@@ -83,13 +85,4 @@
   </div>
 <?php } ?>
 
-<!-- Vertical Buttons -->
-<!-- <div class="btn-group-vertical">
-  <a href="#" class="btn btn-outline-success border-0 my-btn-pad">
-    <i class="fas fa-chevron-up"></i>
-  </a>
-  <span href="#" class="btn disabled btn-outline-dark border-0 my-btn-pad">29</span>
-  <a href="#" class="btn btn-outline-danger border-0 my-btn-pad">
-    <i class="fas fa-chevron-down"></i>
-  </a>
-</div> -->
+</html>

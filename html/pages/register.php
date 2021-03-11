@@ -3,7 +3,7 @@
 <body>
 	<div class="d-flex entry-form flex-column justify-content-center">
 		<header class="text-light mb-4">
-			<h1>Tech Council</h1>
+			<h1><a href="/" class="header">Tech Council</a></h1>
 		</header>
 		<form>
 			<header class="text-start text-light mb-4 ms-4">
@@ -25,9 +25,9 @@
 				<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
 				<label for="floatingPassword">Confirm password</label>
 			</div>
-			<div class="d-flex justify-content-evenly">
-				<a href="./login.php" class="link-light entry-anchor">Already have an account? <br> Sign in</a>
-				<button type="submit" class="btn btn-outline-primary btn-light">Submit</button>
+			<div class="d-flex justify-content-between">
+				<a href="./login.php" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
+				<button type="submit" class="btn blue-alt btn-light">Submit</button>
 			</div>
 		</form>
 	</div>

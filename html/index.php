@@ -18,8 +18,8 @@ TO DO LIST
 
 URGENT
 - Tag page
-- Ask question page
-- User page, user aside
+- Fix Ask question page (?) + overlook
+- User page, user aside overlook
 
 MEDIUM
 - Merge question card and question

@@ -3,7 +3,7 @@
 <body>
 	<div class="d-flex entry-form flex-column justify-content-center">
 		<header class="text-light mb-5">
-			<h1>Tech Council</h1>
+			<h1><a href="/" class="header">Tech Council</a></h1>
 		</header>
 		<form>
 			<header class="text-start text-light mb-4 ms-4">
