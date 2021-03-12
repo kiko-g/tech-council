@@ -1,29 +1,27 @@
 <?php function buildAnswer($answer, $identifier)
 { ?>
-	<div class="card border-dark mb-3 p-2-0 rounded bg-<?= $answer["correct"] ? 'success' : 'secondary' ?>">
+	<div class="card mb-4 border-0 p-0 rounded bg-<?= $answer["correct"] ? 'teal-600' : 'background-color' ?>">
 		<div class="card m-1">
 			<div class="card-body">
-				<div class="fs-5 comment shadow-sm border border-2 p-2 mb-3 bg-light rounded">
+				<p class="mb-3">
 					<?= $answer["content"] ?>
-				</div>
+				</p>
 
-				<?php buildCommentSection($answer["comments"], $identifier); ?>
-
-				<div class="row row-cols-3">
-					<div class="col-sm">
-						<div id="votes" class="btn-group border-secondary mt-1 rounded">
-							<a class="upvote-button my-btn-pad btn btn-outline-success teal" id="upvote-button-<ID>" onclick="vote('up', this.parentNode)" href="#">
+				<div class="row row-cols-3 mb-4">
+					<div class="col-sm flex-wrap">
+						<div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
+							<a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
 								<i class="fas fa-chevron-up"></i>
 							</a>
-							<a id="vote-ratio-<ID>" href="#" class="vote-ratio btn btn-secondary my-btn-pad fake disabled">
-								73
-							</a>
-							<a class="downvote-button my-btn-pad btn btn-outline-danger pink" id="downvote-count-<ID>" onclick="vote('down', this.parentNode)" href="#">
+							<a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled"> 45 </a>
+							<a id="downvote-button" class="downvote-button my-btn-pad btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
 								<i class="fas fa-chevron-down"></i>
 							</a>
 						</div>
 					</div>
 				</div>
+
+				<?php buildCommentSection($answer["comments"], $identifier); ?>
 
 			</div>
 			<div class="card-footer text-muted text-end p-0">

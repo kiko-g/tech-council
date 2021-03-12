@@ -55,24 +55,24 @@
 						<div class="container">
 							<div class="row">
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 								<div class="col">
-									<?php require '../templates/user-card-simple.php'; ?>
+									<?php require '../templates/users/user-card-simple.php'; ?>
 								</div>
 							</div>
 						</div>

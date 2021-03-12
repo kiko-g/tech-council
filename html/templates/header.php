@@ -5,8 +5,9 @@
         <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1">
         Tech Council
       </a>
+
       <div class="nav-item dropdown">
-        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> </a>
+        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
           <li><a class="dropdown-item" href="#">Action</a></li>
           <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -16,6 +17,7 @@
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </div>
+
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,10 +31,7 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a href="/pages/login.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-tags"></i>&nbsp;Tags</a>
-          </li>
-          <li class="nav-item">
-            <a href="/pages/moderator.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-briefcase"></i>&nbsp;Admin</a>
+            <a href="/pages/moderator.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-briefcase"></i>&nbsp;Moderator</a>
           </li>
           <li class="nav-item">
             <a href="/pages/login.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
@@ -41,15 +40,25 @@
             <a href="/pages/register.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
           </li>
           <li class="nav-item">
-            <a href="/pages/login.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-inbox"></i>&nbsp;Inbox
-              <span class="badge align-middle">9</span>
+            <a href="/pages/register.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
             </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="/pages/profile.php" class="btn btn-outline-light btn-sm border-0" type="submit">
-              <!-- if signed in show -->
-              <!-- <i class="fas fa-address-card"></i> -->
               <img src="/images/team4.jpeg" alt="" width="23" height="23" class="">&nbsp;Profile
+              <span class="badge align-middle bg-petrol">347</span>
             </a>
           </li>
         </ul>

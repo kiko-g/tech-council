@@ -28,12 +28,12 @@
 				<a class="btn btn-success teal text-white mt-2 me-2" role="button" aria-expanded="false">
 					Submit
 				</a>
-				<a class="btn btn-danger pink text-white mt-2" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
+				<a class="btn btn-danger wine text-white mt-2" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
 					Close
 				</a>
 			</div>
 		</form>
-		<a class="float-end btn bg-blue-300 text-white add-comment mt-3" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
+		<a class="float-end btn blue-alt extra text-white add-comment mt-3" data-bs-toggle="collapse" href="#collapse<?= $identifier ?>" role="button" aria-expanded="false" aria-controls="collapse<?= $identifier ?>">
 			Add comment
 		</a>
 	</div>

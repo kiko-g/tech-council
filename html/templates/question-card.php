@@ -34,19 +34,19 @@
             </a>
           </div>
           <div class="btn-group mt-1 rounded">
-            <a class="upvote-button btn wine my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
+            <a class="upvote-button btn wine my-btn-pad2" id="upvote-button-<ID>" href="#">
               <i class="far fa-comment-dots"></i>&nbsp;25
             </a>
           </div>
           <?php if ($comments == null) { ?>
             <div class="btn-group mt-1 rounded">
-              <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
+              <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" href="#">
                 <i class="fas fa-reply"></i>&nbsp;Reply
               </a>
             </div>
           <?php } ?>
           <div class="btn-group mt-1 rounded">
-            <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" onclick="/**/" href="#">
+            <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" href="#">
               <i class="fas fa-share-alt"></i>&nbsp;Share
             </a>
           </div>
@@ -54,19 +54,19 @@
 
         <div id="tags" class="col-sm-auto">
           <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2">java</a>
+            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
           </div>
           <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2">node</a>
+            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">node</a>
           </div>
           <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2">msi</a>
+            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">msi</a>
           </div>
           <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2">nvidia</a>
+            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">nvidia</a>
           </div>
           <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2">react</a>
+            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">react</a>
           </div>
         </div>
       </div>

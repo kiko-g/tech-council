@@ -7,8 +7,8 @@
 			<div class="moderator-area col-lg-9">
 				<div class="users-or-tags-picker">
 					<div class="btn-group users-or-tags-button" role="group">
-						<button type="button" class="btn active btn-secondary users-button">Users</button>
-						<button type="button" class="btn btn-secondary tags-button">Tags</button>
+						<button type="button" class="btn active blue-alt users-button">Users</button>
+						<button type="button" class="btn blue-alt tags-button">Tags</button>
 					</div>
 				</div>
 				<div class="user-area">

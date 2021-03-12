@@ -1,87 +1,9 @@
-/* Fonts */
-@import url("http://fonts.cdnfonts.com/css/uk-number-plate");
-@import url("http://fonts.cdnfonts.com/css/zilla-slab");
-@import url("http://fonts.cdnfonts.com/css/quattrocento-sans");
-@import url("http://fonts.cdnfonts.com/css/work-sans");
-@import url("http://fonts.cdnfonts.com/css/work-sans");
-@import url("http://fonts.cdnfonts.com/css/Lato");
-
 /* default elements */
 body {
   font-family: "Work Sans", Arial, sans-serif;
-  background-color: #dae0e6;
+  background-color: var(--background-color);
   line-height: 1.4;
   font-size: medium;
-}
-
-.font-open-sans {
-  font-family: "Open Sans", Arial, sans-serif;
-}
-
-main {
-  width: auto;
-  margin: 1em auto;
-}
-
-.mural {
-  margin: 1em;
-  padding: 1em;
-  background-color: #f1f1f1;
-}
-
-.mural-component {
-  margin-bottom: 1em;
-  border: 1px solid darkslategray;
-  background-color: #ddd;
-}
-
-.sidebar {
-  margin: 1em;
-  background-color: whitesmoke;
-}
-
-.sidebar-component {
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid darkslategray;
-  background-color: #ddd;
-}
-
-.tags {
-  margin-bottom: 1em;
-}
-
-#navbar-toggler {
-  border: none;
-}
-
-.upvote-downvote {
-  flex-shrink: 1;
-  justify-content: center;
-}
-
-.signature {
-  font-style: italic;
-}
-
-.my-btn-pad {
-  padding: 0 0.25em;
-}
-
-.my-btn-pad2 {
-  padding: 0.2em 0.5em;
-  font-size: smaller;
-}
-
-.btn.fake {
-  color: #212529;
-  display: inline-block;
-  cursor: default;
-  user-select: none;
-  background-color: transparent;
-  border: none;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 a {
@@ -90,95 +12,8 @@ a {
 }
 
 a:hover {
-  color: #6ea8fe;
+  color: var(--blue-300);
   text-decoration: none;
-}
-
-.vote-ratio {
-  width: 40px !important;
-  width: auto;
-  padding: 0 0.6em;
-}
-
-/* Remember: more pixels, less zoom */
-@media (max-width: 200px) {
-  .btn-group > .btn-group:not(:last-child) > .btn,
-  .btn-group > .btn:not(:last-child):not(.dropdown-toggle) {
-    border-radius: 5px 5px 0 0;
-  }
-
-  .btn-group > .btn-group:not(:first-child) > .btn,
-  .btn-group > .btn:not(:first-child):not(.dropdown-toggle) {
-    border-radius: 0 0 5px 5px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .btn-group-special > .btn-group:not(:last-child) > .btn,
-  .btn-group-special > .btn:not(:last-child):not(.dropdown-toggle) {
-    border-radius: 5px 5px 0 0;
-  }
-
-  .btn-group-special > .btn-group:not(:first-child) > .btn,
-  .btn-group-special > .btn:not(:first-child):not(.dropdown-toggle) {
-    border-radius: 0 0 5px 5px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .btn-group-vertical-when-responsive {
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    display: inline-flex;
-    vertical-align: middle;
-  }
-}
-
-.navbar-expand-lg .navbar-nav .nav-link {
-  padding: 0.5rem 1rem;
-  /* border-radius: 10px; */
-  /* border: 1px #eee solid; */
-}
-
-.blockquote {
-  font-size: small;
-  padding: 0.2em 0.3em;
-}
-
-.btn-outline-light:hover {
-  color: #375a6e;
-}
-
-.badge {
-  font-family: "Lato", Arial, sans-serif;
-  width: auto;
-  height: auto;
-  vertical-align: 2px;
-  background-color: #57b999;
-  background-color: #b96257;
-  font-size: 0.75rem;
-  padding: 0.4em 0.4em;
-  margin-left: 2px;
-}
-
-.votes {
-  /* border: 1px solid rgb(216, 216, 216); */
-  /* border-radius: 0.33rem; */
-  padding: 0;
-}
-
-.title {
-  color: darkslategray;
-}
-
-.flex-row-reverse.important {
-  flex-direction: row-reverse !important;
-}
-
-.rounded-end.must {
-  border-top-right-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
 }
 
 a.header {
@@ -190,6 +25,27 @@ a.header:hover {
   opacity: 90%;
 }
 
-.mt-1dot5 {
-  margin-top: 0.4rem !important;
+main {
+  width: auto;
+  margin: 1em auto;
+}
+
+.upvote-downvote {
+  flex-shrink: 1;
+  justify-content: center;
+}
+
+.vote-ratio {
+  width: 40px !important;
+  width: auto;
+  padding: 0 0.6em;
+}
+
+.votes {
+  padding: 0;
+}
+
+.division {
+  border-top: 1px solid var(--gray-500);
+  margin-bottom: 2em;
 }

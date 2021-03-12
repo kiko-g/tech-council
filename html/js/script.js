@@ -67,6 +67,20 @@ const toggleStar = starButton => {
   }
 };
 
+const toggleFollow = followButton => {
+  if (followButton.children[0].classList.contains('far')) {
+    followButton.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>&nbsp;Following'
+    followButton.classList.remove('follow')
+    followButton.classList.add('active-follow')
+  }
+  else {
+    followButton.innerHTML = '<i class="far fa-star" aria-hidden="true"></i>&nbsp;Follow'
+    followButton.classList.remove('active-follow')
+    followButton.classList.add('follow')
+  }
+};
+
+
 
 // add event to buttons
 let buttons = document.getElementsByClassName("upvote-button");
