@@ -1,4 +1,4 @@
-<aside class="col-lg-3">
+<aside class="col-lg-3 mb-5" id="user-aside">
 	<div class="card">
 		<img src="../images/kermy.jpeg" class="card-img-top rounded p-3" alt="...">
 		<div class="card-body mb-3">

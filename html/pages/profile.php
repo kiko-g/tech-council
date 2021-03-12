@@ -6,8 +6,8 @@ require '../templates/head.php';
 <body>
 	<?php require '../templates/header.php'; ?>
 	<main class="container">
-		<div class="row">
-			<article class="col-lg-9">
+		<div class="row" id="profile-row">
+			<article class="col-lg-9 order-last order-lg-first">
 				<div>
 					<?php
 					for ($i = 0; $i < 5; $i++) {
