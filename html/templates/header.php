@@ -29,36 +29,38 @@
           <button class="btn btn-outline-light blue" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
         </form>
 
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
           <li class="nav-item">
-            <a href="/pages/moderator.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-briefcase"></i>&nbsp;Moderator</a>
+            <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="/pages/moderator.php"><i class="fas fa-briefcase"></i>&nbsp;Moderator</a>
           </li>
           <li class="nav-item">
-            <a href="/pages/login.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
+            <a href="/pages/login.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
           </li>
           <li class="nav-item">
-            <a href="/pages/register.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
+            <a href="/pages/register.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Register</a>
           </li>
           <li class="nav-item">
-            <a href="/pages/register.php" class="btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+            <a href="/pages/register.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+            <a class="nav-link dropdown-toggle btn btn-outline-light btn-sm border-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <i class="fas fa-envelope"></i>&nbsp;Inbox
+              <span class="badge stack align-middle">24</span>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="/pages/profile.php" class="btn btn-outline-light btn-sm border-0" type="submit">
-              <img src="/images/team4.jpeg" alt="" width="23" height="23" class="">&nbsp;Profile
-              <span class="badge align-middle bg-petrol">347</span>
+            <a href="/pages/profile.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit">
+              Profile
+              <img src="/images/team4.jpeg" alt="" width="23" height="23" class="">
             </a>
           </li>
         </ul>

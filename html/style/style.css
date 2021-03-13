@@ -36,9 +36,7 @@ main {
 }
 
 .vote-ratio {
-  width: 40px !important;
-  width: auto;
-  padding: 0 0.6em;
+  width: 30px !important;
 }
 
 .votes {

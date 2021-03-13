@@ -78,16 +78,19 @@
 }
 
 .badge {
-  font-family: "Lato", Arial, sans-serif;
-  width: auto;
-  height: auto;
-  vertical-align: 2px;
-  background-color: #57b999;
   background-color: #b96257;
-  background-color: #ca856a;
-  font-size: 0.75rem;
-  padding: 0.4em 0.4em;
-  margin-left: 2px;
+  padding: 0.2rem 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.badge.stack {
+  padding: 0.15rem;
+  font-size: 0.6rem;
+  background-color: #b95757;
+
+  position: absolute;
+  top: 2px;
+  left: -1px;
 }
 
 .mt-1dot5 {
@@ -444,4 +447,38 @@
 .page-link.petrol:hover {
   color: var(--white);
   background-color: var(--blue-300);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0.4rem;
+  opacity: 100%;
+  color: white;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover {
+  background: none;
+  opacity: 95%;
+}
+
+a.hover-cute {
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+
+a.hover-cute:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+a.hover-cute:hover:after {
+  width: 100%;
+  left: 0;
 }
