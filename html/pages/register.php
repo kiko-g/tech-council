@@ -1,7 +1,7 @@
 <?php require_once '../templates/head.php'; ?>
 
 <body>
-	<div class="d-flex entry-form flex-column justify-content-center">
+	<div class="d-flex entry-form flex-column justify-content-center border-top-bg">
 		<header class="text-light mb-4">
 			<h1><a href="/" class="header">Tech Council</a></h1>
 		</header>

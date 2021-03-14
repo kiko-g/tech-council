@@ -1,10 +1,8 @@
 <?php require_once '../templates/head.php'; ?>
 
 <body>
-	<div class="d-flex entry-form flex-column justify-content-center">
-		<header class="text-light mb-5">
-			<h1><a href="/" class="header">Tech Council</a></h1>
-		</header>
+	<?php include '../templates/header.php'; ?>
+	<div class="d-flex entry-form flex-column justify-content-center border-top-bg">
 		<form>
 			<header class="text-start text-light mb-4 ms-4">
 				<h3>Sign in</h3>

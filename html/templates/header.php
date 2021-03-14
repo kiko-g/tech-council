@@ -6,7 +6,7 @@
         Tech Council
       </a>
 
-      <div class="nav-item dropdown">
+      <!-- <div class="nav-item dropdown">
         <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
           <li><a class="dropdown-item" href="#">Action</a></li>
@@ -16,7 +16,7 @@
           </li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
-      </div>
+      </div> -->
 
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

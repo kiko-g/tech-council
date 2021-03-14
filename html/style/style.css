@@ -11,6 +11,21 @@ a {
   text-decoration: underline;
 }
 
+a.different {
+  color: #1e3a4b;
+  text-decoration: none;
+}
+
+ul.aside {
+  list-style: none;
+  padding-left: 0;
+  font-size: smaller;
+}
+
+ul.aside > li {
+  padding-bottom: 0.2rem;
+}
+
 a:hover {
   color: var(--blue-300);
   text-decoration: none;
@@ -19,6 +34,10 @@ a:hover {
 a.header {
   color: #ffffff;
   text-decoration: none;
+}
+
+.opacity-90:hover {
+  opacity: 70% !important;
 }
 
 a.header:hover {

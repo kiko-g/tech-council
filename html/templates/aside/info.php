@@ -17,7 +17,7 @@
     </div>
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        About text
+        TechCouncil is a platform where users can post questions and share answers for everything tech-related, whether it's how to build a custom PC, what new smartphone is the best or how to install a VPN.
       </div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
         Terms of service text
@@ -26,7 +26,12 @@
         Privacy Policy text
       </div>
       <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-        Developpers text (or something else)
+        <ul class="aside">
+          <li><a class="different" target="_blank" href="https://github.com/ffriande">Francisco Friande </a></li>
+          <li><a class="different" target="_blank" href="https://github.com/kiko-g">Francisco Gonçalves </a></li>
+          <li><a class="different" target="_blank" href="https://github.com/TsarkFC">João Romão </a></li>
+          <li><a class="different" target="_blank" href="https://github.com/migueldelpinto">Miguel Pinto </a></li>
+        </ul>
       </div>
     </div>
   </div>

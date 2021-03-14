@@ -22,3 +22,7 @@
 .nav-tabs > .nav-link {
   color: white;
 }
+
+.border-top-bg {
+  border-top: 1px solid #dae0e6;
+}
