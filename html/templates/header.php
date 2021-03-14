@@ -43,7 +43,7 @@
             <a href="/pages/register.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle btn btn-outline-light btn-sm border-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
               <i class="fas fa-envelope"></i>&nbsp;Inbox
               <span class="badge stack align-middle">24</span>
             </a>

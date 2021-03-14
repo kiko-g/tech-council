@@ -8,6 +8,7 @@ require '../templates/head.php';
 	<main class="container">
 		<div class="row" id="profile-row">
 			<article class="col-lg-9 order-last order-lg-first">
+				<?php require '../templates/filters-profile.php'; ?>
 				<div>
 					<?php
 					for ($i = 0; $i < 5; $i++) {
