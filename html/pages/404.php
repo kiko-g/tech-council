@@ -1,7 +1,7 @@
 <?php require_once '../templates/head.php'; ?>
 
 <body>
-  <main class="container d-flex justify-content-center">
+  <main class="container d-flex justify-content-center mt-5">
     <div class="row text-center">
       <div class="error-template">
         <h1 cla> Oops!</h1>

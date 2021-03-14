@@ -10,7 +10,8 @@ $questionCounter = 0;
 ?>
 
 <body>
-	<div class="d-flex entry-form flex-column justify-content-center">
+	<?php include '../templates/header.php'; ?>
+	<div class="d-flex entry-form flex-column justify-content-center border-top-bg">
 		<header class="text-light mb-5">
 			<h1>Tech Council</h1>
 		</header>
