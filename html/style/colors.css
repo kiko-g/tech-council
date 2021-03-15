@@ -187,22 +187,22 @@
 }
 
 .bg-animated {
-  background: linear-gradient(-45deg, #375c80, #4b6f91, #375c80);
+  background: linear-gradient(-45deg, #375c80, #557899, #375c80);
   background-size: 800% 800%;
-  animation: gradient 20s ease infinite;
+  animation: breathe 10s ease infinite;
 }
 
 .bg-animated-tags {
   background: linear-gradient(-45deg, #598eb1, #df6c6c);
   background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+  animation: breathe 10s ease infinite;
 }
 
 .bg-animated-tags:hover {
   opacity: 80%;
 }
 
-@keyframes gradient {
+@keyframes breathe {
   0% {
     background-position: 0% 50%;
   }
