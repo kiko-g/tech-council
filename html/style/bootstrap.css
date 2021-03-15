@@ -252,8 +252,8 @@
 }
 .btn.blue-alt:hover {
   color: white;
-  border-color: #4382b3;
-  background-color: #4382b3;
+  border-color: var(--nav-color);
+  background-color: var(--nav-color);
 }
 .btn-check:focus + .btn.blue-alt,
 .btn.blue-alt:focus {
@@ -266,8 +266,8 @@
 .btn-check:checked + .btn.blue-alt,
 .btn.blue-alt.active {
   color: white;
-  border-color: #4382b3;
-  background-color: #4382b3;
+  border-color: var(--nav-color);
+  background-color: var(--nav-color);
   box-shadow: none;
 }
 
@@ -287,8 +287,8 @@
 /* Blue alt extra */
 .btn.blue-alt.extra {
   color: white;
-  border-color: #4382b3;
-  background-color: #4382b3;
+  border-color: var(--nav-color);
+  background-color: var(--nav-color);
 }
 .btn.blue-alt.extra:hover {
   color: white;
@@ -422,7 +422,7 @@
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: white;
-  background-color: #4382b3;
+  background-color: var(--nav-color);
 }
 .nav-pills .nav-link {
   background: 0 0;
@@ -433,17 +433,17 @@
 .list-group-item.active {
   z-index: 2;
   color: white;
-  background-color: #4382b3;
-  border-color: #4382b3;
+  background-color: var(--nav-color);
+  border-color: var(--nav-color);
 }
 
 .page-link.petrol.active {
   color: white;
-  background-color: #4382b3;
+  background-color: var(--nav-color);
 }
 
 .page-link.petrol {
-  color: #4382b3;
+  color: var(--nav-color);
   background-color: white;
 }
 

@@ -16,7 +16,7 @@
               <div class="row row-cols-auto mb-3">
                 <div id="tags" class="col-sm-auto">
                   <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false" id="tag-select">
-                    <a class="btn blue border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
+                    <a class="btn blue-alt extra border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
                   </div>
                   <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false" id="tag-close">
                     <a class="btn btn-danger border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>

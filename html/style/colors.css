@@ -115,6 +115,8 @@
 
   /* custom colors */
   --petrol: #395368;
+  --teal-alt: #496d8f;
+  --nav-color: #6ea8fe;
   --background-color: #dae0e6;
   --background-color-2: #f1f1f1;
   --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
@@ -172,7 +174,7 @@
 }
 
 .bg-teal-alt {
-  background-color: #1c866b !important;
+  background-color: var(--teal-alt) !important;
 }
 
 .bg-background-color {
@@ -180,9 +182,19 @@
 }
 
 .bg-animated {
-  background: linear-gradient(-45deg, #31597e, #498f8b, #31597e);
+  background: linear-gradient(-45deg, #375c80, #4b6f91, #375c80);
   background-size: 800% 800%;
+  animation: gradient 20s ease infinite;
+}
+
+.bg-animated-tags {
+  background: linear-gradient(-45deg, #598eb1, #df6c6c);
+  background-size: 400% 400%;
   animation: gradient 10s ease infinite;
+}
+
+.bg-animated-tags:hover {
+  opacity: 80%;
 }
 
 @keyframes gradient {
@@ -195,8 +207,4 @@
   100% {
     background-position: 0% 50%;
   }
-}
-
-svg {
-  color: red;
 }
