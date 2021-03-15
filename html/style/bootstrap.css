@@ -247,8 +247,8 @@
 /* Blue alt button */
 .btn.blue-alt {
   color: var(--white);
-  border-color: #47616d;
-  background-color: #47616d;
+  border-color: var(--petrol);
+  background-color: var(--petrol);
 }
 .btn.blue-alt:hover {
   color: var(--white);
@@ -274,13 +274,13 @@
 /* Blue alt static */
 .btn.blue-alt.static {
   color: var(--white);
-  border-color: #47616d;
-  background-color: #47616d;
+  border-color: var(--petrol);
+  background-color: var(--petrol);
 }
 .btn.blue-alt.static:hover {
   color: var(--white);
-  border-color: #47616d;
-  background-color: #47616d;
+  border-color: var(--petrol);
+  background-color: var(--petrol);
   cursor: default;
 }
 
