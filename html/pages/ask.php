@@ -22,16 +22,16 @@
                     <a class="btn btn-danger border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;java</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;java</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
+                    <a" class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>
                   </div>
                 </div>
                 <a class="btn btn-success teal text-white ms-auto me-3 mt-1" role="button">

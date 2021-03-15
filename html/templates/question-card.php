@@ -2,7 +2,7 @@
 { ?>
   <div class="card mb-5 p-2-0 border-0 rounded">
     <div class="card-header bg-petrol text-white font-open-sans">
-      <a class="a header" href="pages/question.php">
+      <a class="a header" href="../pages/question.php">
         How do I compare strings in Java?
         <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
       </a>
