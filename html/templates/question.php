@@ -45,8 +45,8 @@
       <div class="row row-cols-3 justify-content-start">
         <div id="interact" class="col-sm-auto">
           <div class="btn-group mt-1 rounded">
-            <a class="upvote-button my-btn-pad2 btn btn-outline-success star" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
-              <i class="far fa-star"></i>&nbsp;Save
+            <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
+              <i class="far fa-bookmark"></i>&nbsp;Save
             </a>
           </div>
           <div class="btn-group mt-1 rounded">

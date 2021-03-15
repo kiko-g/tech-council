@@ -114,9 +114,12 @@
   --black: #000000;
 
   /* custom colors */
-  --petrol: #314d63;
+  --petrol: #395368;
   --background-color: #dae0e6;
   --background-color-2: #f1f1f1;
+  --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
+
+  /* #3d77b1, #1c5288 */
 }
 
 /* Text color pallette */
@@ -174,4 +177,26 @@
 
 .bg-background-color {
   background-color: var(--background-color) !important;
+}
+
+.bg-animated {
+  background: linear-gradient(-45deg, #31597e, #498f8b, #31597e);
+  background-size: 800% 800%;
+  animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+svg {
+  color: red;
 }

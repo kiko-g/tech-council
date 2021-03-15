@@ -1,8 +1,9 @@
 <header>
-  <nav class="home-header navbar navbar-expand-lg navbar-dark bg-dark p-2">
+  <nav class="bg-animated navbar navbar-expand-lg navbar-dark bg-dark p-2">
     <div class="container-fluid justify-content-center px-3">
       <a class="navbar-brand" href="/">
-        <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1">
+        <?php require 'icon.php' ?>
+        <!-- <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1"> -->
         Tech Council
       </a>
 
