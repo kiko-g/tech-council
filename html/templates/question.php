@@ -50,7 +50,7 @@
             </a>
           </div>
           <div class="btn-group mt-1 rounded">
-            <a class="upvote-button btn wine my-btn-pad2" id="upvote-button-<ID>" href="#">
+            <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" href="#">
               <i class="far fa-comment-dots"></i>&nbsp;25
             </a>
           </div>

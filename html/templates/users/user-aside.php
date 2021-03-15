@@ -1,9 +1,9 @@
 <aside class="col-lg-3 mb-5" id="user-aside">
 	<div class="card">
-		<img src="../images/kermy.jpeg" class="card-img-top rounded p-3" alt="...">
+		<img src="../images/dwight.png" class="card-img-top rounded p-3" alt="...">
 		<div class="card-body mb-3">
-			<h4 class="card-title">Mister Arnildo</h4>
-			<p class="card-text">If description is provided show. Else say user default data</p>
+			<h4 class="card-title">Dwight Snoot</h4>
+			<p class="card-text">I don't have a lot of experience with vampires, but I have hunted werewolves. I shot one once, but by the time I got to it, it had turned back into my neighbor's dog - Dwight </p>
 		</div>
 
 		<ul class="list-group list-group-flush">

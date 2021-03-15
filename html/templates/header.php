@@ -61,7 +61,7 @@
           <li class="nav-item">
             <a href="/pages/profile.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit">
               Profile
-              <img src="/images/team4.jpeg" alt="" width="23" height="23" class="">
+              <img src="/images/dwight.png" alt="" width="23" height="23" class="">
             </a>
           </li>
         </ul>

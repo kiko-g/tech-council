@@ -116,7 +116,8 @@
   /* custom colors */
   --petrol: #395368;
   --teal-alt: #496d8f;
-  --nav-color: #6ea8fe;
+  --nav-color: #6093df;
+  --dark-green: #1c866b;
   --background-color: #dae0e6;
   --background-color-2: #f1f1f1;
   --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
@@ -131,6 +132,10 @@
 
 .text-teal-200 {
   color: var(--teal-200);
+}
+
+.text-teal-300 {
+  color: var(--teal-300);
 }
 
 .text-red-400 {

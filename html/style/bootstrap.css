@@ -81,7 +81,7 @@
 }
 
 .badge {
-  background-color: #b96257;
+  background-color: var(--red-600);
   padding: 0.2rem 0.3rem;
   margin-bottom: 0.2rem;
 }
@@ -89,7 +89,7 @@
 .badge.stack {
   padding: 0.15rem;
   font-size: 0.6rem;
-  background-color: #b95757;
+  background-color: var(--red-600);
 
   position: absolute;
   top: 2px;
@@ -169,8 +169,8 @@
 /* Teal green button */
 .btn.teal {
   color: white;
-  border-color: #4cb595;
-  background-color: #4cb595;
+  border-color: #1c866b;
+  background-color: #1c866b;
 }
 .btn.teal:hover {
   color: white;
@@ -195,8 +195,8 @@
 /* Blue button */
 .btn.blue {
   color: white;
-  border-color: var(--blue-300);
-  background-color: var(--blue-300);
+  border-color: var(--nav-color);
+  background-color: var(--nav-color);
 }
 .btn.blue:hover {
   color: white;
@@ -205,17 +205,13 @@
 }
 .btn-check:focus + .btn.blue,
 .btn.blue:focus {
-  color: white;
-  border-color: #578ad6;
-  background-color: #578ad6;
+  opacity: 70%;
   box-shadow: 0 0 0 0.15rem #578ad688;
 }
 .btn-check:active + .btn.blue,
 .btn-check:checked + .btn.blue,
 .btn.blue.active {
-  color: white;
-  border-color: #51585e;
-  background-color: #565e64;
+  opacity: 70%;
 }
 
 /* Red button */
@@ -291,24 +287,22 @@
   background-color: var(--nav-color);
 }
 .btn.blue-alt.extra:hover {
-  color: white;
-  border-color: var(--blue-300);
-  background-color: var(--blue-300);
+  opacity: 85%;
 }
 
 /* Bookmark */
 .btn-outline-success:focus.bookmark,
 .btn-outline-success:active.bookmark,
 .btn-outline-success.bookmark {
-  color: var(--orange-300);
-  border-color: var(--orange-300);
+  color: var(--red-400);
+  border-color: var(--red-400);
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-success:hover.bookmark {
   color: white;
-  border-color: var(--orange-300);
-  background-color: var(--orange-300);
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 /* Bookmark inverted */
@@ -316,14 +310,14 @@
 .btn-outline-success:active.active-bookmark,
 .btn-outline-success:focus.active-bookmark {
   color: white;
-  border-color: var(--orange-300);
-  background-color: var(--orange-300);
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 .btn-outline-success:hover.active-bookmark {
   color: white;
-  border-color: #96735c;
-  background-color: #96735c;
+  border-color: var(--red-700);
+  background-color: var(--red-700);
   box-shadow: none;
 }
 
@@ -331,15 +325,15 @@
 .btn-outline-success:focus.follow,
 .btn-outline-success:active.follow,
 .btn-outline-success.follow {
-  color: #1c866b;
-  border-color: #1c866b;
+  color: var(--red-400);
+  border-color: var(--red-400);
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-success:hover.follow {
   color: white;
-  border-color: #1c866b;
-  background-color: #1c866b;
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 /* Follow inverted */
@@ -347,14 +341,14 @@
 .btn-outline-success:active.active-follow,
 .btn-outline-success:focus.active-follow {
   color: white;
-  border-color: #1c866b;
-  background-color: #1c866b;
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 .btn-outline-success:hover.active-follow {
   color: white;
-  border-color: #39a17a;
-  background-color: #39a17a;
+  border-color: var(--red-700);
+  background-color: var(--red-700);
   box-shadow: none;
 }
 
@@ -362,15 +356,15 @@
 .btn-outline-success:focus.teal,
 .btn-outline-success:active.teal,
 .btn-outline-success.teal {
-  color: #4cb595;
-  border-color: #4cb595;
+  color: var(--green-400);
+  border-color: var(--green-400);
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-success:hover.teal {
   color: white;
-  border-color: #4cb595;
-  background-color: #4cb595;
+  border-color: var(--green-400);
+  background-color: var(--green-400);
   box-shadow: none;
 }
 /* Upvote inverted */
@@ -378,14 +372,14 @@
 .btn-outline-success:active.active-teal,
 .btn-outline-success:focus.active-teal {
   color: white;
-  border-color: #4cb595;
-  background-color: #4cb595;
+  border-color: var(--green-400);
+  background-color: var(--green-400);
   box-shadow: none;
 }
 .btn-outline-success:hover.active-teal {
   color: white;
-  border-color: #3e816d;
-  background-color: #3e816d;
+  border-color: var(--green-600);
+  background-color: var(--green-600);
   box-shadow: none;
 }
 
@@ -393,28 +387,28 @@
 .btn-outline-danger:focus.pink,
 .btn-outline-danger:active.pink,
 .btn-outline-danger.pink {
-  color: #d86b74;
-  border-color: #d86b74;
+  color: var(--red-400);
+  border-color: var(--red-400);
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-danger:hover.pink {
   color: white;
-  border-color: #d86b74;
-  background-color: #d86b74;
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 /* Downvote inverted */
 .btn-outline-danger.active-pink {
   color: white;
-  border-color: #d86b74;
-  background-color: #d86b74;
+  border-color: var(--red-400);
+  background-color: var(--red-400);
   box-shadow: none;
 }
 .btn-outline-danger:hover.active-pink {
   color: white;
-  border-color: #a9555c;
-  background-color: #a9555c;
+  border-color: var(--red-600);
+  background-color: var(--red-600);
   box-shadow: none;
 }
 
@@ -435,6 +429,10 @@
   color: white;
   background-color: var(--nav-color);
   border-color: var(--nav-color);
+}
+
+.list-group-item.active:hover {
+  opacity: 85%;
 }
 
 .page-link.petrol.active {
