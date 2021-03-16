@@ -13,7 +13,7 @@
 							<a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
 								<i class="fas fa-chevron-up"></i>
 							</a>
-							<a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled"> 45 </a>
+							<a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 45 </a>
 							<a id="downvote-button" class="downvote-button my-btn-pad btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
 								<i class="fas fa-chevron-down"></i>
 							</a>

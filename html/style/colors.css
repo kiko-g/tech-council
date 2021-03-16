@@ -116,7 +116,9 @@
   /* custom colors */
   --petrol: #395368;
   --teal-alt: #496d8f;
+  --light-alt: #a2acb6;
   --nav-color: #6093df;
+  --nav-color-alt: #395368;
   --dark-green: #1c866b;
   --background-color: #dae0e6;
   --background-color-2: #f1f1f1;
@@ -126,6 +128,14 @@
 }
 
 /* Text color pallette */
+.text-teal-alt {
+  color: var(--teal-alt);
+}
+
+.text-dark-green {
+  color: var(--dark-green);
+}
+
 .text-orange-300 {
   color: var(--orange-300);
 }
@@ -136,6 +146,14 @@
 
 .text-teal-300 {
   color: var(--teal-300);
+}
+
+.text-teal-400 {
+  color: var(--teal-400);
+}
+
+.text-teal-500 {
+  color: var(--teal-500);
 }
 
 .text-red-400 {
@@ -188,8 +206,8 @@
 
 .bg-animated {
   background: linear-gradient(-45deg, #375c80, #557899, #375c80);
-  background-size: 800% 800%;
-  animation: breathe 10s ease infinite;
+  background-size: 600% 600%;
+  animation: breathe 6s ease infinite;
 }
 
 .bg-animated-tags {

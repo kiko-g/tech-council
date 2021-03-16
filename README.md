@@ -7,10 +7,6 @@
 
 - URGENT
 
-  - Tag page
-  - Ask question page
-  - User page, user aside
-
 - MEDIUM
   - Merge question card and question
   - Header, notifications, navigation

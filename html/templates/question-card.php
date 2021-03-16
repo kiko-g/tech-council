@@ -15,13 +15,13 @@
         Is <code>==</code> bad? When should it and should it not be used? What's the difference?
       </p>
       <div class="row row-cols-3 mb-1">
-        <div class="col-md flex-wrap">
+        <div class="col-sm flex-wrap">
           <div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
-            <a id="upvote-button" class="upvote-button my-btn-pad rounded-when-responsive up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
+            <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
-            <a id="vote-ratio" class="vote-ratio btn btn-secondary my-btn-pad fake disabled"> 42 </a>
-            <a id="downvote-button" class="downvote-button my-btn-pad rounded-when-responsive down btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
+            <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 42 </a>
+            <a id="downvote-button" class="downvote-button my-btn-pad down btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
               <i class="fas fa-chevron-down"></i>
             </a>
           </div>

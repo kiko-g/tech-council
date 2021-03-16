@@ -5,10 +5,11 @@
 	<main class="container">
 		<div class="row">
 			<div class="moderator-area col-lg-9">
-				<div class="users-or-tags-picker">
-					<div class="btn-group users-or-tags-button" role="group">
+				<div class="users-tags-or-reports-picker">
+					<div class="btn-group users-tags-or-reports-button" role="group">
 						<button type="button" class="btn active blue-alt users-button">Users</button>
 						<button type="button" class="btn blue-alt tags-button">Tags</button>
+						<button type="button" class="btn blue-alt reports-button">Reports</button>
 					</div>
 				</div>
 				<div class="user-area">
@@ -16,7 +17,7 @@
 						<nav class="user-search-nav navbar navbar-light">
 							<form class="container-fluid">
 								<div class="input-group">
-									<span class="input-group-text" id="basic-addon1">@</span>
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-user text-teal-alt"></i></span>
 									<input type="text" class="form-control" placeholder="Username" aria-label="Username">
 								</div>
 							</form>
@@ -71,7 +72,7 @@
 						<nav class="tag-search-nav navbar navbar-light">
 							<form class="container-fluid">
 								<div class="input-group">
-									<span class="input-group-text" id="basic-addon1">@</span>
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-tag text-dark-green"></i></span>
 									<input type="text" class="form-control" placeholder="Tag" aria-label="Tag">
 								</div>
 							</form>
@@ -103,6 +104,16 @@
 							</ul>
 						</nav>
 					</div>
+				</div>
+				<div class="report-area">
+					<div class="report-search">
+						<nav class="report-search-nav navbar navbar-light py-0">
+							<form class="container-fluid">
+								<?php require '../templates/filters-reports.php'; ?>
+							</form>
+						</nav>
+					</div>
+
 				</div>
 			</div>
 			<?php require '../templates/aside.php'; ?>

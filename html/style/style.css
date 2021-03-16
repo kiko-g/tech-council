@@ -66,3 +66,25 @@ main {
   border-top: 1px solid var(--gray-500);
   margin-bottom: 2em;
 }
+
+input[type="search"] {
+  box-sizing: content-box;
+  background: whitesmoke url(../assets/img/icon/search-icon.png) no-repeat 9px
+    center;
+  background-size: 10%;
+
+  margin-left: 1em;
+  display: block;
+  font-size: 100%;
+  border: 1px solid teal;
+}
+
+input[type="search"]::-webkit-input-placeholder {
+  color: #bbb;
+}
+
+input[type="search"]:focus {
+  background: #ededed;
+  color: white;
+  background-color: teal;
+}
