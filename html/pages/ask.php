@@ -16,22 +16,22 @@
               <div class="row row-cols-auto mb-3">
                 <div id="tags" class="col-lg-auto">
                   <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false" id="tag-select">
-                    <a class="btn blue-alt extra border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
+                    <a class="btn blue-alt extra border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
                   </div>
                   <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false" id="tag-close">
-                    <a class="btn btn-danger border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-window-close"></i>&nbsp;close</a>
+                    <a class="btn btn-danger border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;java</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;java</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
+                    <a" class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>
                   </div>
                 </div>
                 <a class="btn btn-success teal text-white ms-auto me-3 mt-1" role="button">
@@ -44,16 +44,16 @@
                 <input type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Search tag"></input>
                 <div id="tags" class="col-lg-auto">
                   <div class="search-tag btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-plus-square"></i>&nbsp;unix</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;unix</a>
                   </div>
                   <div class="search-tag btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-plus-square"></i>&nbsp;ps4</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;ps4</a>
                   </div>
                   <div class="search-tag btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-plus-square"></i>&nbsp;dell</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;dell</a>
                   </div>
                   <div class="search-tag btn-group mt-1">
-                    <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php"><i class="fas fa-plus-square"></i>&nbsp;apple</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;apple</a>
                   </div>
                 </div>
               </div>

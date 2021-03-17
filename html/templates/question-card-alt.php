@@ -38,8 +38,8 @@
         </div>
       </article>
 
-      <div class="row row-cols-2 mb-1">
-        <div class="col-md flex-wrap">
+      <div class="row row-cols-3 mb-1">
+        <div class="col-3 flex-wrap">
           <div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
             <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div id="interact" class="col-md flex-wrap">
+        <div id="interact" class="col-4 flex-wrap">
           <div class="btn-group mt-1 rounded">
             <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
               <i class="far fa-bookmark"></i>&nbsp;Save
@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        <div id="tags2" class="col-md flex-wrap ">
+        <div id="tags2" class="col-5 flex-wrap ">
           <div class="btn-group mt-1">
             <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">javascript</a>
           </div>
