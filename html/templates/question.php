@@ -12,7 +12,7 @@
         Is <code>==</code> bad? When should it and should it not be used? What's the difference?
       </p>
       <div class="row row-cols-2 mb-3">
-        <div class="col-lg-auto flex-wrap">
+        <div class="col-lg flex-wrap">
           <div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
             <a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
@@ -24,7 +24,9 @@
           </div>
         </div>
 
-        <div id="tags" class="col-lg-auto">
+
+
+        <div id="tags" class="col-lg-auto flex-wrap">
           <div class="btn-group mt-1">
             <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
           </div>
@@ -42,8 +44,8 @@
       <?php
       if ($comments != null) buildCommentSection($comments, 1);
       ?>
-      <div class="row row-cols-3 justify-content-start">
-        <div id="interact" class="col-lg-auto">
+      <div class="row row-cols-3">
+        <div id="interact" class="col-lg-auto" style="padding-left: 0;">
           <div class="btn-group mt-1 rounded">
             <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
               <i class="far fa-bookmark"></i>&nbsp;Save

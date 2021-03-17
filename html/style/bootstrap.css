@@ -523,19 +523,24 @@
   opacity: 85%;
 }
 
-.page-link.petrol.active {
+.page-link.blue.active {
   color: white;
   background-color: var(--nav-color);
 }
 
-.page-link.petrol {
+.page-link.blue {
   color: var(--nav-color);
   background-color: white;
 }
 
-.page-link.petrol:hover {
+.page-link.blue:hover {
   color: white;
-  background-color: var(--blue-300);
+  background-color: var(--blue-200);
+}
+
+.page-link.blue:focus,
+.page-link.blue:active {
+  box-shadow: none;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {

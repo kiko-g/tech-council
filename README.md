@@ -7,9 +7,9 @@
 
 - URGENT
 
-- MEDIUM
   - Merge question card and question
-  - Header, notifications, navigation
-  - Cleanup code and pages
-  - Cleanup wireframes
-  - ER Review
+  - Notifications
+
+- MEDIUM
+
+  - Cleanup css, remove unnecessary stuff

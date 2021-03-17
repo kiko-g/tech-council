@@ -3,6 +3,10 @@ let userArea = document.getElementsByClassName('user-area')[0];
 let tagArea = document.getElementsByClassName('tag-area')[0];
 let reportArea = document.getElementsByClassName('report-area')[0];
 
+userArea.style.display = 'block'
+tagArea.style.display = 'none'
+reportArea.style.display = 'none'
+
 // User area option
 userTagsOrReports.children[0].addEventListener('click', (event) => {
     event.preventDefault();

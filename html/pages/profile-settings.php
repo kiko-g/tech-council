@@ -10,7 +10,7 @@
 					<div class="card-header text-white bg-petrol font-open-sans"> User Settings </div>
 					<div class="row g-0">
 						<div class="col-lg-4">
-							<img src="../images/kermy.jpeg" class="card-img-top rounded p-3" alt="...">
+							<img src="../images/dwight.png" class="card-img-top rounded p-3" alt="...">
 						</div>
 						<div class="col-lg-8">
 							<div class="card-body">

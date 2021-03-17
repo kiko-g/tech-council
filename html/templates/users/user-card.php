@@ -1,6 +1,6 @@
 <section class="user-card rounded">
   <div class="card text-center">
-    <img src="../images/kermy.jpeg" class="card-img-top user-img" alt="kermy">
+    <img src="../images/dwight.png" class="card-img-top user-img" alt="kermy">
     <div class="card-body">
       <h5 class="card-title">Jeremiah</h5>
       <p class="card-text">Reports: 0</p>

@@ -12,6 +12,7 @@
 						<button type="button" class="btn blue-alt reports-button">Reports</button>
 					</div>
 				</div>
+
 				<div class="user-area">
 					<div class="user-search">
 						<nav class="user-search-nav navbar navbar-light">
@@ -47,18 +48,18 @@
 						<nav>
 							<ul class="pagination justify-content-center">
 								<li class="page-item">
-									<a class="page-link petrol" href="#" aria-label="Previous">
+									<a class="page-link blue" href="#" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 									</a>
 								</li>
 
-								<li class="page-item"><a class="page-link petrol" href="#">1</a></li>
-								<li class="page-item"><a class="page-link petrol active" href="#">2</a></li>
-								<li class="page-item"><a class="page-link petrol" href="#">3</a></li>
+								<li class="page-item"><a class="page-link blue" href="#">1</a></li>
+								<li class="page-item"><a class="page-link blue active" href="#">2</a></li>
+								<li class="page-item"><a class="page-link blue" href="#">3</a></li>
 
 								<li class="page-item">
-									<a class="page-link petrol" href="#" aria-label="Next">
+									<a class="page-link blue" href="#" aria-label="Next">
 										<span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 									</a>
@@ -67,6 +68,7 @@
 						</nav>
 					</div>
 				</div>
+
 				<div class="tag-area">
 					<div class="tag-search">
 						<nav class="tag-search-nav navbar navbar-light">
@@ -85,18 +87,18 @@
 						<nav>
 							<ul class="pagination justify-content-center">
 								<li class="page-item">
-									<a class="page-link petrol" href="#" aria-label="Previous">
+									<a class="page-link blue" href="#" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
 										<span class="sr-only">Previous</span>
 									</a>
 								</li>
 
-								<li class="page-item"><a class="page-link petrol" href="#">1</a></li>
-								<li class="page-item"><a class="page-link petrol active" href="#">2</a></li>
-								<li class="page-item"><a class="page-link petrol" href="#">3</a></li>
+								<li class="page-item"><a class="page-link blue" href="#">1</a></li>
+								<li class="page-item"><a class="page-link blue active" href="#">2</a></li>
+								<li class="page-item"><a class="page-link blue" href="#">3</a></li>
 
 								<li class="page-item">
-									<a class="page-link petrol" href="#" aria-label="Next">
+									<a class="page-link blue" href="#" aria-label="Next">
 										<span aria-hidden="true">&raquo;</span>
 										<span class="sr-only">Next</span>
 									</a>
@@ -105,6 +107,7 @@
 						</nav>
 					</div>
 				</div>
+
 				<div class="report-area">
 					<div class="report-search">
 						<nav class="report-search-nav navbar navbar-light py-0">
