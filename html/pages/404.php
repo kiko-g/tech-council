@@ -14,7 +14,7 @@
         </div>
         <div class="error-actions">
           <a href="/" class="btn btn-primary btn-lg"> Country roads?<br>Take me Home</a>
-          <a href="" class="btn btn-default btn-lg opacity-90">Contact <br>Support <i class="fas fa-ticket-alt text-blue-400"></i> </a>
+          <a href="#" class="btn btn-default btn-lg opacity-90">Contact <br>Support <i class="fas fa-ticket-alt text-blue-400"></i> </a>
         </div>
       </div>
     </div>

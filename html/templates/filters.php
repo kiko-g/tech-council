@@ -19,7 +19,7 @@
       <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
       <label class="btn blue-alt rounded-when-responsive text-start-responsive" for="btnradio4">
         <i class="fas fa-bullseye fa-xs text-red-400"></i>&nbsp;Bountied
-        <span class="badge align-middle">347</span>
+        <span class="badge align-middle">57</span>
       </label>
     </div>
 

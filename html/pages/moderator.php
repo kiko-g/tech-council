@@ -27,7 +27,7 @@
 						<div class="row">
 							<?php
 							for ($i = 0; $i < 3; $i++) {
-								echo "<div class=\"col-sm\">";
+								echo "<div class=\"col-lg\">";
 								require '../templates/users/user-card.php';
 								echo "</div>";
 							}
@@ -36,7 +36,7 @@
 						<div class="row">
 							<?php
 							for ($i = 0; $i < 3; $i++) {
-								echo "<div class=\"col-sm\">";
+								echo "<div class=\"col-lg\">";
 								require '../templates/users/user-card.php';
 								echo "</div>";
 							}

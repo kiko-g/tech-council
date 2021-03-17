@@ -205,9 +205,9 @@
 }
 
 .bg-animated {
-  background: linear-gradient(-45deg, #375c80, #557899, #375c80);
+  background: linear-gradient(45deg, #375c80, #6cb5dfad, #375c80);
   background-size: 600% 600%;
-  animation: breathe 6s ease infinite;
+  animation: breathe 5s ease infinite;
 }
 
 .bg-animated-tags {

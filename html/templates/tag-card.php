@@ -10,7 +10,7 @@
         Please include all relevant tags on your question; e.g., [node.js], [jquery], [json], etc.
       </p>
       <div class="row row-cols-3 mb-1">
-        <div id="interact" class="col-md flex-wrap">
+        <div id="interact" class="col-lg flex-wrap">
           <div class="btn-group mt-1 rounded">
             <a class="upvote-button my-btn-pad2 btn btn-outline-success follow" id="upvote-button" onclick="toggleFollow(this)" href="#">
               <i class="far fa-star"></i>&nbsp;Follow
@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div id="facts" class="col-sm-auto">
+        <div id="facts" class="col-lg-auto">
           <div class="btn-group mt-1 rounded">
             <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
               <i class="fas fa-fire"></i>&nbsp;21k followers

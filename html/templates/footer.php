@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container-fluid condensed rounded-circle">
     <div class="row p-0">
-      <div class="footer-section rounded-left col-sm-4 col-md col-12 col p-4">
+      <div class="footer-section rounded-left col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Find us</h5>
         <ul class="footer-ul">
           <li><i class="fa fa-location-arrow"></i>&nbsp; FEUP</li>
@@ -13,7 +13,7 @@
       </div>
 
       <!-- DIV 2 -->
-      <div class="footer-section col-sm-4 col-md col-12 col p-4">
+      <div class="footer-section col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
           <li><i class="fas fa-home"></i>&nbsp; <a href="/">Home</a> </li>
@@ -25,7 +25,7 @@
       </div>
 
       <!-- DIV 3 -->
-      <div class="footer-section rounded-right col-sm-4 col-md col-12 col p-4">
+      <div class="footer-section rounded-right col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Follow us</h5>
         <ul class="footer-ul">
           <li><i class="fa fa-github"></i>&nbsp; <a target="_blank" href="https://github.com/ffriande">Francisco Friande </a></li>

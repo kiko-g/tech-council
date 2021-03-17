@@ -239,7 +239,7 @@
   color: white;
   border-color: #1aa179;
   background-color: #1aa179;
-  box-shadow: 0 0 0 0.15rem #1aa17988;
+  box-shadow: 0 0 0 0.05rem #1aa17988;
 }
 .btn-check:active + .btn.teal,
 .btn-check:checked + .btn.teal,
@@ -257,13 +257,13 @@
 }
 .btn.blue:hover {
   color: white;
-  border-color: #578ad6;
-  background-color: #578ad6;
+  border-color: #7fabec;
+  background-color: #7fabec;
 }
 .btn-check:focus + .btn.blue,
 .btn.blue:focus {
   opacity: 70%;
-  box-shadow: 0 0 0 0.15rem #578ad688;
+  box-shadow: 0 0 0 0.05rem #578ad688;
 }
 .btn-check:active + .btn.blue,
 .btn-check:checked + .btn.blue,
@@ -287,7 +287,7 @@
   color: white;
   border-color: #b02a37;
   background-color: #b02a37;
-  box-shadow: 0 0 0 0.15rem #b02a3788;
+  box-shadow: 0 0 0 0.05rem #b02a3788;
 }
 .btn-check:active + .btn.red,
 .btn-check:checked + .btn.red,
@@ -295,6 +295,7 @@
   color: white;
   border-color: #51585e;
   background-color: #565e64;
+  box-shadow: none;
 }
 
 /* Blue alt button */
@@ -302,11 +303,13 @@
   color: white;
   border-color: var(--petrol);
   background-color: var(--petrol);
+  box-shadow: none;
 }
 .btn.blue-alt:hover {
   color: white;
   border-color: var(--nav-color);
   background-color: var(--nav-color);
+  box-shadow: none;
 }
 .btn-check:focus + .btn.blue-alt,
 .btn.blue-alt:focus {
@@ -314,6 +317,7 @@
   border-color: #0079d3;
   background-color: #0079d3;
   box-shadow: 0 0 0 0.15rem #0079d388;
+  box-shadow: none;
 }
 .btn-check:active + .btn.blue-alt,
 .btn-check:checked + .btn.blue-alt,
@@ -409,15 +413,15 @@
 .btn-outline-success:focus.follow,
 .btn-outline-success:active.follow,
 .btn-outline-success.follow {
-  color: var(--red-400);
-  border-color: var(--red-400);
+  color: #e6a86d;
+  border-color: #e6a86d;
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-success:hover.follow {
   color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  border-color: #e6a86d;
+  background-color: #e6a86d;
   box-shadow: none;
 }
 /* Follow inverted */
@@ -425,14 +429,14 @@
 .btn-outline-success:active.active-follow,
 .btn-outline-success:focus.active-follow {
   color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  border-color: #e6a86d;
+  background-color: #e6a86d;
   box-shadow: none;
 }
 .btn-outline-success:hover.active-follow {
   color: white;
-  border-color: var(--red-700);
-  background-color: var(--red-700);
+  border-color: #966f3d;
+  background-color: #966f3d;
   box-shadow: none;
 }
 

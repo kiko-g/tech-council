@@ -80,6 +80,10 @@ const toggleFollow = followButton => {
   }
 };
 
+const toogleText = textDropdown => {
+  if (textDropdown.children[0].className == 'fas fa-chevron-down') textDropdown.children[0].className = 'fas fa-chevron-up'
+  else textDropdown.children[0].className = 'fas fa-chevron-down';
+}
 
 
 // add event to buttons

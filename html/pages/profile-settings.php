@@ -9,10 +9,10 @@
 				<div class="card mb-3">
 					<div class="card-header text-white bg-petrol font-open-sans"> User Settings </div>
 					<div class="row g-0">
-						<div class="col-md-4">
+						<div class="col-lg-4">
 							<img src="../images/kermy.jpeg" class="card-img-top rounded p-3" alt="...">
 						</div>
-						<div class="col-md-8">
+						<div class="col-lg-8">
 							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
 								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -23,11 +23,11 @@
 
 						<div class="card-body">
 							<form class="row g-3">
-								<div class="col-md-6">
+								<div class="col-lg-6">
 									<label for="inputEmail4" class="form-label">Email</label>
 									<input type="email" class="form-control" id="inputEmail4">
 								</div>
-								<div class="col-md-6">
+								<div class="col-lg-6">
 									<label for="inputPassword4" class="form-label">Password</label>
 									<input type="password" class="form-control" id="inputPassword4">
 								</div>
@@ -39,18 +39,18 @@
 									<label for="inputAddress2" class="form-label">Address 2</label>
 									<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
 								</div>
-								<div class="col-md-6">
+								<div class="col-lg-6">
 									<label for="inputCity" class="form-label">City</label>
 									<input type="text" class="form-control" id="inputCity">
 								</div>
-								<div class="col-md-4">
+								<div class="col-lg-4">
 									<label for="inputState" class="form-label">State</label>
 									<select id="inputState" class="form-select">
 										<option selected>Choose...</option>
 										<option>...</option>
 									</select>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2">
 									<label for="inputZip" class="form-label">Zip</label>
 									<input type="text" class="form-control" id="inputZip">
 								</div>

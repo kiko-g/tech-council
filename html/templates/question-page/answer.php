@@ -8,7 +8,7 @@
 				</p>
 
 				<div class="row row-cols-3 mb-4">
-					<div class="col-sm flex-wrap">
+					<div class="col-lg flex-wrap">
 						<div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
 							<a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
 								<i class="fas fa-chevron-up"></i>
