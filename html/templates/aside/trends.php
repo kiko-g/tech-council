@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <div class="card-header text-white bg-petrol font-open-sans bg-animated"> Trending Tags </div>
+  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated"> Trending Tags </div>
   <div class="card-body">
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action d-flex justify-content-between active" data-bs-toggle="list" href="#" role="tab" aria-controls="home">

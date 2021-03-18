@@ -1,7 +1,7 @@
 <?php function buildQuestion($comments)
 { ?>
   <div class="card mb-4 p-2-0 border-0 rounded">
-    <div class="card-header bg-petrol text-white font-open-sans">
+    <div class="card-header bg-petrol text-white font-source-sans-pro">
       How do I compare strings in Java?
     </div>
     <div class="card-body">

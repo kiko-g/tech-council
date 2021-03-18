@@ -1,7 +1,7 @@
 <?php function buildQuestion2($comments)
 { ?>
   <div class="card mb-5 p-2-0 border-0 rounded">
-    <div class="card-header bg-petrol text-white font-open-sans">
+    <div class="card-header bg-petrol text-white font-source-sans-pro">
       <a class="a header" href="../pages/question.php">
         How to decide when to use Node.js?
         <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>

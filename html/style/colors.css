@@ -4,13 +4,27 @@
 @import url("http://fonts.cdnfonts.com/css/quattrocento-sans");
 @import url("http://fonts.cdnfonts.com/css/work-sans");
 @import url("http://fonts.cdnfonts.com/css/work-sans");
-@import url("http://fonts.cdnfonts.com/css/Lato");
+@import url("http://fonts.cdnfonts.com/css/source-sans-pro");
+@import url("http://fonts.cdnfonts.com/css/lato");
+@import url("http://fonts.cdnfonts.com/css/karla");
 
 .font-open-sans {
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: var(--first-font), Arial, sans-serif;
+}
+
+.font-source-sans-pro {
+  font-family: var(--second-font), Arial, sans-serif;
+}
+
+.font-work-sans {
+  font-family: var(--third-font), Arial, sans-serif;
 }
 
 :root {
+  --first-font: "Open Sans";
+  --second-font: "Source Sans Pro";
+  --third-font: "Work Sans";
+
   --blue-100: #cfe2ff;
   --blue-200: #9ec5fe;
   --blue-300: #6ea8fe;
@@ -114,7 +128,7 @@
   --black: #000000;
 
   /* custom colors */
-  --petrol: #395368;
+  --petrol: #395768;
   --teal-alt: #496d8f;
   --light-alt: #a2acb6;
   --nav-color: #6093df;

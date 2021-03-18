@@ -1,5 +1,5 @@
 <!-- <div class="card mb-3">
-    <div class="card-header text-white bg-petrol font-open-sans"> Navigation </div>
+    <div class="card-header text-white bg-petrol font-source-sans-pro"> Navigation </div>
     <ul class="nav flex-column py-2">
         <li class="nav-item">
             <a class="nav-link" href="/"><i class="fas fa-home"></i>&nbsp;Home</a>

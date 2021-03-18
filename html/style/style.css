@@ -1,6 +1,6 @@
 /* default elements */
 body {
-  font-family: "Work Sans", Arial, sans-serif;
+  font-family: var(--third-font), Arial, sans-serif;
   background-color: var(--background-color);
   line-height: 1.4;
   font-size: medium;

@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <div class="card-header text-white bg-petrol font-open-sans bg-animated"> Information </div>
+  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated"> Information </div>
   <div class="card-body d-flex align-items-start p-3">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <button class="nav-link blue active h6 text-start" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
