@@ -5,42 +5,54 @@
       How do I compare strings in Java?
     </div>
     <div class="card-body">
-      <p class="mb-3">
-        I've been using the <code>==</code> operator in my program to compare all my strings so far.
-        However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
-
-        Is <code>==</code> bad? When should it and should it not be used? What's the difference?
-      </p>
-      <div class="row row-cols-2 mb-3">
-        <div class="col-lg flex-wrap">
-          <div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
-            <a id="upvote-button" class="upvote-button my-btn-pad btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
+      <article class="row row-cols-2 mb-1">
+        <div class="col-sm-auto flex-wrap">
+          <div id="votes" class="votes btn-group-vertical mt-1 flex-wrap">
+            <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
-            <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 45 </a>
-            <a id="downvote-button" class="downvote-button my-btn-pad btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
+            <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 42 </a>
+            <a id="downvote-button" class="downvote-button my-btn-pad down btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
               <i class="fas fa-chevron-down"></i>
             </a>
           </div>
         </div>
 
+        <div class="col-sm-11 flex-wrap pe-0">
+          <div id="question" class="mb-1">
+            I've been using the <code>==</code> operator in my program to compare all my strings so far.
+            However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
 
+            <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)" data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false" aria-controls="collapseQuestionText2">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
 
-        <div id="tags" class="col-lg-auto flex-wrap">
-          <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
+            <div class="collapse mt-2" id="collapseQuestionText2">
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+            </div>
           </div>
-          <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">node</a>
+
+          <div class="row flex-row-reverse mb-3">
+            <div id="tags" class="col-lg-auto flex-wrap">
+              <div class="btn-group mt-1">
+                <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
+              </div>
+              <div class="btn-group mt-1">
+                <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">node</a>
+              </div>
+              <div class="btn-group mt-1">
+                <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">msi</a>
+              </div>
+              <div class="btn-group mt-1">
+                <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">nvidia</a>
+              </div>
+            </div>
           </div>
-          <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">msi</a>
-          </div>
-          <div class="btn-group mt-1">
-            <a href="#" class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">nvidia</a>
-          </div>
-        </div>
-      </div>
+      </article>
+
       <?php
       if ($comments != null) buildCommentSection($comments, 1);
       ?>

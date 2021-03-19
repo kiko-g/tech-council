@@ -382,15 +382,15 @@
 .btn-outline-success:focus.bookmark,
 .btn-outline-success:active.bookmark,
 .btn-outline-success.bookmark {
-  color: var(--red-400);
-  border-color: var(--red-400);
+  color: var(--red-600);
+  border-color: var(--red-600);
   background-color: white;
   box-shadow: none;
 }
 .btn-outline-success:hover.bookmark {
   color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  border-color: var(--red-600);
+  background-color: var(--red-600);
   box-shadow: none;
 }
 /* Bookmark inverted */
@@ -398,8 +398,8 @@
 .btn-outline-success:active.active-bookmark,
 .btn-outline-success:focus.active-bookmark {
   color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  border-color: var(--red-600);
+  background-color: var(--red-600);
   box-shadow: none;
 }
 .btn-outline-success:hover.active-bookmark {
@@ -444,30 +444,30 @@
 .btn-outline-success:focus.teal,
 .btn-outline-success:active.teal,
 .btn-outline-success.teal {
-  color: var(--green-400);
-  border-color: var(--green-400);
-  background-color: white;
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: transparent;
   box-shadow: none;
 }
 .btn-outline-success:hover.teal {
-  color: white;
-  border-color: var(--green-400);
-  background-color: var(--green-400);
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: var(--gray-200);
   box-shadow: none;
 }
 /* Upvote inverted */
 .btn-outline-success.active-teal,
 .btn-outline-success:active.active-teal,
 .btn-outline-success:focus.active-teal {
-  color: white;
-  border-color: var(--green-400);
-  background-color: var(--green-400);
+  color: var(--teal-600);
+  border-color: transparent;
+  background-color: transparent;
   box-shadow: none;
 }
 .btn-outline-success:hover.active-teal {
-  color: white;
-  border-color: var(--green-600);
-  background-color: var(--green-600);
+  color: var(--teal-600);
+  border-color: transparent;
+  background-color: var(--gray-200);
   box-shadow: none;
 }
 
@@ -475,28 +475,57 @@
 .btn-outline-danger:focus.pink,
 .btn-outline-danger:active.pink,
 .btn-outline-danger.pink {
-  color: var(--red-400);
-  border-color: var(--red-400);
-  background-color: white;
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: transparent;
   box-shadow: none;
 }
 .btn-outline-danger:hover.pink {
-  color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: var(--gray-200);
   box-shadow: none;
 }
 /* Downvote inverted */
 .btn-outline-danger.active-pink {
-  color: white;
-  border-color: var(--red-400);
-  background-color: var(--red-400);
+  color: var(--red-500);
+  border-color: transparent;
+  background-color: transparent;
   box-shadow: none;
 }
 .btn-outline-danger:hover.active-pink {
-  color: white;
-  border-color: var(--red-600);
-  background-color: var(--red-600);
+  color: var(--red-500);
+  border-color: transparent;
+  background-color: var(--gray-200);
+  box-shadow: none;
+}
+
+/* Drop text */
+.btn-outline-info:focus.dark,
+.btn-outline-info:active.dark,
+.btn-outline-info.dark {
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+.btn-outline-info:hover.dark {
+  color: var(--gray-500);
+  border-color: transparent;
+  background-color: var(--gray-200);
+  box-shadow: none;
+}
+/* Downvote inverted */
+.btn-outline-info.active-dark {
+  color: var(--nav-color);
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+.btn-outline-info:hover.active-dark {
+  color: var(--nav-color);
+  border-color: transparent;
+  background-color: var(--gray-200);
   box-shadow: none;
 }
 

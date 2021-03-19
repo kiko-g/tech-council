@@ -8,22 +8,9 @@
       </a>
     </div>
     <div class="card-body">
-      <article class="mb-3">
-        I've been using the <code>==</code> operator in my program to compare all my strings so far.
-        However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
-
-        <button class="btn btn-outline-success follow border-0 py-0 px-1" type="button" onclick="toogleText(this)" data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false" aria-controls="collapseQuestionText2">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-
-        <div class="collapse mt-2" id="collapseQuestionText2">
-          Is <code>==</code> bad? When should it and should it not be used? What's the difference?
-        </div>
-      </article>
-
-      <div class="row row-cols-3 mb-1">
-        <div class="col-md-4 flex-wrap">
-          <div id="votes" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
+      <article class="row row-cols-2 mb-1">
+        <div class="col-sm-auto flex-wrap">
+          <div id="votes" class="votes btn-group-vertical mt-1 flex-wrap">
             <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
@@ -34,37 +21,56 @@
           </div>
         </div>
 
+        <div class="col-sm-11 flex-wrap pe-0">
+          <div id="question" class="mb-1">
+            I've been using the <code>==</code> operator in my program to compare all my strings so far.
+            However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
 
+            <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)" data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false" aria-controls="collapseQuestionText2">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
 
-        <div id="interact" class="col-md-4 flex-wrap">
-          <div class="btn-group mt-1 rounded">
-            <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
-              <i class="far fa-bookmark"></i>&nbsp;Save
-            </a>
-          </div>
-          <?php if ($comments == null) { ?>
-            <div class="btn-group mt-1 rounded">
-              <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" href="#">
-                <i class="far fa-comment-dots"></i>&nbsp;25
-              </a>
+            <div class="collapse mt-2" id="collapseQuestionText2">
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
+              Is <code>==</code> bad? When should it and should it not be used? What's the difference?
             </div>
-          <?php } ?>
-          <div class="btn-group mt-1 rounded">
-            <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" href="#">
-              <i class="fas fa-share-alt"></i>&nbsp;Share
-            </a>
           </div>
-        </div>
 
-        <div id="tags" class="col-md-auto flex-wrap">
-          <div class="btn-group mt-1">
-            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
-          </div>
-          <div class="btn-group mt-1">
-            <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">object-oriented</a>
+          <div class="row row-cols-2 mb-1">
+            <div id="interact" class="col-md flex-wrap">
+              <div class="btn-group mt-1 rounded">
+                <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>" onclick="toggleStar(this)" href="#">
+                  <i class="far fa-bookmark"></i>&nbsp;Save
+                </a>
+              </div>
+              <?php if ($comments == null) { ?>
+                <div class="btn-group mt-1 rounded">
+                  <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" href="#">
+                    <i class="far fa-comment-dots"></i>&nbsp;25
+                  </a>
+                </div>
+              <?php } ?>
+              <div class="btn-group mt-1 rounded">
+                <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" href="#">
+                  <i class="fas fa-share-alt"></i>&nbsp;Share
+                </a>
+              </div>
+            </div>
+
+            <div id="tags" class="col-md-auto flex-wrap">
+              <div class="btn-group mt-1">
+                <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">java</a>
+              </div>
+              <div class="btn-group mt-1">
+                <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">object-oriented</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </article>
+
       <?php
       if ($comments != null) buildCommentSection($comments, 1);
       ?>

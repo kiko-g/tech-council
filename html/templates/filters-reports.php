@@ -16,12 +16,12 @@
         <i class="fas fa-hands-helping fa-sm text-blue-200"></i>&nbsp;Answers
       </label>
 
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-      <label class="btn blue-alt" for="btnradio3">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+      <label class="btn blue-alt" for="btnradio4">
         <i class="far fa-comments fa-sm text-red-400"></i>&nbsp;Comments
       </label>
 
-      <div class="nav-item dropdown bg-petrol rounded-right only py-0 m-0">
+      <div class="btn blue-alt rounded-right only p-0 m-0">
         <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
           <li><a class="dropdown-item" href="#">Action</a></li>

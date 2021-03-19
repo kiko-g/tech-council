@@ -81,8 +81,14 @@ const toggleFollow = followButton => {
 };
 
 const toogleText = textDropdown => {
-  if (textDropdown.children[0].className == 'fas fa-chevron-down') textDropdown.children[0].className = 'fas fa-chevron-up'
-  else textDropdown.children[0].className = 'fas fa-chevron-down';
+  if (textDropdown.classList.contains('active-dark')) {
+    textDropdown.classList.remove('active-dark');
+    textDropdown.classList.add('dark');
+  }
+  else {
+    textDropdown.classList.remove('dark');
+    textDropdown.classList.add('active-dark');
+  }
 }
 
 
