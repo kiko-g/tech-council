@@ -26,36 +26,15 @@ DROP TABLE IF EXISTS question_tag CASCADE;
 -- Create tables
 ------------------
 
-CREATE TABLE content (
+CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
-    main TEXT NOT NULL,
-    creation_date DATE NOT NULL DEFAULT NOW(),
-    modification_date DATE DEFAULT NULL,
-    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
-    CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
+    "name" TEXT UNIQUE NOT NULL,
+    "description" TEXT NOT NULL
 );
 
-CREATE TABLE question (
-    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    title TEXT NOT NULL,
-    votes_difference INTEGER NOT NULL DEFAULT 0,
-
-);
-
-CREATE TABLE answer (
-    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    votes_difference INTEGER NOT NULL DEFAULT 0,
-    question_id INTEGER REFERENCES question(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE answer_comment (
-    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    answer_id INTEGER REFERENCES answer(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE question_comment (
-    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    question_id INTEGER REFERENCES question(id) ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE photo (
+    id SERIAL PRIMARY KEY,
+    path TEXT NOT NULL UNIQUE  
 );
 
 CREATE TABLE "user" (
@@ -68,7 +47,38 @@ CREATE TABLE "user" (
     bio TEXT,
     expert BOOLEAN NOT NULL DEFAULT FALSE,
     banned BOOLEAN NOT NULL DEFAULT FALSE,
-    profile_photo INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE SET NULL -- TODO: check this
+    profile_photo INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE content (
+    id SERIAL PRIMARY KEY,
+    main TEXT NOT NULL,
+    creation_date DATE NOT NULL DEFAULT NOW(),
+    modification_date DATE DEFAULT NULL,
+    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
+    CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
+);
+
+CREATE TABLE question (
+    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    votes_difference INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE answer (
+    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    votes_difference INTEGER NOT NULL DEFAULT 0,
+    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE answer_comment (
+    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    answer_id INTEGER REFERENCES answer(content_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE question_comment (
+    content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE moderator (
@@ -85,18 +95,6 @@ CREATE TABLE moderator (
     CONSTRAINT non_negative_solved_reports CHECK (solved_reports >= 0)
 );
 
-CREATE TABLE tag (
-    id SERIAL PRIMARY KEY,
-    "name" TEXT UNIQUE NOT NULL,
-    "description" TEXT NOT NULL
-);
-
-CREATE TABLE photo (
-    id SERIAL PRIMARY KEY,
-    path TEXT NOT NULL UNIQUE  
-);
-
--- TODO: Check if user_id should be here and if notification_user is necessary
 CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
     type TEXT NOT NULL, -- TODO: define types
@@ -106,14 +104,13 @@ CREATE TABLE "notification" (
     CONSTRAINT date_before_today CHECK ("date" <= now())
 );
 
--- TODO: Check if moderator_id should be here and if moderator_ban is necessary
 CREATE TABLE ban (
     id SERIAL PRIMARY KEY,
     "start" DATE NOT NULL DEFAULT NOW(),
     "end" DATE,
     reason TEXT NOT NULL,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    moderator_id INTEGER REFERENCES moderator(id) ON UPDATE CASCADE ON DELETE SET NULL,
+    moderator_id INTEGER REFERENCES moderator("user_id") ON UPDATE CASCADE ON DELETE SET NULL,
     CONSTRAINT start_before_today CHECK ("start" <= now()),
     CONSTRAINT valid_ban CHECK ("end" > "start")
 );
@@ -123,7 +120,7 @@ CREATE TABLE report (
     "description" TEXT NOT NULL,
     solved BOOLEAN NOT NULL DEFAULT FALSE,
     reporter_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    solver_id INTEGER DEFAULT NULL REFERENCES moderator(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    solver_id INTEGER DEFAULT NULL REFERENCES moderator("user_id") ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE user_report (
@@ -144,26 +141,26 @@ CREATE TABLE follow_tag (
 
 CREATE TABLE user_vote_question (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    question_id INTEGER NOT NULL REFERENCES question(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     upvote BOOLEAN NOT NULL,
     PRIMARY KEY ("user_id", question_id)
 );
 
 CREATE TABLE user_vote_answer (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    answer_id INTEGER NOT NULL REFERENCES answer(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    answer_id INTEGER NOT NULL REFERENCES answer(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     upvote BOOLEAN NOT NULL,
     PRIMARY KEY ("user_id", answer_id)
 );
 
 CREATE TABLE saved_question (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    question_id INTEGER NOT NULL REFERENCES question(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY ("user_id", question_id)
 );
 
 CREATE TABLE question_tag (
-    question_id INTEGER NOT NULL REFERENCES question(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     tag_id INTEGER NOT NULL REFERENCES tag(id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (question_id, tag_id)
 );
