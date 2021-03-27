@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <article class="row row-cols-2 mb-2">
-        <div class="col-sm-auto flex-wrap">
+        <div class="col-auto flex-wrap">
           <div id="votes" class="votes btn-group-vertical mt-1 flex-wrap">
             <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div class="col-sm-11 flex-wrap pe-0">
+        <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
           <div id="question" class="mb-1">
             I am new to this kind of stuff, but lately I've been hearing a lot about how good Node.js is.
             Considering how much I love working with jQuery and JavaScript in general, I can't help but wonder how to decide when to use Node.js.
@@ -73,12 +73,15 @@
               </div>
             </div>
 
-            <div id="tags2" class="col-md-auto flex-wrap ">
+            <div id="tags2" class="col-sm-auto">
               <div class="btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">javascript</a>
               </div>
               <div class="btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">node.js</a>
+              </div>
+              <div class="btn-group mt-1">
+                <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">web applications</a>
               </div>
               <div class="btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2" href="/pages/tag.php">web applications</a>
