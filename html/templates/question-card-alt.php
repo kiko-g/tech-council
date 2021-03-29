@@ -99,7 +99,7 @@
     <div class="card-footer text-muted text-end p-0">
       <blockquote class="blockquote mb-0">
         <p class="card-text px-1">
-          <small class="text-muted">34 seconds ago</small>
+          <small class="text-muted">asked Aug 14 2020 at 15:31</small>
           <small>
             <a class="signature" href="#">user</a>
           </small>

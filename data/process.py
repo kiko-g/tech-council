@@ -1,23 +1,21 @@
 import pandas
+from utils import *
 from random import randrange
-
-
-# utils
-def choose_random(df):
-    r = randrange(len(df))                          # pick random entry of data
-    return df.loc[r].astype(str).values.tolist()    # make series into list of strings
 
 
 def users():
     data = pandas.read_csv("input/users.csv")
-    names = pandas.read_csv("input/static/large-names.csv")
-    cities = pandas.read_csv("input/static/large-cities.csv")
+    tags = pandas.read_csv("input/static/large/tags.csv")['tag']
+    cities = pandas.read_csv("input/static/large/cities.csv")
 
     # Bios should be realistic
     for i in range(len(data)):
         place = choose_random(cities)
-        biography = "My name is " + data.loc[i, 'name'] + ", I live in " + place[0] + ", " + place[1]
-        data.loc[i, 'bio'] = biography
+        interests = choose_n(tags)
+        data.loc[i, 'bio'] = "My name is " + data.loc[i, 'name'] + ", "\
+                             "I am " + str(randrange(15, 60)) + " "\
+                             "and I live in " + place[0] + ", " + place[1] + ". "\
+                             "I'm interested in " + list_text_formatted(interests)
 
     # Everyone with over 100 reputation is an expert
     data.loc[data['reputation'] >= 100, ['expert']] = "TRUE"
@@ -27,14 +25,8 @@ def users():
     for i in range(len(data)):
         r = randrange(100)
         if r < 10:
-            data.loc[i, 'banned'] = 'TRUE'
+            data.loc[i, 'banned'] = "TRUE"
         else:
-            data.loc[i, 'banned'] = 'FALSE'
+            data.loc[i, 'banned'] = "FALSE"
 
-    # export data to csv
-    data.to_csv("output/users.csv", sep=",", index=False)
-
-
-# Main
-if __name__ == '__main__':
-    users()
+    data.to_csv("output/users.csv", sep=",", index=False)  # export data to csv
