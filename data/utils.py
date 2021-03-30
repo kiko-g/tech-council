@@ -39,8 +39,8 @@ def list_text_formatted(entry_list):
 
 
 def shorten_csv():
-    names = pandas.read_csv("input/static/large/names.csv")
-    cities = pandas.read_csv("input/static/large/cities.csv")
+    names = pandas.read_csv("input/static/names.csv")
+    cities = pandas.read_csv("input/static/cities.csv")
 
     # shorten cities
     ci = pandas.DataFrame(data={'name': ['Porto', 'Aveiro', 'Braga'],
