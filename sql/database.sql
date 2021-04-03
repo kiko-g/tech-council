@@ -97,7 +97,7 @@ CREATE TABLE moderator (
 
 CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
-    type TEXT NOT NULL, -- TODO: define types | type might be a keyword
+    type TEXT NOT NULL, -- TODO: define types
     content TEXT NOT NULL,
     "date" DATE NOT NULL DEFAULT NOW(),
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -142,14 +142,14 @@ CREATE TABLE follow_tag (
 CREATE TABLE user_vote_question (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    upvote BOOLEAN NOT NULL, -- Could be NULL
+    vote BOOLEAN NOT NULL,
     PRIMARY KEY ("user_id", question_id)
 );
 
 CREATE TABLE user_vote_answer (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     answer_id INTEGER NOT NULL REFERENCES answer(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    upvote BOOLEAN NOT NULL, -- Could be NULL
+    vote BOOLEAN NOT NULL,
     PRIMARY KEY ("user_id", answer_id)
 );
 

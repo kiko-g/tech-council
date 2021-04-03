@@ -4,7 +4,7 @@ from random import randrange
 
 
 def users():
-    data = pandas.read_csv("input/user.csv")
+    data = pandas.read_csv("input/mock/user.csv")
     tags = pandas.read_csv("input/tag.csv")['tag']
     cities = pandas.read_csv("input/static/cities.csv")
 
