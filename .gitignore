@@ -16,3 +16,4 @@ __pycache__
 # Specific
 other
 sql/data/mock/large
+*.db
