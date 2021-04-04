@@ -1,0 +1,25 @@
+import pandas as pd
+
+if __name__ == '__main__':
+  excel_file = pd.ExcelFile('database.xlsx')
+  tag = pd.read_excel(excel_file, 'tag')
+  photo = pd.read_excel(excel_file, 'photo')
+  user = pd.read_excel(excel_file, 'user')
+  content = pd.read_excel(excel_file, 'content')
+  question = pd.read_excel(excel_file, 'question')
+  answer = pd.read_excel(excel_file, 'answer')
+  answer_comment = pd.read_excel(excel_file, 'answer_comment')
+  question_comment = pd.read_excel(excel_file, 'question_comment')
+  moderator = pd.read_excel(excel_file, 'moderator')
+  notification = pd.read_excel(excel_file, 'notification')
+  ban = pd.read_excel(excel_file, 'ban')
+  report = pd.read_excel(excel_file, 'report')
+  user_report = pd.read_excel(excel_file, 'user_report')
+  content_report = pd.read_excel(excel_file, 'content_report')
+  follow_tag = pd.read_excel(excel_file, 'follow_tag')
+  user_vote_question = pd.read_excel(excel_file, 'user_vote_question')
+  user_vote_answer = pd.read_excel(excel_file, 'user_vote_answer')
+  saved_question = pd.read_excel(excel_file, 'saved_question')
+  question_tag = pd.read_excel(excel_file, 'question_tag')
+  
+  print(tag.head())
