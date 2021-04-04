@@ -462,7 +462,7 @@
 .btn-outline-success:focus.active-teal {
   color: var(--teal-600);
   border-color: transparent;
-  background-color: #6dffaa30;
+  background-color: #e6f5e7;
   box-shadow: none;
 }
 .btn-outline-success:hover.active-teal {
@@ -491,7 +491,7 @@
 .btn-outline-danger.active-pink {
   color: var(--red-500);
   border-color: transparent;
-  background-color: #ff6d6d20;
+  background-color: #f5e6e6;
   box-shadow: none;
 }
 .btn-outline-danger:hover.active-pink {

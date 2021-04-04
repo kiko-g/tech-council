@@ -46,7 +46,7 @@ async function printFiles() {
 
 > **@CARLOS** Not really, an async function is quite different from a Promise executor callback, but yes the map callback returns a promise in both cases. – _BRUNO Mar 29 '17 at 16:25_
 
-> When you come to learn about JS promises, but instead use half an hour translating latin. Hope you're proud @Bergi ;) – _DANIEL May 16 '17 at 21:04_
+> When you come to learn about JS promises, but instead use half an hour translating latin. Hope you're proud **@BRUNO** ;) – _DANIEL May 16 '17 at 21:04_
 
 ---
 

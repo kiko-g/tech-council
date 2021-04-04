@@ -4,9 +4,9 @@ from random import randrange
 
 
 def users():
-    data = pandas.read_csv("input/mock/user.csv")
-    tags = pandas.read_csv("input/tag.csv")['tag']
-    cities = pandas.read_csv("input/static/cities.csv")
+    data = pandas.read_csv("mock/csv/user.csv")
+    tags = pandas.read_csv("mock/csv/tag.csv")['tag']
+    cities = pandas.read_csv("mock/large/cities-large.csv")
 
     # Bios should be realistic
     for i in range(len(data)):

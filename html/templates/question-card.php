@@ -23,14 +23,15 @@
 
         <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
           <div id="question" class="mb-1">
-            I've been using the <code>==</code> operator in my program to compare all my strings so far.
-            However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
+            I've been using the <code>==</code> operator in my program to compare all my strings so far. However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
+
 
             <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)" data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false" aria-controls="collapseQuestionText2">
               <i class="fas fa-ellipsis-h"></i>
             </button>
 
             <div class="collapse mt-2" id="collapseQuestionText2">
+              However, I ran into a bug, changed one of them into <code>.equals()</code> instead, and it fixed the bug.
               Is <code>==</code> bad? When should it and should it not be used? What's the difference?
               Is <code>==</code> bad? When should it and should it not be used? What's the difference?
               Is <code>==</code> bad? When should it and should it not be used? What's the difference?
