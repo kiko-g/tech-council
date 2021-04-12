@@ -56,6 +56,7 @@ CREATE TABLE content (
     creation_date DATE NOT NULL DEFAULT NOW(),
     modification_date DATE DEFAULT NULL,
     author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
+    edited BOOLEAN NOT NULL DEFAULT FALSE,
     CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
 );
 
@@ -99,6 +100,7 @@ CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
     type TEXT NOT NULL, -- TODO: define types | type might be a keyword
     content TEXT NOT NULL,
+    icon TEXT NOT NULL,
     "date" DATE NOT NULL DEFAULT NOW(),
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT date_before_today CHECK ("date" <= now())
