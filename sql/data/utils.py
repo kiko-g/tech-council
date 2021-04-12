@@ -39,8 +39,8 @@ def list_text_formatted(entry_list):
 
 
 def shorten_csv():
-    names = pandas.read_csv("input/static/names.csv")
-    cities = pandas.read_csv("input/static/cities.csv")
+    names = pandas.read_csv("mock/large/names-large.csv")
+    cities = pandas.read_csv("mock/large/cities-large.csv")
 
     # shorten cities
     ci = pandas.DataFrame(data={'name': ['Porto', 'Aveiro', 'Braga'],
@@ -49,7 +49,7 @@ def shorten_csv():
     for i in range(0, len(cities) - 1, 15):
         ci.loc[count] = [cities['name'][i], cities['country'][i]]
         count += 1
-    ci.to_csv("input/static/short/cities.csv", sep=",", index=False)  # export cities data to shorter csv
+    ci.to_csv("mock/short/cities-short.csv", sep=",", index=False)  # export cities data to shorter csv
 
     # shorten names
     nm = pandas.DataFrame(data={'name': ['Francisco']})
@@ -58,4 +58,4 @@ def shorten_csv():
         nm.loc[count] = names['name'][i]
         count += 1
 
-    nm.to_csv("input/static/short/names.csv", sep=",", index=False)  # export names data to shorter csv
+    nm.to_csv("mock/short/names-short.csv", sep=",", index=False)  # export names data to shorter csv
