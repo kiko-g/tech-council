@@ -26,6 +26,7 @@ DROP TABLE IF EXISTS question_tag CASCADE;
 -- Create tables
 ------------------
 
+--- TODO: add creator
 CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
