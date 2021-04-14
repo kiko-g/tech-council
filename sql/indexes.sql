@@ -1,6 +1,6 @@
 /*
 * Queries that search for posts, comments, replies ( any content ) 
-    of a any user are used often and need to be fast.
+    of a given user are used often and need to be fast.
     User’s may have a fair ammount of posts/comments/replies/content. 
     Clustering will improve performance of fetching all the content
     of a given user, which represents medium cardinality.
@@ -30,7 +30,7 @@ CREATE INDEX content_author ON "content" USING hash (author_id);
 CREATE INDEX question_dates ON question USING btree (creation_date);
 
 /*
-* To speed up the searching process for content. GiST is used because 
+* (FTS) To speed up the searching process for content. GiST is used because 
   question fields may be changed frequently (specially the title and body),
   and GiST is better for dynamic data and faster for updates.
 *
@@ -43,8 +43,8 @@ CREATE INDEX question_search ON question USING GIST (search);
 
 
 /*
-* To speed up the search for tags by their name. GIN is used because the
-  name of a tag is never changed and this type of index is better/faster 
+* (FTS) To speed up the search for tags by their name. GIN is used because the
+  name of a tag is never changed and this type of index is faster 
   for static data. 
 *
 | **Relation**        | tag                 |
