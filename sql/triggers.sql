@@ -1,12 +1,18 @@
----------------------------
+--------------------------------------
 -- UPDATE USER AND QUESTION REPUTATION 
----------------------------
+--------------------------------------
 
 -- on insert to question table
 DROP FUNCTION IF EXISTS insert_reputation_question CASCADE;
 CREATE FUNCTION insert_reputation_question() RETURNS TRIGGER AS
 $BODY$
 BEGIN
+    IF NEW.upvote = 1 THEN
+        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+            (SELECT author_id FROM content 
+                WHERE (content.id = NEW.question_id)));
+    END IF;
+
     -- update user reputation
     UPDATE "user" SET reputation = reputation + NEW.upvote
     WHERE "user".id = (SELECT author_id FROM content 
@@ -46,6 +52,12 @@ DROP FUNCTION IF EXISTS insert_reputation_answer CASCADE;
 CREATE FUNCTION insert_reputation_answer() RETURNS TRIGGER AS
 $BODY$
 BEGIN
+    IF NEW.upvote = 1 THEN
+        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+            (SELECT author_id FROM content 
+                WHERE (content.id = NEW.answer_id)));
+    END IF;
+
     -- update user reputation
     UPDATE "user" SET reputation = reputation + NEW.upvote
     WHERE "user".id = (SELECT author_id FROM content 
@@ -86,6 +98,12 @@ CREATE FUNCTION update_reputation_question() RETURNS TRIGGER AS
 $BODY$
 DECLARE rep integer := NEW.upvote - OLD.upvote;
 BEGIN
+    IF NEW.upvote = 1 THEN
+        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+            (SELECT author_id FROM content 
+                WHERE (content.id = NEW.question_id)));
+    END IF;
+
     -- update user reputation
     UPDATE "user" SET reputation = reputation + rep
     WHERE "user".id = (SELECT author_id FROM content 
@@ -126,6 +144,12 @@ CREATE FUNCTION update_reputation_answer() RETURNS TRIGGER AS
 $BODY$
 DECLARE rep integer := NEW.upvote - OLD.upvote;
 BEGIN
+    IF NEW.upvote = 1 THEN
+        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+            (SELECT author_id FROM content 
+                WHERE (content.id = NEW.answer_id)));
+    END IF;
+
     -- update user reputation
     UPDATE "user" SET reputation = reputation + rep
     WHERE "user".id = (SELECT author_id FROM content 
@@ -237,3 +261,143 @@ CREATE TRIGGER delete_reputation_answer
     AFTER DELETE ON user_vote_answer
     FOR EACH ROW
     EXECUTE PROCEDURE delete_reputation_answer();
+
+--------------------------------------
+-- UPDATE USER AND MODERATOR BAN INFORMATION 
+--------------------------------------
+
+-- update moderator solved reports
+DROP FUNCTION IF EXISTS solved_report CASCADE;
+CREATE FUNCTION solved_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE moderator SET solved_reports = solved_reports + 1
+    WHERE "user_id" = NEW.solver_id;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS solved_report ON report;
+CREATE TRIGGER solved_report
+    AFTER UPDATE ON report
+    FOR EACH ROW
+    EXECUTE PROCEDURE solved_report();
+
+-- creation of a ban entry
+DROP FUNCTION IF EXISTS insert_ban CASCADE;
+CREATE FUNCTION insert_ban() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE moderator SET banned_users = banned_users + 1
+    WHERE moderator."user_id" = NEW.moderator_id;
+
+    UPDATE "user" SET banned = TRUE
+    WHERE "user".id = NEW."user_id";
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS insert_ban ON ban;
+CREATE TRIGGER insert_ban
+    AFTER INSERT ON ban
+    FOR EACH ROW
+    EXECUTE PROCEDURE insert_ban();
+
+-- user cannot report himself
+DROP FUNCTION IF EXISTS no_self_report CASCADE;
+CREATE FUNCTION no_self_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM report WHERE id = NEW.report_id AND reporter_id = NEW."user_id"
+    ) THEN
+        DELETE FROM report WHERE id = NEW.report_id;
+        RETURN NULL;
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS no_self_report ON user_report;
+CREATE TRIGGER no_self_report
+    BEFORE INSERT ON user_report
+    FOR EACH ROW
+    EXECUTE PROCEDURE no_self_report();
+
+-- user cannot report his own content
+DROP FUNCTION IF EXISTS no_self_content_report CASCADE;
+CREATE FUNCTION no_self_content_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM report WHERE id = NEW.report_id AND reporter_id = (
+            SELECT author_id FROM content WHERE id = NEW.content_id
+        )
+    ) THEN
+        DELETE FROM report WHERE id = NEW.report_id;
+        RETURN NULL;
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS no_self_content_report ON content_report;
+CREATE TRIGGER no_self_content_report
+    BEFORE INSERT ON content_report
+    FOR EACH ROW
+    EXECUTE PROCEDURE no_self_content_report();
+
+--------------------------------------
+-- NOTIFICATION RELATED TRIGGERS 
+--------------------------------------
+
+-- answer to user question
+DROP FUNCTION IF EXISTS notify_answer CASCADE;
+CREATE FUNCTION notify_answer() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO "notification" ("type", content, "user_id") VALUES ('answered', 'new answer notify',
+        (SELECT author_id FROM content 
+            WHERE (content.id = NEW.question_id)));
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS notify_answer ON answer;
+CREATE TRIGGER notify_answer
+    AFTER INSERT ON answer
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_answer();
+
+-- answer to saved question
+DROP FUNCTION IF EXISTS notify_saved_question CASCADE;
+CREATE FUNCTION notify_saved_question() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO "notification" ("type", content, "user_id") 
+        SELECT 'answered_saved', 'answered saved', "user_id" 
+        FROM saved_question AS saved 
+        WHERE saved.question_id = NEW.question_id;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS notify_saved_question ON answer;
+CREATE TRIGGER notify_saved_question
+    AFTER INSERT ON answer
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_saved_question();
+
+-- answer voted has best answer

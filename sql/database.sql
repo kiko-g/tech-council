@@ -23,6 +23,13 @@ DROP TABLE IF EXISTS saved_question CASCADE;
 DROP TABLE IF EXISTS question_tag CASCADE;
 
 ------------------
+-- Create types
+------------------
+
+DROP TYPE IF EXISTS "NOTIFICATION";
+CREATE TYPE "NOTIFICATION" AS ENUM ('answered', 'answered_saved', 'upvote_question', 'upvote_answer', 'best_answer');
+
+------------------
 -- Create tables
 ------------------
 
@@ -97,7 +104,7 @@ CREATE TABLE moderator (
 
 CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
-    type TEXT NOT NULL, -- TODO: define types | type might be a keyword
+    "type" "NOTIFICATION" NOT NULL,
     content TEXT NOT NULL,
     "date" DATE NOT NULL DEFAULT NOW(),
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
