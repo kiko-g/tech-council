@@ -1,7 +1,6 @@
 /*
-* Queries that search for posts, comments, replies ( any content ) 
+* Queries that search for questions, answers and comments ( any content ) 
     of a given user are used often and need to be fast.
-    User’s may have a fair ammount of posts/comments/replies/content. 
     Clustering will improve performance of fetching all the content
     of a given user, which represents medium cardinality.
     There is no need for range search or sorting. 
@@ -16,16 +15,15 @@
 CREATE INDEX content_author ON "content" USING hash (author_id);
 
 
-
 /*
 * Presenting trending questions and search results imply the need of sorting
   and fetching them by range. As such we chose to use B-Tree indexes. 
 *
 | **Relation**        | question                           |
-| **Attribute**       | creation_date                         |
-| **Type**            | B-Tree                                   |
-| **Cardinality**     | Medium                                 |
-| **Clustering**      | No                                    |
+| **Attribute**       | creation_date                      |
+| **Type**            | B-Tree                             |
+| **Cardinality**     | Medium                             |
+| **Clustering**      | No                                 |
 */
 CREATE INDEX question_dates ON question USING btree (creation_date);
 
@@ -34,7 +32,7 @@ CREATE INDEX question_dates ON question USING btree (creation_date);
   question fields may be changed frequently (specially the title and body),
   and GiST is better for dynamic data and faster for updates.
 *
-| **Relation**        | question             |
+| **Relation**        | question            |
 | **Attribute**       | search              |
 | **Type**            | GIST                |
 | **Clustering**      | No                  |
