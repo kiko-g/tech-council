@@ -99,8 +99,8 @@ VALUES ($end, $reason, $user_id, $moderator_id)
  *  Create a new tag
  *  Dozens per week
  */
-INSERT INTO tag(name, description)
-VALUES ($name, $description)
+INSERT INTO tag(name, description, author_id)
+VALUES ($name, $description, $author_id)
 
 /*  INSERT13
  *  Save a question
