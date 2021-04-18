@@ -33,13 +33,6 @@ CREATE TYPE "NOTIFICATION" AS ENUM ('answered', 'answered_saved', 'upvote_questi
 -- Create tables
 ------------------
 
-CREATE TABLE tag (
-    id SERIAL PRIMARY KEY,
-    "name" TEXT UNIQUE NOT NULL,
-    "description" TEXT NOT NULL,
-    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
-);
-
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
     path TEXT NOT NULL UNIQUE -- path might be a keyword
@@ -58,6 +51,13 @@ CREATE TABLE "user" (
     profile_photo INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
+CREATE TABLE tag (
+    id SERIAL PRIMARY KEY,
+    "name" TEXT UNIQUE NOT NULL,
+    "description" TEXT NOT NULL,
+    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
 CREATE TABLE content (
     id SERIAL PRIMARY KEY,
     main TEXT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE content (
     modification_date DATE DEFAULT NULL,
     author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
     edited BOOLEAN NOT NULL DEFAULT FALSE,
-    CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
+    CONSTRAINT mod_after_cre CHECK(modification_date >= creation_date)
 );
 
 CREATE TABLE question (
