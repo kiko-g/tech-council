@@ -14,7 +14,7 @@
             <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal" onclick="vote('up', this.parentNode)">
               <i class="fas fa-chevron-up"></i>
             </a>
-            <a id="vote-ratio" class="vote-ratio btn my-btn-pad py-1 fake disabled"> 42 </a>
+            <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 42 </a>
             <a id="downvote-button" class="downvote-button my-btn-pad down btn btn-outline-danger pink" onclick="vote('down', this.parentNode)">
               <i class="fas fa-chevron-down"></i>
             </a>
@@ -24,12 +24,12 @@
         <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
           <div id="question" class="mb-1">
             I am new to this kind of stuff, but lately I've been hearing a lot about how good Node.js is.
-            Considering how much I love working with jQuery and JavaScript in general, I can't help but wonder how to decide when to use Node.js.
             <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)" data-bs-toggle="collapse" data-bs-target="#collapseQuestionText" aria-expanded="false" aria-controls="collapseQuestionText">
               <i class="fas fa-ellipsis-h"></i>
             </button>
 
             <div class="collapse mt-2" id="collapseQuestionText">
+              Considering how much I love working with jQuery and JavaScript in general, I can't help but wonder how to decide when to use Node.js.
               The web application I have in mind is something like Bitly - takes some content, archives it.
 
               From all the homework I have been doing in the last few days, I obtained the following information. <code>Node.js</code>

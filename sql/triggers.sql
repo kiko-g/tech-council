@@ -7,14 +7,14 @@ DROP FUNCTION IF EXISTS insert_reputation_question CASCADE;
 CREATE FUNCTION insert_reputation_question() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NEW.upvote = 1 THEN
+    IF NEW.vote = 1 THEN
         INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
             (SELECT author_id FROM content 
                 WHERE (content.id = NEW.question_id)));
     END IF;
 
     -- update user reputation
-    UPDATE "user" SET reputation = reputation + NEW.upvote
+    UPDATE "user" SET reputation = reputation + NEW.vote
     WHERE "user".id = (SELECT author_id FROM content 
                         WHERE (content.id = NEW.question_id));
 
@@ -33,7 +33,7 @@ BEGIN
         AND "user".reputation < 1400;
 
     --update question votes difference
-    UPDATE question SET votes_difference = votes_difference + NEW.upvote
+    UPDATE question SET votes_difference = votes_difference + NEW.vote
     WHERE content_id = NEW.question_id;
 
     RETURN NEW;
@@ -52,14 +52,14 @@ DROP FUNCTION IF EXISTS insert_reputation_answer CASCADE;
 CREATE FUNCTION insert_reputation_answer() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NEW.upvote = 1 THEN
+    IF NEW.vote = 1 THEN
         INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
             (SELECT author_id FROM content 
                 WHERE (content.id = NEW.answer_id)));
     END IF;
 
     -- update user reputation
-    UPDATE "user" SET reputation = reputation + NEW.upvote
+    UPDATE "user" SET reputation = reputation + NEW.vote
     WHERE "user".id = (SELECT author_id FROM content 
                         WHERE (content.id = NEW.answer_id));
 
@@ -78,7 +78,7 @@ BEGIN
         AND "user".reputation < 1400;
 
     --update answer votes difference
-    UPDATE answer SET votes_difference = votes_difference + NEW.upvote
+    UPDATE answer SET votes_difference = votes_difference + NEW.vote
     WHERE content_id = NEW.answer_id;
 
     RETURN NEW;
@@ -96,9 +96,9 @@ CREATE TRIGGER insert_reputation_answer
 DROP FUNCTION IF EXISTS update_reputation_question CASCADE;
 CREATE FUNCTION update_reputation_question() RETURNS TRIGGER AS
 $BODY$
-DECLARE rep integer := NEW.upvote - OLD.upvote;
+DECLARE rep integer := NEW.vote - OLD.vote;
 BEGIN
-    IF NEW.upvote = 1 THEN
+    IF NEW.vote = 1 THEN
         INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
             (SELECT author_id FROM content 
                 WHERE (content.id = NEW.question_id)));
@@ -142,9 +142,9 @@ CREATE TRIGGER update_reputation_question
 DROP FUNCTION IF EXISTS update_reputation_answer CASCADE;
 CREATE FUNCTION update_reputation_answer() RETURNS TRIGGER AS
 $BODY$
-DECLARE rep integer := NEW.upvote - OLD.upvote;
+DECLARE rep integer := NEW.vote - OLD.vote;
 BEGIN
-    IF NEW.upvote = 1 THEN
+    IF NEW.vote = 1 THEN
         INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
             (SELECT author_id FROM content 
                 WHERE (content.id = NEW.answer_id)));
@@ -190,7 +190,7 @@ CREATE FUNCTION delete_reputation_question() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     -- update user reputation
-    UPDATE "user" SET reputation = reputation - OLD.upvote
+    UPDATE "user" SET reputation = reputation - OLD.vote
     WHERE "user".id = (SELECT author_id FROM content 
                         WHERE (content.id = OLD.question_id));
 
@@ -209,7 +209,7 @@ BEGIN
         AND "user".reputation < 1400;
 
     --update question votes difference
-    UPDATE question SET votes_difference = votes_difference - OLD.upvote
+    UPDATE question SET votes_difference = votes_difference - OLD.vote
     WHERE content_id = OLD.question_id;
 
     RETURN NEW;
@@ -229,7 +229,7 @@ CREATE FUNCTION delete_reputation_answer() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     -- update user reputation
-    UPDATE "user" SET reputation = reputation - OLD.upvote
+    UPDATE "user" SET reputation = reputation - OLD.vote
     WHERE "user".id = (SELECT author_id FROM content 
                         WHERE (content.id = OLD.answer_id));
 
@@ -248,7 +248,7 @@ BEGIN
         AND "user".reputation < 1400;
 
     --update answer votes difference
-    UPDATE answer SET votes_difference = votes_difference - OLD.upvote
+    UPDATE answer SET votes_difference = votes_difference - OLD.vote
     WHERE content_id = OLD.answer_id;
 
     RETURN OLD;

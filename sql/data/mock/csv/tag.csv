@@ -1,0 +1,74 @@
+﻿id,tag,description
+1,Windows,Tag for questions related to the windows operating system
+2,Linux,Tag for questions related to linux based distributions
+3,Gnome,Tag for questions related to the GNOME desktop environment
+4,CMD,Tag for questions related to the Windows command line
+5,PowerShell,Tag for questions related to Powershell
+6,Visual Stuido,Tag for questions related to Microsoft's Visual Studio
+7,Visual Studio Code,Tag for questions related to Microsoft's Visual Studio Code (VSCode)
+8,Git,"Tag for questions related to Git, a version control system"
+9,Node.JS,"Tag for questions related to Node.js, a JavaScript runtime "
+10,Markdown,"Tag for questions related to Markdown, a lightweight markup language"
+11,Circle CI,"Tag for questions related to Circle CI, a tool for automating development process with continuous integration"
+12,Docker,"Tag for questions related to Docker, a fast tool for containerizing applications"
+13,IntelliJ,"Tag for questions related to IntelliJ, a very smart and clean Java IDE"
+14,Eclipse,"Tag for questions related to Eclipse, a classic Java IDE"
+15,Python,Tag for questions related to Python 
+16,Java,Tag for questions related to Java
+17,C/C++,Tag for questions related to
+18,PHP,Tag for questions related to
+19,HTML/CSS,Tag for questions related to
+20,JavaScript,Tag for questions related to Javascript
+21,Regex,Tag for questions related to Regex (Regular Expressions)
+22,XML,Tag for questions related to XML
+23,Programming,Tag for questions related to general programming (or non listed on the tags) programming languages
+24,Algorithms,Tag for questions related to algorithms
+25,API,Tag for questions related to APIs
+26,Web Scraping,Tag for questions related to web scraping
+27,Discord,Tag for questions related to discord
+28,JSON,Tag for questions related to Java Script Object Notation
+29,Pandas,Tag for questions related to Pandas Python library
+30,Numpy,Tag for questions related to Numpy Python library
+31,SQL,Tag for questions related to SQL
+32,Database,Tag for questions related to database
+33,Security,Tag for questions related to security
+34,Machine Learning,Tag for questions related to machine learning
+35,AI,Tag for questions related to AI
+36,Smartphones,Tag for questions related to Smartphones
+37,iPhone,Tag for questions related to iPhone
+38,Galaxy,Tag for questions related to Galaxy
+39,Xiaomi,Tag for questions related to Xiaomi
+40,Flutter,Tag for questions related to Flutter
+41,DOM,Tag for questions related to DOM
+42,Graphics Card,Tag for questions related to graphic cards
+43,Nvidia,Tag for questions related to nvidia
+44,AMD,Tag for questions related to AMD
+45,Intel,Tag for questions related to Intel
+46,Video,Tag for questions related to video
+47,Photo,Tag for questions related to photo
+48,Android,Tag for questions related to android
+49,iOS,Tag for questions related to iOS
+50,Excel,Tag for questions related to excel
+51,Powerpoint,Tag for questions related to powerpoint
+52,Word,Tag for questions related to word
+53,LaTeX,Tag for questions related to LaTeX
+54,PlayStation,Tag for questions related to PlayStation
+55,XBOX,Tag for questions related to XBOX
+56,Mac,Tag for questions related to Mac
+57,Data Science,Tag for questions related to Data Science
+58,Web Applications,Tag for questions related to Web Applications
+59,Cloud,Tag for questions related to Cloud
+60,Google Drive,Tag for questions related to Google Drive
+61,Social Media,Tag for questions related to Social Media
+62,Testing,Tag for questions related to Software Testing
+63,TV,Tag for questions related to TVs
+64,Sony,Tag for questions related to Sony
+65,Samsung,Tag for questions related to Samsung
+66,Keyboard,Tag for questions related to Keyboards
+67,Mouse,Tag for questions related to Mouses
+68,Monitor,Tag for questions related to Monitors
+69,Memory Card,Tag for questions related to memory cards and disk storage
+70,Computers,Tag for questions related to computers
+71,Headphones,Tag for questions related to headphones
+72,Wireless Headphones,Tag for questions related to wireless headphones
+73,Computer Vision,Tag for questions related to computer vision

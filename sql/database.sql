@@ -36,7 +36,8 @@ CREATE TYPE "NOTIFICATION" AS ENUM ('answered', 'answered_saved', 'upvote_questi
 CREATE TABLE tag (
     id SERIAL PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
-    "description" TEXT NOT NULL
+    "description" TEXT NOT NULL,
+    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE photo (
@@ -63,6 +64,7 @@ CREATE TABLE content (
     creation_date DATE NOT NULL DEFAULT NOW(),
     modification_date DATE DEFAULT NULL,
     author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
+    edited BOOLEAN NOT NULL DEFAULT FALSE,
     CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
 );
 
@@ -106,6 +108,7 @@ CREATE TABLE "notification" (
     id SERIAL PRIMARY KEY,
     "type" "NOTIFICATION" NOT NULL,
     content TEXT NOT NULL,
+    icon TEXT NOT NULL,
     "date" DATE NOT NULL DEFAULT NOW(),
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT date_before_today CHECK ("date" <= now())
@@ -149,14 +152,14 @@ CREATE TABLE follow_tag (
 CREATE TABLE user_vote_question (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    upvote INTEGER NOT NULL,
+    vote INTEGER NOT NULL,
     PRIMARY KEY ("user_id", question_id)
 );
 
 CREATE TABLE user_vote_answer (
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     answer_id INTEGER NOT NULL REFERENCES answer(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    upvote INTEGER NOT NULL,
+    vote INTEGER NOT NULL,
     PRIMARY KEY ("user_id", answer_id)
 );
 
