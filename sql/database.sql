@@ -33,13 +33,6 @@ CREATE TYPE "NOTIFICATION" AS ENUM ('answered', 'answered_saved', 'upvote_questi
 -- Create tables
 ------------------
 
-CREATE TABLE tag (
-    id SERIAL PRIMARY KEY,
-    "name" TEXT UNIQUE NOT NULL,
-    "description" TEXT NOT NULL,
-    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
-);
-
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
     path TEXT NOT NULL UNIQUE -- path might be a keyword
@@ -56,6 +49,13 @@ CREATE TABLE "user" (
     expert BOOLEAN NOT NULL DEFAULT FALSE,
     banned BOOLEAN NOT NULL DEFAULT FALSE,
     profile_photo INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE tag (
+    id SERIAL PRIMARY KEY,
+    "name" TEXT UNIQUE NOT NULL,
+    "description" TEXT NOT NULL,
+    author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE content (
@@ -77,7 +77,8 @@ CREATE TABLE question (
 CREATE TABLE answer (
     content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
     votes_difference INTEGER NOT NULL DEFAULT 0,
-    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE
+    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    is_best_answer BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE answer_comment (
