@@ -64,7 +64,7 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 INSERT INTO content (main, author_id)
 VALUES ($body, $user_id);
 
--- Insert comment to a question
+-- Insert comment to an answer
 INSERT INTO answer_comment (content_id, answer_id)
 VALUES (currval("content_id_seq"), $answer_id);
 
