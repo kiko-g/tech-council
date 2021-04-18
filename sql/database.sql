@@ -77,7 +77,8 @@ CREATE TABLE question (
 CREATE TABLE answer (
     content_id INTEGER PRIMARY KEY REFERENCES content(id) ON UPDATE CASCADE ON DELETE CASCADE,
     votes_difference INTEGER NOT NULL DEFAULT 0,
-    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE
+    question_id INTEGER REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    is_best_answer BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE answer_comment (

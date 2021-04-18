@@ -8,9 +8,9 @@ CREATE FUNCTION insert_reputation_question() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF NEW.vote = 1 THEN
-        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+        INSERT INTO "notification" ("type", content, "user_id", icon) VALUES ('upvote_question', 'Your question has been upvoted!',
             (SELECT author_id FROM content 
-                WHERE (content.id = NEW.question_id)));
+                WHERE (content.id = NEW.question_id)), 'photo.png');
     END IF;
 
     -- update user reputation
@@ -53,9 +53,9 @@ CREATE FUNCTION insert_reputation_answer() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF NEW.vote = 1 THEN
-        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+        INSERT INTO "notification" ("type", content, "user_id", icon) VALUES ('upvote_question', 'upvote question notify',
             (SELECT author_id FROM content 
-                WHERE (content.id = NEW.answer_id)));
+                WHERE (content.id = NEW.answer_id)), 'photo.png');
     END IF;
 
     -- update user reputation
@@ -99,9 +99,9 @@ $BODY$
 DECLARE rep integer := NEW.vote - OLD.vote;
 BEGIN
     IF NEW.vote = 1 THEN
-        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+        INSERT INTO "notification" ("type", content, "user_id", icon) VALUES ('upvote_question', 'Your question has been upvoted!',
             (SELECT author_id FROM content 
-                WHERE (content.id = NEW.question_id)));
+                WHERE (content.id = NEW.question_id)), 'photo.png');
     END IF;
 
     -- update user reputation
@@ -145,9 +145,9 @@ $BODY$
 DECLARE rep integer := NEW.vote - OLD.vote;
 BEGIN
     IF NEW.vote = 1 THEN
-        INSERT INTO "notification" ("type", content, "user_id") VALUES ('upvote_question', 'upvote question notify',
+        INSERT INTO "notification" ("type", content, "user_id", icon) VALUES ('upvote_question', 'Your question has been upvoted!',
             (SELECT author_id FROM content 
-                WHERE (content.id = NEW.answer_id)));
+                WHERE (content.id = NEW.answer_id)), 'photo.png');
     END IF;
 
     -- update user reputation
@@ -313,10 +313,10 @@ CREATE FUNCTION no_self_report() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF EXISTS (
-        SELECT * FROM report WHERE id = NEW.report_id AND reporter_id = NEW."user_id"
+        SELECT * FROM report 
+        WHERE id = NEW.report_id AND reporter_id = NEW."user_id"
     ) THEN
-        DELETE FROM report WHERE id = NEW.report_id;
-        RETURN NULL;
+        RAISE EXCEPTION 'User cannot report himself!';
     END IF;
 
     RETURN NEW;
@@ -340,8 +340,7 @@ BEGIN
             SELECT author_id FROM content WHERE id = NEW.content_id
         )
     ) THEN
-        DELETE FROM report WHERE id = NEW.report_id;
-        RETURN NULL;
+        RAISE EXCEPTION 'User cannot report his own content!';
     END IF;
 
     RETURN NEW;
@@ -355,6 +354,52 @@ CREATE TRIGGER no_self_content_report
     FOR EACH ROW
     EXECUTE PROCEDURE no_self_content_report();
 
+-- user cannot report moderators
+DROP FUNCTION IF EXISTS no_moderator_report CASCADE;
+CREATE FUNCTION no_moderator_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM moderator WHERE moderator."user_id" = NEW."user_id"
+    ) THEN
+        RAISE EXCEPTION 'Moderators cannot be reported';
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS no_moderator_report ON user_report;
+CREATE TRIGGER no_moderator_report
+    BEFORE INSERT ON user_report
+    FOR EACH ROW
+    EXECUTE PROCEDURE no_moderator_report();
+
+-- user cannot report moderators' content
+DROP FUNCTION IF EXISTS no_moderator_content_report CASCADE;
+CREATE FUNCTION no_moderator_content_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM moderator WHERE "user_id" = (
+            SELECT author_id FROM content WHERE id = NEW.content_id
+        )
+    ) THEN
+        RAISE EXCEPTION 'Moderators content cannot be reported';
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS no_moderator_content_report ON content_report;
+CREATE TRIGGER no_moderator_content_report
+    BEFORE INSERT ON content_report
+    FOR EACH ROW
+    EXECUTE PROCEDURE no_moderator_content_report();
+
 --------------------------------------
 -- NOTIFICATION RELATED TRIGGERS 
 --------------------------------------
@@ -364,9 +409,9 @@ DROP FUNCTION IF EXISTS notify_answer CASCADE;
 CREATE FUNCTION notify_answer() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    INSERT INTO "notification" ("type", content, "user_id") VALUES ('answered', 'new answer notify',
+    INSERT INTO "notification" ("type", content, "user_id", icon) VALUES ('answered', 'Someone answered your question!',
         (SELECT author_id FROM content 
-            WHERE (content.id = NEW.question_id)));
+            WHERE (content.id = NEW.question_id)), 'photo.png');
 
     RETURN NEW;
 END
@@ -384,8 +429,8 @@ DROP FUNCTION IF EXISTS notify_saved_question CASCADE;
 CREATE FUNCTION notify_saved_question() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    INSERT INTO "notification" ("type", content, "user_id") 
-        SELECT 'answered_saved', 'answered saved', "user_id" 
+    INSERT INTO "notification" ("type", content, "user_id", icon) 
+        SELECT 'answered_saved', 'Someone answered a question you saved!', "user_id", 'photo.png'
         FROM saved_question AS saved 
         WHERE saved.question_id = NEW.question_id;
 
@@ -401,3 +446,76 @@ CREATE TRIGGER notify_saved_question
     EXECUTE PROCEDURE notify_saved_question();
 
 -- answer voted has best answer
+DROP FUNCTION IF EXISTS notify_best_answer CASCADE;
+CREATE FUNCTION notify_best_answer() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF ((SELECT author_id FROM content 
+                WHERE content.id = NEW.question_id) <> 
+        (SELECT author_id FROM content 
+                WHERE content.id = NEW.content_id)) AND
+        NEW.is_best_answer = TRUE
+    THEN
+        -- verify if there is already a best answer
+        IF EXISTS (
+            SELECT * FROM answer 
+            WHERE answer.content_id <> NEW.content_id AND
+                answer.question_id = NEW.question_id AND
+                answer.is_best_answer = TRUE
+        )
+        THEN
+            RAISE EXCEPTION 'There is already a best answer for question';
+        END IF;
+
+        -- update user reputation
+        UPDATE "user" SET reputation = reputation + 20
+        WHERE "user".id = (SELECT author_id FROM content 
+                            WHERE (content.id = NEW.content_id));
+
+        -- create notification
+        INSERT INTO "notification" ("type", content, "user_id", icon) 
+        VALUES ('best_answer', 'Your answer has been selected has the best one!', (
+            SELECT author_id FROM content 
+                WHERE (content.id = NEW.content_id) 
+        ), 'photo.png');
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS notify_best_answer ON answer;
+CREATE TRIGGER notify_best_answer
+    BEFORE UPDATE ON answer
+    FOR EACH ROW
+    EXECUTE PROCEDURE notify_best_answer();
+
+--------------------------------------
+-- TAG RELATED TRIGGERS 
+--------------------------------------
+
+-- not allow regular users to create tags
+DROP FUNCTION IF EXISTS create_tag CASCADE;
+CREATE FUNCTION create_tag() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (
+    NOT EXISTS (
+        SELECT * FROM moderator 
+        WHERE moderator."user_id" = NEW.author_id
+    ) AND (
+        NOT (SELECT expert FROM "user" WHERE "user".id = NEW.author_id)
+    ))
+    THEN RAISE EXCEPTION 'Only moderators and expert users can create tags!';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS create_tag ON answer;
+CREATE TRIGGER create_tag
+    BEFORE INSERT ON tag
+    FOR EACH ROW
+    EXECUTE PROCEDURE create_tag();
