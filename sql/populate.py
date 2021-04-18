@@ -29,12 +29,14 @@ if __name__ == '__main__':
     # tag table strings
     populate_string = "-- TAG TABLE\n"
     for i in range(len(tag)):
-        populate_string += "INSERT INTO tag(id,\"name\",\"description\") VALUES ("
+        populate_string += "INSERT INTO tag(id,\"name\",\"description\",author_id) VALUES ("
         populate_string += str(tag.loc[i, 'id'])
         populate_string += ",'"
         populate_string += str(tag.loc[i, 'name'])
         populate_string += "','"
         populate_string += str(tag.loc[i, 'description'])
+        populate_string += "','"
+        populate_string += str(tag.loc[i, 'author_id'])
         populate_string += "');\n"
     
     # photo table strings

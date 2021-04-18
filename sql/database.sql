@@ -48,7 +48,7 @@ CREATE TABLE photo (
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
-    "name" TEXT NOT NULL,
+    "name" TEXT NOT NULL UNIQUE,
     "password" TEXT NOT NULL,
     join_date DATE NOT NULL DEFAULT NOW(),
     reputation INTEGER NOT NULL DEFAULT 0,
