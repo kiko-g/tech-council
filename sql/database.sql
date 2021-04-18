@@ -41,7 +41,7 @@ CREATE TABLE photo (
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
-    "name" TEXT NOT NULL,
+    "name" TEXT NOT NULL UNIQUE,
     "password" TEXT NOT NULL,
     join_date DATE NOT NULL DEFAULT NOW(),
     reputation INTEGER NOT NULL DEFAULT 0,
@@ -65,7 +65,7 @@ CREATE TABLE content (
     modification_date DATE DEFAULT NULL,
     author_id INTEGER REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL,
     edited BOOLEAN NOT NULL DEFAULT FALSE,
-    CONSTRAINT mod_after_cre CHECK(modification_date > creation_date)
+    CONSTRAINT mod_after_cre CHECK(modification_date >= creation_date)
 );
 
 CREATE TABLE question (

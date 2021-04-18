@@ -9,7 +9,7 @@
  *  Repeatable Read
  */
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert content
 INSERT INTO content (main, author_id)
@@ -28,7 +28,7 @@ COMMIT;
 -----------------------------------------------------------
 
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert content
 INSERT INTO content (main, author_id)
@@ -43,7 +43,7 @@ COMMIT;
 -----------------------------------------------------------
 
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert content
 INSERT INTO content (main, author_id)
@@ -58,7 +58,7 @@ COMMIT;
 -----------------------------------------------------------
 
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert content
 INSERT INTO content (main, author_id)
@@ -82,7 +82,7 @@ COMMIT;
  */
 
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert report
 INSERT INTO report (description, reporter_id)
@@ -97,7 +97,7 @@ COMMIT;
 -----------------------------------------------------------
 
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ 
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 -- Insert report
 INSERT INTO report (description, reporter_id)
@@ -119,7 +119,7 @@ COMMIT;
  *  Read Uncommited
  */
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITED 
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITED;
 
 -- Update question's content content
 UPDATE content SET main = $main

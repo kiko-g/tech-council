@@ -26,32 +26,19 @@ if __name__ == '__main__':
     # create script
     populate_sql = open("populate.sql", "w")
     
-    # tag table strings
-    populate_string = "-- TAG TABLE\n"
-    for i in range(len(tag)):
-        populate_string += "INSERT INTO tag(id,\"name\",\"description\") VALUES ("
-        populate_string += str(tag.loc[i, 'id'])
-        populate_string += ",'"
-        populate_string += str(tag.loc[i, 'name'])
-        populate_string += "','"
-        populate_string += str(tag.loc[i, 'description'])
-        populate_string += "');\n"
-    
     # photo table strings
-    populate_string += "\n\n\n-- PHOTO TABLE\n"
+    populate_string = "-- PHOTO TABLE\n"
     for i in range(len(photo)):
-        populate_string += "INSERT INTO photo(id,path) VALUES ("
-        populate_string += str(photo.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO photo(path) VALUES ("
+        populate_string += "'"
         populate_string += str(photo.loc[i, 'path'])
         populate_string += "');\n"
     
     # user table strings
     populate_string += "\n\n\n-- USER TABLE\n"
     for i in range(len(user)):
-        populate_string += "INSERT INTO user(id,email,\"name\",\"password\",join_date,reputation,bio,banned,expert,profile_photo) VALUES ("
-        populate_string += str(user.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO \"user\"(email,\"name\",\"password\",join_date,reputation,bio,banned,expert,profile_photo) VALUES ("
+        populate_string += "'"
         populate_string += str(user.loc[i, 'email'])
         populate_string += "','"
         populate_string += str(user.loc[i, 'name'])
@@ -70,19 +57,35 @@ if __name__ == '__main__':
         populate_string += "',"
         populate_string += str(user.loc[i, 'profile_photo'])
         populate_string += ");\n"
+
+    # tag table strings
+    populate_string += "\n\n\n-- TAG TABLE\n"
+    for i in range(len(tag)):
+        populate_string += "INSERT INTO tag(\"name\",\"description\",author_id) VALUES ("
+        populate_string += "'"
+        populate_string += str(tag.loc[i, 'name'])
+        populate_string += "','"
+        populate_string += str(tag.loc[i, 'description'])
+        populate_string += "','"
+        populate_string += str(tag.loc[i, 'author_id'])
+        populate_string += "');\n"
     
     # content table strings
     populate_string += "\n\n\n-- CONTENT TABLE\n"
     for i in range(len(content)):
-        populate_string += "INSERT INTO content(id,main,creation_date,modification_date,author_id) VALUES ("
-        populate_string += str(content.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ("
+        populate_string += "'"
         populate_string += str(content.loc[i, 'main'])
         populate_string += "','"
         populate_string += str(content.loc[i, 'creation_date'])
-        populate_string += "','"
-        populate_string += str(content.loc[i, 'modification_date'])
         populate_string += "',"
+        if(str(content.loc[i, 'modification_date']) == 'NaT'):
+            populate_string += "NULL"
+            populate_string += ","
+        else:
+            populate_string += "'"
+            populate_string += str(content.loc[i, 'modification_date'])
+            populate_string += "',"
         populate_string += str(content.loc[i, 'author_id'])
         populate_string += ");\n"
     
@@ -90,7 +93,7 @@ if __name__ == '__main__':
     # question table strings
     populate_string += "\n\n\n-- QUESTION TABLE\n"
     for i in range(len(question)):
-        populate_string += "INSERT INTO question(id,title,votes_difference) VALUES ("
+        populate_string += "INSERT INTO question(content_id,title,votes_difference) VALUES ("
         populate_string += str(question.loc[i, 'content_id'])
         populate_string += ",'"
         populate_string += str(question.loc[i, 'title'])
@@ -124,7 +127,7 @@ if __name__ == '__main__':
     # question comments table strings
     populate_string += "\n\n\n-- QUESTION COMMENT TABLE\n"
     for i in range(len(question_comment)):
-        populate_string += "INSERT INTO answer_comment(content_id,question_id) VALUES ("
+        populate_string += "INSERT INTO question_comment(content_id,question_id) VALUES ("
         populate_string += str(question_comment.loc[i, 'content_id'])
         populate_string += ","
         populate_string += str(question_comment.loc[i, 'question_id'])
@@ -152,12 +155,13 @@ if __name__ == '__main__':
     # notification table strings
     populate_string += "\n\n\n-- NOTIFICATION TABLE\n"
     for i in range(len(notification)):
-        populate_string += "INSERT INTO notification(id,type,content,\"date\",\"user_id\") VALUES ("
-        populate_string += str(notification.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO notification(type,content,icon,\"date\",\"user_id\") VALUES ("
+        populate_string += "'"
         populate_string += str(notification.loc[i, 'type'])
         populate_string += "','"
         populate_string += str(notification.loc[i, 'content'])
+        populate_string += "','"
+        populate_string += str(notification.loc[i, 'icon'])
         populate_string += "','"
         populate_string += str(notification.loc[i, 'date'])
         populate_string += "',"
@@ -168,9 +172,8 @@ if __name__ == '__main__':
     # ban table strings
     populate_string += "\n\n\n-- BAN TABLE\n"
     for i in range(len(ban)):
-        populate_string += "INSERT INTO ban(id,\"start\",\"end\",reason,\"user_id\", moderator_id) VALUES ("
-        populate_string += str(ban.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO ban(\"start\",\"end\",reason,\"user_id\", moderator_id) VALUES ("
+        populate_string += "'"
         populate_string += str(ban.loc[i, 'start'])
         populate_string += "','"
         populate_string += str(ban.loc[i, 'end'])
@@ -186,9 +189,8 @@ if __name__ == '__main__':
     # report table strings
     populate_string += "\n\n\n-- REPORT TABLE\n"
     for i in range(len(report)):
-        populate_string += "INSERT INTO report(id,\"description\",solved,reporter_id,solver_id) VALUES ("
-        populate_string += str(report.loc[i, 'id'])
-        populate_string += ",'"
+        populate_string += "INSERT INTO report(\"description\",solved,reporter_id,solver_id) VALUES ("
+        populate_string += "'"
         populate_string += str(report.loc[i, 'description'])
         populate_string += "','"
         populate_string += str(report.loc[i, 'solved'])
