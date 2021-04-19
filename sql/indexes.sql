@@ -61,7 +61,7 @@ CREATE INDEX notification_user_id ON notification USING btree (user_id);
 -----------------------------
 
 /*
-* (FTS) To speed up the searching process for content. GiST is used because 
+* (FTS) To speed up the searching process for questions (mainly the title). GiST is used because 
   question fields may be changed frequently (specially the title and body),
   and GiST is better for dynamic data and faster for updates.
 *
@@ -92,7 +92,19 @@ and faster for updates.
 *
 | **Relation**        | user                |
 | **Attribute**       | search              |
-| **Type**            | GIN                 |
+| **Type**            | GIST                 |
 | **Clustering**      | No                  |
 */
 CREATE INDEX user_search ON "user" USING GIST (search);
+
+/*
+* (FTS) To speed up the searching process for content. GiST is used because 
+  content's text field may be changed frequently and GiST is better for dynamic
+   data and faster for updates.
+*
+| **Relation**        | content            |
+| **Attribute**       | search              |
+| **Type**            | GIST                |
+| **Clustering**      | No                  |
+*/
+CREATE INDEX content_search ON content USING GIST (search);
