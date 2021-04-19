@@ -3,13 +3,4 @@
 - LBAW 2020/21 | Group 32
 - Collaborative Q&A
 
-## TO DO LIST
-
-- URGENT
-
-  - Merge question card and question
-  - Notifications
-
-- MEDIUM
-
-  - Cleanup css, remove unnecessary stuff
+Check out our [wiki](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/home)!
