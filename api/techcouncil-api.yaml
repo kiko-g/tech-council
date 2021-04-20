@@ -189,6 +189,37 @@ paths:
         '200':
           description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)'
 
+  /about:
+    get:
+      operationId: R120
+      summary: 'R120: About page'
+      description: 'Show about page. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI02](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui02-about)'
+  /faq:
+    get:
+      operationId: R121
+      summary: 'R121: FAQ Page'
+      description: 'Show FAQ page. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI03](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui03-faq)'
+
+  /error:
+    get:
+      operationId: R122
+      summary: 'R122: Error page'
+      description: 'Error page on bad request. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui14-404)'
 
 components:
   schemas:
