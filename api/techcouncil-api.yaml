@@ -1,0 +1,243 @@
+openapi: 3.0.0
+info:
+  description: 'Web Resources Specification (A7) for TechCouncil. The goal is to create the API documentation to be visualized and tested in SwaggerHub.' #TODO: !! rever isto
+  version: "1.0.0"
+  title: 'Tech Council LBAW'
+  contact:
+    email: apiteam@swagger.io #TODO: mudar
+
+externalDocs:
+  description: Full A7 artifact info here
+  url: ''#TODO: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#a7 ...
+  
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/lbaw32/TechCouncil/1.0.0
+  - description: 'Production server'
+    url: https://virtserver.swaggerhub.com/ffriande/TechCouncil/1.0.0
+  - url: 'http://lbaw2132-piu.lbaw-prod.fe.up.pt' 
+tags:
+  - name: 'M01: Authentication'
+    description: ''
+  - name: 'M02: Questions'
+    description: ''
+  - name: 'M03: Profile ans Settings'
+  
+paths:
+  /login:
+    get:
+      operationId: R101
+      summary: 'R101: Login Form'
+      description: 'Provide login form. Access: PUB'
+      tags:
+        - 'M01: Authentication'
+      responses:
+        '200':
+          description: 'Ok. Show [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login)'
+    post:
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication'
+ 
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:          
+                  type: string
+                password:    
+                  type: string
+              required:
+                - email
+                - password
+ 
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/home'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+ 
+  /logout:
+
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to home.'
+                  value: '/login'
+
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication'
+      responses:
+        '200':
+          description: 'Ok. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui05-register)'
+
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                #picture:
+                 # type: string
+                  #format: binary
+              required:
+                - email
+                - username
+                - password
+
+      responses:
+        '302': #TODO: corrigir codes
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to main page.'
+                  value: '/home'
+                302Failure:
+                  description: 'Failed authentication. Redirect to register form.'
+                  value: '/register'
+
+  /question/{id}:
+    get:
+      operationId: R106
+      summary: 'R106: Question page'
+      description: 'Present a specific question page. Access: PUB'
+      tags:
+        - 'M02: Questions'
+      parameters:
+        - name: id
+          in: path
+          description: Provided an unique id of a question, the main content related to the question will be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)'
+
+  /users/{user_id}:
+    get:
+      operationId: R107
+      summary: 'R107: Profile Page'
+      description: 'Present both the main content related to a user, and the account information. Access: PUB'
+      tags:
+        - 'M03: Profile ans Settings'
+      parameters:
+        - name: user_id
+          in: path
+          description: Provided an unique id of a user, the main content related to the user will be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Show [UI10](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui10-profile)'
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      xml:
+        name: User
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: Tag
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+  requestBodies:
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      description: List of user object
+      required: true
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+          scopes:
+            'write:pets': modify pets in your account
+            'read:pets': read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
