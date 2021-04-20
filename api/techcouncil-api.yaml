@@ -20,9 +20,16 @@ servers:
 tags:
   - name: 'M01: Authentication'
     description: ''
-  - name: 'M02: Questions'
+  - name: 'M02: Individual Profile'
     description: ''
-  - name: 'M03: Profile ans Settings'
+  - name: 'M03: Contents'
+    description: ''
+  - name: 'M04: Moderation'
+    description: ''
+  - name: 'M05: Notifications'
+    description: ''
+  - name: 'M06: Static Pages'
+    description: ''
   
 paths:
   /login:
@@ -146,31 +153,13 @@ paths:
                   description: 'Failed authentication. Redirect to register form.'
                   value: '/register'
 
-  /question/{id}:
-    get:
-      operationId: R106
-      summary: 'R106: Question page'
-      description: 'Present a specific question page. Access: PUB'
-      tags:
-        - 'M02: Questions'
-      parameters:
-        - name: id
-          in: path
-          description: Provided an unique id of a question, the main content related to the question will be fetched.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)'
-
   /users/{user_id}:
     get:
       operationId: R107
       summary: 'R107: Profile Page'
       description: 'Present both the main content related to a user, and the account information. Access: PUB'
       tags:
-        - 'M03: Profile ans Settings'
+        - 'M02: Individual Profile'
       parameters:
         - name: user_id
           in: path
@@ -181,6 +170,24 @@ paths:
       responses:
         '200':
           description: 'Ok. Show [UI10](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui10-profile)'
+
+  /question/{id}:
+    get:
+      operationId: R106
+      summary: 'R106: Question page'
+      description: 'Present a specific question page. Access: PUB'
+      tags:
+        - 'M03: Contents'
+      parameters:
+        - name: id
+          in: path
+          description: Provided an unique id of a question, the main content related to the question will be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)'
 
 
 components:
