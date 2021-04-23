@@ -196,7 +196,7 @@ paths:
       summary: 'R302: Delete content'
       description: 'Delete content. Access: MOD, OWN'
       tags:
-        - 'M04: Contents'
+        - 'M03: Contents'
 
       parameters:
         - in: path
