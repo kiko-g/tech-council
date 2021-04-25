@@ -19,3 +19,13 @@ services:
       - "4321:80"
     depends_on:
       - postgres
+
+#   pgadmin:
+    # image: dpage/pgadmin4
+    # environment:
+    #   PGADMIN_DEFAULT_EMAIL: postgres
+    #   PGADMIN_DEFAULT_PASSWORD: pg!lol!2021
+    # ports:
+    #   - "5050:80"
+    # depends_on:
+    #   - postgres

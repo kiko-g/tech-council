@@ -1,0 +1,7 @@
+#tag-select[aria-expanded="true"] {
+  display: none;
+}
+
+#tag-close[aria-expanded="false"] {
+  display: none;
+}

@@ -1,0 +1,10 @@
+@media (max-width: 800px) {
+  .team-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about {
+    height: auto;
+  }
+}

@@ -1,0 +1,61 @@
+/* Full display question */
+.question {
+  margin-bottom: 1em;
+  border: 1px solid darkslategray;
+}
+
+.question-side {
+  padding: 1em;
+  margin-right: 1em;
+  background-color: #ddd;
+}
+
+.question-body {
+  padding: 1em;
+}
+
+.question-footer {
+  padding: 0.5em;
+  color: red;
+}
+
+.question-title {
+  padding: 2px 0;
+}
+
+.question-tags {
+  margin-top: 2em;
+}
+
+/* Card display question */
+.question-card {
+  margin-bottom: 1em;
+  border: 1px solid darkslategray;
+}
+
+.question-card-body {
+  padding: 1em;
+}
+
+.question-card-title {
+  padding: 2px 0;
+}
+
+.question-card-footer {
+  padding: 0 0.2em;
+  background-color: burlywood;
+}
+
+.question-card-details {
+  margin-top: 0;
+}
+
+.question-card-tags {
+  margin-top: 0;
+}
+
+.question-card-side {
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  background-color: #ddd;
+}
