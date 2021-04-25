@@ -43,6 +43,7 @@ paths:
       responses:
         '200':
           description: 'Ok. Show [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login)'
+        
     post:
       operationId: R102
       summary: 'R102: Login Action'
@@ -66,54 +67,41 @@ paths:
                 - password
  
       responses:
-        '302':
-          description: 'Redirect after processing the login credentials.'
+        '200':
+          description: 'Login successful. Redirect to [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
           headers:
-            Location:
+            Response:
               schema:
                 type: string
               examples:
-                302Success:
+                200Success:
                   description: 'Successful authentication. Redirect to user profile.'
                   value: '/home'
-                302Error:
-                  description: 'Failed authentication. Redirect to login form.'
-                  value: '/login'
- 
-  /logout:
-
-    post:
-      operationId: R103
-      summary: 'R103: Logout Action'
-      description: 'Logout the current authenticated user. Access: USR, ADM'
-      tags:
-        - 'M01: Authentication'
-      responses:
-        '302':
-          description: 'Redirect after processing logout.'
+        '400':
+          description: 'Login Error. Stay in [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login).' 
           headers:
-            Location:
+            Response:
               schema:
                 type: string
               examples:
-                302Success:
-                  description: 'Successful logout. Redirect to home.'
-                  value: '/login'
+                400Error:
+                  description: 'Error in authentication. Credentials don't match any user.'
+                  value: '/home'
 
   /register:
     get:
-      operationId: R104
-      summary: 'R104: Register Form'
+      operationId: R103
+      summary: 'R103: Register Form'
       description: 'Provide new user registration form. Access: PUB'
       tags:
         - 'M01: Authentication'
       responses:
         '200':
-          description: 'Ok. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui05-register)'
-
+          description: 'OK. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui05-register)'
+z
     post:
-      operationId: R105
-      summary: 'R105: Register Action'
+      operationId: R104
+      summary: 'R104: Register Action'
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
         - 'M01: Authentication'
@@ -131,30 +119,34 @@ paths:
                   type: string
                 password:
                   type: string
-                #picture:
-                 # type: string
-                  #format: binary
               required:
                 - email
                 - username
                 - password
 
-      responses:
-        '302': #TODO: corrigir codes
-          description: 'Redirect after processing the new user information.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successful authentication. Redirect to main page.'
-                  value: '/home'
-                302Failure:
-                  description: 'Failed authentication. Redirect to register form.'
-                  value: '/register'
+        responses:
+                '200':
+                  description: 'Register successful. Redirect to [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
+                  headers:
+                    Response:
+                      schema:
+                        type: string
+                      examples:
+                        200Success:
+                          description: 'Authentication Success. Redirect to user profile.'
+                          value: '/home'
+                '400':
+                  description: 'Register Error. Stay in [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login).' 
+                  headers:
+                    Location:
+                      schema:
+                        type: string
+                      examples:
+                        400Error:
+                          description: 'Server error in registration.'
+                          value: '/home'
 
-  /users/{user_id}:
+  /user_profile/{user_id}:
     get:
       operationId: R201
       summary: 'R201: Profile Page'
@@ -172,6 +164,67 @@ paths:
         '200':
           description: 'Ok. Show [UI10](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui10-profile)'
 
+  '/user_profile/{user_id}/profile_settings':
+    get:
+      operationId: R202
+      summary: 'R202: Profile Settings Page'
+      description: 'Present the settings related to the user account, allowing the user to edit account information and to delete the account. Access: PUB'
+      tags:
+        - 'M02: Individual Profile'
+      parameters:
+        - name: user_id
+          in: path
+          description: Provided an unique id of a user, the profile settings page is shown.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Show [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui11-profile-settings)'
+
+    /user_profile/{user_id}/edit:
+      post:
+        operationId: R203
+        summary: 'R203: Edit profile info'
+        description: 'Edits the user info. Access: PUB'
+        tags:
+          - 'M02: Individual Profile'
+
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  name:          
+                    type: string
+                  password:    
+                    type: string
+                  bio:    
+                      type: string
+  
+        responses:
+          '200':
+            description: 'Edit profile info successful. Stay in [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui11-profile-settings).'
+            headers:
+              Response:
+                schema:
+                  type: string
+                examples:
+                  200Success:
+                    description: 'Successful authentication. Redirect to user profile.'
+                    value: '/user_profile/edit'
+          '400':
+            description: 'Edit profile failed. Stay in [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui11-profile-settings) and inform user of failure.' 
+            headers:
+              Response:
+                schema:
+                  type: string
+                examples:
+                  400Error:
+                    description: 'Error editing profile.'
+                    value: '/user_profile/edit'
   /question/{id}:
     get:
       operationId: R301
