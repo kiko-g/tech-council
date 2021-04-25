@@ -11,7 +11,9 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', function() {
+    return view('pages.main');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -30,6 +32,43 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+// Static pages
+Route::get('about', function() {
+    return view('pages.about');
+});
+
+Route::get('faq', function() {
+    return view('pages.faq');
+});
+
+Route::get('ask', function() {
+    return view('pages.ask');
+});
+
+Route::get('moderator', function() {
+    return view('pages.moderator');
+});
+
+Route::get('profile', function() {
+    return view('pages.profile');
+});
+
+Route::get('profile-settings', function() {
+    return view('pages.profile-settings');
+});
+
+Route::get('question', function() {
+    return view('pages.question');
+});
+
+Route::get('tag', function() {
+    return view('pages.tag');
+});
+
+Route::get('search', function() {
+    return view('pages.search');
+});
 
 // Error page
 //Route::get('no_match', 'Pages\404')

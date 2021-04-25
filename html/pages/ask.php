@@ -28,7 +28,7 @@
                     <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
-                    <a" class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
+                    <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;msi</a>
                   </div>
                   <div class="tag-selected btn-group mt-1">
                     <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>

@@ -12,9 +12,9 @@
 						Search Results for "windows"
 						<!--<small class="text-muted">for windows</small>-->
 					</h5>
-					<h8>
+					<h6>
 						[163 results]
-					</h8>
+					</h6>
 				</div>
 			</div>
 			<nav>

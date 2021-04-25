@@ -1,39 +1,31 @@
-@extends('layouts.app')
+@extends('layouts.entry')
 
 @section('content')
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
-    @if ($errors->has('name'))
-      <span class="error">
-          {{ $errors->first('name') }}
-      </span>
-    @endif
-
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-      <span class="error">
-          {{ $errors->first('email') }}
-      </span>
-    @endif
-
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-      <span class="error">
-          {{ $errors->first('password') }}
-      </span>
-    @endif
-
-    <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
-
-    <button type="submit">
-      Register
-    </button>
-    <a class="button button-outline" href="{{ route('login') }}">Login</a>
+    <header class="text-start text-light mb-4 ms-4">
+      <h3>Sign up</h3>
+    </header>
+    <div class="form-floating mb-4">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+      <label for="floatingPassword">Confirm password</label>
+    </div>
+    <div class="d-flex justify-content-between">
+      <a href="./login.php" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
+      <button type="submit" class="btn blue-alt btn-light">Submit</button>
+    </div>
 </form>
 @endsection

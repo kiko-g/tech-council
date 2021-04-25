@@ -1,32 +1,33 @@
-@extends('layouts.app')
+@extends('layouts.entry')
 
 @section('content')
 <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
-    <label for="email">E-mail</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-    @if ($errors->has('email'))
-        <span class="error">
-          {{ $errors->first('email') }}
-        </span>
-    @endif
-
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-        <span class="error">
-            {{ $errors->first('password') }}
-        </span>
-    @endif
-
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
-
-    <button type="submit">
-        Login
-    </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
+    <header class="text-start text-light mb-4 ms-4">
+        <h3>Sign in</h3>
+    </header>
+    <div class="form-floating mb-4">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+        <label for="floatingInput">Email address</label>
+        @if ($errors->has('floatingInput'))
+            <span class="error">
+                {{ $errors->first('floatingInput') }}
+            </span>
+        @endif
+    </div>
+    <div class="form-floating mb-4">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+        <label for="floatingPassword">Password</label>
+        @if ($errors->has('floatingPassword'))
+            <span class="error">
+                {{ $errors->first('floatingPassword') }}
+            </span>
+        @endif
+    </div>
+    <div class="d-flex justify-content-between">
+        <a href="./register.php" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
+        <button type="submit" class="btn blue-alt">Submit</button>
+    </div>
 </form>
 @endsection
