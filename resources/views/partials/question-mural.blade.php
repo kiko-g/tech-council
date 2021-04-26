@@ -84,17 +84,14 @@ $question = array(
 );
 ?>
 
-
-<article class="col-lg-9 ">
-  <div>
-    <?php 
-    buildQuestion($question["comments"]);
-    $comment_section_counter = 2; 
-    ?>
-    @include('partials.question-answer-submit')
-    
-    @foreach($question["answers"] as $answer)
-      <?php buildAnswer($answer, $comment_section_counter++); ?>      
-    @endforeach
-  </div>
-</article>
+<div>
+  <?php 
+  buildQuestion($question["comments"]);
+  $comment_section_counter = 2; 
+  ?>
+  @include('partials.question-answer-submit')
+  
+  @foreach($question["answers"] as $answer)
+    <?php buildAnswer($answer, $comment_section_counter++); ?>      
+  @endforeach
+</div>

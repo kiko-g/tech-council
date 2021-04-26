@@ -1,26 +1,20 @@
-@include('partials.tag-card')
-@include('partials.question-card')
-@include('partials.head')
+@extends('layouts.app')
 
-<body>
-    @include('partials.header')
-  <main class="container">
-    <div class="row">
-      <article class="col-lg-9">
-        <?php buildTag(null); ?>
+@section('content')
+  @include('partials.tag-card')
+  @include('partials.question-card')
 
-        @include('partials.division')
-        @include('partials.filters')
-        
-        <?php
-        buildQuestion(null);
-        buildQuestion(null);
-        ?>
-      </article>
-      @include('partials.aside')
-    </div>
-  </main>
-  @include('partials.footer')
-</body>
+  <?php buildTag(null); ?>
 
-</html>
+  @include('partials.division')
+  @include('partials.filters')
+
+  <?php
+  buildQuestion(null);
+  buildQuestion(null);
+  ?>
+@endsection
+
+@section('aside')
+  @include('partials.aside')
+@endsection

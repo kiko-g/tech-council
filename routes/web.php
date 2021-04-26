@@ -70,5 +70,9 @@ Route::get('search', function() {
     return view('pages.search');
 });
 
+Route::get('moderator', function() {
+    return view('pages.moderator');
+});
+
 // Error page
 //Route::get('no_match', 'Pages\404')

@@ -26,7 +26,7 @@
 
         <div class="btn-group btn-group-vertical-when-responsive" role="group"
             aria-label="Basic radio toggle button group">
-            <form action="../pages/ask.php">
+            <form action="ask">
                 <input type="submit" class="btn-check" id="ask-question">
                 <label class="btn blue" for="ask-question">
                     Ask Question&nbsp;<i class="fas fa-plus-square fa-xs"></i>

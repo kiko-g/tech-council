@@ -1,16 +1,12 @@
-@include('partials.head')
+@extends('layouts.app')
 
-<body>
-    @include('partials.header')
-    <main class="container">
-        <div class="row">
-            @include('partials.mural')
-            @include('partials.aside')
-    </main>
-    @include('partials.footer')
-</body>
+@section('content')
+    @include('partials.mural')
+@endsection
 
-</html>
+@section('aside')
+    @include('partials.aside')
+@endsection
 
 <!-- 
 TO DO LIST
