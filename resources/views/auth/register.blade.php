@@ -1,7 +1,7 @@
 @extends('layouts.entry')
 
 @section('content')
-<form method="POST" action="{{ route('register') }}">
+  <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
     <header class="text-start text-light mb-4 ms-4">
@@ -27,5 +27,5 @@
       <a href="./login.php" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
       <button type="submit" class="btn blue-alt btn-light">Submit</button>
     </div>
-</form>
+  </form>
 @endsection
