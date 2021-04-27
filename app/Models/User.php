@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory;
-
     /**
      * No 'create' and 'update' timestamps.
      *
@@ -33,20 +30,22 @@ class User extends Model
     ];
 
     public function questions() {
-        return $this->hasManyThrough('App\Models\Question', 'App\Models\Content');
+        return $this->hasManyThrough('App\Models\Question', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function contents() {
-        return $this->hasMany('App\Models\Content', 'author_id');
-    }
-
-    /*
     public function answers() {
-        return $this->hasManyThrough('App\Models\Answer');
+        return $this->hasManyThrough('App\Models\Answer', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
+    }
+
+    public function questionComments() {
+        return $this->hasManyThrough('App\Models\QuestionComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
+    }
+
+    public function answerComments() {
+        return $this->hasManyThrought('App\Models\AnswerComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
     public function followTags() {
-        return $this->hasMany('App\Models\Tag');
+        return $this->hasMany('App\Models\FollowTag');
     }
-    */
 }
