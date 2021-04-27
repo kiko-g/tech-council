@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.mural')
+  @include('partials.mural')
 @endsection
 
 @section('aside')
-    @include('partials.aside')
+  @include('partials.aside')
 @endsection
 
 <!-- 

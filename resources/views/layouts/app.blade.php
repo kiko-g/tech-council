@@ -1,8 +1,9 @@
 @include('partials.head')
+
 <body>
-	@include('partials.header')
-	@yield('search')
-	<main class="container">
+  @include('partials.header')
+  @yield('search')
+  <main class="container">
     <div class="row">
       <article class="col-lg-9">
         @yield('content')
@@ -10,9 +11,9 @@
       <aside class="col-lg-3">
         @yield('aside')
       </aside>
-	  </div>
+    </div>
   </main>
-	@include('partials.footer')
+  @include('partials.footer')
 </body>
 
 </html>
