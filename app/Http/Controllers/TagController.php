@@ -34,8 +34,9 @@ class TagController extends Controller
 	 * @param  \App\Models\Tag  $tag
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Tag $tag)
+	public function show($id)
 	{
+		$tag = Tag::find($id);
 		$this->authorize('show', $tag);
 		return view('partials.tag-card', ['tag' => $tag]);
 	}

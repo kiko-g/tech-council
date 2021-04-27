@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 // Questions
-Route::get('/question/{id}', 'QuestionController@show');
+Route::get('/question/{id}', 'QuestionController@show2');
 
 // Cards
 Route::get('cards', 'CardController@list');

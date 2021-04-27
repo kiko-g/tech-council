@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 class QuestionController extends Controller
 {
@@ -22,9 +26,25 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->authorize('create', Question::class);
+
+        // TODO: Add request validation
+
+        $content = new Content();
+        $question = new Question($content->id);
+
+        $content->main = $request->input('main');
+        $content->author_id = Auth::user()->id;
+        $question->title = $request->input('title');
+
+        DB::transaction(function () use ($content, $question) {
+            $content->save();
+            $question->save();
+        });
+
+        return $question;
     }
 
     /**
@@ -41,12 +61,44 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show($id)
     {
-        //
+        $question = Question::find($id);
+        $this->authorize('show', $question);
+        return view('partials.question-card', [
+            'question' => $question,
+            'tags' => $question->tags,
+            'content' => $question->content,
+            'answers' => $question->answers,
+            'comments' => $question->comments,
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showPage($id)
+    {
+        $question = Question::find($id);
+
+        return view('partials.question-card', ['question' => $question]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int id
+     * @return \Illuminate\Http\Response
+     */
+    public function show2($id)
+    {
+        $question = Question::find($id);
     }
 
     /**
