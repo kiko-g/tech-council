@@ -11,9 +11,14 @@
 |
 */
 // Home
-Route::get('/', function() {
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
     return view('pages.main');
 });
+
+// Questions
+Route::get('/content/{id}', 'ContentController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -34,43 +39,43 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 // Static pages
-Route::get('about', function() {
+Route::get('about', function () {
     return view('pages.about');
 });
 
-Route::get('faq', function() {
+Route::get('faq', function () {
     return view('pages.faq');
 });
 
-Route::get('ask', function() {
+Route::get('ask', function () {
     return view('pages.ask');
 });
 
-Route::get('moderator', function() {
+Route::get('moderator', function () {
     return view('pages.moderator');
 });
 
-Route::get('profile', function() {
+Route::get('profile', function () {
     return view('pages.profile');
 });
 
-Route::get('profile-settings', function() {
+Route::get('profile-settings', function () {
     return view('pages.profile-settings');
 });
 
-Route::get('question', function() {
+Route::get('question', function () {
     return view('pages.question');
 });
 
-Route::get('tag', function() {
+Route::get('tag', function () {
     return view('pages.tag');
 });
 
-Route::get('search', function() {
+Route::get('search', function () {
     return view('pages.search');
 });
 
-Route::get('moderator', function() {
+Route::get('moderator', function () {
     return view('pages.moderator');
 });
 
