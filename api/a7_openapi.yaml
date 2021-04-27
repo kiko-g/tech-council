@@ -935,7 +935,7 @@ paths:
           description: 'Error. Forbidden.'
   
   /api/vote/{id}/edit:
-    post:
+    put:
       operationId: R414
       summary: 'R414: Edit a vote to a content'
       description: 'Edit vote. Access: USR'
