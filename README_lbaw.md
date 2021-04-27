@@ -8,28 +8,26 @@ Containers are used for PostgreSQL and pgAdmin, though.
 
 The template was prepared to run on Linux 20.04LTS, but it should be fairly easy to follow and adapt for other operating systems.
 
-* [Installing the Software Dependencies](#installing-the-software-dependencies)
-* [Installing Docker and Docker Compose](#installing-docker-and-docker-compose)
-* [Setting up the Development repository](#setting-up-the-development-repository)
-* [Working with PostgreSQL](#working-with-postgresql)
-* [Developing the project](#developing-the-project)
-* [Publishing the image](#publishing-your-image)
-* [Laravel code structure](#laravel-code-structure)
-
+-   [Installing the Software Dependencies](#installing-the-software-dependencies)
+-   [Installing Docker and Docker Compose](#installing-docker-and-docker-compose)
+-   [Setting up the Development repository](#setting-up-the-development-repository)
+-   [Working with PostgreSQL](#working-with-postgresql)
+-   [Developing the project](#developing-the-project)
+-   [Publishing the image](#publishing-your-image)
+-   [Laravel code structure](#laravel-code-structure)
 
 ## Installing the Software Dependencies
 
 To prepare you computer for development you need to install some software, namely PHP and the PHP package manager Composer.
 
-We recommend using an __Ubuntu__ distribution that ships PHP 7.4 (e.g Ubuntu 20.04LTS).
+We recommend using an **Ubuntu** distribution that ships PHP 7.4 (e.g Ubuntu 20.04LTS).
 You may install the required software with:
 
     sudo apt-get install git composer php7.4 php7.4-mbstring php7.4-xml php7.4-pgsql
 
-
 ## Installing Docker and Docker Compose
 
-Firstly, you'll need to have __Docker__ and __Docker Compose__ installed on your PC.
+Firstly, you'll need to have **Docker** and **Docker Compose** installed on your PC.
 The official instructions are in [Install Docker](https://docs.docker.com/install/) and in [Install Docker Compose](https://docs.docker.com/compose/install/#install-compose).
 It resumes to executing the commands:
 
@@ -50,7 +48,6 @@ It resumes to executing the commands:
     sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     docker-compose --version # verify that you have Docker Compose installed.
-
 
 ## Setting up the Development repository
 
@@ -84,8 +81,7 @@ Then, copy the contents of the demo repository to your own.
     git push origin master
 
 At this point you should have the project skeleton in your local machine and be ready to start working on it.
-You may remove the __template-laravel__ demo directory, as it is not needed anymore.
-
+You may remove the **template-laravel** demo directory, as it is not needed anymore.
 
 ## Installing local PHP dependencies
 
@@ -94,16 +90,15 @@ Afterwards, the command bellow will install all local dependencies, required for
 
     composer install
 
-
 ## Working with PostgreSQL
 
-We've created a _docker-compose_ file that sets up __PostgreSQL13__ and __pgAdmin4__ to run as local Docker containers.
+We've created a _docker-compose_ file that sets up **PostgreSQL13** and **pgAdmin4** to run as local Docker containers.
 
 From the project root issue the following command:
 
     docker-compose up
 
-This will start the database and the pgAdmin tool. You can hit http://localhost:4321 to access __pgAdmin4__ and manage your database.
+This will start the database and the pgAdmin tool. You can hit http://localhost:4321 to access **pgAdmin4** and manage your database.
 Use the following credentials to login:
 
     Email: postgres@lbaw.com
@@ -116,7 +111,6 @@ On the first usage you will need to add the connection to the database using the
     password: pg!lol!2021
 
 Hostname is _postgres_ instead of _localhost_ since _Docker Compose_ creates an internal DNS entry to facilitate the connection between linked containers.
-
 
 ## Developing the project
 
@@ -144,17 +138,17 @@ In Laravel, a typical web request will touch the following concepts and files.
 
 ### 1) Routes
 
-The web page is processed by *Laravel*'s [routing](https://laravel.com/docs/8.x/routing) mechanism.
-By default, routes are defined inside *routes/web.php*. A typical *route* looks like this:
+The web page is processed by _Laravel_'s [routing](https://laravel.com/docs/8.x/routing) mechanism.
+By default, routes are defined inside _routes/web.php_. A typical _route_ looks like this:
 
     Route::get('cards/{id}', 'CardController@show');
 
-This route receives a parameter *id* that is passed on to the *show* method of a controller called *CardController*.
+This route receives a parameter _id_ that is passed on to the _show_ method of a controller called _CardController_.
 
 ### 2) Controllers
 
 [Controllers](https://laravel.com/docs/8.x/controllers) group related request handling logic into a single class.
-Controllers are normally defined in the __app/Http/Controllers__ folder.
+Controllers are normally defined in the **app/Http/Controllers** folder.
 
     class CardController extends Controller
     {
@@ -166,18 +160,18 @@ Controllers are normally defined in the __app/Http/Controllers__ folder.
         }
     }
 
-This particular controller contains a *show* method that receives an *id* from a route.
+This particular controller contains a _show_ method that receives an _id_ from a route.
 The method searches for a card in the database, checks if the user as permission to view the card, and then returns a view.
 
 ### 3) Database and Models
 
-To access the database, we will use the query builder capabilities of [Eloquent](https://laravel.com/docs/8.x/eloquent) but the initial database seeding will still be done using raw SQL (the script that creates the tables can be found in __resources/sql/seed.sql__).
+To access the database, we will use the query builder capabilities of [Eloquent](https://laravel.com/docs/8.x/eloquent) but the initial database seeding will still be done using raw SQL (the script that creates the tables can be found in **resources/sql/seed.sql**).
 
     $card = Card::find($id);
 
-This line tells *Eloquent* to fetch a card from the database with a certain *id* (the primary key of the table).
-The result will be an object of the class *Card* defined in __app/Card.php__.
-This class extends the *Model* class and contains information about the relation between the *card* tables and other tables:
+This line tells _Eloquent_ to fetch a card from the database with a certain _id_ (the primary key of the table).
+The result will be an object of the class _Card_ defined in **app/Card.php**.
+This class extends the _Model_ class and contains information about the relation between the _card_ tables and other tables:
 
     /* A card belongs to one user */
     public function user() {
@@ -192,48 +186,48 @@ This class extends the *Model* class and contains information about the relation
 ### 4) Policies
 
 [Policies](https://laravel.com/docs/8.x/authorization#writing-policies) define which actions a user can take.
-You can find policies inside the __app/Policies__ folder.
-For example, in the __CardPolicy.php__ file, we defined a *show* method that only allows a certain user to view a card if that user is the card owner:
+You can find policies inside the **app/Policies** folder.
+For example, in the **CardPolicy.php** file, we defined a _show_ method that only allows a certain user to view a card if that user is the card owner:
 
     public function show(User $user, Card $card)
     {
       return $user->id == $card->user_id;
     }
 
-In this example policy method, *$user* and *$card* are models that represent their respective tables, *$id* and *$user_id* are columns from those tables that are automatically mapped into those models.
+In this example policy method, _$user_ and _$card_ are models that represent their respective tables, _$id_ and _$user_id_ are columns from those tables that are automatically mapped into those models.
 
-To use this policy, we just have to use the following code inside the *CardController*:
+To use this policy, we just have to use the following code inside the _CardController_:
 
     $this->authorize('show', $card);
 
-As you can see, there is no need to pass the current *user*.
+As you can see, there is no need to pass the current _user_.
 
 ### 5) Views
 
-A *controller* only needs to return HTML code for it to be sent to the *browser*. However we will be using [Blade](https://laravel.com/docs/8.x/blade) templates to make this task easier:
+A _controller_ only needs to return HTML code for it to be sent to the _browser_. However we will be using [Blade](https://laravel.com/docs/8.x/blade) templates to make this task easier:
 
     return view('pages.card', ['card' => $card]);
 
-In this example, *pages.card* references a blade template that can be found at __resources/views/pages/card.blade.php__.
+In this example, _pages.card_ references a blade template that can be found at **resources/views/pages/card.blade.php**.
 The second parameter contains the data we are injecting into the template.
 
 The first line of the template states that it extends another template:
 
     @extends('layouts.app')
 
-This second template can be found at __resources/views/layouts/app.blade.php__ and is the basis of all pages in our application. Inside this template, the place where the page template is introduced is identified by the following command:
+This second template can be found at **resources/views/layouts/app.blade.php** and is the basis of all pages in our application. Inside this template, the place where the page template is introduced is identified by the following command:
 
     @yield('content')
 
-Besides the __pages__ and __layouts__ template folders, we also have a __partials__ folder where small snippets of HTML code can be saved to be reused in other pages.
+Besides the **pages** and **layouts** template folders, we also have a **partials** folder where small snippets of HTML code can be saved to be reused in other pages.
 
 ### 6) CSS
 
-The easiest way to use CSS is just to edit the CSS file found at __public/css/app.css__. You can have multiple CSS files to better organize your style definitions.
+The easiest way to use CSS is just to edit the CSS file found at **public/css/app.css**. You can have multiple CSS files to better organize your style definitions.
 
 ### 7) JavaScript
 
-To add JavaScript into your project, just edit the file found at __public/js/app.js__.
+To add JavaScript into your project, just edit the file found at **public/js/app.js**.
 
 ### 8) Configuration
 
@@ -256,7 +250,7 @@ Once you have a username, let your Docker know who you are by executing:
 
     docker login
 
-Once your Docker is able to communicate with the Docker Hub using your credentials, configure the __upload_image.sh__ script with your username and the image name.
+Once your Docker is able to communicate with the Docker Hub using your credentials, configure the **upload_image.sh** script with your username and the image name.
 Example configuration:
 
     DOCKER_USERNAME=johndoe # Replace by your Docker Hub username
@@ -273,14 +267,14 @@ You can test locally the image, just published in the Docker Hub, by running:
 The above command exposes your application on http://localhost:8000.
 The `-e` argument creates environment variables inside the container, used to provide Laravel with the required database configurations.
 
-Note that during the build process we adopt the production configurations configured in the __.env_production__ file.
+Note that during the build process we adopt the production configurations configured in the **.env_production** file.
 **You should not add your database username and password to this file.
 The configuration will be provided as an environment variable to your container on execution time**.
 This prevents anyone else but us from running your container with your database.
 
 Finally, note that there should be only one image per group.
 One team member should create the image initially and add his team to the **public** repository at Docker Hub.
-You should provide your teacher the details for accessing your Docker image, namely, the Docker username and repository (*DOCKER_USERNAME/lbaw21gg*), in case it was changed.
+You should provide your teacher the details for accessing your Docker image, namely, the Docker username and repository (_DOCKER_USERNAME/lbaw21gg_), in case it was changed.
 
 While running your container, you can use another terminal to run a shell inside the container by executing:
 
@@ -290,6 +284,5 @@ Inside the container you may, for example, see the content of the Web server log
 
     root@2804d54698c0:/# tail -f /var/log/nginx/error.log    # follow the errors
     root@2804d54698c0:/# tail -f /var/log/nginx/access.log   # follow the accesses
-
 
 -- André Restivo, Tiago Boldt Sousa, 2021
