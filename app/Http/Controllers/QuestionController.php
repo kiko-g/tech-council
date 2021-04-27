@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Content;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class ContentController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,22 +41,21 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        $content = Content::find($id);
-        return $content;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit(Question $question)
     {
         //
     }
@@ -65,10 +64,10 @@ class ContentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -76,10 +75,10 @@ class ContentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
+    public function destroy(Question $question)
     {
         //
     }
