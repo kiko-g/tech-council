@@ -1,3 +1,3 @@
-@include('partials.trends')
-@include('partials.tags')
-@include('partials.info')
+@include('partials.aside.trends')
+@include('partials.tag.group')
+@include('partials.aside.info')

@@ -38,7 +38,7 @@ class TagController extends Controller
 	{
 		$tag = Tag::find($id);
 		$this->authorize('show', $tag);
-		return view('partials.tag-card', ['tag' => $tag]);
+		return view('partials.tag.card', ['tag' => $tag]);
 	}
 
 	/**
@@ -49,7 +49,7 @@ class TagController extends Controller
 	 */
 	public function showTable()
 	{
-		return view('partials.tag-tabel', [
+		return view('partials.tag.table', [
 			'tags' => DB::table('tags')->paginate(15)
 		]);
 	}
