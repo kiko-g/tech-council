@@ -2,38 +2,51 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+    use HasFactory;
 
-    // Don't add create and update timestamps in database.
-    public $timestamps  = false;
+    /**
+     * No 'create' and 'update' timestamps.
+     *
+     * @var boolean
+     */
+    public $timestamps = false;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'user';
 
     /**
      * The attributes that are mass assignable.
-     *
+     * 
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'bio'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The cards this user owns.
-     */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+    public function questions() {
+        return $this->hasManyThrough('App\Models\Question', 'App\Models\Content');
     }
+
+    public function contents() {
+        return $this->hasMany('App\Models\Content', 'author_id');
+    }
+
+    /*
+    public function answers() {
+        return $this->hasManyThrough('App\Models\Answer');
+    }
+
+    public function followTags() {
+        return $this->hasMany('App\Models\Tag');
+    }
+    */
 }
