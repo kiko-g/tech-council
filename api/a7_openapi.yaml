@@ -23,16 +23,20 @@ tags:
     description: ''
   - name: 'M02: Individual Profile'
     description: ''
-  - name: 'M03: Contents'
+  - name: 'M03: Content viewing and searching'
     description: ''
-  - name: 'M04: Moderation'
+  - name: 'M04: Content interaction'
     description: ''
-  - name: 'M05: Notifications'
+  - name: 'M05: Moderation'
     description: ''
   - name: 'M06: Static Pages'
     description: ''
   
 paths:
+
+  #########################
+  #  M01: Authentication  #
+  #########################
   /login:
     get:
       operationId: R101
@@ -84,11 +88,30 @@ paths:
                 400Error:
                   description: 'Error in authentication. Credentials don''t match any user.'
                   value: '/home'
-                  
+ 
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication'
+      responses:
+        '200':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                200Success:
+                  description: 'Successful logout. Redirect to home.'
+                  value: '/login'
+
   /register:
     get:
-      operationId: R103
-      summary: 'R103: Register Form'
+      operationId: R104
+      summary: 'R104: Register Form'
       description: 'Provide new user registration form. Access: PUB'
       tags:
         - 'M01: Authentication'
@@ -96,12 +119,11 @@ paths:
         '200':
           description: 'OK. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui05-register)'
     post:
-      operationId: R104
-      summary: 'R104: Register Action'
+      operationId: R105
+      summary: 'R105: Register Action'
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
         - 'M01: Authentication'
-
       requestBody:
         required: true
         content:
@@ -119,30 +141,33 @@ paths:
                 - email
                 - username
                 - password
-
       responses:
-              '200':
-                description: 'Register successful. Redirect to [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
-                headers:
-                  Response:
-                    schema:
-                      type: string
-                    examples:
-                      200Success:
-                        description: 'Authentication Success. Redirect to user profile.'
-                        value: '/home'
-              '400':
-                description: 'Register Error. Stay in [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login).' 
-                headers:
-                  Location:
-                    schema:
-                      type: string
-                    examples:
-                      400Error:
-                        description: 'Server error in registration.'
-                        value: '/home'
+        '200':
+          description: 'Register successful. Redirect to [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
+          headers:
+            Response:
+              schema:
+                type: string
+              examples:
+                200Success:
+                  description: 'Authentication Success. Redirect to user profile.'
+                  value: '/home'
+        '400':
+          description: 'Register Error. Stay in [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui04-login).' 
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                400Error:
+                  description: 'Server error in registration.'
+                  value: '/home'
 
-  /user_profile/{user_id}:
+
+  #############################
+  #  M02: Individual Profile  #
+  #############################
+  /users/{user_id}:
     get:
       operationId: R201
       summary: 'R201: Profile Page'
@@ -192,7 +217,6 @@ paths:
           required: true
           schema:
             type: string
-
       requestBody:
         required: true
         content:
@@ -206,7 +230,6 @@ paths:
                   type: string
                 bio:    
                     type: string
-
       responses:
         '200':
           description: 'Edit profile info successful. Stay in [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui11-profile-settings).'
@@ -228,14 +251,41 @@ paths:
                 400Error:
                   description: 'Error editing profile.'
                   value: '/user_profile/edit'
-                  
-  /question/{id}:
+
+  #TODO: notifications
+
+  ########################################
+  #  M03: Content viewing and searching  #
+  ########################################
+  /home:
     get:
       operationId: R301
-      summary: 'R301: Question page'
+      summary: 'R301: Home page'
+      description: 'Home page of the plaform specific question page. Access: PUB'
+      tags:
+        - 'M03: Content viewing and searching'
+      responses:
+        '200':
+          description: 'Ok. Show [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
+
+  /search:
+    get:
+      operationId: R302
+      summary: 'R302: Search page'
+      description: 'Search page the shows search results of the query previously inserted by the user. Access: PUB'
+      tags:
+        - 'M03: Content viewing and searching'
+      responses:
+        '200':
+          description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui07-search-results-page)'
+
+  /question/{id}:
+    get:
+      operationId: R306
+      summary: 'R306: Question page'
       description: 'Present a specific question page. Access: PUB'
       tags:
-        - 'M03: Contents'
+        - 'M03: Content viewing and searching'
       parameters:
         - name: id
           in: path
@@ -247,85 +297,737 @@ paths:
         '200':
           description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)'
 
-  /api/delete/content/{id}:
-    delete:
-      operationId: R302
-      summary: 'R302: Delete content'
-      description: 'Delete content. Access: MOD, OWN'
+  /tag/{id}:
+    get:
+      operationId: R307
+      summary: 'R307: Tag page'
+      description: 'Present a specific tag page. Access: PUB'
       tags:
-        - 'M03: Contents'
-
+        - 'M03: Content viewing and searching'
       parameters:
-        - in: path
-          name: id
-          description: Content id
+        - name: id
+          in: path
+          description: Provided an unique id of a tag, its description and associated questions will be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui09-tag-page)' 
+
+  /api/search/question:
+    get:
+      operationId: R303
+      summary: 'R303: Search results for a question'
+      description: 'Search for questions using a query string and return result as JSON. Access: PUB'
+      tags:
+        - 'M03: Content viewing and searching'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: author
+          description: Id of the question's author
+          schema:
+            type: integer
+          required: false
+        # TODO: add tag array
+        - in: query
+          name: type
+          description: Filtering type for the query. Can be "best", "new", "trending" or "bountied"
+          schema:
+            type: string
+            enum: [best, new, trending, bountied]
+          required: true
+        - in: query
+          name: rpp
+          description: Results per page
           schema:
             type: integer
           required: true
-
+        - in: query
+          name: page
+          description: Page number
+          schema:
+            type: integer
+          required: true
       responses:
         '200':
-          description: 'Ok. Content deleted.'
+          description: Success
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  content_id:
-                    type: integer
-                    description: The deleted content id.
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    main:
+                      type: string
+                    votes_difference:
+                      type: integer
+                    creation_date:
+                      type: string
+                    author:
+                      type: string
+                    edited:
+                      type: boolean
+                    tags:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          name: 
+                            type: string
+                example:
+                  - id: 10
+                    title: How do I compare strings in Java
+                    main: I don't kow how to use the == operator, it doesn't work, can someone help me?
+                    votes_difference: 42
+                    creation_date: 21/04/2021
+                    author: mpintarolas
+                    edited: false
+                    tags: 
+                      - id: 1
+                        name: java
+                      - id: 2
+                        name: programming
+                      - id: 3
+                        name: string
+                  - id: 14
+                    title: Why is windows so bad
+                    main: It's constantly crashing, filled with bloatware, why is it like that?
+                    votes_difference: -12
+                    creation_date: 22/04/2021
+                    author: jlopes
+                    edited: false
+                    tags: 
+                      - id: 1
+                        name: windows
+                      - id: 2
+                        name: os
 
-  /about:
+  /api/search/tag:
     get:
-      operationId: R601
-      summary: 'R601: About page'
-      description: 'Show about page. Access: PUB'
+      operationId: R304
+      summary: 'R304: Search results for a tag'
+      description: 'Search for tags using a query string and return result as JSON. Access: PUB'
       tags:
-        - 'M06: Static Pages'
+        - 'M03: Content viewing and searching'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: type
+          description: Filtering type for the query. Can be "best", "new" or "trending"
+          schema:
+            type: string
+            enum: [best, new, trending]
+          required: false
+        - in: query
+          name: rpp
+          description: Results per page
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: page
+          description: Page number
+          schema:
+            type: integer
+          required: true
       responses:
         '200':
-          description: 'Ok. Show [UI02](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui02-about)'
-  /faq:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name: 
+                      type: string
+                    num_followers:
+                      type: integer
+                    num_questions:
+                      type: integer
+                example:
+                  - id: 1
+                    name: javascript
+                    num_followers: 154
+                    num_questions: 2758
+                  - id: 2
+                    name: java
+                    num_followers: 46
+                    num_questions: 842
+
+  /api/search/user:
     get:
-      operationId: R602
-      summary: 'R602: FAQ Page'
-      description: 'Show FAQ page. Access: PUB'
+      operationId: R305
+      summary: 'R305: Search results for a user'
+      description: 'Search for users using a query string and return result as JSON. Access: PUB'
       tags:
-        - 'M06: Static Pages'
+        - 'M03: Content viewing and searching'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: rpp
+          description: Results per page
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: page
+          description: Page number
+          schema:
+            type: integer
+          required: true
       responses:
         '200':
-          description: 'Ok. Show [UI03](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui03-faq)'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email: 
+                      type: string
+                    reputation:
+                      type: integer
+                    join_date:
+                      type: string
+                    expert:
+                      type: boolean
+                    banned:
+                      type: boolean
+                example:
+                  - name: jdiogueiro
+                    email: jayjaydee@gmail.com
+                    reputation: 1894
+                    join_date: 10/10/2020
+                    expert: true
+                    banned: false
+                  - name: mpintarolas
+                    email: mpinto@gmail.com
+                    reputation: 684
+                    join_date: 2/11/2021
+                    expert: false
+                    banned: false         
 
-  /error:
-    get:
-      operationId: R603
-      summary: 'R603: Error page'
-      description: 'Error page on bad request. Access: PUB'
-      tags:
-        - 'M06: Static Pages'
-      responses:
-        '200':
-          description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui14-404)'
 
-  /moderator:
+  ##############################
+  #  M04: Content interaction  #
+  ##############################
+
+  /question/create:
     get:
       operationId: R401
-      summary: 'R401: Moderator page'
+      summary: 'R401: Create question page'
+      description: 'Page to create a new question. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui06-ask-a-question)'
+          
+  /api/save/question:
+    post:
+      operationId: R402
+      summary: 'R402: Save a question'
+      description: 'Save a question. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: id
+          in: query
+          description: Primary key of a question.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Ok. Saved question.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '404':
+          description: 'Error. Not found.'
+
+  /api/follow/tag:
+    post:
+      operationId: R403
+      summary: 'R403: Follow a tag'
+      description: 'Follow a tag. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: id
+          in: query
+          description: Primary key of a tag.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Ok. Followed tag.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '404':
+          description: 'Error. Not found.'
+
+  /api/question/insert:
+    post:
+      operationId: R404
+      summary: 'R404: Insert a question'
+      description: 'Insert a question. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: title
+          in: query
+          description: Title of the question.
+          required: true
+          schema:
+            type: string
+        - name: main
+          in: query
+          description: Main content of the question
+          required: true
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Serialized list of tags
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Success. Inserted question.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+    
+  /api/answer/insert:
+    post:
+      operationId: R405
+      summary: 'R405: Insert an answer'
+      description: 'Insert an answer. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: question_id
+          in: query
+          description: Primary key of the target question.
+          required: true
+          schema:
+            type: integer
+        - name: main
+          in: query
+          description: Main content of the answer
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: 'Success. Inserted answer.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+
+  /api/comment/insert:
+    post:
+      operationId: R406
+      summary: 'R406: Insert a comment to a question'
+      description: 'Insert a comment to a question. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: type
+          in: query
+          description: Type of comment (question or answer)
+          required: true
+          schema:
+            type: string
+            enum: [question, answer]
+        - name: content_id
+          in: query
+          description: Primary key of the target question/answer.
+          required: true
+          schema:
+            type: integer
+        - name: main
+          in: query
+          description: Main content of the comment
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: 'Success. Inserted comment.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+
+  /api/question/{id}/edit:
+    put:
+      operationId: R407
+      summary: 'R407: Edit a question'
+      description: 'Edit a question. Access: OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: id
+          description: Primary key of the question
+          required: true
+          in: path
+          schema:
+            type: integer  
+        - name: title
+          in: query
+          description: New title of the question.
+          required: true
+          schema:
+            type: string
+        - name: main
+          in: query
+          description: New main content of the question
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Successfuly edited question.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+    
+  /api/answer/{id}/edit:
+    put:
+      operationId: R408
+      summary: 'R408: Edit an answer'
+      description: 'Edit an answer. Access: OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: id
+          description: Primary key of the answer
+          required: true
+          in: path
+          schema:
+            type: integer  
+        - name: main
+          in: query
+          description: New main content of the answer
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Successfuly edited answer.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+
+  /api/comment/{id}/edit:
+    put:
+      operationId: R409
+      summary: 'R409: Edit a comment'
+      description: 'Edit a comment. Access: OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - name: id
+          description: Primary key of the comment
+          required: true
+          in: path
+          schema:
+            type: integer  
+        - name: main
+          in: query
+          description: New main content of the comment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Ok. Successfuly edited comment.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+        '500':
+          description: 'Error. Internal server error.'
+
+  /api/question/{id}/delete:
+    delete:
+      operationId: R410
+      summary: 'R410: Delete question'
+      description: 'Delete question. Access: MOD, OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Question's content id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Question deleted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+  /api/answer/{id}/delete:
+    delete:
+      operationId: R411
+      summary: 'R411: Delete answer'
+      description: 'Delete answer. Access: MOD, OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Answer's content id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Answer deleted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+  /api/comment/{id}/delete:
+    delete:
+      operationId: R412
+      summary: 'R412: Delete a comment'
+      description: 'Delete comment. Access: MOD, OWN'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Comment's content id
+          schema:
+            type: integer
+          required: true
+        - name: type
+          in: query
+          description: Type of comment (question or answer)
+          required: true
+          schema:
+            type: string
+            enum: [question, answer]
+      responses:
+        '200':
+          description: 'Ok. Comment deleted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+  /api/vote/insert:
+    post:
+      operationId: R413
+      summary: 'R413: Insert a vote to a content'
+      description: 'Insert vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: query
+          name: id
+          description: Id of the content to vote
+          schema:
+            type: integer
+          required: true
+        - name: type
+          in: query
+          description: Type of vote (question or answer)
+          required: true
+          schema:
+            type: string
+            enum: [question, answer]
+        - name: value
+          in: query
+          description: Value of the vote
+          schema:
+            type: boolean
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Vote inserted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+  
+  /api/vote/{id}/edit:
+    post:
+      operationId: R414
+      summary: 'R414: Edit a vote to a content'
+      description: 'Edit vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Vote's id
+          schema:
+            type: integer
+          required: true
+        - name: type
+          in: query
+          description: Type of vote (question or answer)
+          required: true
+          schema:
+            type: string
+            enum: [question, answer]
+        - name: value
+          in: query
+          description: Value of the vote
+          schema:
+            type: boolean
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Vote edited.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+  /api/vote/{id}/delete:
+    delete:
+      operationId: R415
+      summary: 'R415: Delete a vote to a content'
+      description: 'Delete vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Vote's id
+          schema:
+            type: integer
+          required: true
+        - name: type
+          in: query
+          description: Type of vote (question or answer)
+          required: true
+          schema:
+            type: string
+            enum: [question, answer]
+      responses:
+        '200':
+          description: 'Ok. Vote deleted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+  #TODO: best answer
+
+  #TODO: report
+
+
+  #####################
+  #  M05: Moderation  #
+  #####################
+  /moderator:
+    get:
+      operationId: R501
+      summary: 'R501: Moderator page'
       description: 'Show moderation area. Access: MOD'
       tags:
-        - 'M04: Moderation'
+        - 'M05: Moderation'
       responses:
         '200':
           description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui13-user-moderation)'
 
   /api/ban:
     post:
-      operationId: R402
-      summary: 'R402: Ban user'
+      operationId: R5402
+      summary: 'R502: Ban user'
       description: 'Ban a user. Access: MOD'
       tags:
-        - 'M04: Moderation'
-
+        - 'M05: Moderation'
       requestBody:
         required: true
         content:
@@ -337,7 +1039,6 @@ paths:
                   type: string
               required:
                 - name
-
       responses:
         '200':
           description: 'Ok. User banned.'
@@ -352,12 +1053,11 @@ paths:
 
   /api/delete/tag/{id}:
     delete:
-      operationId: R403
-      summary: 'R403: Delete tag'
+      operationId: R503
+      summary: 'R503: Delete tag'
       description: 'Delete tag. Access: MOD'
       tags:
-        - 'M04: Moderation'
-
+        - 'M05: Moderation'
       parameters:
         - in: path
           name: id
@@ -365,7 +1065,6 @@ paths:
           schema:
             type: integer
           required: true
-
       responses:
         '200':
           description: 'Ok. Tag deleted.'
@@ -380,12 +1079,11 @@ paths:
 
   /api/edit/tag:
     patch:
-      operationId: R404
-      summary: 'R404: Edit tag'
+      operationId: R504
+      summary: 'R504: Edit tag'
       description: 'Edit tag. Access: MOD'
       tags:
-        - 'M04: Moderation'
-
+        - 'M05: Moderation'
       requestBody:
         required: true
         content:
@@ -404,7 +1102,6 @@ paths:
               required:
                 - id
                 - name
-
       responses:
         '200':
           description: 'Ok. Tag deleted.'
@@ -419,12 +1116,11 @@ paths:
 
   /api/remove/tag:  
     delete:
-      operationId: R405
-      summary: 'R405: Remove tag'
+      operationId: R505
+      summary: 'R505: Remove tag'
       description: 'Remove tag from question. Access: MOD'
       tags:
-        - 'M04: Moderation'
-
+        - 'M05: Moderation'
       parameters:
         - in: query
           name: tag_id
@@ -438,7 +1134,6 @@ paths:
           schema:
             type: integer
           required: true
-
       responses:
         '200':
           description: 'Ok. Tag removed from Question.'
@@ -449,19 +1144,18 @@ paths:
                 properties:
                   tag_id:
                     type: integer
-                    description: The remnoved tag id.
+                    description: The removed tag id.
                   question_id:
                     type: integer
                     description: The question id tag was removed from.
 
   /api/add/tag:
     post:
-      operationId: R406
-      summary: 'R406: Add tag'
+      operationId: R506
+      summary: 'R506: Add tag'
       description: 'Add tag to question. Access: MOD'
       tags:
-        - 'M04: Moderation'
-
+        - 'M05: Moderation'
       requestBody:
         required: true
         content:
@@ -480,7 +1174,6 @@ paths:
               required:
                 - id
                 - name
-
       responses:
         '200':
           description: 'Ok. Tag associated to Question.'
@@ -495,11 +1188,11 @@ paths:
 
   /api/user_reports:
     get:
-      operationId: R407
-      summary: 'R407: User reports'
-      description: 'Get user reports and return result ad JSON. Access: MOD'
+      operationId: R507
+      summary: 'R507: User reports'
+      description: 'Get user reports and return result as JSON. Access: MOD'
       tags:
-        - 'M04: Moderation'
+        - 'M05: Moderation'
       parameters:
         - in: query
           name: query
@@ -513,7 +1206,6 @@ paths:
           schema:
             type: boolean
           required: false
-
       responses:
         '200':
           description: Success
@@ -552,11 +1244,11 @@ paths:
 
   /api/content_reports:
     get:
-      operationId: R408
-      summary: 'R408: Content reports'
+      operationId: R508
+      summary: 'R508: Content reports'
       description: 'Get content reports and return result ad JSON. Access: MOD'
       tags:
-        - 'M04: Moderation'
+        - 'M05: Moderation'
       parameters:
         - in: query
           name: query
@@ -570,7 +1262,6 @@ paths:
           schema:
             type: boolean
           required: false
-
       responses:
         '200':
           description: Success
@@ -606,6 +1297,43 @@ paths:
                     reporter_id: 3
                     solver_id: 1
                     content_id: 5
+
+                    
+  #######################
+  #  M06: Static Pages  #
+  #######################
+  /about:
+    get:
+      operationId: R601
+      summary: 'R601: About page'
+      description: 'Show about page. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI02](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui02-about)'
+
+  /faq:
+    get:
+      operationId: R602
+      summary: 'R602: FAQ Page'
+      description: 'Show FAQ page. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI03](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui03-faq)'
+
+  /error:
+    get:
+      operationId: R603
+      summary: 'R603: Error page'
+      description: 'Error page on bad request. Access: PUB'
+      tags:
+        - 'M06: Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui14-404)'
 
 components:
   schemas:
