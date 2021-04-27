@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 // Questions
-Route::get('/content/{id}', 'ContentController@show');
+Route::get('/question/{id}', 'QuestionController@show2');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -78,6 +78,3 @@ Route::get('search', function () {
 Route::get('moderator', function () {
     return view('pages.moderator');
 });
-
-// Error page
-//Route::get('no_match', 'Pages\404')

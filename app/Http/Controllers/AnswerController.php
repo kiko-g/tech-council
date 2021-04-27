@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Content;
+use App\Models\Answer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ContentController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,17 +22,9 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $content = new Content();
-
-        $this->authorize('create', $content);
-
-        $content->main = $request->input('main');
-        $content->author_id = Auth::user()->id;
-        $content->save();
-
-        return $content;
+        //
     }
 
     /**
@@ -50,10 +41,10 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Content $content)
+    public function show(Answer $answer)
     {
         //
     }
@@ -61,10 +52,10 @@ class ContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -73,10 +64,10 @@ class ContentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function update(Request $request, Answer $answer)
     {
         //
     }
@@ -84,10 +75,10 @@ class ContentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
+    public function destroy(Answer $answer)
     {
         //
     }
