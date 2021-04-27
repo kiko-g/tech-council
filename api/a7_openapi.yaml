@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  description: 'Web Resources Specification (A7) for TechCouncil. The goal is to create the API documentation to be visualized and tested in SwaggerHub.' #TODO: !! rever isto
+  description: 'Web Resources Specification (A7) for TechCouncil.'
   version: "1.0.0"
   title: 'Tech Council LBAW'
   contact:
-    email: apiteam@swagger.io #TODO: mudar
+    email: up201706156@fe.up.pt
 
 externalDocs:
   description: Full A7 artifact info here
-  url: ''#TODO: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#a7 ...
+  url: 'https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/eap'
   
 servers:
   # Added by API Auto Mocking Plugin
@@ -162,6 +162,58 @@ paths:
                 400Error:
                   description: 'Server error in registration.'
                   value: '/home'
+
+    /login/reset:
+      get:
+        operationId: R106
+        summary: 'R106: Reset Password Form'
+        description: 'Provide password reset form. Access: PUB'
+        tags:
+          - 'M01: Authentication'
+        responses:
+          '200':
+            description: 'OK. Show RESET PAGE' #TODO
+      post:
+        operationId: R107
+        summary: 'R107: Reset Password Action'
+        description: 'Processes the password reset form submission. Access: PUB'
+        tags:
+          - 'M01: Authentication'
+        requestBody:
+          required: true
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  username:
+                    type: string
+                required:
+                  - email
+                  - username
+        responses:
+          '200':
+            description: 'Reset successful. Redirect to [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui01-home)'
+            headers:
+              Response:
+                schema:
+                  type: string
+                examples:
+                  200Success:
+                    description: 'Authentication Success. Redirect to home page.'
+                    value: '/home'
+          '400':
+            description: 'Reset Error. Stay in RESET PAGE.' #TODO 
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  400Error:
+                    description: 'Server error in password reset.'
+                    value: '/home'
 
 
   #############################
