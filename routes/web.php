@@ -61,7 +61,7 @@ Route::get('profile', function () {
 
 Route::get('profile-settings', function () {
     return view('pages.profile-settings');
-});
+}); // remove this
 
 Route::get('question', function () {
     return view('pages.question');

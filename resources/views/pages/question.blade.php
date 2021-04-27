@@ -7,9 +7,9 @@
 @extends('layouts.app')
 
 @section('content')
-	@include('partials.question-mural')
+  @include('partials.question.mural')
 @endsection
 
 @section('aside')
-	@include('partials.aside')
+  @include('partials.aside')
 @endsection

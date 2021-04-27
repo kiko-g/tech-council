@@ -68,7 +68,7 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         $this->authorize('show', $question);
-        return view('partials.question-card', [
+        return view('partials.question.card', [
             'question' => $question,
             'tags' => $question->tags,
             'content' => $question->content,
@@ -87,7 +87,7 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
 
-        return view('partials.question-card', ['question' => $question]);
+        return view('partials.question.card', ['question' => $question]);
     }
 
     /**
