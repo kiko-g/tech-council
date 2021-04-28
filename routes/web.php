@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('pages.main');
 });
 
+Route::get('*', function () {
+    return abort(404);
+});
+
 // Questions
 Route::get('/question/{id}', 'QuestionController@show2');
 
