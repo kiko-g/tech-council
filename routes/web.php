@@ -13,16 +13,14 @@
 // Home
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.main');
-});
+Route::get('/', 'MainController@showMural');
 
 Route::get('*', function () {
     return abort(404);
 });
 
 // Questions
-Route::get('/question/{id}', 'QuestionController@show2');
+Route::get('/question/{id}', 'QuestionController@showPage');
 
 // Cards
 Route::get('cards', 'CardController@list');

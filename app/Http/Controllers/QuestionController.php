@@ -86,8 +86,7 @@ class QuestionController extends Controller
     public function showPage($id)
     {
         $question = Question::find($id);
-
-        return view('partials.question.card', ['question' => $question]);
+        return view('pages.question', ['question' => $question]);
     }
 
     /**

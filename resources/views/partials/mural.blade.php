@@ -1,14 +1,9 @@
-@include('partials.question.card')
-
 @include('partials.filters.question')
 
 <div>
-  @for ($i = 0; $i < 3; $i++)
-    <?php
-    buildQuestion(null);
-    buildQuestion2(null);
-    ?>
-  @endfor
+  @foreach($questions as $question)
+    @include('partials.question.card', ['question' => $question, 'include_comments' => false])
+  @endforeach
 </div>
 
 <nav>

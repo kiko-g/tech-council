@@ -32,25 +32,24 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <!-- Our CSS -->
-  <link rel="stylesheet" href={{ 'css/colors.css' }} />
-  <link rel="stylesheet" href={{ 'css/style.css' }} />
-  <link rel="stylesheet" href={{ 'css/header.css' }} />
-  <link rel="stylesheet" href={{ 'css/footer.css' }} />
-  <link rel="stylesheet" href={{ 'css/generic.css' }} />
-  <link rel="stylesheet" href={{ 'css/question.css' }} />
-  <link rel="stylesheet" href={{ 'css/bootstrap.css' }} />
-  <link rel="stylesheet" href={{ 'css/login.css' }} />
-  <link rel="stylesheet" href={{ 'css/about.css' }} />
-  <link rel="stylesheet" href={{ 'css/moderator.css' }} />
-  <link rel="stylesheet" href={{ 'css/aside.css' }} />
-  <link rel="stylesheet" href={{ 'css/search.css' }} />
-  <link rel="stylesheet" href={{ 'css/question-page.css' }} />
-  <link rel="stylesheet" href={{ 'css/ask.css' }} />
-  <link rel="stylesheet" href={{ 'css/profile.css' }} />
-
+  <link rel="stylesheet" href={{ '/css/colors.css' }} />
+  <link rel="stylesheet" href={{ '/css/style.css' }} />
+  <link rel="stylesheet" href={{ '/css/header.css' }} />
+  <link rel="stylesheet" href={{ '/css/footer.css' }} />
+  <link rel="stylesheet" href={{ '/css/generic.css' }} />
+  <link rel="stylesheet" href={{ '/css/question.css' }} />
+  <link rel="stylesheet" href={{ '/css/bootstrap.css' }} />
+  <link rel="stylesheet" href={{ '/css/login.css' }} />
+  <link rel="stylesheet" href={{ '/css/about.css' }} />
+  <link rel="stylesheet" href={{ '/css/moderator.css' }} />
+  <link rel="stylesheet" href={{ '/css/aside.css' }} />
+  <link rel="stylesheet" href={{ '/css/search.css' }} />
+  <link rel="stylesheet" href={{ '/css/question-page.css' }} />
+  <link rel="stylesheet" href={{ '/css/ask.css' }} />
+  <link rel="stylesheet" href={{ '/css/profile.css' }} />
 
   <!-- Scripts -->
-  <script src="js/script.js" defer></script>
-  <script src="js/moderator-switch.js" defer></script>
-  <script src="js/tag-selector.js" defer></script>
+  <script src={{ '/js/script.js' }} defer></script>
+  <script src={{ '/js/moderator-switch.js' }} defer></script>
+  <script src={{ '/js/tag-selector.js' }} defer></script>
 </head>
