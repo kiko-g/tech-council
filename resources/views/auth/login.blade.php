@@ -8,7 +8,7 @@
       <h3>Sign in</h3>
     </header>
     <div class="form-floating mb-4">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Email address</label>
       @if ($errors->has('floatingInput'))
         <span class="error">
@@ -17,7 +17,7 @@
       @endif
     </div>
     <div class="form-floating mb-4">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Password</label>
       @if ($errors->has('floatingPassword'))
         <span class="error">
@@ -26,8 +26,8 @@
       @endif
     </div>
     <div class="d-flex justify-content-between">
-      <a href="./register.php" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
-      <button type="submit" class="btn blue-alt">Submit</button>
+      <a href="{{route('register')}}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
+      <input type="submit" class="btn blue-alt"></input>
     </div>
   </form>
 @endsection

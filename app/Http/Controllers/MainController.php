@@ -18,7 +18,8 @@ class MainController extends Controller
 	{
 		$questions = Question::paginate(10);
 		return view('pages.main', [
-			'questions' => $questions
+			'questions' => $questions,
+			'user' => Auth::user()
 		]);
 	}
 }

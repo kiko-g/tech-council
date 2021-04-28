@@ -23,7 +23,7 @@ Route::post('register', 'Auth\RegisterController@register');
 // --
 
 // M03: Content viewing and searching
-Route::get('/', 'MainController@showMural');
+Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
 Route::post('/api/vote/insert', 'QuestionController@addVote');
 Route::delete('/api/vote/{id}/delete', 'QuestionController@deleteVote');
@@ -58,10 +58,6 @@ Route::get('profile', function () {
 Route::get('profile-settings', function () {
     return view('pages.profile-settings');
 }); // remove this
-
-Route::get('question', function () {
-    return view('pages.question');
-});
 
 Route::get('tag', function () {
     return view('pages.tag');

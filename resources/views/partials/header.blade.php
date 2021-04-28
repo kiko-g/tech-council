@@ -21,45 +21,50 @@
         </form>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
-          <li class="nav-item">
-            <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="/pages/moderator.php"><i
-                class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a>
-          </li>
-          <li class="nav-item">
-            <a href="/pages/login.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
-              type="submit"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a>
-          </li>
-          <li class="nav-item">
-            <a href="/pages/register.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
-              type="submit"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a>
-          </li>
-          <li class="nav-item">
-            <a href="/pages/register.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
-              type="submit"><i class="fas fa-sign-out-alt fa-sm"></i>&nbsp;Logout</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown"
-              href="#" role="button" aria-expanded="false">
-              <i class="fas fa-envelope fa-sm"></i>&nbsp;Inbox
-              <span class="badge stack align-middle">24</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li>
-                <hr class="dropdown-divider">
+          @auth
+            @if($user->moderator)
+              <li class="nav-item">     
+                  <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{route('home')}}"><i
+                      class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a>
               </li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="/pages/profile.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
-              type="submit">
-              Profile
-              <img src="/images/dwight.png" alt="" width="23" height="23" class="">
-            </a>
-          </li>
+            @endif
+            <li class="nav-item">
+            <a href="{{route('logout')}}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
+              type="submit"><i class="fas fa-sign-out-alt fa-sm"></i>&nbsp;Logout</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown"
+                href="#" role="button" aria-expanded="false">
+                <i class="fas fa-envelope fa-sm"></i>&nbsp;Inbox
+                <span class="badge stack align-middle">24</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/pages/profile.php" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
+                type="submit">
+                Profile
+                <img src="/images/dwight.png" alt="" width="23" height="23" class="">
+              </a>
+            </li>
+          @else
+            <li class="nav-item">
+              <a href="{{route('login')}}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
+                type="submit"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('register')}}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"
+                type="submit"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a>
+            </li>
+          @endauth
         </ul>
       </div>
     </div>

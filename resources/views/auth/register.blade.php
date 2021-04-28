@@ -8,24 +8,34 @@
       <h3>Sign up</h3>
     </header>
     <div class="form-floating mb-4">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating mb-4">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+      <input name="username" type="text" class="form-control" id="floatingInput" placeholder="username" required>
       <label for="floatingInput">Username</label>
     </div>
     <div class="form-floating mb-4">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating mb-4">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-      <label for="floatingPassword">Confirm password</label>
+      <input name="password_confirmation" type="password" class="form-control" id="floatingPasswordConf" placeholder="Password" required>
+      <label for="floatingPasswordConf">Confirm password</label>
     </div>
     <div class="d-flex justify-content-between">
-      <a href="./login.php" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
-      <button type="submit" class="btn blue-alt btn-light">Submit</button>
+      <a href="{{route('login')}}" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
+      <input type="submit" class="btn blue-alt btn-light"></input>
     </div>
   </form>
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
 @endsection

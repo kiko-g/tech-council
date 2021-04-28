@@ -88,7 +88,10 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         //echo $question->votes_difference;
-        return view('pages.question', ['question' => $question]);
+        return view('pages.question', [
+            'question' => $question,
+            'user' => Auth::user()
+        ]);
     }
 
     /**
