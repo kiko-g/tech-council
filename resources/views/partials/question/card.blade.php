@@ -13,7 +13,7 @@
             onclick="vote('up', this.parentNode)">
             <i class="fas fa-chevron-up"></i>
           </a>
-          <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> 42 </a>
+          <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> {{ $question->votes_difference }} </a>
           <a id="downvote-button" class="downvote-button my-btn-pad down btn btn-outline-danger pink"
             onclick="vote('down', this.parentNode)">
             <i class="fas fa-chevron-down"></i>
@@ -32,7 +32,7 @@
           </button>
 
           <div class="collapse mt-2" id="collapseQuestionText2">
-            {{ $question->content->main }}
+            {!! $question->content->main !!}
           </div>
         </div>
 

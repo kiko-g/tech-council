@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Content;
+use App\Models\VoteQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -86,6 +87,7 @@ class QuestionController extends Controller
     public function showPage($id)
     {
         $question = Question::find($id);
+        //echo $question->votes_difference;
         return view('pages.question', ['question' => $question]);
     }
 
@@ -132,5 +134,9 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    public function addVote(Request $request) {
+        echo $request;
     }
 }

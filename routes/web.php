@@ -10,37 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Home
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'MainController@showMural');
-
-Route::get('*', function () {
-    return abort(404);
-});
-
-// Questions
-Route::get('/question/{id}', 'QuestionController@showPage');
-
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-
-// Authentication
+// M01: Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-// Static pages
+// M02: Individual Profile
+// --
+
+// M03: Content viewing and searching
+Route::get('/', 'MainController@showMural');
+Route::get('/question/{id}', 'QuestionController@showPage');
+Route::post('/api/vote/insert', 'QuestionController@addVote');
+Route::delete('/api/vote/{id}/delete', 'QuestionController@deleteVote');
+
+// M04: Content interaction
+// --
+
+// M05: Moderation
+// --
+
+// M06: Static Pages
 Route::get('about', function () {
     return view('pages.about');
 });
@@ -79,4 +73,8 @@ Route::get('search', function () {
 
 Route::get('moderator', function () {
     return view('pages.moderator');
+});
+
+Route::get('*', function () {
+    return abort(404);
 });

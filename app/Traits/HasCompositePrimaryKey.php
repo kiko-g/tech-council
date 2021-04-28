@@ -2,7 +2,7 @@
 
 // Credits to https://stackoverflow.com/questions/31415213/how-i-can-put-composite-keys-in-models-in-laravel-5
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 
