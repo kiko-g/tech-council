@@ -16,6 +16,9 @@ class Question extends Model
     protected $table = 'question';
     protected $primaryKey = 'content_id';
 
+    const MAX_TITLE_LENGTH = 100;
+    const MAX_MAIN_LENGTH = 1000;
+
     public function content()
     {
         return $this->belongsTo('App\Models\Content', 'content_id');

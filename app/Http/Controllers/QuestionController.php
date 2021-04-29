@@ -31,7 +31,19 @@ class QuestionController extends Controller
     {
         $this->authorize('create', Question::class);
 
-        // TODO: Add request validation
+        $request->validate([
+            'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'main' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'tags' => ['required', function ($attribute, $value, $fail) {
+                $tags = explode(' ', $value);
+                if(count($tags) !== count(array_flip($tags))) {
+                    $fail('The '.$attribute.' must have unique tags.');
+                }
+                if(count($tags) < 1 || count($tags) > 1) {
+                    $fail('The '.$attribute.' must have between 1 and 5 tags.');
+                }
+            }] // Parse and check if there are between 1 and 5 tags -> no repeated
+        ]);
 
         $content = new Content();
         $question = new Question($content->id);
@@ -140,11 +152,6 @@ class QuestionController extends Controller
     }
 
     public function addVote(Request $request)
-    {
-        echo $request;
-    }
-
-    public function insertQuestion(Request $request)
     {
         echo $request;
     }

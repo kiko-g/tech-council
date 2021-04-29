@@ -37,7 +37,7 @@ Route::get('/create/question', function () {
         'user' => Auth::user(),
     ]);
 })->name('create/question');
-Route::post('/api/question/insert', 'QuestionController@insertQuestion');
+Route::post('/api/question/insert', 'QuestionController@create');
 
 // M05: Moderation
 // --
