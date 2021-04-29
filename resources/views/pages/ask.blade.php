@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['user' => $user])
 
 @section('content')
   <div class="card mb-4 p-2-0 border-0 rounded">
@@ -6,7 +6,7 @@
       Ask a question
     </div>
     <div class="card-body">
-      <form>
+      <form method="POST" action="{{ url('/api/question/insert') }}">
         <textarea class="form-control shadow-sm border border-2 bg-light mb-2" rows="1"
           placeholder="Question title"></textarea>
         <textarea class="form-control shadow-sm border border-2 bg-light mb-2" rows="5"
@@ -35,11 +35,10 @@
               <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;nvidia</a>
             </div>
           </div>
-          <a class="btn btn-success teal text-white ms-auto me-3 mt-1" role="button">
-            Submit
-          </a>
+          <input class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
         </div>
       </form>
+
       <div class="card collapse" id="addTag" style="width: 18rem;">
         <div class="card-body">
           <input type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1"

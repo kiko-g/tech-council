@@ -1,12 +1,11 @@
-@extends('layouts.profile')
+@extends('layouts.profile', ['user' => $user, 'user_questions' => $user_questions])
 
 @section('content')
-  @include('partials.question.card')
   @include('partials.filters.profile')
   <section>
-    @for ($i = 0; $i < 5; $i++)
-      <?php buildQuestion(null); ?>
-    @endfor
+    @foreach ($user_questions as $question)
+      @include('partials.question.card', ['question' => $question, 'include_comments' => false])
+    @endforeach
   </section>
   <nav>
     <ul class="pagination justify-content-center">

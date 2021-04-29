@@ -26,8 +26,9 @@
       @endif
     </div>
     <div class="d-flex justify-content-between">
-      <a href="{{route('register')}}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
-      <input type="submit" class="btn blue-alt"></input>
+      <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign
+        up</a>
+      <input type="submit" value="Submit" class="btn blue-alt" />
     </div>
   </form>
 @endsection

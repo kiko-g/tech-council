@@ -8,7 +8,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="images/icon.png" type="image/png" sizes="16x16" />
+  <link rel="icon" href="{{ 'images/favicon.png' }}" type="image/png" sizes="16x16" />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"

@@ -1,6 +1,6 @@
 <div class="card mb-5 p-2-0 border-0 rounded">
   <div class="card-header bg-petrol text-white font-source-sans-pro">
-    <a class="a header" href="{{ url('question/'.$question->content_id) }}">
+    <a class="a header" href="{{ url('question/' . $question->content_id) }}">
       {{ $question->title }}
       <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
     </a>
@@ -23,17 +23,18 @@
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
         <div id="question" class="mb-1">
-          Section before <code>collapse</code>.
 
-          <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)"
+          {!! $question->content->main !!}
+          {{-- <div class="collapse mt-2" id="collapseQuestionText2">
+            Section inside <code>collapse</code>.
+          </div> --}}
+
+          {{-- <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)"
             data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false"
             aria-controls="collapseQuestionText2">
             <i class="fas fa-ellipsis-h"></i>
-          </button>
+          </button> --}}
 
-          <div class="collapse mt-2" id="collapseQuestionText2">
-            {!! $question->content->main !!}
-          </div>
         </div>
 
         <div class="row row-cols-2 mb-1">

@@ -139,7 +139,13 @@ class QuestionController extends Controller
         //
     }
 
-    public function addVote(Request $request) {
+    public function addVote(Request $request)
+    {
+        echo $request;
+    }
+
+    public function insertQuestion(Request $request)
+    {
         echo $request;
     }
 }

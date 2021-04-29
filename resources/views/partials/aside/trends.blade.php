@@ -4,6 +4,10 @@
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action d-flex justify-content-between active" data-bs-toggle="list"
         href="#" role="tab" aria-controls="home">
+        All tags</span>
+      </a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between" data-bs-toggle="list" href="#"
+        role="tab" aria-controls="home">
         Ubuntu <span class="badge">217</span>
       </a>
       <a class="list-group-item list-group-item-action d-flex justify-content-between" data-bs-toggle="list"

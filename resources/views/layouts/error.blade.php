@@ -1,7 +1,7 @@
 @include('partials.head')
 
 <body>
-  @include('partials.header')
+  @include('partials.header', ['user' => $user])
   <main class="container d-flex justify-content-center my-4">
     @yield('body')
   </main>

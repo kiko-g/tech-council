@@ -17,11 +17,11 @@
       <div class="footer-section col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
-          <li><i class="fas fa-home"></i>&nbsp; <a href="/">Home</a> </li>
-          <li><i class="fas fa-inbox"></i>&nbsp; <a href="../pages/profile.php">Inbox</a></li>
-          <li><i class="fas fa-address-card"></i>&nbsp; <a href="../pages/profile.php">Profile</a></li>
-          <li><i class="fas fa-question-circle"></i>&nbsp; <a href="../pages/faq.php">FAQ</a></li>
-          <li><i class="fas fa-info-circle"></i>&nbsp; <a href="../pages/about.php">About</a></li>
+          <li><i class="fas fa-home"></i>&nbsp; <a href="{{ route('home') }}">Home</a> </li>
+          <li><i class="fas fa-inbox"></i>&nbsp; <a href="{{ 'images/morty.gif' }}">Inbox</a></li>
+          <li><i class="fas fa-address-card"></i>&nbsp; <a href="{{ 'images/morty.gif' }}">Profile</a></li>
+          <li><i class="fas fa-info-circle"></i>&nbsp; <a href="{{ route('about') }}">About</a></li>
+          <li><i class="fas fa-question-circle"></i>&nbsp; <a href="{{ route('faq') }}">FAQ</a></li>
         </ul>
       </div>
 

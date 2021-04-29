@@ -3,28 +3,30 @@ $team_members = [
 'fiambre' => [
 'bio' => 'Team member bio 1',
 'social' => [
-'github' => '#',
-'twitter' => '#',
+'github' => 'https://github.com/ffriande',
+'twitter' => 'https://github.com/ffriande',
 ],
 ],
 'kikojpg' => [
 'bio' => 'Team member bio 2',
 'social' => [
-'github' => '#',
+'github' => 'https://github.com/kiko-g',
+'twitter' => 'https://twitter.com/kikogoncalves_',
+'globe' => 'https://kiko-g.github.io',
 ],
 ],
 'jdiogueiro' => [
 'bio' => 'Team member bio 3',
 'social' => [
-'github' => '#',
-'facebook' => '#',
+'github' => 'https://github.com/TsarkFC',
+'facebook' => 'https://github.com/TsarkFC',
 ],
 ],
 'mpinto01' => [
 'bio' => 'Team member bio 4',
 'social' => [
-'github' => '#',
-'twitter' => '#',
+'github' => 'https://github.com/MiguelDelPinto',
+'twitter' => 'https://github.com/MiguelDelPinto',
 ],
 ],
 ];
@@ -56,7 +58,7 @@ $member_counter = 0;
       @foreach ($team_members as $name => $attrs)
         <?php $member_counter++; ?>
         <div class="card me-3 mb-2 border border-5 rounded-3" style="width: 18rem;">
-          <img src="images/team{{ $member_counter }}.jpeg" class="card-img-top img-fluid"
+          <img src="{{ 'images/team' . $member_counter . '.jpeg' }}" class="card-img-top img-fluid"
             alt="Team member number {{ $member_counter }}">
           <div class="card-body">
             <h5 class="card-title">{{ $name }}</h5>

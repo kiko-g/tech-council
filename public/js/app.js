@@ -1,21 +1,21 @@
 function addEventListeners() {
   let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
-  [].forEach.call(itemCheckers, function(checker) {
+  [].forEach.call(itemCheckers, function (checker) {
     checker.addEventListener('change', sendItemUpdateRequest);
   });
 
   let itemCreators = document.querySelectorAll('article.card form.new_item');
-  [].forEach.call(itemCreators, function(creator) {
+  [].forEach.call(itemCreators, function (creator) {
     creator.addEventListener('submit', sendCreateItemRequest);
   });
 
   let itemDeleters = document.querySelectorAll('article.card li a.delete');
-  [].forEach.call(itemDeleters, function(deleter) {
+  [].forEach.call(itemDeleters, function (deleter) {
     deleter.addEventListener('click', sendDeleteItemRequest);
   });
 
   let cardDeleters = document.querySelectorAll('article.card header a.delete');
-  [].forEach.call(cardDeleters, function(deleter) {
+  [].forEach.call(cardDeleters, function (deleter) {
     deleter.addEventListener('click', sendDeleteCardRequest);
   });
 
@@ -26,7 +26,7 @@ function addEventListeners() {
 
 function encodeForAjax(data) {
   if (data == null) return null;
-  return Object.keys(data).map(function(k){
+  return Object.keys(data).map(function (k) {
     return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   }).join('&');
 }
@@ -46,7 +46,7 @@ function sendItemUpdateRequest() {
   let id = item.getAttribute('data-id');
   let checked = item.querySelector('input[type=checkbox]').checked;
 
-  sendAjaxRequest('post', '/api/item/' + id, {done: checked}, itemUpdatedHandler);
+  sendAjaxRequest('post', '/api/item/' + id, { done: checked }, itemUpdatedHandler);
 }
 
 function sendDeleteItemRequest() {
@@ -60,7 +60,7 @@ function sendCreateItemRequest(event) {
   let description = this.querySelector('input[name=description]').value;
 
   if (description != '')
-    sendAjaxRequest('put', '/api/cards/' + id, {description: description}, itemAddedHandler);
+    sendAjaxRequest('put', '/api/cards/' + id, { description: description }, itemAddedHandler);
 
   event.preventDefault();
 }
@@ -75,7 +75,7 @@ function sendCreateCardRequest(event) {
   let name = this.querySelector('input[name=name]').value;
 
   if (name != '')
-    sendAjaxRequest('put', '/api/cards/', {name: name}, cardAddedHandler);
+    sendAjaxRequest('put', '/api/cards/', { name: name }, cardAddedHandler);
 
   event.preventDefault();
 }
@@ -100,7 +100,7 @@ function itemAddedHandler() {
   form.previousElementSibling.append(new_item);
 
   // Reset the new item form
-  form.querySelector('[type=text]').value="";
+  form.querySelector('[type=text]').value = "";
 }
 
 function itemDeletedHandler() {
@@ -113,7 +113,7 @@ function itemDeletedHandler() {
 function cardDeletedHandler() {
   if (this.status != 200) window.location = '/';
   let card = JSON.parse(this.responseText);
-  let article = document.querySelector('article.card[data-id="'+ card.id + '"]');
+  let article = document.querySelector('article.card[data-id="' + card.id + '"]');
   article.remove();
 }
 
@@ -126,7 +126,7 @@ function cardAddedHandler() {
 
   // Reset the new card input
   let form = document.querySelector('article.card form.new_card');
-  form.querySelector('[type=text]').value="";
+  form.querySelector('[type=text]').value = "";
 
   // Insert the new card
   let article = form.parentElement;

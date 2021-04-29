@@ -9,14 +9,14 @@ use App\Models\Question;
 
 class MainController extends Controller
 {
-    /**
+	/**
 	 * Display the main page.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function showMural()
 	{
-		$questions = Question::paginate(10);
+		$questions = Question::paginate(3);
 		return view('pages.main', [
 			'questions' => $questions,
 			'user' => Auth::user()

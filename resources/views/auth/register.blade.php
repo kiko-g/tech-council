@@ -20,22 +20,24 @@
       <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating mb-4">
-      <input name="password_confirmation" type="password" class="form-control" id="floatingPasswordConf" placeholder="Password" required>
+      <input name="password_confirmation" type="password" class="form-control" id="floatingPasswordConf"
+        placeholder="Password" required>
       <label for="floatingPasswordConf">Confirm password</label>
     </div>
     <div class="d-flex justify-content-between">
-      <a href="{{route('login')}}" class="link-light entry-anchor text-start">Already have an account? <br> Sign in</a>
-      <input type="submit" class="btn blue-alt btn-light"></input>
+      <a href="{{ route('login') }}" class="link-light entry-anchor text-start">Already have an account? <br> Sign
+        in</a>
+      <input type="submit" value="Submit" class="btn blue-alt" />
     </div>
   </form>
 
   @if ($errors->any())
     <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
     </div>
   @endif
 @endsection

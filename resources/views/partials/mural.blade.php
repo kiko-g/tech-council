@@ -1,7 +1,7 @@
 @include('partials.filters.question')
 
 <div>
-  @foreach($questions as $question)
+  @foreach ($questions as $question)
     @include('partials.question.card', ['question' => $question, 'include_comments' => false])
   @endforeach
 </div>
