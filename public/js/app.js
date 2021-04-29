@@ -1,4 +1,5 @@
 function addEventListeners() {
+  /** TEMPLATES 
   let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
   [].forEach.call(itemCheckers, function (checker) {
     checker.addEventListener('change', sendItemUpdateRequest);
@@ -22,6 +23,7 @@ function addEventListeners() {
   let cardCreator = document.querySelector('article.card form.new_card');
   if (cardCreator != null)
     cardCreator.addEventListener('submit', sendCreateCardRequest);
+  */
 }
 
 function encodeForAjax(data) {
@@ -177,4 +179,9 @@ function createItem(item) {
   return new_item;
 }
 
+let isAuthenticated = false;
+sendAjaxRequest('get', '/auth/check', null, function() {
+  if(this.response) isAuthenticated = true;
+  else isAuthenticated = false;
+});
 addEventListeners();

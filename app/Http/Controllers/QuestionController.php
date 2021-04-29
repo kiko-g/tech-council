@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Content;
+use App\Models\User;
 use App\Models\VoteQuestion;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDOException;
 use PhpParser\Node\Expr\AssignOp\Concat;
 
 class QuestionController extends Controller
@@ -151,8 +154,47 @@ class QuestionController extends Controller
         //
     }
 
-    public function addVote(Request $request)
+    public function addVote(Request $request, $content_id)
     {
-        echo $request;
+        Question::findOrFail($content_id);
+
+        $this->authorize('create', VoteQuestion::class);
+        $request->validate(['value' => 'required|integer']);
+
+        $existingVote = VoteQuestion::where('user_id', Auth::user()->id)
+            ->where('question_id',  $content_id)
+            ->first();
+        
+        if($existingVote != null) {
+            $existingVote->vote = $request->value;
+            try {
+                $existingVote->save();
+            } catch (PDOException $e) {
+                abort('403', $e->getMessage());
+            } 
+        } else {
+            $vote = new VoteQuestion();
+            $vote->user_id = Auth::user()->id;
+            $vote->question_id = $content_id;
+            $vote->vote = $request->value;
+            try {
+                $vote->save();
+            } catch (PDOException $e) {
+                abort('403', $e->getMessage());
+            }
+        }
+    }
+
+    public function deleteVote($content_id) {
+        error_log("CONA PUTA 123123123123123123123123123");
+        Question::findOrFail($content_id);
+
+        $this->authorize('delete', VoteQuestion::class);
+
+        VoteQuestion::where('user_id', Auth::user()->id)
+            ->where('question_id', $content_id)
+            ->delete();
+        
+        error_log("PANELEIRO CARALHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO0");
     }
 }

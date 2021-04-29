@@ -8,14 +8,21 @@
   <div class="card-body" data-content-id="{{ $question->content_id }}">
     <article class="row row-cols-2 mb-1">
       <div class="col-auto flex-wrap">
-        <div id="votes" class="votes btn-group-vertical mt-1 flex-wrap">
-          <a id="upvote-button" class="upvote-button my-btn-pad up btn btn-outline-success teal"
-            onclick="vote('up', this.parentNode)">
+        <div id="votes-{{ $question->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
+          @php
+            $upClass = 'teal';
+            if($voteValue === 1) $upClass = 'active-teal';
+            
+            $downClass = 'pink';
+            if($voteValue === -1) $downClass = 'active-pink';
+          @endphp
+          <a id="upvote-button-{{ $question->content_id }}" class="upvote-button-question my-btn-pad up btn btn-outline-success {{ $upClass }}"
+            data-content-id="{{ $question->content_id }}">
             <i class="fas fa-chevron-up"></i>
           </a>
-          <a id="vote-ratio" class="vote-ratio btn my-btn-pad fake disabled"> {{ $question->votes_difference }} </a>
-          <a id="downvote-button" class="downvote-button my-btn-pad down btn btn-outline-danger pink"
-            onclick="vote('down', this.parentNode)">
+          <a id="vote-ratio-{{ $question->content_id }}" class="{{ $voteValue  }} vote-ratio-question btn my-btn-pad fake disabled"> {{ $question->votes_difference }} </a>
+          <a id="downvote-button-{{ $question->content_id }}" class="downvote-button-question my-btn-pad down btn btn-outline-danger {{ $downClass }}"
+            data-content-id="{{ $question->content_id }}">
             <i class="fas fa-chevron-down"></i>
           </a>
         </div>
@@ -40,20 +47,20 @@
         <div class="row row-cols-2 mb-1">
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
-              <a class="upvote-button my-btn-pad2 btn btn-outline-success bookmark" id="upvote-button-<ID>"
+              <a class="star-button my-btn-pad2 btn btn-outline-success bookmark" id="star-button-{{ $question->content_id }}"
                 onclick="toggleStar(this)" href="#">
                 <i class="far fa-bookmark"></i>&nbsp;Save
               </a>
             </div>
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
-                <a class="upvote-button btn teal my-btn-pad2" id="upvote-button-<ID>" href="#">
+                <a class="comment-number-button btn teal my-btn-pad2" id="comment-number-button-{{ $question->content_id }}" href="#">
                   <i class="far fa-comment-dots"></i>&nbsp;25
                 </a>
               </div>
             @endif
             <div class="btn-group mt-1 rounded">
-              <a class="upvote-button btn blue my-btn-pad2" id="upvote-button-<ID>" href="#">
+              <a class="share-button btn blue my-btn-pad2" id="share-button-{{ $question->content_id }}" href="#">
                 <i class="fas fa-share-alt"></i>&nbsp;Share
               </a>
             </div>

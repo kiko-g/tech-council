@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Question extends Model
@@ -37,5 +38,17 @@ class Question extends Model
     public function comments()
     {
         return $this->hasMany('App\Models\QuestionComment', 'question_id');
+    }
+
+    public function getVoteValue() {
+        $voteQuestion = Auth::check() ?
+            VoteQuestion::where('user_id', Auth::user()->id)
+                ->where('question_id', $this->content_id)
+                ->first() :
+            0;
+
+        $voteValue = 0;
+        if(!is_null($voteQuestion)) $voteValue = $voteQuestion->vote;
+        return $voteValue;
     }
 }

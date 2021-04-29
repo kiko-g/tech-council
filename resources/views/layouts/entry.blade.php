@@ -1,7 +1,7 @@
 @include('partials.head')
 
 <body>
-  @include('partials.header', ['user' => $user])
+  @include('partials.header')
   <div class="d-flex entry-form flex-column justify-content-center border-top-bg">
     @yield('content')
   </div>

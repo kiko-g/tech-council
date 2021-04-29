@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class VoteQuestion extends Model
 {
-    use HasCompositePrimaryKey;
-
     /**
     * No timestamps
     *
@@ -22,17 +21,10 @@ class VoteQuestion extends Model
     */
    protected $table = 'user_vote_question';
 
-   /**
-    * Indicates if the model's ID is auto-incrementing.
-    *
-    * @var bool
-    */
-   public $incrementing = false;
-
-   /**
-    * The composite primary key associated with the table.
+    /**
+    * The table associated with the model.
     *
     * @var string
     */
-   protected $primaryKey = array('"user_id"', 'question_id');
+    protected $primaryKey = 'id';
 }

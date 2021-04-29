@@ -1,4 +1,5 @@
-const vote = (vote, votes) => {
+const vote = (vote, votes, dataset, isQuestion) => {
+  let baseEndpoint = isQuestion ? '/api/question/' : '/api/answer/';
   let upvoteButton = votes.children[0];
   let downvoteButton = votes.children[2];
   let ratio = parseInt(votes.children[1].innerHTML);
@@ -9,41 +10,53 @@ const vote = (vote, votes) => {
 
   switch (vote) {
     case 'up':
+      // add QuestionVote
       if (none) {
         upvoteButton.classList.remove('teal');
         upvoteButton.classList.add('active-teal');
+        sendAjaxRequest('post', baseEndpoint + dataset.contentId + '/vote', { value: 1 }, null);
         votes.children[1].innerHTML = ratio + 1;
       }
+      // delete QuestionVote
       else if (!notUp) {
         upvoteButton.classList.remove('active-teal');
         upvoteButton.classList.add('teal');
+        sendAjaxRequest('delete', baseEndpoint + dataset.contentId + '/vote', null, null);
         votes.children[1].innerHTML = ratio - 1;
       }
+      // edit QuestionVote
       else if (!notDown) {
         upvoteButton.classList.remove('teal');
         upvoteButton.classList.add('active-teal');
         downvoteButton.classList.remove('active-pink');
         downvoteButton.classList.add('pink');
+        sendAjaxRequest('put', baseEndpoint + dataset.contentId + '/vote', { value: 1 }, null);
         votes.children[1].innerHTML = ratio + 2;
       }
       break;
 
     case 'down':
+      // add QuestionVote
       if (none) {
         downvoteButton.classList.remove('pink');
         downvoteButton.classList.add('active-pink');
+        sendAjaxRequest('post', baseEndpoint + dataset.contentId + '/vote', { value: -1 }, null);
         votes.children[1].innerHTML = ratio - 1;
       }
+      // delete QuestionVote
       else if (!notUp) {
         upvoteButton.classList.remove('active-teal');
         upvoteButton.classList.add('teal');
         downvoteButton.classList.remove('pink');
         downvoteButton.classList.add('active-pink');
+        sendAjaxRequest('delete', baseEndpoint + dataset.contentId + '/vote', null, null);
         votes.children[1].innerHTML = ratio - 2;
       }
+      // edit QuestionVote
       else if (!notDown) {
         downvoteButton.classList.remove('active-pink');
         downvoteButton.classList.add('pink');
+        sendAjaxRequest('put', baseEndpoint + dataset.contentId + '/vote', { value: 1 }, null);
         votes.children[1].innerHTML = ratio + 1;
       }
       break;
@@ -91,20 +104,25 @@ const toogleText = textDropdown => {
   }
 }
 
+// TODO: refactor this -> put inside addEventListenersCenas and call it
 
 // add event to buttons
-let buttons = document.getElementsByClassName("upvote-button");
+let buttons = document.getElementsByClassName("upvote-button-question");
 Array.from(buttons).forEach(element => {
   element.addEventListener('click', function (event) {
     event.preventDefault();
-    // DO SOMETHING WITH UPVOTE
+    if(!isAuthenticated) return;
+    vote('up', element.parentNode, this.dataset, true);
   });
 });
 
-buttons = document.getElementsByClassName("downvote-button");
+buttons = document.getElementsByClassName("downvote-button-question");
 Array.from(buttons).forEach(element => {
   element.addEventListener('click', function (event) {
     event.preventDefault();
-    // DO SOMETHING WITH DOWNVOTE
+    if(!isAuthenticated) return;
+    vote('down', element.parentNode, this.dataset, true);
   });
+
+  //TODO: same for answers
 });

@@ -14,6 +14,10 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+// Auth check
+Route::get('auth/check', function () {
+    return Auth::check();
+});
 
 // M01: Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -28,8 +32,9 @@ Route::get('/user/{id}', 'UserController@showProfile');
 // M03: Content viewing and searching
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
-Route::post('/api/vote/insert', 'QuestionController@addVote');
-Route::delete('/api/vote/{id}/delete', 'QuestionController@deleteVote');
+Route::post('/api/question/{id}/vote', 'QuestionController@addVote');
+Route::put('/api/question/{id}/vote', 'QuestionController@addVote');
+Route::delete('/api/question/{id}/vote', 'QuestionController@deleteVote');
 
 // M04: Content interaction
 Route::get('/create/question', function () {

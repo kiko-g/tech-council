@@ -149,35 +149,40 @@ CREATE TABLE content_report (
 );
 
 CREATE TABLE follow_tag (
+    id SERIAL PRIMARY KEY,
     tag_id INTEGER NOT NULL REFERENCES tag(id) ON UPDATE CASCADE ON DELETE CASCADE,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY (tag_id, "user_id")
+    UNIQUE (tag_id, "user_id")
 );
 
 CREATE TABLE user_vote_question (
+    id SERIAL PRIMARY KEY,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     vote INTEGER NOT NULL,
-    PRIMARY KEY ("user_id", question_id)
+    UNIQUE ("user_id", question_id)
 );
 
 CREATE TABLE user_vote_answer (
+    id SERIAL PRIMARY KEY,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     answer_id INTEGER NOT NULL REFERENCES answer(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     vote INTEGER NOT NULL,
-    PRIMARY KEY ("user_id", answer_id)
+    UNIQUE ("user_id", answer_id)
 );
 
 CREATE TABLE saved_question (
+    id SERIAL PRIMARY KEY,
     "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
     question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY ("user_id", question_id)
+    UNIQUE ("user_id", question_id)
 );
 
 CREATE TABLE question_tag (
+    id SERIAL PRIMARY KEY,
     question_id INTEGER NOT NULL REFERENCES question(content_id) ON UPDATE CASCADE ON DELETE CASCADE,
     tag_id INTEGER NOT NULL REFERENCES tag(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY (question_id, tag_id)
+    UNIQUE (question_id, tag_id)
 );
 
 ------------------

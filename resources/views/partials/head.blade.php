@@ -5,6 +5,8 @@
   <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Favicon -->
@@ -49,7 +51,8 @@
   <link rel="stylesheet" href={{ '/css/profile.css' }} />
 
   <!-- Scripts -->
-  <script src={{ '/js/script.js' }} defer></script>
+  <script src={{ '/js/app.js' }} defer></script>
+  <script src={{ '/js/vote.js' }} defer></script>
   <script src={{ '/js/moderator-switch.js' }} defer></script>
   <script src={{ '/js/tag-selector.js' }} defer></script>
 </head>
