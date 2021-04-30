@@ -1029,7 +1029,7 @@ paths:
         '403':
           description: 'Error. Forbidden.'
 
-/api/answer/{id}/vote:
+  /api/answer/{id}/vote:
     post:
       operationId: R416
       summary: 'R416: Insert a vote to an answer'
@@ -1087,8 +1087,8 @@ paths:
         '403':
           description: 'Error. Forbidden.'
     delete:
-      operationId: R415
-      summary: 'R415: Delete a vote to an answer'
+      operationId: R418
+      summary: 'R418: Delete a vote to an answer'
       description: 'Delete vote. Access: USR'
       tags:
         - 'M04: Content interaction'
