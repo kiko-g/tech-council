@@ -22,7 +22,7 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
           @auth
-            @if($user ?? ''->moderator)
+            @if($user->moderator)
               <li class="nav-item">     
                   <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{route('home')}}"><i
                       class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a>

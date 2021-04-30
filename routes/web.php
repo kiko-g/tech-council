@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,10 @@ Route::get('/question/{id}', 'QuestionController@showPage');
 Route::post('/api/question/{id}/vote', 'QuestionController@addVote');
 Route::put('/api/question/{id}/vote', 'QuestionController@addVote');
 Route::delete('/api/question/{id}/vote', 'QuestionController@deleteVote');
+Route::post('/api/question/{id}/answer', 'AnswerController@create')->name('answer.create');
+Route::post('/api/answer/{id}/vote', 'AnswerController@addVote');
+Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');
+Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');
 
 // M04: Content interaction
 Route::get('/create/question', function () {

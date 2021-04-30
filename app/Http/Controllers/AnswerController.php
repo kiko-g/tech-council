@@ -3,7 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Content;
+use App\Models\Question;
+use App\Models\VoteAnswer;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class AnswerController extends Controller
 {
@@ -22,9 +29,34 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $question_id)
     {
-        //
+        Question::findOrFail($question_id);
+
+        $this->authorize('create', Answer::class);
+        $request->validate(['main' => 'required|max:' . Answer::MAX_MAIN_LENGTH]);
+
+        $content = new Content();
+        $content->main = $request->input('main');
+        $content->author_id = Auth::user()->id;
+        
+        try {
+            DB::transaction(function() use($content, $question_id) {
+                $content->save();
+                $answer = new Answer();
+                $answer->content_id = $content->id;
+                $answer->question_id = $question_id;
+                $answer->save();
+            });
+        } 
+        catch (PDOException $e) {
+            error_log($e->getMessage());
+            abort(403, $e->getMessage());
+        }
+ 
+        // TODO: Add notification here!
+
+        return response()->json($content);
     }
 
     /**
@@ -81,5 +113,46 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
+    }
+
+    public function addVote(Request $request, $content_id)
+    {
+        Answer::findOrFail($content_id);
+
+        $this->authorize('create', VoteAnswer::class);
+        $request->validate(['value' => 'required|integer']);
+
+        $existingVote = VoteAnswer::where('user_id', Auth::user()->id)
+            ->where('answer_id',  $content_id)
+            ->first();
+        
+        if($existingVote != null) {
+            $existingVote->vote = $request->value;
+            try {
+                $existingVote->save();
+            } catch (PDOException $e) {
+                abort('403', $e->getMessage());
+            } 
+        } else {
+            $vote = new VoteAnswer();
+            $vote->user_id = Auth::user()->id;
+            $vote->answer_id = $content_id;
+            $vote->vote = $request->value;
+            try {
+                $vote->save();
+            } catch (PDOException $e) {
+                abort('403', $e->getMessage());
+            }
+        }
+    }
+
+    public function deleteVote($content_id) {
+        Answer::findOrFail($content_id);
+
+        $this->authorize('delete', VoteAnswer::class);
+
+        VoteAnswer::where('user_id', Auth::user()->id)
+            ->where('answer_id', $content_id)
+            ->delete();
     }
 }

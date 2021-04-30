@@ -1,3 +1,41 @@
+function addEventListeners() {
+  let buttons = document.getElementsByClassName("upvote-button-question");
+  Array.from(buttons).forEach(element => {
+    element.addEventListener('click', function (event) {
+      event.preventDefault();
+      if(!isAuthenticated) return;
+      vote('up', element.parentNode, this.dataset, true);
+    });
+  });
+
+  buttons = document.getElementsByClassName("downvote-button-question");
+  Array.from(buttons).forEach(element => {
+    element.addEventListener('click', function (event) {
+      event.preventDefault();
+      if(!isAuthenticated) return;
+      vote('down', element.parentNode, this.dataset, true);
+    });
+  });
+
+  buttons = document.getElementsByClassName("upvote-button-answer");
+  Array.from(buttons).forEach(element => {
+    element.addEventListener('click', function (event) {
+      event.preventDefault();
+      if(!isAuthenticated) return;
+      vote('up', element.parentNode, this.dataset, false);
+    });
+  });
+
+  buttons = document.getElementsByClassName("downvote-button-answer");
+  Array.from(buttons).forEach(element => {
+    element.addEventListener('click', function (event) {
+      event.preventDefault();
+      if(!isAuthenticated) return;
+      vote('down', element.parentNode, this.dataset, false);
+    });
+  });
+}
+
 const vote = (vote, votes, dataset, isQuestion) => {
   let baseEndpoint = isQuestion ? '/api/question/' : '/api/answer/';
   let upvoteButton = votes.children[0];
@@ -49,14 +87,14 @@ const vote = (vote, votes, dataset, isQuestion) => {
         upvoteButton.classList.add('teal');
         downvoteButton.classList.remove('pink');
         downvoteButton.classList.add('active-pink');
-        sendAjaxRequest('delete', baseEndpoint + dataset.contentId + '/vote', null, null);
+        sendAjaxRequest('put', baseEndpoint + dataset.contentId + '/vote', { value: -1 }, null);
         votes.children[1].innerHTML = ratio - 2;
       }
       // edit QuestionVote
       else if (!notDown) {
         downvoteButton.classList.remove('active-pink');
         downvoteButton.classList.add('pink');
-        sendAjaxRequest('put', baseEndpoint + dataset.contentId + '/vote', { value: 1 }, null);
+        sendAjaxRequest('delete', baseEndpoint + dataset.contentId + '/vote', null, null);
         votes.children[1].innerHTML = ratio + 1;
       }
       break;
@@ -104,25 +142,4 @@ const toogleText = textDropdown => {
   }
 }
 
-// TODO: refactor this -> put inside addEventListenersCenas and call it
-
-// add event to buttons
-let buttons = document.getElementsByClassName("upvote-button-question");
-Array.from(buttons).forEach(element => {
-  element.addEventListener('click', function (event) {
-    event.preventDefault();
-    if(!isAuthenticated) return;
-    vote('up', element.parentNode, this.dataset, true);
-  });
-});
-
-buttons = document.getElementsByClassName("downvote-button-question");
-Array.from(buttons).forEach(element => {
-  element.addEventListener('click', function (event) {
-    event.preventDefault();
-    if(!isAuthenticated) return;
-    vote('down', element.parentNode, this.dataset, true);
-  });
-
-  //TODO: same for answers
-});
+addEventListeners();
