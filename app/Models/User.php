@@ -30,8 +30,8 @@ class User extends Authenticatable
         'name', 'email', 'password', 'bio'
     ];
 
-    public function admin() {
-        return $this->hasOne('App\Models\Moderator', '"user_id"');
+    public function moderator() {
+        return $this->hasOne('App\Models\Moderator', 'user_id');
     }
 
     public function questions() {

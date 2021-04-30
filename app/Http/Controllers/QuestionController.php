@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Content;
-use App\Models\User;
 use App\Models\VoteQuestion;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDOException;
-use PhpParser\Node\Expr\AssignOp\Concat;
 
 class QuestionController extends Controller
 {
