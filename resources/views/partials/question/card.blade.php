@@ -1,27 +1,61 @@
 <div class="card mb-5 p-2-0 border-0 rounded">
   <div class="card-header bg-petrol text-white font-source-sans-pro">
-    <a class="a header" href="{{ url('question/' . $question->content_id) }}">
-      {{ $question->title }}
-      <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
-    </a>
+    <div class="row">
+      <div class="col-auto me-auto">
+        <a class="a header" href="{{ url('question/' . $question->content_id) }}">
+          {{ $question->title }}
+          <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
+        </a>
+      </div>
+      @auth
+        @if (Auth::user()->id == $question->content->author_id)
+          <div class="col-auto btn-group">
+            <form action="{{ url('/api/question/' . $question->content_id . '/edit') }}" method="post">
+              @method('PUT')
+              @csrf
+              <button class="btn p-0" type="submit">
+                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+              </button>
+            </form>
+
+            <form action="@if (!$include_comments) {{ url('/api/question/' . $question->content_id . '/delete') }} @else {{ url('/question/' . $question->content_id . '/delete') }} @endif" method="post">
+              @method('DELETE')
+              @csrf
+              <button class="btn p-0" type="submit">
+                <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+              </button>
+            </form>
+          </div>
+        @endif
+      @endauth
+    </div>
   </div>
+
   <div class="card-body" data-content-id="{{ $question->content_id }}">
     <article class="row row-cols-2 mb-1">
       <div class="col-auto flex-wrap">
         <div id="votes-{{ $question->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
           @php
             $upClass = 'teal';
-            if($voteValue === 1) $upClass = 'active-teal';
+            if ($voteValue === 1) {
+                $upClass = 'active-teal';
+            }
             
             $downClass = 'pink';
-            if($voteValue === -1) $downClass = 'active-pink';
+            if ($voteValue === -1) {
+                $downClass = 'active-pink';
+            }
           @endphp
-          <a id="upvote-button-{{ $question->content_id }}" class="upvote-button-question my-btn-pad up btn btn-outline-success {{ $upClass }}"
+          <a id="upvote-button-{{ $question->content_id }}"
+            class="upvote-button-question my-btn-pad up btn btn-outline-success {{ $upClass }}"
             data-content-id="{{ $question->content_id }}">
             <i class="fas fa-chevron-up"></i>
           </a>
-          <a id="vote-ratio-{{ $question->content_id }}" class="{{ $voteValue  }} vote-ratio-question btn my-btn-pad fake disabled"> {{ $question->votes_difference }} </a>
-          <a id="downvote-button-{{ $question->content_id }}" class="downvote-button-question my-btn-pad down btn btn-outline-danger {{ $downClass }}"
+          <a id="vote-ratio-{{ $question->content_id }}"
+            class="{{ $voteValue }} vote-ratio-question btn my-btn-pad fake disabled">
+            {{ $question->votes_difference }} </a>
+          <a id="downvote-button-{{ $question->content_id }}"
+            class="downvote-button-question my-btn-pad down btn btn-outline-danger {{ $downClass }}"
             data-content-id="{{ $question->content_id }}">
             <i class="fas fa-chevron-down"></i>
           </a>
@@ -47,14 +81,15 @@
         <div class="row row-cols-2 mb-1">
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
-              <a class="star-button my-btn-pad2 btn btn-outline-success bookmark" id="star-button-{{ $question->content_id }}"
-                onclick="toggleStar(this)" href="#">
+              <a class="star-button my-btn-pad2 btn btn-outline-success bookmark"
+                id="star-button-{{ $question->content_id }}" onclick="toggleStar(this)" href="#">
                 <i class="far fa-bookmark"></i>&nbsp;Save
               </a>
             </div>
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
-                <a class="comment-number-button btn teal my-btn-pad2" id="comment-number-button-{{ $question->content_id }}" href="#">
+                <a class="comment-number-button btn teal my-btn-pad2"
+                  id="comment-number-button-{{ $question->content_id }}" href="#">
                   <i class="far fa-comment-dots"></i>&nbsp;25
                 </a>
               </div>

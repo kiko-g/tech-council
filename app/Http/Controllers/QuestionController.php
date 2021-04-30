@@ -63,6 +63,22 @@ class QuestionController extends Controller
         return $question;
     }
 
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $question = Question::find($id);
+
+		$this->authorize('delete', $question);
+		$question->delete();
+
+        return redirect()->route('home');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -139,17 +155,6 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Question $question)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
     {
         //
     }

@@ -58,7 +58,7 @@ $member_counter = 0;
       @foreach ($team_members as $name => $attrs)
         <?php $member_counter++; ?>
         <div class="card me-3 mb-2 border border-5 rounded-3" style="width: 18rem;">
-          <img src="{{ 'images/team' . $member_counter . '.jpeg' }}" class="card-img-top img-fluid"
+          <img src="{{ '/images/team' . $member_counter . '.jpeg' }}" class="card-img-top img-fluid"
             alt="Team member number {{ $member_counter }}">
           <div class="card-body">
             <h5 class="card-title">{{ $name }}</h5>

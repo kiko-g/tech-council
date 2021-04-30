@@ -43,6 +43,8 @@ Route::get('/create/question', function () {
     ]);
 })->name('create/question');
 Route::post('/api/question/insert', 'QuestionController@create');
+Route::delete('/api/question/{id}/delete', 'QuestionController@delete');
+Route::delete('/question/{id}/delete', 'QuestionController@delete');
 
 // M05: Moderation
 // --

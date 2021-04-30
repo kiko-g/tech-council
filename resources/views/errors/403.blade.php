@@ -6,7 +6,7 @@
       <h2>403 Forbidden</h2>
       <div class="container-fluid my-4">
         <h5>Seems like you don't have permissions to perform this request!</h5>
-        <img src="{{ 'images/morty.gif' }}" class=" img-fluid ms-auto my-4 w-75" alt="morty-confused">
+        <img src="{{ '/images/morty.gif' }}" class=" img-fluid ms-auto my-4 w-75" alt="morty-confused">
       </div>
       <div class="error-actions">
         <a href="{{ route('home') }}" class="btn btn-primary btn-lg"> Country roads?<br>Take me Home</a>

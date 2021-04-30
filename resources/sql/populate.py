@@ -1,4 +1,5 @@
 import pandas as pd
+import bcrypt
 
 if __name__ == '__main__':
     # parse csv data from xlsx
@@ -36,6 +37,13 @@ if __name__ == '__main__':
     
     # user table strings
     populate_string += "\n\n\n-- USER TABLE\n"
+
+    password = "SuperSercet34".encode("utf-8")
+
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+
+    print(hashed)
+
     for i in range(len(user)):
         populate_string += "INSERT INTO \"user\"(email,\"name\",\"password\",join_date,reputation,bio,banned,expert,profile_photo) VALUES ("
         populate_string += "'"
@@ -43,7 +51,10 @@ if __name__ == '__main__':
         populate_string += "','"
         populate_string += str(user.loc[i, 'name'])
         populate_string += "','"
-        populate_string += str(user.loc[i, 'password'])
+        #populate_string += str(user.loc[i, 'password'])
+        password = str(user.loc[i, 'password']).encode("utf-8")
+        b = bcrypt.hashpw(password, bcrypt.gensalt())
+        populate_string += b.decode("UTF-8")
         populate_string += "','"
         populate_string += str(user.loc[i, 'join_date'])
         populate_string += "','"

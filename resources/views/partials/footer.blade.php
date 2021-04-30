@@ -18,8 +18,8 @@
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
           <li><i class="fas fa-home"></i>&nbsp; <a href="{{ route('home') }}">Home</a> </li>
-          <li><i class="fas fa-inbox"></i>&nbsp; <a href="{{ 'images/morty.gif' }}">Inbox</a></li>
-          <li><i class="fas fa-address-card"></i>&nbsp; <a href="{{ 'images/morty.gif' }}">Profile</a></li>
+          <li><i class="fas fa-inbox"></i>&nbsp; <a href="{{ '/images/morty.gif' }}">Inbox</a></li>
+          <li><i class="fas fa-address-card"></i>&nbsp; <a href="{{ '/images/morty.gif' }}">Profile</a></li>
           <li><i class="fas fa-info-circle"></i>&nbsp; <a href="{{ route('about') }}">About</a></li>
           <li><i class="fas fa-question-circle"></i>&nbsp; <a href="{{ route('faq') }}">FAQ</a></li>
         </ul>

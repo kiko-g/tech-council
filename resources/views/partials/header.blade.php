@@ -1,7 +1,7 @@
 <header>
   <nav class="bg-animated navbar navbar-expand-lg navbar-dark bg-dark p-2">
     <div class="container-fluid justify-content-center px-3">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="{{route('home')}}">
         @include('partials.icon')
         <!-- <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1"> -->
         Tech Council
