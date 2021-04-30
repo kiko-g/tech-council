@@ -949,27 +949,20 @@ paths:
         '403':
           description: 'Error. Forbidden.'
 
-  /api/vote/insert:
+  /api/question/{id}/vote:
     post:
       operationId: R413
-      summary: 'R413: Insert a vote to a content'
+      summary: 'R413: Insert a vote to a question'
       description: 'Insert vote. Access: USR'
       tags:
         - 'M04: Content interaction'
       parameters:
-        - in: query
+        - in: path
           name: id
-          description: Id of the content to vote
+          description: Id of the question to vote
           schema:
             type: integer
           required: true
-        - name: type
-          in: query
-          description: Type of vote (question or answer)
-          required: true
-          schema:
-            type: string
-            enum: [question, answer]
         - name: value
           in: query
           description: Value of the vote
@@ -985,28 +978,19 @@ paths:
           description: 'Error. Unauthorized.'
         '403':
           description: 'Error. Forbidden.'
-  
-  /api/vote/{id}/edit:
     put:
       operationId: R414
-      summary: 'R414: Edit a vote to a content'
+      summary: 'R414: Edit a vote to a question'
       description: 'Edit vote. Access: USR'
       tags:
         - 'M04: Content interaction'
       parameters:
         - in: path
           name: id
-          description: Vote's id
+          description: Id of the question to vote
           schema:
             type: integer
           required: true
-        - name: type
-          in: query
-          description: Type of vote (question or answer)
-          required: true
-          schema:
-            type: string
-            enum: [question, answer]
         - name: value
           in: query
           description: Value of the vote
@@ -1022,28 +1006,99 @@ paths:
           description: 'Error. Unauthorized.'
         '403':
           description: 'Error. Forbidden.'
-
-  /api/vote/{id}/delete:
     delete:
       operationId: R415
-      summary: 'R415: Delete a vote to a content'
+      summary: 'R415: Delete a vote to a question'
       description: 'Delete vote. Access: USR'
       tags:
         - 'M04: Content interaction'
       parameters:
         - in: path
           name: id
-          description: Vote's id
+          description: Id of the question to vote
           schema:
             type: integer
           required: true
-        - name: type
-          in: query
-          description: Type of vote (question or answer)
-          required: true
+      responses:
+        '200':
+          description: 'Ok. Vote deleted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+
+/api/answer/{id}/vote:
+    post:
+      operationId: R416
+      summary: 'R416: Insert a vote to an answer'
+      description: 'Insert vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Id of the answer to vote
           schema:
-            type: string
-            enum: [question, answer]
+            type: integer
+          required: true
+        - name: value
+          in: query
+          description: Value of the vote
+          schema:
+            type: boolean
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Vote inserted.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+    put:
+      operationId: R417
+      summary: 'R417: Edit a vote to an answer'
+      description: 'Edit vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Id of the answer to vote
+          schema:
+            type: integer
+          required: true
+        - name: value
+          in: query
+          description: Value of the vote
+          schema:
+            type: boolean
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Vote edited.'
+        '400':
+          description: 'Error. Bad request.'
+        '401':
+          description: 'Error. Unauthorized.'
+        '403':
+          description: 'Error. Forbidden.'
+    delete:
+      operationId: R415
+      summary: 'R415: Delete a vote to an answer'
+      description: 'Delete vote. Access: USR'
+      tags:
+        - 'M04: Content interaction'
+      parameters:
+        - in: path
+          name: id
+          description: Id of the answer to vote
+          schema:
+            type: integer
+          required: true
       responses:
         '200':
           description: 'Ok. Vote deleted.'
