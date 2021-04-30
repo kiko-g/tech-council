@@ -186,7 +186,6 @@ class QuestionController extends Controller
     }
 
     public function deleteVote($content_id) {
-        error_log("CONA PUTA 123123123123123123123123123");
         Question::findOrFail($content_id);
 
         $this->authorize('delete', VoteQuestion::class);
@@ -194,7 +193,5 @@ class QuestionController extends Controller
         VoteQuestion::where('user_id', Auth::user()->id)
             ->where('question_id', $content_id)
             ->delete();
-        
-        error_log("PANELEIRO CARALHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO0");
     }
 }

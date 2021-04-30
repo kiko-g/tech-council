@@ -41,14 +41,13 @@ class Question extends Model
     }
 
     public function getVoteValue() {
-        $voteQuestion = Auth::check() ?
-            VoteQuestion::where('user_id', Auth::user()->id)
-                ->where('question_id', $this->content_id)
-                ->first() :
-            0;
+        if(!Auth::check())
+            return 0;
 
-        $voteValue = 0;
-        if(!is_null($voteQuestion)) $voteValue = $voteQuestion->vote;
-        return $voteValue;
+        $voteQuestion = VoteQuestion::where('user_id', Auth::user()->id)
+            ->where('question_id', $this->content_id)
+            ->first();
+
+        return is_null($voteQuestion) ? 0 : $voteQuestion->vote;
     }
 }
