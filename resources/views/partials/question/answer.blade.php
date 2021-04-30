@@ -1,13 +1,10 @@
-<div class="card mb-4 border-0 p-0 rounded bg-<?= $answer->is_best_answer ? 'teal-600' : 'background-color' ?>">
+<div id="{{ 'answer-' . $question->content_id }}"
+   class="card mb-4 border-0 p-0 rounded bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }}">
   <div class="card m-1">
     <div class="card-body">
-      <p class="mb-3">
-      <?= $answer->content->main ?>
-      </p>
-
-      <div class="row row-cols-3 mb-4" data-content-id="{{ $answer->content_id }}">
+      <article class="row row-cols-2 mb-1" data-content-id="{{ $answer->content_id }}">
         <div class="col-lg flex-wrap">
-          <div id="votes-{{ $answer->content_id }}" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
+          <div id="votes-{{ $answer->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
             @php
               $upClass = 'teal';
               if($voteValue === 1) $upClass = 'active-teal';
@@ -24,8 +21,15 @@
             </a>
           </div>
         </div>
-      </div>
 
+        <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
+          <div id="{{ 'answer-content-' . $question->content_id }}" class="mb-1">
+            <p>
+              {!! $answer->content->main !!}
+            </p>
+          </div>
+        </div>
+      </article>
       @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
     </div>
 

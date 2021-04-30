@@ -1,10 +1,10 @@
 <?php $comment_limit = 3; ?>
-<div class="mb-3">
+<div class="my-3">
   <?php
   $comment_count = 0;
   foreach ($comments as $comment) {
     $comment_count++; ?>
-    <div class="<?php if ($comment_count > $comment_limit) { ?> collapse hidden<?= $id ?> <?php } ?>">
+    <div class="<?php if ($comment_count > $comment_limit) { ?> collapse hidden{{ $id }} <?php } ?>">
       <div class="comment d-flex justify-content-between shadow-sm border border-2 mb-1 px-2 bg-light rounded">
         <p class="mb-0"><?= $comment->content->main ?></p>
         <blockquote class="blockquote mb-0">

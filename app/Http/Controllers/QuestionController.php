@@ -76,6 +76,31 @@ class QuestionController extends Controller
         return redirect()->route('home');
     }
 
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteAPI($id)
+    {
+        $question = Question::find($id);
+
+		$this->authorize('delete', $question);
+
+        try {
+            $question->delete();
+        } catch (PDOException $e) {
+            abort('403', $e->getMessage());
+        }
+
+        $content = [
+            'id' => $id
+        ];
+        return response()->json($content);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

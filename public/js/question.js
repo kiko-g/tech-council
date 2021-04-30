@@ -1,21 +1,49 @@
 function addEventListeners() {
-    let answerSubmitForm = document.getElementById('answer-submit-form');
-    
+    let answerSubmitForm = document.getElementById("answer-submit-form");
+
     try {
-        answerSubmitForm.addEventListener('submit', submitAnswer);
-    } catch(e) {}
+        answerSubmitForm.addEventListener("submit", submitAnswer);
+    } catch (e) {}
 
     //TODO: answer_edit_form
     //TODO: answer_delete_form
 
     //TODO: question_edit_form
-    //TODO: question_delete_form
+    let questionDeleteForms = document.getElementsByClassName(
+        "delete-question"
+    );
+
+    for (form of questionDeleteForms) {
+        form.addEventListener("submit", deleteQuestion);
+    }
+}
+
+function deleteQuestion(event) {
+    event.preventDefault();
+    let idString = this.id;
+    let questionId = idString.split("-").pop();
+
+    sendAjaxRequest(
+        "delete",
+        "/api/question/" + questionId + "/delete",
+        null,
+        deleteQuestionHandler
+    );
+}
+
+function deleteQuestionHandler() {
+    let response = JSON.parse(this.responseText);
+
+    if (this.status == 200 || this.status == 201) {
+        document.getElementById("question-" + response.id).remove();
+    } else {
+        // TODO set input error
+    }
 }
 
 function submitAnswer(event) {
     event.preventDefault();
-    if(!isAuthenticated)
-        return;
+    if (!isAuthenticated) return;
 
     let fields = getFormValues(this);
     console.log(fields);
@@ -24,22 +52,31 @@ function submitAnswer(event) {
 
     let questionId = this.dataset.questionId;
     // TODO add loading here
-    sendAjaxRequest('post', '/api/question/' + questionId + '/answer', { main: fields.main }, answerAddedHandler);
+    sendAjaxRequest(
+        "post",
+        "/api/question/" + questionId + "/answer",
+        { main: fields.main },
+        answerAddedHandler
+    );
 }
 
 function answerAddedHandler() {
     // TODO clear loading here
     let response = JSON.parse(this.responseText);
 
-    if(this.status == 200 || this.status == 201) {
-        let newAnswer = createAnswer(response.main, response.id, response.author_id);
+    if (this.status == 200 || this.status == 201) {
+        let newAnswer = createAnswer(
+            response.main,
+            response.id,
+            response.author_id
+        );
 
         // Add new question
-        let answers = document.getElementById('answer-section');
+        let answers = document.getElementById("answer-section");
         answers.prepend(newAnswer);
 
         // Reset form value
-        let form = document.getElementById('answer-submit-input');
+        let form = document.getElementById("answer-submit-input");
         form.value = "";
     } else {
         // TODO set input error
@@ -47,8 +84,15 @@ function answerAddedHandler() {
 }
 
 function createAnswer(main, answerId, authorId) {
-    let newAnswer = document.createElement('div');
-    newAnswer.classList.add('card', 'mb-4', 'border-0', 'p-0', 'rounded', 'bg-background-color');
+    let newAnswer = document.createElement("div");
+    newAnswer.classList.add(
+        "card",
+        "mb-4",
+        "border-0",
+        "p-0",
+        "rounded",
+        "bg-background-color"
+    );
     newAnswer.innerHTML = `
     <div class="card m-1">
         <div class="card-body">
@@ -78,7 +122,7 @@ function createAnswer(main, answerId, authorId) {
         </blockquote>
         </div>
     </div>
-    `
+    `;
 
     // TODO: edit timestamp and user
 

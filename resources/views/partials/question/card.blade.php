@@ -1,4 +1,4 @@
-<div class="card mb-5 p-2-0 border-0 rounded">
+<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
   <div class="card-header bg-petrol text-white font-source-sans-pro">
     <div class="row">
       <div class="col-auto me-auto">
@@ -17,8 +17,13 @@
                 <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
               </button>
             </form>
-
-            <form action="@if (!$include_comments) {{ url('/api/question/' . $question->content_id . '/delete') }} @else {{ url('/question/' . $question->content_id . '/delete') }} @endif" method="post">
+            @php           
+              $_class = $include_comments ? 'delete-question-page' : 'delete-question';
+              $_id = $include_comments ? 'delete-question-page' : 'delete-question-' . $question->content_id;
+            @endphp
+            <form action="{{ url('/question/' . $question->content_id . '/delete') }}" 
+              class={{ $_class }}
+              id={{ $_id }} method="post">
               @method('DELETE')
               @csrf
               <button class="btn p-0" type="submit">
@@ -63,7 +68,7 @@
       </div>
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
-        <div id="question" class="mb-1">
+        <div id="{{ 'question-content-' . $question->content_id }}" class="mb-1">
 
           {!! $question->content->main !!}
           {{-- <div class="collapse mt-2" id="collapseQuestionText2">

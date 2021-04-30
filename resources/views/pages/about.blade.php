@@ -1,4 +1,4 @@
-<?php
+@php
 $team_members = [
 'fiambre' => [
 'bio' => 'Team member bio 1',
@@ -32,7 +32,7 @@ $team_members = [
 ];
 
 $member_counter = 0;
-?>
+@endphp
 
 @extends('layouts.entry')
 
@@ -56,7 +56,7 @@ $member_counter = 0;
 
     <div class="d-flex team-cards justify-content-center">
       @foreach ($team_members as $name => $attrs)
-        <?php $member_counter++; ?>
+        @php $member_counter++; @endphp
         <div class="card me-3 mb-2 border border-5 rounded-3" style="width: 18rem;">
           <img src="{{ '/images/team' . $member_counter . '.jpeg' }}" class="card-img-top img-fluid"
             alt="Team member number {{ $member_counter }}">
