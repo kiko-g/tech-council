@@ -5,7 +5,12 @@ function addEventListeners() {
         answerSubmitForm.addEventListener("submit", submitAnswer);
     } catch (e) {}
 
-    //TODO: answer_edit_form
+    let editButtons = document.getElementsByClassName(
+        "answer-edit"
+    );
+    for (editButton of editButtons)
+        editButton.addEventListener("click", editingAnswer);
+
     //TODO: answer_delete_form
 
     //TODO: question_edit_form
@@ -13,8 +18,61 @@ function addEventListeners() {
         "delete-question"
     );
 
-    for (form of questionDeleteForms) {
+    for (form of questionDeleteForms)
         form.addEventListener("submit", deleteQuestion);
+}
+
+function editingAnswer() {
+    console.log("editing");
+    let idArray = this.id.split("-");
+    let answerId = idArray.pop();
+    idArray.push('form');
+    idArray.push(answerId);
+    let formId = idArray.join('-');
+
+    let editForm = document.getElementById(formId);
+    console.log(editForm);
+    editForm.addEventListener("submit", editAnswer);
+}
+
+function editAnswer(event) {
+    event.preventDefault();
+    console.log("edit");
+    let idString = this.id;
+    let answerId = idString.split('-').pop();
+    let main = document.getElementById('answer-submit-input-' + answerId).value;
+    console.log('main = ' + main);
+
+    sendAjaxRequest(
+        "put",
+        "/api/answer/" + answerId + "/edit",
+        { main: main },
+        editAnswerHandler
+    );
+}
+
+function editAnswerHandler() {
+    console.log('status: ' + this.status);
+    if (this.status == 200 || this.status == 201) {
+        // set edited content
+        let response = JSON.parse(this.responseText);
+        let answer = document.getElementById('answer-content-' + response.id);
+        answer.innerHTML = `
+            <p>
+                ${response.main}
+            </p>
+        `;
+
+        // reset collapses
+        let collapses = document.getElementsByClassName('answer-collapse');
+        for (collapse of collapses) {
+            if (collapse.classList.contains('show'))
+                collapse.classList.remove('show');
+            else 
+                collapse.classList.add('show');
+        }
+    } else {
+        // TODO set input error
     }
 }
 

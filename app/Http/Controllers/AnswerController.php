@@ -39,21 +39,20 @@ class AnswerController extends Controller
         $content = new Content();
         $content->main = $request->input('main');
         $content->author_id = Auth::user()->id;
-        
+
         try {
-            DB::transaction(function() use($content, $question_id) {
+            DB::transaction(function () use ($content, $question_id) {
                 $content->save();
                 $answer = new Answer();
                 $answer->content_id = $content->id;
                 $answer->question_id = $question_id;
                 $answer->save();
             });
-        } 
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             error_log($e->getMessage());
             abort(403, $e->getMessage());
         }
- 
+
         // TODO: Add notification here!
 
         return response()->json($content);
@@ -82,26 +81,28 @@ class AnswerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Answer $answer)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function edit(Request $request, $id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+
+        //$this->authorize('update', Answer::class); //TODO: check authorization
+        $content = $answer->content;
+
+        //TODO: trigger to update edited date
+        $content->main = $request->main;
+        try {
+            $content->save();
+        } catch (PDOException $e) {
+            abort('403', $e->getMessage());
+        }
+
+        return response()->json($content);
     }
 
     /**
@@ -125,14 +126,14 @@ class AnswerController extends Controller
         $existingVote = VoteAnswer::where('user_id', Auth::user()->id)
             ->where('answer_id',  $content_id)
             ->first();
-        
-        if($existingVote != null) {
+
+        if ($existingVote != null) {
             $existingVote->vote = $request->value;
             try {
                 $existingVote->save();
             } catch (PDOException $e) {
                 abort('403', $e->getMessage());
-            } 
+            }
         } else {
             $vote = new VoteAnswer();
             $vote->user_id = Auth::user()->id;
@@ -146,7 +147,8 @@ class AnswerController extends Controller
         }
     }
 
-    public function deleteVote($content_id) {
+    public function deleteVote($content_id)
+    {
         Answer::findOrFail($content_id);
 
         $this->authorize('delete', VoteAnswer::class);
