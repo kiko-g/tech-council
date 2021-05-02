@@ -4,7 +4,7 @@
 set -e
 
 DOCKER_USERNAME=lbaw2132
-IMAGE_NAME=lbaw2132:latest
+IMAGE_NAME=lbaw2132
 
 # Ensure that dependencies are available
 composer install

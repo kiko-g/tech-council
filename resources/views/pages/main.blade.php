@@ -7,9 +7,3 @@
 @section('aside')
   @include('partials.aside')
 @endsection
-
-<!-- 
-TO DO LIST
-
-- Merge question card and question
- -->

@@ -1,34 +1,34 @@
 @php
 $team_members = [
-'fiambre' => [
-'bio' => 'Team member bio 1',
-'social' => [
-'github' => 'https://github.com/ffriande',
-'twitter' => 'https://github.com/ffriande',
-],
-],
-'kikojpg' => [
-'bio' => 'Team member bio 2',
-'social' => [
-'github' => 'https://github.com/kiko-g',
-'twitter' => 'https://twitter.com/kikogoncalves_',
-'globe' => 'https://kiko-g.github.io',
-],
-],
-'jdiogueiro' => [
-'bio' => 'Team member bio 3',
-'social' => [
-'github' => 'https://github.com/TsarkFC',
-'facebook' => 'https://github.com/TsarkFC',
-],
-],
-'mpinto01' => [
-'bio' => 'Team member bio 4',
-'social' => [
-'github' => 'https://github.com/MiguelDelPinto',
-'twitter' => 'https://github.com/MiguelDelPinto',
-],
-],
+    'fiambre' => [
+        'bio' => 'Team member bio 1',
+        'social' => [
+            'github' => 'https://github.com/ffriande',
+            'twitter' => 'https://github.com/ffriande',
+        ],
+    ],
+    'kikojpg' => [
+        'bio' => 'Team member bio 2',
+        'social' => [
+            'github' => 'https://github.com/kiko-g',
+            'twitter' => 'https://twitter.com/kikogoncalves_',
+            'globe' => 'https://kiko-g.github.io',
+        ],
+    ],
+    'jdiogueiro' => [
+        'bio' => 'Team member bio 3',
+        'social' => [
+            'github' => 'https://github.com/TsarkFC',
+            'facebook' => 'https://github.com/TsarkFC',
+        ],
+    ],
+    'mpinto01' => [
+        'bio' => 'Team member bio 4',
+        'social' => [
+            'github' => 'https://github.com/MiguelDelPinto',
+            'twitter' => 'https://github.com/MiguelDelPinto',
+        ],
+    ],
 ];
 
 $member_counter = 0;
