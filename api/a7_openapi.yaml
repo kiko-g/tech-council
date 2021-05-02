@@ -171,7 +171,7 @@ paths:
         - "M01: Authentication"
       responses:
         "200":
-          description: "OK. Show RESET PAGE" #TODO
+          description: "OK. Redirect to [UI15](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui15-recover-password)"
     post:
       operationId: R107
       summary: "R107: Reset Password Action"
@@ -204,7 +204,7 @@ paths:
                   description: "Authentication Success. Redirect to home page."
                   value: "/home"
         "400":
-          description: "Reset Error. Stay in RESET PAGE." #TODO
+          description: "Reset Error. Redirect to [UI15](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui15-recover-password)"
           headers:
             Location:
               schema:
@@ -302,7 +302,63 @@ paths:
                   description: "Error editing profile."
                   value: "/user_profile/edit"
 
-  #TODO: notifications
+  /api/user/{id}/report:
+    post:
+      operationId: R204
+      summary: "R204: Report a user"
+      description: "Report a user. Access: USR"
+      tags:
+        - "M02: Individual Profile"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the user to report
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: reason
+          description: Reason of the report
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "Ok. Report created."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found." 
+  
+  /api/user/notification/{id}:
+    delete:
+      operationId: R205
+      summary: "R205: Delete a notication for a user"
+      description: "Delete a notification. Access: USR"
+      tags:
+        - "M02: Individual Profile"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the notification to delete
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Notification deleted."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found." 
 
   ########################################
   #  M03: Content viewing and searching  #
@@ -346,6 +402,8 @@ paths:
       responses:
         "200":
           description: "Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui08-question-page)"
+        "404":
+          description: "Error. Not found."
 
   /tag/{id}:
     get:
@@ -364,6 +422,8 @@ paths:
       responses:
         "200":
           description: "Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui09-tag-page)"
+        "404":
+          description: "Error. Not found."
 
   /api/search/question:
     get:
@@ -385,7 +445,12 @@ paths:
           schema:
             type: integer
           required: false
-        # TODO: add tag array
+        - in: query
+          name: tags
+          description: Serialized list of tags
+          schema:
+            type: string
+          required: false
         - in: query
           name: type
           description: Filtering type for the query. Can be "best", "new", "trending" or "bountied"
@@ -465,6 +530,8 @@ paths:
                         name: windows
                       - id: 2
                         name: os
+        "400":
+          description: "Error. Bad request."
 
   /api/search/tag:
     get:
@@ -526,6 +593,8 @@ paths:
                     name: java
                     num_followers: 46
                     num_questions: 842
+        "400":
+          description: "Error. Bad request."
 
   /api/search/user:
     get:
@@ -588,6 +657,8 @@ paths:
                     join_date: 2/11/2021
                     expert: false
                     banned: false
+        "400":
+          description: "Error. Bad request."
 
   ##############################
   #  M04: Content interaction  #
@@ -694,7 +765,73 @@ paths:
         "500":
           description: "Error. Internal server error."
 
-  /api/answer/insert:
+  /api/question/{id}/edit:
+    put:
+      operationId: R407
+      summary: "R407: Edit a question"
+      description: "Edit a question. Access: OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - name: id
+          description: Primary key of the question
+          required: true
+          in: path
+          schema:
+            type: integer
+        - name: title
+          in: query
+          description: New title of the question.
+          required: true
+          schema:
+            type: string
+        - name: main
+          in: query
+          description: New main content of the question
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Ok. Successfuly edited question."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
+        "500":
+          description: "Error. Internal server error."
+
+  /api/question/{id}/delete:
+    delete:
+      operationId: R410
+      summary: "R410: Delete question"
+      description: "Delete question. Access: MOD, OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Question's content id
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Question deleted."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
+
+  /api/question/{id}/answer:
     post:
       operationId: R405
       summary: "R405: Insert an answer"
@@ -702,12 +839,12 @@ paths:
       tags:
         - "M04: Content interaction"
       parameters:
-        - name: question_id
-          in: query
-          description: Primary key of the target question.
-          required: true
+        - in: path
+          name: id
+          description: Question's content id
           schema:
             type: integer
+          required: true
         - name: main
           in: query
           description: Main content of the answer
@@ -723,8 +860,70 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
         "500":
           description: "Error. Internal server error."
+
+  /api/answer/{id}/edit:
+    put:
+      operationId: R408
+      summary: "R408: Edit an answer"
+      description: "Edit an answer. Access: OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - name: id
+          description: Primary key of the answer
+          required: true
+          in: path
+          schema:
+            type: integer
+        - name: main
+          in: query
+          description: New main content of the answer
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Ok. Successfuly edited answer."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
+        "500":
+          description: "Error. Internal server error."
+
+  /api/answer/{id}/delete:
+    delete:
+      operationId: R411
+      summary: "R411: Delete answer"
+      description: "Delete answer. Access: MOD, OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Answer's content id
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Answer deleted."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/comment/insert:
     post:
@@ -762,76 +961,8 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
-        "500":
-          description: "Error. Internal server error."
-
-  /api/question/{id}/edit:
-    put:
-      operationId: R407
-      summary: "R407: Edit a question"
-      description: "Edit a question. Access: OWN"
-      tags:
-        - "M04: Content interaction"
-      parameters:
-        - name: id
-          description: Primary key of the question
-          required: true
-          in: path
-          schema:
-            type: integer
-        - name: title
-          in: query
-          description: New title of the question.
-          required: true
-          schema:
-            type: string
-        - name: main
-          in: query
-          description: New main content of the question
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Ok. Successfuly edited question."
-        "400":
-          description: "Error. Bad request."
-        "401":
-          description: "Error. Unauthorized."
-        "403":
-          description: "Error. Forbidden."
-        "500":
-          description: "Error. Internal server error."
-
-  /api/answer/{id}/edit:
-    put:
-      operationId: R408
-      summary: "R408: Edit an answer"
-      description: "Edit an answer. Access: OWN"
-      tags:
-        - "M04: Content interaction"
-      parameters:
-        - name: id
-          description: Primary key of the answer
-          required: true
-          in: path
-          schema:
-            type: integer
-        - name: main
-          in: query
-          description: New main content of the answer
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Ok. Successfuly edited answer."
-        "400":
-          description: "Error. Bad request."
-        "401":
-          description: "Error. Unauthorized."
-        "403":
-          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
         "500":
           description: "Error. Internal server error."
 
@@ -864,56 +995,10 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
         "500":
           description: "Error. Internal server error."
-
-  /api/question/{id}/delete:
-    delete:
-      operationId: R410
-      summary: "R410: Delete question"
-      description: "Delete question. Access: MOD, OWN"
-      tags:
-        - "M04: Content interaction"
-      parameters:
-        - in: path
-          name: id
-          description: Question's content id
-          schema:
-            type: integer
-          required: true
-      responses:
-        "200":
-          description: "Ok. Question deleted."
-        "400":
-          description: "Error. Bad request."
-        "401":
-          description: "Error. Unauthorized."
-        "403":
-          description: "Error. Forbidden."
-
-  /api/answer/{id}/delete:
-    delete:
-      operationId: R411
-      summary: "R411: Delete answer"
-      description: "Delete answer. Access: MOD, OWN"
-      tags:
-        - "M04: Content interaction"
-      parameters:
-        - in: path
-          name: id
-          description: Answer's content id
-          schema:
-            type: integer
-          required: true
-      responses:
-        "200":
-          description: "Ok. Answer deleted."
-        "400":
-          description: "Error. Bad request."
-        "401":
-          description: "Error. Unauthorized."
-        "403":
-          description: "Error. Forbidden."
 
   /api/comment/{id}/delete:
     delete:
@@ -945,6 +1030,8 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/question/{id}/vote:
     post:
@@ -1003,6 +1090,8 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
     delete:
       operationId: R415
       summary: "R415: Delete a vote to a question"
@@ -1025,6 +1114,8 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/answer/{id}/vote:
     post:
@@ -1105,10 +1196,114 @@ paths:
           description: "Error. Unauthorized."
         "403":
           description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
-  #TODO: best answer
+  /api/answer/{id}/best:
+    post:
+      operationId: R419
+      summary: "R419: Elect an answer as the best for a question"
+      description: "Elect answer as the best. Access: OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the answer to elect
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Answer elected."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."   
+    put:
+      operationId: R420
+      summary: "R420: Edit the election of an answer as the best for a question"
+      description: "Edit an election of the best answer. Access: OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the answer to elect
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Answer election edited."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found." 
+    delete:
+      operationId: R421
+      summary: "R421: Delete the election of an answer as the best for a question"
+      description: "Delete an election of the best answer. Access: OWN"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the elected answer to "diselect"
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: "Ok. Answer election deleted."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found." 
 
-  #TODO: report
+  /api/content/{id}/report:
+    post:
+      operationId: R422
+      summary: "R422: Report a content"
+      description: "Report a content. Access: USR"
+      tags:
+        - "M04: Content interaction"
+      parameters:
+        - in: path
+          name: id
+          description: Id of the content to report
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: reason
+          description: Reason of the report
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "Ok. Report created."
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found." 
 
   #####################
   #  M05: Moderation  #
@@ -1123,6 +1318,8 @@ paths:
       responses:
         "200":
           description: "Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/er#ui13-user-moderation)"
+        "401":
+          description: "Error. Unauthorized."
 
   /api/ban:
     post:
@@ -1153,6 +1350,14 @@ paths:
                   name:
                     type: string
                     description: The banned user name.
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/delete/tag/{id}:
     delete:
@@ -1179,6 +1384,14 @@ paths:
                   tag_id:
                     type: integer
                     description: The deleted tag id.
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/edit/tag:
     patch:
@@ -1216,6 +1429,14 @@ paths:
                   tag_id:
                     type: integer
                     description: The deleted tag id.
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/remove/tag:
     delete:
@@ -1251,6 +1472,14 @@ paths:
                   question_id:
                     type: integer
                     description: The question id tag was removed from.
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/add/tag:
     post:
@@ -1288,6 +1517,14 @@ paths:
                   tag_id:
                     type: integer
                     description: The question id tag was added to.
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
+        "404":
+          description: "Error. Not found."
 
   /api/user_reports:
     get:
@@ -1344,6 +1581,12 @@ paths:
                     reporter_id: 3
                     solver_id: 1
                     user_id: 2
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "403":
+          description: "Error. Forbidden."
 
   /api/content_reports:
     get:
@@ -1400,6 +1643,12 @@ paths:
                     reporter_id: 3
                     solver_id: 1
                     content_id: 5
+        "400":
+          description: "Error. Bad request."
+        "401":
+          description: "Error. Unauthorized."
+        "404":
+          description: "Error. Not found."
 
   #######################
   #  M06: Static Pages  #
