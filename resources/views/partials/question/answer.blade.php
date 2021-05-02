@@ -1,4 +1,4 @@
-<div id="{{ 'answer-' . $question->content_id }}"
+<div id="{{ 'answer-' . $answer->content_id }}"
    class="card mb-4 border-0 p-0 rounded bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }}">
   <div class="card m-1">
     <div class="card-body">
@@ -36,20 +36,45 @@
               <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
                 <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
               </button>
-              <form action="{{ url('/answer/' . $answer->content_id . '/delete') }}" 
-                class="answer-delete"
-                id="answer-delete-{{ $answer->content_id }}" method="post">
-                @method('DELETE')
-                @csrf
-                <button class="btn p-0" type="submit">
-                  <i class="fas fa-trash text-wine mt-1 ms-2"></i>
-                </button>
-              </form>
+              
+              <!-- Button trigger modal -->
+              <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
+                <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="delete-answer-modal-{{ $answer->content_id }}" tabindex="-1" aria-labelledby="delete-answer-modal-{{ $answer->content_id }}-label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-danger" id="delete-answer-modal-{{ $answer->content_id }}-label">Delete answer</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark">
+                  Deleting answer to question: {{ $answer->question->title }}
+                  <div class="alert alert-warning mt-2" role="alert">
+                    Warning! Your answer will not be completed deleted so other people can still see its comments. Instead we will place [deleted] on its content.
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <form class="answer-delete" id="answer-delete-{{ $answer->content_id }}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn btn-success delete-modal" id="delete-answer-{{ $answer->content_id }}" data-bs-dismiss="modal" type="submit">
+                      Delete
+                    </button>
+                  </form>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+              </div>
             </div>
           </div>
         @endif
         @endauth
 
+        @auth
         <!-- edit form -->
         <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0 collapse answer-collapse">
           <form class="answer-collapse container ps-0 answer-edit-form" id="answer-edit-form-{{ $answer->content_id }}" method="post">
@@ -62,7 +87,6 @@
                   {!! $answer->content->main !!}
                 </textarea>
               </div>
-              @auth
 
               <!-- form control buttons -->
               @if (Auth::user()->id == $answer->content->author_id)
@@ -77,10 +101,10 @@
                   </div>
                 </div>
               @endif
-              @endauth
             <div>
           </form>
         </div>
+        @endauth
 
       </article>
       @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])

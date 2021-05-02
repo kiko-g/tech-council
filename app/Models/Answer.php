@@ -19,6 +19,11 @@ class Answer extends Model
         return $this->belongsTo('App\Models\Content', 'content_id');
     }
 
+    public function question()
+    {
+        return $this->belongsTo('App\Models\Question', 'question_id');
+    }
+
     public function comments()
     {
         return $this->hasMany('App\Models\AnswerComment', 'answer_id');

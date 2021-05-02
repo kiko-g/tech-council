@@ -106,14 +106,26 @@ class AnswerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a question.
      *
-     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function delete($id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+
+        //$this->authorize('update', Answer::class); //TODO: check authorization
+        $content = $answer->content;
+
+        //TODO: trigger to update edited date
+        $content->main = "[deleted]";
+        try {
+            $content->save();
+        } catch (PDOException $e) {
+            abort('403', $e->getMessage());
+        }
+
+        return response()->json($content);
     }
 
     public function addVote(Request $request, $content_id)

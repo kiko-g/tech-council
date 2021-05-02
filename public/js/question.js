@@ -5,31 +5,36 @@ function addEventListeners() {
         answerSubmitForm.addEventListener("submit", submitAnswer);
     } catch (e) {}
 
-    let editButtons = document.getElementsByClassName(
-        "answer-edit"
-    );
+    let editButtons = document.getElementsByClassName("answer-edit");
     for (editButton of editButtons)
         editButton.addEventListener("click", editingAnswer);
 
-    //TODO: answer_delete_form
+    let answerDeleteButtons = document.getElementsByClassName(
+        "delete-answer-modal-trigger"
+    );
+
+    if (answerDeleteButtons.length > 0) {
+        for (button of answerDeleteButtons)
+            button.addEventListener("click", handleDeleteAnswerModal);
+    }
 
     //TODO: question_edit_form
     let questionDeleteButtons = document.getElementsByClassName(
-        "delete-modal-trigger"
+        "delete-question-modal-trigger"
     );
 
     if (questionDeleteButtons.length > 0) {
         for (button of questionDeleteButtons)
-            button.addEventListener("click", handleDeleteModal);
+            button.addEventListener("click", handleDeleteQuestionModal);
     }
 }
 
 function editingAnswer() {
     let idArray = this.id.split("-");
     let answerId = idArray.pop();
-    idArray.push('form');
+    idArray.push("form");
     idArray.push(answerId);
-    let formId = idArray.join('-');
+    let formId = idArray.join("-");
 
     let editForm = document.getElementById(formId);
     editForm.addEventListener("submit", editAnswer);
@@ -38,8 +43,8 @@ function editingAnswer() {
 function editAnswer(event) {
     event.preventDefault();
     let idString = this.id;
-    let answerId = idString.split('-').pop();
-    let main = document.getElementById('answer-submit-input-' + answerId).value;
+    let answerId = idString.split("-").pop();
+    let main = document.getElementById("answer-submit-input-" + answerId).value;
 
     sendAjaxRequest(
         "put",
@@ -50,11 +55,10 @@ function editAnswer(event) {
 }
 
 function editAnswerHandler() {
-    console.log('status: ' + this.status);
+    let response = JSON.parse(this.responseText);
+    let answer = document.getElementById("answer-content-" + response.id);
     if (this.status == 200 || this.status == 201) {
         // set edited content
-        let response = JSON.parse(this.responseText);
-        let answer = document.getElementById('answer-content-' + response.id);
         answer.innerHTML = `
             <p>
                 ${response.main}
@@ -62,21 +66,29 @@ function editAnswerHandler() {
         `;
 
         // reset collapses
-        let collapses = document.getElementsByClassName('answer-collapse');
+        let collapses = document.getElementsByClassName("answer-collapse");
         for (collapse of collapses) {
-            if (collapse.classList.contains('show'))
-                collapse.classList.remove('show');
-            else 
-                collapse.classList.add('show');
+            if (collapse.classList.contains("show"))
+                collapse.classList.remove("show");
+            else collapse.classList.add("show");
         }
+
+        // set confirmation message
+        let confirmation = document.createElement("div");
+        confirmation.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <p> Answer edited successfully </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        let answerCard = document.getElementById("answer-" + response.id);
+        answerCard.parentNode.insertBefore(confirmation, answerCard);
     } else {
-        // TODO set input error
     }
 }
 
-function handleDeleteModal() {
-    console.log("modal");
-    let deleteButton = document.getElementsByClassName('delete-modal');
+function handleDeleteQuestionModal() {
+    let deleteButton = document.getElementsByClassName("delete-modal");
 
     if (deleteButton.length > 0) {
         for (button of deleteButton)
@@ -100,8 +112,8 @@ function deleteQuestion(event) {
 function deleteQuestionHandler() {
     let response = JSON.parse(this.responseText);
 
-    let deletedQuestion = document.getElementById('question-' + response.id);
-    let confirmation = document.createElement('div');
+    let deletedQuestion = document.getElementById("question-" + response.id);
+    let confirmation = document.createElement("div");
     if (this.status == 200 || this.status == 201) {
         confirmation.innerHTML = `
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -119,6 +131,54 @@ function deleteQuestionHandler() {
         </div>
         `;
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
+    }
+}
+
+function handleDeleteAnswerModal() {
+    let deleteButton = document.getElementsByClassName("delete-modal");
+
+    if (deleteButton.length > 0) {
+        for (button of deleteButton)
+            button.addEventListener("click", deleteAnswer);
+    }
+}
+
+function deleteAnswer(event) {
+    event.preventDefault();
+    let idString = this.id;
+    let answerId = idString.split("-").pop();
+
+    sendAjaxRequest(
+        "put",
+        "/api/answer/" + answerId + "/delete",
+        null,
+        deleteAnswerHandler
+    );
+}
+
+function deleteAnswerHandler() {
+    let response = JSON.parse(this.responseText);
+
+    let deleteAnswer = document.getElementById("answer-" + response.id);
+    let confirmation = document.createElement("div");
+    if (this.status == 200 || this.status == 201) {
+        let deletedAnswerContent = document.getElementById("answer-content-" + response.id);
+        deletedAnswerContent.innerHTML = response.main;
+        confirmation.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <p> Answer deleted successfully </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
+    } else {
+        confirmation.innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <p> Error deleting answer </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
     }
 }
 

@@ -52,6 +52,7 @@ Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI');
 Route::delete('/question/{id}/delete', 'QuestionController@delete');
 
 Route::put('api/answer/{id}/edit', 'AnswerController@edit');
+Route::put('api/answer/{id}/delete', 'AnswerController@delete');
 
 // M05: Moderation
 // --

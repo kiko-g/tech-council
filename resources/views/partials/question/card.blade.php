@@ -14,7 +14,7 @@
               <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
             </button>
             <!-- Button trigger modal -->
-            <button type="button" class="btn p-0 delete-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
+            <button type="button" class="btn p-0 delete-question-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
               <i class="fas fa-trash text-wine mt-1 ms-2"></i>
             </button>
           </div>
