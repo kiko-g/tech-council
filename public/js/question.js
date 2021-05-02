@@ -14,16 +14,17 @@ function addEventListeners() {
     //TODO: answer_delete_form
 
     //TODO: question_edit_form
-    let questionDeleteForms = document.getElementsByClassName(
-        "delete-question"
+    let questionDeleteButtons = document.getElementsByClassName(
+        "delete-modal-trigger"
     );
 
-    for (form of questionDeleteForms)
-        form.addEventListener("submit", deleteQuestion);
+    if (questionDeleteButtons.length > 0) {
+        for (button of questionDeleteButtons)
+            button.addEventListener("click", handleDeleteModal);
+    }
 }
 
 function editingAnswer() {
-    console.log("editing");
     let idArray = this.id.split("-");
     let answerId = idArray.pop();
     idArray.push('form');
@@ -31,17 +32,14 @@ function editingAnswer() {
     let formId = idArray.join('-');
 
     let editForm = document.getElementById(formId);
-    console.log(editForm);
     editForm.addEventListener("submit", editAnswer);
 }
 
 function editAnswer(event) {
     event.preventDefault();
-    console.log("edit");
     let idString = this.id;
     let answerId = idString.split('-').pop();
     let main = document.getElementById('answer-submit-input-' + answerId).value;
-    console.log('main = ' + main);
 
     sendAjaxRequest(
         "put",
@@ -76,6 +74,16 @@ function editAnswerHandler() {
     }
 }
 
+function handleDeleteModal() {
+    console.log("modal");
+    let deleteButton = document.getElementsByClassName('delete-modal');
+
+    if (deleteButton.length > 0) {
+        for (button of deleteButton)
+            button.addEventListener("click", deleteQuestion);
+    }
+}
+
 function deleteQuestion(event) {
     event.preventDefault();
     let idString = this.id;
@@ -92,10 +100,25 @@ function deleteQuestion(event) {
 function deleteQuestionHandler() {
     let response = JSON.parse(this.responseText);
 
+    let deletedQuestion = document.getElementById('question-' + response.id);
+    let confirmation = document.createElement('div');
     if (this.status == 200 || this.status == 201) {
-        document.getElementById("question-" + response.id).remove();
+        confirmation.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <p> Question deleted successfully </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
+        deletedQuestion.remove();
     } else {
-        // TODO set input error
+        confirmation.innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <p> Error deleting question </p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
     }
 }
 

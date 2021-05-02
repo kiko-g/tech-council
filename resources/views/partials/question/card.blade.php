@@ -10,26 +10,39 @@
       @auth
         @if (Auth::user()->id == $question->content->author_id)
           <div class="col-auto btn-group">
-            <form action="{{ url('/api/question/' . $question->content_id . '/edit') }}" method="post">
-              @method('PUT')
-              @csrf
-              <button class="btn p-0" type="submit">
-                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
-              </button>
-            </form>
-            @php           
-              $_class = $include_comments ? 'delete-question-page' : 'delete-question';
-              $_id = $include_comments ? 'delete-question-page' : 'delete-question-' . $question->content_id;
-            @endphp
-            <form action="{{ url('/question/' . $question->content_id . '/delete') }}" 
-              class={{ $_class }}
-              id={{ $_id }} method="post">
-              @method('DELETE')
-              @csrf
-              <button class="btn p-0" type="submit">
-                <i class="fas fa-trash text-wine mt-1 ms-2"></i>
-              </button>
-            </form>
+            <button class="btn p-0" type="submit">
+              <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn p-0 delete-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
+              <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+            </button>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="delete-question-modal-{{ $question->content_id }}" tabindex="-1" aria-labelledby="delete-question-modal-{{ $question->content_id }}-label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-danger" id="delete-question-modal-{{ $question->content_id }}-label">Delete question</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark">
+                  Deleting question with title: {{ $question->title }}
+                </div>
+                <div class="modal-footer">
+                  <form action="{{ url('/question/' . $question->content_id . '/delete') }}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn btn-success @if(!$include_comments) delete-modal @endif" id="delete-question-{{ $question->content_id }}" 
+                      @if(!$include_comments) data-bs-dismiss="modal" @endif type="submit">
+                      Delete
+                    </button>
+                  </form>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
           </div>
         @endif
       @endauth
