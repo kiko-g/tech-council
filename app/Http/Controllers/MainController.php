@@ -16,7 +16,7 @@ class MainController extends Controller
 	 */
 	public function showMural()
 	{
-		$questions = Question::paginate(3);
+		$questions = Question::paginate(10);
 		return view('pages.main', [
 			'questions' => $questions,
 			'user' => Auth::user()

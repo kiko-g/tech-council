@@ -81,7 +81,9 @@ Route::get('ask', function () {
 });
 
 Route::get('moderator', function () {
-    return view('pages.moderator');
+    return view('pages.moderator', [
+        'user' => Auth::user(),
+    ]);
 });
 
 Route::get('profile', function () {
@@ -98,8 +100,4 @@ Route::get('tag', function () {
 
 Route::get('search', function () {
     return view('pages.search');
-});
-
-Route::get('moderator', function () {
-    return view('pages.moderator');
 });

@@ -10,7 +10,7 @@
         <div class="col-12 my-auto">
           <h5>
             Search Results for "windows"
-            <!--<small class="text-muted">for windows</small>-->
+            {{--<small class="text-muted">for windows</small>--}}
           </h5>
           <h6>
             [163 results]

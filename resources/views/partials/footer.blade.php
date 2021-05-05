@@ -13,7 +13,7 @@
         </ul>
       </div>
 
-      <!-- DIV 2 -->
+      {{-- DIV 2 --}}
       <div class="footer-section col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Quick links</h5>
         <ul class="footer-ul">
@@ -25,7 +25,7 @@
         </ul>
       </div>
 
-      <!-- DIV 3 -->
+      {{-- DIV 3 --}}
       <div class="footer-section rounded-right col-lg-4 col-lg col-12 col p-4">
         <h5 class="footer-section-header">Follow us</h5>
         <ul class="footer-ul">
@@ -39,7 +39,7 @@
               Pinto </a></li>
         </ul>
       </div>
-      <!-- DIV 1 -->
+      {{-- DIV 1 --}}
     </div>
   </div>
 </footer>

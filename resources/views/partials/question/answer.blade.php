@@ -1,8 +1,7 @@
-<div id="{{ 'answer-' . $answer->content_id }}"
-   class="card mb-4 border-0 p-0 rounded bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }}">
-  <div class="card m-1">
+<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'answer-' . $answer->content_id }}"> {{-- bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }} --}}
+    <div class="card-header bg-petrol text-white font-source-sans-pro"></div>
     <div class="card-body">
-      <article class="row row-cols-3 mb-1" data-content-id="{{ $answer->content_id }}">
+      <article class="row row-cols-3 mb-1 pe-1" data-content-id="{{ $answer->content_id }}">
         <div class="col-auto flex-wrap">
           <div id="votes-{{ $answer->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
             @php
@@ -22,11 +21,9 @@
           </div>
         </div>
 
-        <div class="col-9 col-sm-9 col-md-9 col-lg-9 flex-wrap pe-0 collapse show answer-collapse">
+        <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
           <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
-            <p>
               {!! $answer->content->main !!}
-            </p>
           </div>
         </div>
         @auth
@@ -37,14 +34,14 @@
                 <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
               </button>
               
-              <!-- Button trigger modal -->
+              {{-- Button trigger modal --}}
               <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
                 <i class="fas fa-trash text-wine mt-1 ms-2"></i>
               </button>
             </div>
           </div>
 
-          <!-- Modal -->
+          {{-- Modal --}}
           <div class="modal fade" id="delete-answer-modal-{{ $answer->content_id }}" tabindex="-1" aria-labelledby="delete-answer-modal-{{ $answer->content_id }}-label" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -75,20 +72,20 @@
         @endauth
 
         @auth
-        <!-- edit form -->
+        {{-- edit form --}}
         <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0 collapse answer-collapse">
           <form class="answer-collapse container ps-0 answer-edit-form" id="answer-edit-form-{{ $answer->content_id }}" method="post">
             @method('PUT')
             @csrf
             <div class="row row-cols-2">
-              <!-- edit text area -->
+              {{-- edit text area --}}
               <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1 col-10 me-auto p-0">
                 <textarea id="answer-submit-input-{{ $answer->content_id }}" name="main" class="form-control shadow-sm border border-2 bg-light" rows="5" placeholder="Type your answer">
                   {!! $answer->content->main !!}
                 </textarea>
               </div>
 
-              <!-- form control buttons -->
+              {{-- form control buttons --}}
               @if (Auth::user()->id == $answer->content->author_id)
                 <div class="col-1 p-0 m-0 collapse answer-control answer-collapse" id="answer-control-{{ $answer->content_id }}">
                   <div class="btn-group float-end">
@@ -109,11 +106,20 @@
       </article>
       @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
     </div>
-
-    <div class="card-footer text-muted text-end p-0">
+    <footer class="card-footer text-muted text-end p-0">
       <blockquote class="blockquote mb-0">
-      <p class="card-text px-1"><small class="text-muted">asked Aug 14 2020 at 15:31&nbsp;<a class="signature" href="#">user</a></small></p>
+      <p class="card-text px-1 h6">
+        <small class="text-muted">answered {{ $answer->content->creation_date }}</small>
+        <small>
+          <a class="signature" href="#">{{ $answer->content->author->name }}
+            @if ($question->content->author->moderator)
+              {!! '&nbsp;<i class="fas fa-briefcase fa-sm"></i>' !!}
+            @elseif($question->content->author->expert)
+              {!! '&nbsp;<i class="fas fa-medal fa-sm"></i>' !!}
+            @endif
+          </a>
+        </small>
+      </p>
       </blockquote>
-    </div>
-  </div>
+    </footer>
 </div>

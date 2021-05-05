@@ -3,7 +3,7 @@
     <div class="container-fluid justify-content-center px-3">
       <a class="navbar-brand" href="{{ route('home') }}">
         @include('partials.icon')
-        <!-- <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1"> -->
+        {{-- <img src="/images/icon.png" alt="" width="23" height="23" class="d-inline-block align-top mt-1"> --}}
         Tech Council
       </a>
 
@@ -24,8 +24,8 @@
           @auth
             @if ($user->moderator)
               <li class="nav-item">
-                <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ route('home') }}"><i
-                    class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a>
+                <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ url('moderator') }}">
+                  <i class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a>
               </li>
             @endif
             <li class="nav-item">
