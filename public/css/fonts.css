@@ -1,0 +1,409 @@
+/* UK NUMBER PLATE */
+@font-face {
+    font-family: "UKNumberPlate";
+    font-style: normal;
+    font-weight: 400;
+    src: local("UKNumberPlate"),
+        url("https://fonts.cdnfonts.com/s/4916/UKNumberPlate.woff")
+            format("woff");
+}
+
+/* ZILLA SLAB */
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-Italic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-Light.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: italic;
+    font-weight: 300;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-LightItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: 500;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-Medium.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: italic;
+    font-weight: 500;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-MediumItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-SemiBold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: italic;
+    font-weight: 600;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-SemiBoldItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-Bold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Zilla Slab";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Zilla Slab"),
+        url("https://fonts.cdnfonts.com/s/15572/ZillaSlab-BoldItalic.woff")
+            format("woff");
+}
+
+/* QUATTROCENTO SANS */
+@font-face {
+    font-family: "Quattrocento Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Quattrocento Sans"),
+        url("https://fonts.cdnfonts.com/s/15779/QuattrocentoSans-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Quattrocento Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Quattrocento Sans"),
+        url("https://fonts.cdnfonts.com/s/15779/QuattrocentoSans-Italic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Quattrocento Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Quattrocento Sans"),
+        url("https://fonts.cdnfonts.com/s/15779/QuattrocentoSans-Bold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Quattrocento Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Quattrocento Sans"),
+        url("https://fonts.cdnfonts.com/s/15779/QuattrocentoSans-BoldItalic.woff")
+            format("woff");
+}
+
+/* WORK SANS */
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 260;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Thin.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 280;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-ExtraLight.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Light.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 500;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Medium.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-SemiBold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Bold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 800;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-ExtraBold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 900;
+    src: local("Work Sans"),
+        url("https://fonts.cdnfonts.com/s/15383/WorkSans-Black.woff")
+            format("woff");
+}
+
+/* SOURCE SANS PRO */
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-It.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 200;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-ExtraLight.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 200;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-ExtraLightIt.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-Light.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 300;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-LightIt.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 600;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-Semibold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 600;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-SemiboldIt.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-Bold.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-BoldIt.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 900;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-Black.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: italic;
+    font-weight: 900;
+    src: local("Source Sans Pro"),
+        url("https://fonts.cdnfonts.com/s/12183/SourceSansPro-BlackIt.woff")
+            format("woff");
+}
+
+/* LATO */
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Italic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 250;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Hairline.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 250;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-HairlineItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Light.woff") format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 300;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-LightItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Bold.woff") format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-BoldItalic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 900;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-Black.woff") format("woff");
+}
+@font-face {
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 900;
+    src: local("Lato"),
+        url("https://fonts.cdnfonts.com/s/14882/Lato-BlackItalic.woff")
+            format("woff");
+}
+
+/* KARLA */
+@font-face {
+    font-family: "Karla";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Karla"),
+        url("https://fonts.cdnfonts.com/s/15947/Karla-Regular.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Karla";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Karla"),
+        url("https://fonts.cdnfonts.com/s/15947/Karla-Italic.woff")
+            format("woff");
+}
+@font-face {
+    font-family: "Karla";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Karla"),
+        url("https://fonts.cdnfonts.com/s/15947/Karla-Bold.woff") format("woff");
+}
+@font-face {
+    font-family: "Karla";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Karla"),
+        url("https://fonts.cdnfonts.com/s/15947/Karla-BoldItalic.woff")
+            format("woff");
+}

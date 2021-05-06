@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="card mb-3">
-    <div class="card-header text-white bg-petrol font-source-sans-pro"> User Settings </div>
+    <div class="card-header text-white bg-petrol font-source-sans-pro rounded-top"> User Settings </div>
     <div class="row g-0">
       <div class="col-lg-4">
         <img src="images/dwight.png" class="card-img-top rounded p-3" alt="...">
@@ -69,7 +69,7 @@
 
 @section('aside')
   <div class="card mb-3">
-    <div class="card-header text-white bg-petrol font-source-sans-pro"> Support </div>
+    <div class="card-header text-white bg-petrol font-source-sans-pro rounded-top"> Support </div>
     <div class="card-body">
       <h5 class="card-title">Need help?</h5>
       <p class="card-text">Don't hesitate hitting us up.</p>
@@ -78,7 +78,7 @@
   </div>
 
   <div class="card mb-3">
-    <div class="card-header text-white bg-petrol font-source-sans-pro"> Other options </div>
+    <div class="card-header text-white bg-petrol font-source-sans-pro rounded-top"> Other options </div>
     <div class="card-body">
       <a href="#" class="btn blue"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
     </div>

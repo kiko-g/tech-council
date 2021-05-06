@@ -26,8 +26,12 @@
   <script src="https://cdn.jsdelivr.net/npm/markdown-element/dist/markdown-element.min.js"></script>
 
   {{-- Quill JS --}}
-  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js"><script>
-  <script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js">
+    < script >
+      <
+      script src = "https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js" >
+
+  </script>
 
 
   {{-- Page Icons --}}
@@ -39,6 +43,7 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   {{-- Our CSS --}}
+  <link rel="stylesheet" href={{ '/css/fonts.css' }} />
   <link rel="stylesheet" href={{ '/css/colors.css' }} />
   <link rel="stylesheet" href={{ '/css/style.css' }} />
   <link rel="stylesheet" href={{ '/css/header.css' }} />

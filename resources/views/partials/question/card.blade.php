@@ -1,5 +1,5 @@
 <div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
-  <div class="card-header bg-petrol text-white font-source-sans-pro">
+  <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
     <div class="row">
       <div class="col-auto me-auto">
         <a class="a header" href="{{ url('question/' . $question->content_id) }}">

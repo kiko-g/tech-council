@@ -1,5 +1,5 @@
 <div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'answer-' . $answer->content_id }}"> {{-- bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }} --}}
-    <div class="card-header bg-petrol text-white font-source-sans-pro"></div>
+    <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top"></div>
     <div class="card-body">
       <article class="row row-cols-3 mb-1 pe-1" data-content-id="{{ $answer->content_id }}">
         <div class="col-auto flex-wrap">

@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated"> Followed Tags </div>
+  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated rounded-top"> Followed Tags </div>
   <div class="card-body lh-lg">
     <div class="btn-group">
       <a href="#" class="btn blue-alt border-0 my-btn-pad2">python</a>
