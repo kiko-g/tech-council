@@ -49,6 +49,7 @@ Route::delete('/question/{id}/delete', 'QuestionController@delete');        // d
 Route::post('/api/question/{id}/answer', 'AnswerController@create')->name('answer.create'); // create answer
 Route::put('api/answer/{id}/edit', 'AnswerController@edit');                // edit answer
 Route::put('api/answer/{id}/delete', 'AnswerController@delete');            // delete answer
+Route::get('api/answer/{id}', 'AnswerController@get');
 
 Route::post('/api/question/{id}/vote', 'QuestionController@addVote');       // insert question vote
 Route::put('/api/question/{id}/vote', 'QuestionController@addVote');        // edit question vote
