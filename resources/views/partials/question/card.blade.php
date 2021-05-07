@@ -32,6 +32,9 @@
                 </div>
                 <div class="modal-body text-dark">
                   Deleting question with title: {{ $question->title }}
+                  <div class="alert alert-warning mt-2" role="alert">
+                    Warning! This action is not reversible. The question and associated answers and comments will be permanently deleted.
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <form action="{{ url('/question/' . $question->content_id . '/delete') }}" method="post">

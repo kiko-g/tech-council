@@ -1,4 +1,4 @@
-function addEventListeners() {
+function addVoteEventListeners() {
   let buttons = document.getElementsByClassName("upvote-button-question");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
@@ -142,4 +142,4 @@ const toogleText = textDropdown => {
   }
 }
 
-addEventListeners();
+addVoteEventListeners();

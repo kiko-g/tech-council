@@ -1,32 +1,31 @@
-function addEventListeners() {
+function addQuestionEventListeners() {
     let answerSubmitForm = document.getElementById("answer-submit-form");
 
     try {
         answerSubmitForm.addEventListener("submit", submitAnswer);
     } catch (e) {}
 
-    let editButtons = document.getElementsByClassName("answer-edit");
-    for (editButton of editButtons)
-        editButton.addEventListener("click", editingAnswer);
+    let answerEditButtons = document.getElementsByClassName("answer-edit");
+    for (answerEditButton of answerEditButtons)
+        answerEditButton.addEventListener("click", editingAnswer);
 
     let answerDeleteButtons = document.getElementsByClassName(
         "delete-answer-modal-trigger"
     );
-
     if (answerDeleteButtons.length > 0) {
         for (button of answerDeleteButtons)
             button.addEventListener("click", handleDeleteAnswerModal);
     }
 
-    //TODO: question_edit_form
     let questionDeleteButtons = document.getElementsByClassName(
         "delete-question-modal-trigger"
     );
-
     if (questionDeleteButtons.length > 0) {
         for (button of questionDeleteButtons)
             button.addEventListener("click", handleDeleteQuestionModal);
     }
+
+    //TODO: question_edit_form
 }
 
 function editingAnswer() {
@@ -57,7 +56,9 @@ function editAnswer(event) {
 function editAnswerHandler() {
     let response = JSON.parse(this.responseText);
     let answer = document.getElementById("answer-content-" + response.id);
+    console.log("answer: " + answer);
     if (this.status == 200 || this.status == 201) {
+        console.log("response: " + response.main);
         // set edited content
         answer.innerHTML = `
             <p>
@@ -66,12 +67,12 @@ function editAnswerHandler() {
         `;
 
         // reset collapses
-        let collapses = document.getElementsByClassName("answer-collapse");
+        /*let collapses = document.getElementsByClassName("answer-collapse");
         for (collapse of collapses) {
             if (collapse.classList.contains("show"))
                 collapse.classList.remove("show");
             else collapse.classList.add("show");
-        }
+        }*/
 
         // set confirmation message
         let confirmation = document.createElement("div");
@@ -162,8 +163,6 @@ function deleteAnswerHandler() {
     let deleteAnswer = document.getElementById("answer-" + response.id);
     let confirmation = document.createElement("div");
     if (this.status == 200 || this.status == 201) {
-        let deletedAnswerContent = document.getElementById("answer-content-" + response.id);
-        deletedAnswerContent.innerHTML = response.main;
         confirmation.innerHTML = `
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             <p> Answer deleted successfully </p>
@@ -171,6 +170,7 @@ function deleteAnswerHandler() {
         </div>
         `;
         deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
+        deleteAnswer.remove();
     } else {
         confirmation.innerHTML = `
         <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -187,7 +187,6 @@ function submitAnswer(event) {
     if (!isAuthenticated) return;
 
     let fields = getFormValues(this);
-    console.log(fields);
     // TODO clear form input feedback here
     // TODO validate form input here
 
@@ -219,13 +218,34 @@ function answerAddedHandler() {
         // Reset form value
         let form = document.getElementById("answer-submit-input");
         form.value = "";
+
+        addQuestionEventListeners();
+        addVoteEventListeners();
     } else {
         // TODO set input error
     }
 }
 
+//TODO: check if needed
+function createdAnswerEventListeners(answerId) {
+    const upvoteButton = document.getElementById(`upvote-button-${answerId}`);
+    upvoteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        if(!isAuthenticated) return;
+        vote('up', this.parentNode, this.dataset, false);
+    });
+
+    const downvoteButton = document.getElementById(`downvote-button-${answerId}`);
+    downvoteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        if(!isAuthenticated) return;
+        vote('down', this.parentNode, this.dataset, false);
+    });
+}
+
 function createAnswer(main, answerId, authorId) {
     let newAnswer = document.createElement("div");
+	newAnswer.id = "answer-" + answerId;
     newAnswer.classList.add(
         "card",
         "mb-4",
@@ -236,33 +256,96 @@ function createAnswer(main, answerId, authorId) {
     );
     newAnswer.innerHTML = `
     <div class="card m-1">
-        <div class="card-body">
-        <p class="mb-3">
-            ${main}
-        </p>
+    <div class="card-body">
+      <article class="row row-cols-3 mb-1" data-content-id="${answerId}">
+        <div class="col-auto flex-wrap">
+			<div id="votes-${answerId}" class="votes btn-group-vertical mt-1 flex-wrap">
+				<a id="upvote-button-${answerId}" class="upvote-button-answer my-btn-pad btn btn-outline-success teal" data-content-id="${answerId}">
+					<i class="fas fa-chevron-up"></i>
+				</a>
+				<a id="vote-ratio-${answerId}" class="vote-ratio-answer btn my-btn-pad fake disabled"> 0 </a>
+				<a id="downvote-button-${answerId}" class="downvote-button-answer my-btn-pad btn btn-outline-danger pink" data-content-id="${answerId}">
+					<i class="fas fa-chevron-down"></i>
+				</a>
+	  		</div>
+        </div>
 
-        <div class="row row-cols-3 mb-4" data-content-id="${answerId}">
-            <div class="col-lg flex-wrap">
-                <div id="votes-${answerId}" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
-                <a id="upvote-button-${answerId}" class="upvote-button-answer my-btn-pad btn btn-outline-success teal" data-content-id="${answerId}">
-                    <i class="fas fa-chevron-up"></i>
-                </a>
-                <a id="vote-ratio-${answerId}" class="vote-ratio-answer btn my-btn-pad fake disabled"> 0 </a>
-                <a id="downvote-button-${answerId}" class="downvote-button-answer my-btn-pad btn btn-outline-danger pink" data-content-id="${answerId}">
-                    <i class="fas fa-chevron-down"></i>
-                </a>
+        <div class="col-9 col-sm-9 col-md-9 col-lg-9 flex-wrap pe-0 collapse show answer-collapse-${answerId}">
+          <div id="answer-content-${answerId}" class="mb-1">
+            <p>
+				${main}
+            </p>
+          </div>
+        </div>
+        <div class="col-2 p-0 m-0 collapse show answer-control answer-collapse-${answerId}" id="answer-control-${answerId}">
+        <div class="btn-group float-end">
+            <button class="btn p-0 answer-edit" id="answer-edit-${answerId}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-${answerId}" aria-expanded="true" aria-controls="answer-content-${answerId} answer-control-${answerId}">
+            <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+            </button>
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-${answerId}">
+            <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+            </button>
+        </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="delete-answer-modal-${answerId}" tabindex="-1" aria-labelledby="delete-answer-modal-${answerId}-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="delete-answer-modal-${answerId}-label">Delete answer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-dark">
+                Deleting answer to question:
+                <div class="alert alert-warning mt-2" role="alert">
+                Warning! This action is not reversible. The answer and associated comments will be permanently deleted.
                 </div>
             </div>
+            <div class="modal-footer">
+                <form class="answer-delete" id="answer-delete-${answerId}" method="post">
+					<button class="btn btn-success delete-modal" id="delete-answer-${answerId}" data-bs-dismiss="modal" type="submit">
+						Delete
+					</button>
+                </form>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+            </div>
+        </div>
         </div>
 
-        </div>
+        <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0 collapse answer-collapse-${answerId}">
+          <form class="answer-collapse-${answerId} container ps-0 answer-edit-form" id="answer-edit-form-${answerId}" method="post">
+            <div class="row row-cols-2">
+                <div id="answer-content-${answerId}" class="mb-1 col-10 me-auto p-0">
+                    <textarea id="answer-submit-input-${answerId}" name="main" class="form-control shadow-sm border border-2 bg-light" rows="5" placeholder="Type your answer">
+                        ${main}
+                    </textarea>
+                </div>
 
-        <div class="card-footer text-muted text-end p-0">
-        <blockquote class="blockquote mb-0">
-        <p class="card-text px-1"><small class="text-muted">asked Aug 14 2020 at 15:31&nbsp;<a class="signature" href="#">user</a></small></p>
-        </blockquote>
+                <div class="col-1 p-0 m-0 collapse answer-control answer-collapse-${answerId}" id="answer-control-${answerId}">
+                  <div class="btn-group float-end">
+                    <button class="btn p-0" type="submit" data-bs-toggle="collapse" data-bs-target=".answer-collapse-${answerId}" aria-expanded="true" aria-controls="answer-content-${answerId} answer-control-${answerId}">
+                      <i class="fas fa-check text-teal-300 mt-1 ms-2"></i>
+                    </button>
+                    <button class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-${answerId}" aria-expanded="true" aria-controls="answer-content-${answerId} answer-control-${answerId}">
+                      <i class="fas fa-close text-wine mt-1 ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+            <div>
+          </form>
         </div>
-    </div>
+		</article>
+		</div>
+
+		<div class="card-footer text-muted text-end p-0">
+			<blockquote class="blockquote mb-0">
+				<p class="card-text px-1"><small class="text-muted">asked Aug 14 2020 at 15:31&nbsp;<a class="signature" href="#">user</a></small></p>
+			</blockquote>
+    	</div>
     `;
 
     // TODO: edit timestamp and user
@@ -270,4 +353,4 @@ function createAnswer(main, answerId, authorId) {
     return newAnswer;
 }
 
-addEventListeners();
+addQuestionEventListeners();

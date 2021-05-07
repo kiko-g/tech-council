@@ -117,14 +117,15 @@ class AnswerController extends Controller
         //$this->authorize('update', Answer::class); //TODO: check authorization
         $content = $answer->content;
 
-        //TODO: trigger to update edited date
-        $content->main = "[deleted]";
         try {
-            $content->save();
+            $content->delete();
         } catch (PDOException $e) {
             abort('403', $e->getMessage());
         }
 
+        $content = [
+            'id' => $id
+        ];
         return response()->json($content);
     }
 
