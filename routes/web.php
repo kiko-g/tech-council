@@ -34,6 +34,7 @@ Route::get('/user/{id}', 'UserController@showProfile');
 /* M03: Content viewing and searching */
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
+Route::get('tag/{id}', 'TagController@showPage')->name('tag');
 
 /* M04: Content interaction */
 Route::get('/create/question', function () {
@@ -41,6 +42,9 @@ Route::get('/create/question', function () {
         'user' => Auth::user(),
     ]);
 })->name('create/question');
+
+Route::post('api/follow/tag', 'FollowTagController@follow');
+Route::post('api/unfollow/tag', 'FollowTagController@unfollow');
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
 Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
@@ -92,10 +96,6 @@ Route::get('profile', function () {
 Route::get('profile-settings', function () {
     return view('pages.profile-settings');
 }); // remove this
-
-Route::get('tag', function () {
-    return view('pages.tag');
-});
 
 Route::get('search', function () {
     return view('pages.search');

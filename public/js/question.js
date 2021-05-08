@@ -72,6 +72,7 @@ function editAnswerHandler() {
         let answerCard = document.getElementById("answer-" + response.id);
         answerCard.parentNode.insertBefore(confirmation, answerCard);
     } else {
+        //TODO: set error alert
     }
 }
 

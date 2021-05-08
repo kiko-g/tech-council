@@ -34,11 +34,22 @@ class TagController extends Controller
 	 * @param  \App\Models\Tag  $tag
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function showHeader($id)
 	{
 		$tag = Tag::find($id);
-		$this->authorize('show', $tag);
 		return view('partials.tag.card', ['tag' => $tag]);
+	}
+
+	/**
+	 * Display the tag header.
+	 *
+	 * @param  \App\Models\Tag  $tag
+	 * @return \Illuminate\Http\Response
+	 */
+	public function showPage($id)
+	{
+		$tag = Tag::find($id);
+		return view('pages.tag', ['tag' => $tag, 'user' => Auth::user()]);
 	}
 
 	/**

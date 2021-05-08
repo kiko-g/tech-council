@@ -56,6 +56,7 @@
   <script src={{ '/js/app.js' }} defer></script>
   <script src={{ '/js/question.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
+  <script src={{ '/js/follow.js' }} defer></script>
   <script src={{ '/js/moderator-switch.js' }} defer></script>
   <script src={{ '/js/tag-selector.js' }} defer></script>
 </head>

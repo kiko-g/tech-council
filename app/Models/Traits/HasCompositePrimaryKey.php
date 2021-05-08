@@ -2,7 +2,7 @@
 
 // Credits to https://stackoverflow.com/questions/31415213/how-i-can-put-composite-keys-in-models-in-laravel-5
 
-namespace App\Traits;
+namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -13,7 +13,7 @@ trait HasCompositePrimaryKey
         return false;
     }
 
-    protected function setKeysForSaveQuery(Builder $query)
+    protected function setKeysForSaveQuery($query)
     {
         foreach ($this->getKeyName() as $key) {
             if (isset($this->$key))
@@ -29,11 +29,9 @@ trait HasCompositePrimaryKey
     {
         $me = new self;
         $query = $me->newQuery();
-        $i=0;
     
         foreach ($me->getKeyName() as $key) {
-            $query->where($key, '=', $id[$i]);
-            $i++;
+            $query->where($key, '=', $id[$key]);
         }
     
         return $query->first($columns);

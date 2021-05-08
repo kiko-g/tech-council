@@ -104,7 +104,7 @@
           <div id="tags" class="col-md-auto flex-wrap">
             @foreach ($question->tags as $tag)
               <div class="btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2" href="#">{{ $tag->name }}</a>
+                <a class="btn blue-alt border-0 my-btn-pad2" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
               </div>
             @endforeach
           </div>
