@@ -30,6 +30,7 @@ Route::get('/login/reset', 'Auth\RecoverController@show');
 
 /* M02: Individual Profile */
 Route::get('/user/{id}', 'UserController@showProfile');
+Route::get('/user/{id}/settings', 'UserController@showProfileSettings');
 
 /* M03: Content viewing and searching */
 Route::get('/', 'MainController@showMural')->name('home');
@@ -40,7 +41,7 @@ Route::get('/create/question', function () {
     return view('pages.ask', [
         'user' => Auth::user(),
     ]);
-})->name('create/question');
+})->name('create/question'); // could be 'ask/'?
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
 Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
@@ -84,18 +85,6 @@ Route::get('moderator', function () {
     return view('pages.moderator', [
         'user' => Auth::user(),
     ]);
-});
-
-Route::get('profile', function () {
-    return view('pages.profile');
-});
-
-Route::get('profile-settings', function () {
-    return view('pages.profile-settings');
-}); // remove this
-
-Route::get('tag', function () {
-    return view('pages.tag');
 });
 
 Route::get('search', function () {

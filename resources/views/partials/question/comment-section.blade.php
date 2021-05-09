@@ -1,8 +1,12 @@
-@php $comment_limit = 2; $comment_count = 0; @endphp
-<article class="row">
+<article id="comment-section-{{ $id }}" class="row mt-4">
+  @php 
+  $comment_limit = 2; 
+  $comment_count = 0; 
+  @endphp
+
   @foreach ($comments as $comment)
     @php $comment_count++; @endphp 
-    <div class="<?php if($comment_count > $comment_limit) { ?> collapse hidden{{ $id }} <?php } ?>">
+    <div class="comment-box<?php if($comment_count > $comment_limit) { ?> collapse hidden{{ $id }} <?php } ?>">
       <div class="comment d-flex justify-content-between shadow-sm border border-2 mb-1 px-2 bg-light rounded">
         <p class="mb-0">{!! $comment->content->main !!}</p>
         <blockquote class="blockquote mb-0">
@@ -47,5 +51,4 @@
       Add comment
     </a>
   </div>
-  
 </article>

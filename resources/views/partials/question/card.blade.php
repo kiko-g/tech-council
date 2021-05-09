@@ -53,6 +53,7 @@
       @endauth
     </div>
   </div>
+
   <div class="card-body" data-content-id="{{ $question->content_id }}">
     <article class="row row-cols-2 mb-1 pe-1">
       <div class="col-auto flex-wrap">
@@ -79,6 +80,7 @@
           </a>
         </div>
       </div>
+      
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
         <div id="{{ 'question-content-' . $question->content_id }}" class="mb-1">
           {!! $question->content->main !!}
@@ -129,6 +131,7 @@
       </div>
     </article>
   </div>
+
   <footer class="card-footer text-muted text-end p-0">
     <blockquote class="blockquote mb-0">
       <p class="card-text px-1 h6">

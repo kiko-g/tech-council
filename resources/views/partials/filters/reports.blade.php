@@ -22,14 +22,11 @@
       </label>
 
       <div class="btn blue-alt rounded-right only p-0 m-0">
-        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false"></a>
+        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
           <li><a class="dropdown-item" href="#">Action</a></li>
           <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+          <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </div>

@@ -35,7 +35,7 @@ CREATE TYPE "NOTIFICATION" AS ENUM ('answered', 'answered_saved', 'upvote_questi
 
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
-    path TEXT NOT NULL UNIQUE -- path might be a keyword
+    path TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE "user" (

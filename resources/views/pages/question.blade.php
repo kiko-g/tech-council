@@ -2,12 +2,12 @@
 
 @section('content')
   @include('partials.question.card', ['question' => $question, 'include_comments' => true, 'voteValue' => $question->getVoteValue()])
-  <main>
+  <section id="answers-question-{{ $question->content_id }}">
     @include('partials.question.answer-submit', ['question_id' => $question->content_id])
     @foreach ($question->answers as $answer)
       @include('partials.question.answer', ['answer' => $answer ?? '', 'voteValue' => $answer->getVoteValue()])
     @endforeach
-  </main>
+  </section>
 @endsection
 
 @section('aside')

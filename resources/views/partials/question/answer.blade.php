@@ -25,7 +25,9 @@
           <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
               {!! $answer->content->main !!}
           </div>
+          @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
         </div>
+
         @auth
         @if (Auth::user()->id == $answer->content->author_id)
           <div class="col-2 p-0 m-0 collapse show answer-control answer-collapse" id="answer-control-{{ $answer->content_id }}">
@@ -102,9 +104,7 @@
           </form>
         </div>
         @endauth
-
       </article>
-      @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
     </div>
     <footer class="card-footer text-muted text-end p-0">
       <blockquote class="blockquote mb-0">

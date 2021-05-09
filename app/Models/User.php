@@ -30,33 +30,27 @@ class User extends Authenticatable
         'name', 'email', 'password', 'bio'
     ];
 
-    public function moderator()
-    {
+    public function moderator() {
         return $this->hasOne('App\Models\Moderator', 'user_id');
     }
 
-    public function questions()
-    {
+    public function questions() {
         return $this->hasManyThrough('App\Models\Question', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function answers()
-    {
+    public function answers() {
         return $this->hasManyThrough('App\Models\Answer', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function questionComments()
-    {
+    public function questionComments() {
         return $this->hasManyThrough('App\Models\QuestionComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function answerComments()
-    {
+    public function answerComments() {
         return $this->hasManyThrought('App\Models\AnswerComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function followTags()
-    {
+    public function followTags() {
         return $this->hasMany('App\Models\FollowTag');
     }
 }

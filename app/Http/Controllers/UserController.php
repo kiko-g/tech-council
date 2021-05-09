@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -41,12 +42,32 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showProfile($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('pages.profile', [
+            'user_questions' => $user->questions,
+            'user' => Auth::user(),
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showProfileSettings($id)
+    {
+        $user = User::find($id);
+
+        return view('pages.profile-settings', [
+            'user' => Auth::user(),
+        ]);
     }
 
     /**
