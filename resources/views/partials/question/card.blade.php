@@ -1,4 +1,4 @@
-<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
+<div class="card mb-4 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
   <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
     <div class="row">
       <div class="col-auto me-auto">
@@ -105,7 +105,7 @@
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
                 <a class="comment-number-button btn teal my-btn-pad2"
-                  id="comment-number-button-{{ $question->content_id }}" href="#">
+                  id="comment-number-button-{{ $question->content_id }}" href="{{ url('question/' . $question->content_id . '#answers') }}">
                   <i class="far fa-comment-dots"></i>&nbsp;25
                 </a>
               </div>

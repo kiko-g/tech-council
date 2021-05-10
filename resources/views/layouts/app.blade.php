@@ -2,7 +2,6 @@
 
 <body>
   @include('partials.header', ['user' => $user])
-  @yield('search')
   <main class="container">
     <div class="row">
       <article class="col-lg-9">

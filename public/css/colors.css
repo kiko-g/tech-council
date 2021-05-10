@@ -1,4 +1,5 @@
 /* Fonts */
+
 .font-open-sans {
     font-family: var(--first-font), Arial, sans-serif;
 }
@@ -116,24 +117,22 @@
     --gray-900: #212529;
     --white: #ffffff;
     --black: #000000;
-
     /* custom colors */
     --teal-500-fade: #337c66;
-
     --petrol: #395768;
     --teal-alt: #496d8f;
     --light-alt: #a2acb6;
-    --nav-color: #6093df;
+    --nav-color: #6093dfdd;
     --nav-color-alt: #395368;
     --dark-green: #1c866b;
     --background-color: #dae0e6;
     --background-color-2: #f1f1f1;
     --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
-
     /* #3d77b1, #1c5288 */
 }
 
 /* Text color pallette */
+
 .text-teal-alt {
     color: var(--teal-alt);
 }
@@ -186,8 +185,24 @@
     color: var(--blue-500);
 }
 
+.text-purple {
+    color: var(--indigo-300);
+}
+
+.text-pink {
+    color: var(--pink-200);
+}
+
 .text-wine {
     color: #d16c7d;
+}
+
+.text-petrol {
+    color: var(--petrol);
+}
+
+.text-gray {
+    color: var(--gray-400);
 }
 
 .bg-petrol {

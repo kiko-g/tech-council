@@ -1,4 +1,4 @@
-<div id="answer-submit-card" class="card border-0 mb-4 b">
+<div id="answer-submit-card" class="card border-0 mt-0 mb-5">
   <div class="card-body">
     <form id="answer-submit-form" data-question-id="{{ $question_id }}" action="{{ route('answer.create', $question_id) }}" method="post">
       @csrf

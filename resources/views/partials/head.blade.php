@@ -46,7 +46,6 @@
   <link rel="stylesheet" href={{ '/css/fonts.css' }} />
   <link rel="stylesheet" href={{ '/css/colors.css' }} />
   <link rel="stylesheet" href={{ '/css/style.css' }} />
-  <link rel="stylesheet" href={{ '/css/header.css' }} />
   <link rel="stylesheet" href={{ '/css/footer.css' }} />
   <link rel="stylesheet" href={{ '/css/generic.css' }} />
   <link rel="stylesheet" href={{ '/css/question.css' }} />
@@ -65,6 +64,5 @@
   <script src={{ '/js/app.js' }} defer></script>
   <script src={{ '/js/question.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
-  <script src={{ '/js/moderator-switch.js' }} defer></script>
   <script src={{ '/js/tag-selector.js' }} defer></script>
 </head>
