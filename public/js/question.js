@@ -56,9 +56,8 @@ function editAnswer(event) {
 function editAnswerHandler() {
     let response = JSON.parse(this.responseText);
     let answer = document.getElementById("answer-content-" + response.id);
-    console.log("answer: " + answer);
+
     if (this.status == 200 || this.status == 201) {
-        console.log("response: " + response.main);
         // set edited content
         answer.innerHTML = `
             <p>
@@ -192,23 +191,6 @@ function answerAddedHandler() {
     } else {
         // TODO set input error
     }
-}
-
-//TODO: check if needed
-function createdAnswerEventListeners(answerId) {
-    const upvoteButton = document.getElementById(`upvote-button-${answerId}`);
-    upvoteButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        if(!isAuthenticated) return;
-        vote('up', this.parentNode, this.dataset, false);
-    });
-
-    const downvoteButton = document.getElementById(`downvote-button-${answerId}`);
-    downvoteButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        if(!isAuthenticated) return;
-        vote('down', this.parentNode, this.dataset, false);
-    });
 }
 
 function createAnswer(main, answerId, authorId) {

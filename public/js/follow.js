@@ -1,5 +1,4 @@
 const toggleFollow = (followButton) => {
-    console.log(followButton.id);
     const tag_id = followButton.id.split("-").pop();
     if (followButton.children[0].classList.contains("far")) {
         sendAjaxRequest(
