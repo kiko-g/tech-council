@@ -3,9 +3,14 @@
     <img src="images/dwight.png" class="card-img-top user-img" alt="kermy">
     <div class="card-body"> 
       {{-- TODO: pass user to --}}
-      <h5 class="card-title">{{ $user->name }}</h5>
-      <p class="card-text">Reputation: {{ $user->reputation }}</p>
-      <p class="card-text">Joined: {{ $user->join_date }}</p>
+      <h5 class="card-title"></h5>
+      <p class="card-text">Reputation: </p>
+      <p class="card-text">Joined: </p>
     </div>
   </div>
 </section>
+{{-- 
+  {{ $user->name }}
+  {{ $user->reputation }}
+  {{ $user->join_date }}
+--}}
