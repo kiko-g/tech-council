@@ -20,35 +20,12 @@
             </button>
           </div>
 
-          {{-- Modal --}}
-          <div class="modal fade" id="delete-question-modal-{{ $question->content_id }}" tabindex="-1"
-            aria-labelledby="delete-question-modal-{{ $question->content_id }}-label" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title text-danger" id="delete-question-modal-{{ $question->content_id }}-label">
-                    Delete question</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-dark">
-                  Deleting question with title: {{ $question->title }}
-                </div>
-                <div class="modal-footer">
-                  <form action="{{ url('/question/' . $question->content_id . '/delete') }}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <button class="btn btn-success @if (!$include_comments) delete-modal @endif" 
-                      @if (!$include_comments) data-bs-dismiss="modal" @endif 
-                      id="delete-question-{{ $question->content_id }}"
-                      type="submit"> 
-                      Delete 
-                    </button>
-                  </form>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          @include('partials.question.delete-modal', [
+            "type" => "question",
+            "content_id" => $question->content_id,
+            "title" => $question->title,
+            "redirect" => $include_comments
+          ])
         @endif
       @endauth
     </div>
@@ -120,7 +97,7 @@
           <div id="tags" class="col-md-auto flex-wrap">
             @foreach ($question->tags as $tag)
               <div class="btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2" href="#">{{ $tag->name }}</a>
+                <a class="btn blue-alt border-0 my-btn-pad2" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
               </div>
             @endforeach
           </div>

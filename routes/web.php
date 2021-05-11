@@ -26,6 +26,10 @@ Route::get('auth/check', function () {
 
 
 
+/* M03: Content viewing and searching */
+Route::get('/', 'MainController@showMural')->name('home');
+Route::get('/question/{id}', 'QuestionController@showPage');
+Route::get('tag/{id}', 'TagController@showPage')->name('tag');
 /*
 -------------------
 M01: Authentication
@@ -79,13 +83,17 @@ Route::get('/create/question', function () {
     ]);
 })->name('create/question'); // could be 'ask/'?
 
+Route::post('/api/follow/tag', 'FollowTagController@follow');
+Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');
+
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
 Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
 Route::delete('/question/{id}/delete', 'QuestionController@delete');        // delete question
 
 Route::post('/api/question/{id}/answer', 'AnswerController@create')->name('answer.create'); // create answer
-Route::put('api/answer/{id}/edit', 'AnswerController@edit');                // edit answer
-Route::put('api/answer/{id}/delete', 'AnswerController@delete');            // delete answer
+Route::put('/api/answer/{id}/edit', 'AnswerController@edit');                // edit answer
+Route::delete('/api/answer/{id}/delete', 'AnswerController@delete');            // delete answer
+Route::get('/api/answer/{id}', 'AnswerController@get');
 
 Route::post('/api/question/{id}/vote', 'QuestionController@addVote');       // insert question vote
 Route::put('/api/question/{id}/vote', 'QuestionController@addVote');        // edit question vote

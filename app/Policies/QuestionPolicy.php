@@ -12,7 +12,7 @@ class QuestionPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user) {
+    public function create() {
         return Auth::check();
     }
 

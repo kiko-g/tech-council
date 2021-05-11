@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -52,5 +53,19 @@ class User extends Authenticatable
 
     public function followTags() {
         return $this->hasMany('App\Models\FollowTag');
+    }
+
+    public function followsTag($tag_id) {
+        $user_id = Auth::user()->id;
+
+        $follow_tag = FollowTag::where([
+            'user_id' => $user_id,
+            'tag_id' => $tag_id,
+        ])->first();
+
+        if (!empty($follow_tag)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -59,39 +59,29 @@ class AnswerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Get the answer, with the id specified by the parameter, view (HTML code).
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Answer  $answer
+     * @return the specified answer view.
      */
-    public function store(Request $request)
+    public function get($id)
     {
-        //
+        $answer = Answer::find($id);
+        return view('partials.question.answer', ['answer' => $answer ?? '', 'voteValue' => $answer->getVoteValue()]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Answer $answer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Edit an answer.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Http\Response
+     * @param  $id - the answer id.
+     * @return JSON The answer content in JSON format.
      */
     public function edit(Request $request, $id)
     {
         $answer = Answer::findOrFail($id);
 
-        //$this->authorize('update', Answer::class); //TODO: check authorization
+        $this->authorize('edit', $answer);
         $content = $answer->content;
 
         //TODO: trigger to update edited date
@@ -106,25 +96,26 @@ class AnswerController extends Controller
     }
 
     /**
-     * Delete a question.
+     * Delete an answer.
      *
-     * @return \Illuminate\Http\Response
+     * @return JSON The answer id in JSON format.
      */
     public function delete($id)
     {
         $answer = Answer::findOrFail($id);
 
-        //$this->authorize('update', Answer::class); //TODO: check authorization
+        $this->authorize('delete', $answer);
         $content = $answer->content;
 
-        //TODO: trigger to update edited date
-        $content->main = "[deleted]";
         try {
-            $content->save();
+            $content->delete();
         } catch (PDOException $e) {
             abort('403', $e->getMessage());
         }
 
+        $content = [
+            'id' => $id
+        ];
         return response()->json($content);
     }
 

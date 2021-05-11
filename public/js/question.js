@@ -1,32 +1,38 @@
-function addEventListeners() {
+function addQuestionEventListeners() {
     let answerSubmitForm = document.getElementById("answer-submit-form");
 
     try {
         answerSubmitForm.addEventListener("submit", submitAnswer);
     } catch (e) {}
 
-    let editButtons = document.getElementsByClassName("answer-edit");
-    for (editButton of editButtons)
-        editButton.addEventListener("click", editingAnswer);
+    answerButtonsListeners();
+    deleteButtonsListeners();
+}
 
-    let answerDeleteButtons = document.getElementsByClassName(
+function answerButtonsListeners(htmlNode = document) {
+    let answerEditButtons = htmlNode.getElementsByClassName("answer-edit");
+    for (answerEditButton of answerEditButtons)
+        answerEditButton.addEventListener("click", editingAnswer);
+
+    let answerDeleteButtons = htmlNode.getElementsByClassName(
         "delete-answer-modal-trigger"
     );
-
     if (answerDeleteButtons.length > 0) {
         for (button of answerDeleteButtons)
             button.addEventListener("click", handleDeleteAnswerModal);
     }
+}
 
-    //TODO: question_edit_form
-    let questionDeleteButtons = document.getElementsByClassName(
+function deleteButtonsListeners(htmlNode = document) {
+    let questionDeleteButtons = htmlNode.getElementsByClassName(
         "delete-question-modal-trigger"
     );
-
     if (questionDeleteButtons.length > 0) {
         for (button of questionDeleteButtons)
             button.addEventListener("click", handleDeleteQuestionModal);
     }
+
+    //TODO: question_edit_form
 }
 
 function editingAnswer() {
@@ -57,6 +63,7 @@ function editAnswer(event) {
 function editAnswerHandler() {
     let response = JSON.parse(this.responseText);
     let answer = document.getElementById("answer-content-" + response.id);
+
     if (this.status == 200 || this.status == 201) {
         // set edited content
         answer.innerHTML = `
@@ -65,25 +72,13 @@ function editAnswerHandler() {
             </p>
         `;
 
-        // reset collapses
-        let collapses = document.getElementsByClassName("answer-collapse");
-        for (collapse of collapses) {
-            if (collapse.classList.contains("show"))
-                collapse.classList.remove("show");
-            else collapse.classList.add("show");
-        }
-
         // set confirmation message
         let confirmation = document.createElement("div");
-        confirmation.innerHTML = `
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <p> Answer edited successfully </p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        `;
+        confirmation.innerHTML = successAlert("Answer edited successfully");
         let answerCard = document.getElementById("answer-" + response.id);
         answerCard.parentNode.insertBefore(confirmation, answerCard);
     } else {
+        //TODO: set error alert
     }
 }
 
@@ -115,21 +110,11 @@ function deleteQuestionHandler() {
     let deletedQuestion = document.getElementById("question-" + response.id);
     let confirmation = document.createElement("div");
     if (this.status == 200 || this.status == 201) {
-        confirmation.innerHTML = `
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <p> Question deleted successfully </p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        `;
+        confirmation.innerHTML = successAlert("Question deleted successfully");
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
         deletedQuestion.remove();
     } else {
-        confirmation.innerHTML = `
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            <p> Error deleting question </p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        `;
+        confirmation.innerHTML = errorAlert("Error deleting question");
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
     }
 }
@@ -145,11 +130,12 @@ function handleDeleteAnswerModal() {
 
 function deleteAnswer(event) {
     event.preventDefault();
+
     let idString = this.id;
     let answerId = idString.split("-").pop();
 
     sendAjaxRequest(
-        "put",
+        "delete",
         "/api/answer/" + answerId + "/delete",
         null,
         deleteAnswerHandler
@@ -162,22 +148,11 @@ function deleteAnswerHandler() {
     let deleteAnswer = document.getElementById("answer-" + response.id);
     let confirmation = document.createElement("div");
     if (this.status == 200 || this.status == 201) {
-        let deletedAnswerContent = document.getElementById("answer-content-" + response.id);
-        deletedAnswerContent.innerHTML = response.main;
-        confirmation.innerHTML = `
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <p> Answer deleted successfully </p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        `;
+        confirmation.innerHTML = successAlert("Answer deleted successfully");
         deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
+        deleteAnswer.remove();
     } else {
-        confirmation.innerHTML = `
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            <p> Error deleting answer </p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        `;
+        confirmation.innerHTML = errorAlert("Error deleting answer");
         deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
     }
 }
@@ -187,7 +162,6 @@ function submitAnswer(event) {
     if (!isAuthenticated) return;
 
     let fields = getFormValues(this);
-    console.log(fields);
     // TODO clear form input feedback here
     // TODO validate form input here
 
@@ -206,14 +180,10 @@ function answerAddedHandler() {
     let response = JSON.parse(this.responseText);
 
     if (this.status == 200 || this.status == 201) {
-        let newAnswer = createAnswer(
-            response.main,
-            response.id,
-            response.author_id
-        );
+        let newAnswer = createAnswer(response.id);
 
         // Add new question
-        let answers = document.getElementById("answer-section");
+        let answers = document.getElementById("answers");
         answers.prepend(newAnswer);
 
         // Reset form value
@@ -224,8 +194,9 @@ function answerAddedHandler() {
     }
 }
 
-function createAnswer(main, answerId, authorId) {
+function createAnswer(answerId) {
     let newAnswer = document.createElement("div");
+    newAnswer.id = "answer-" + answerId;
     newAnswer.classList.add(
         "card",
         "mb-4",
@@ -234,40 +205,19 @@ function createAnswer(main, answerId, authorId) {
         "rounded",
         "bg-background-color"
     );
-    newAnswer.innerHTML = `
-    <div class="card m-1">
-        <div class="card-body">
-        <p class="mb-3">
-            ${main}
-        </p>
 
-        <div class="row row-cols-3 mb-4" data-content-id="${answerId}">
-            <div class="col-lg flex-wrap">
-                <div id="votes-${answerId}" class="votes btn-group-special btn-group-vertical-when-responsive mt-1 flex-wrap">
-                <a id="upvote-button-${answerId}" class="upvote-button-answer my-btn-pad btn btn-outline-success teal" data-content-id="${answerId}">
-                    <i class="fas fa-chevron-up"></i>
-                </a>
-                <a id="vote-ratio-${answerId}" class="vote-ratio-answer btn my-btn-pad fake disabled"> 0 </a>
-                <a id="downvote-button-${answerId}" class="downvote-button-answer my-btn-pad btn btn-outline-danger pink" data-content-id="${answerId}">
-                    <i class="fas fa-chevron-down"></i>
-                </a>
-                </div>
-            </div>
-        </div>
-
-        </div>
-
-        <div class="card-footer text-muted text-end p-0">
-        <blockquote class="blockquote mb-0">
-        <p class="card-text px-1"><small class="text-muted">asked Aug 14 2020 at 15:31&nbsp;<a class="signature" href="#">user</a></small></p>
-        </blockquote>
-        </div>
-    </div>
-    `;
+    // send request
+    sendAjaxRequest("get", "/api/answer/" + answerId, null, function () {
+        if (this.status == 200 || this.status == 201) {
+            newAnswer.innerHTML = this.responseText;
+            answerVoteListeners(newAnswer);
+            answerButtonsListeners(newAnswer);
+        }
+    });
 
     // TODO: edit timestamp and user
 
     return newAnswer;
 }
 
-addEventListeners();
+addQuestionEventListeners();

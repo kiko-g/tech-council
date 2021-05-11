@@ -18,8 +18,8 @@
     </div>    
   @endforeach
 
-  <?php
-  if ($comment_count > $comment_limit) { ?>
+  
+  @if ($comment_count > $comment_limit)
     <a class="show-more text-sky me-2 mt-2" 
       data-bs-toggle="collapse" href=".hidden{{ $id }}"
       aria-expanded="false">Show {{ $comment_count - $comment_limit }} more comments
@@ -28,7 +28,7 @@
       data-bs-toggle="collapse" href=".hidden{{ $id }}"
       aria-expanded="false">Hide {{ $comment_count - $comment_limit }} last comments
     </a>
-  <?php } ?>
+  @endif
 
   <form class="collapse" id="collapse{{ $id }}">
     <textarea class="form-control shadow-sm border border-2 bg-light" rows="2"
