@@ -5,19 +5,26 @@ function addQuestionEventListeners() {
         answerSubmitForm.addEventListener("submit", submitAnswer);
     } catch (e) {}
 
-    let answerEditButtons = document.getElementsByClassName("answer-edit");
+    answerButtonsListeners();
+    deleteButtonsListeners();
+}
+
+function answerButtonsListeners(htmlNode = document) {
+    let answerEditButtons = htmlNode.getElementsByClassName("answer-edit");
     for (answerEditButton of answerEditButtons)
         answerEditButton.addEventListener("click", editingAnswer);
 
-    let answerDeleteButtons = document.getElementsByClassName(
+    let answerDeleteButtons = htmlNode.getElementsByClassName(
         "delete-answer-modal-trigger"
     );
     if (answerDeleteButtons.length > 0) {
         for (button of answerDeleteButtons)
             button.addEventListener("click", handleDeleteAnswerModal);
     }
+}
 
-    let questionDeleteButtons = document.getElementsByClassName(
+function deleteButtonsListeners(htmlNode = document) {
+    let questionDeleteButtons = htmlNode.getElementsByClassName(
         "delete-question-modal-trigger"
     );
     if (questionDeleteButtons.length > 0) {
@@ -123,11 +130,12 @@ function handleDeleteAnswerModal() {
 
 function deleteAnswer(event) {
     event.preventDefault();
+
     let idString = this.id;
     let answerId = idString.split("-").pop();
 
     sendAjaxRequest(
-        "put",
+        "delete",
         "/api/answer/" + answerId + "/delete",
         null,
         deleteAnswerHandler
@@ -172,11 +180,7 @@ function answerAddedHandler() {
     let response = JSON.parse(this.responseText);
 
     if (this.status == 200 || this.status == 201) {
-        let newAnswer = createAnswer(
-            response.main,
-            response.id,
-            response.author_id
-        );
+        let newAnswer = createAnswer(response.id);
 
         // Add new question
         let answers = document.getElementById("answer-section");
@@ -185,17 +189,14 @@ function answerAddedHandler() {
         // Reset form value
         let form = document.getElementById("answer-submit-input");
         form.value = "";
-
-        addQuestionEventListeners();
-        addVoteEventListeners();
     } else {
         // TODO set input error
     }
 }
 
-function createAnswer(main, answerId, authorId) {
+function createAnswer(answerId) {
     let newAnswer = document.createElement("div");
-	newAnswer.id = "answer-" + answerId;
+    newAnswer.id = "answer-" + answerId;
     newAnswer.classList.add(
         "card",
         "mb-4",
@@ -205,21 +206,14 @@ function createAnswer(main, answerId, authorId) {
         "bg-background-color"
     );
 
-    console.log("sending request...");
-
     // send request
-    sendAjaxRequest(
-        "get",
-        "/api/answer/" + answerId,
-        null,
-        function() {
-            console.log("request status: " + this.status);
-            if (this.status == 200 || this.status == 201) {
-                console.log(this.responseText);
-                newAnswer.innerHTML = this.responseText;
-            }
+    sendAjaxRequest("get", "/api/answer/" + answerId, null, function () {
+        if (this.status == 200 || this.status == 201) {
+            newAnswer.innerHTML = this.responseText;
+            answerVoteListeners(newAnswer);
+            answerButtonsListeners(newAnswer);
         }
-    );
+    });
 
     // TODO: edit timestamp and user
 

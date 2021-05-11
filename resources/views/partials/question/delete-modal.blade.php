@@ -1,17 +1,9 @@
-<!-- Modal -->
-
-<!-- Needs
-- contentId
-- Title
-- string for "question"/"answer"
--->
-
 @php
 if ($type == "question") {
-	$before_title = "Deleting answer to question:";
+	$before_title = "Deleting question with title:";
 	$warning_message = "Warning! This action is not reversible. The question and associated answers and comments will be permanently deleted.";
 } else {
-	$before_title = "Deleting question with title:";
+	$before_title = "Deleting answer to question:";
 	$warning_message = "Warning! This action is not reversible. The answer and associated comments will be permanently deleted.";
 }
 @endphp

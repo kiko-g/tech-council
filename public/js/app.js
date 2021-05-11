@@ -14,3 +14,9 @@ function sendAjaxRequest(method, url, data, handler) {
   request.addEventListener('load', handler);
   request.send(encodeForAjax(data));
 }
+
+let isAuthenticated = false;
+sendAjaxRequest('get', '/auth/check', null, function() {
+  if(this.response) isAuthenticated = true;
+  else isAuthenticated = false;
+});

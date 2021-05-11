@@ -1,5 +1,10 @@
 function addVoteEventListeners() {
-  let buttons = document.getElementsByClassName("upvote-button-question");
+  questionVoteListeners();
+  answerVoteListeners();
+}
+
+function questionVoteListeners(htmlNode = document) {
+  let buttons = htmlNode.getElementsByClassName("upvote-button-question");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -8,7 +13,7 @@ function addVoteEventListeners() {
     });
   });
 
-  buttons = document.getElementsByClassName("downvote-button-question");
+  buttons = htmlNode.getElementsByClassName("downvote-button-question");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -16,8 +21,10 @@ function addVoteEventListeners() {
       vote('down', element.parentNode, this.dataset, true);
     });
   });
+}
 
-  buttons = document.getElementsByClassName("upvote-button-answer");
+function answerVoteListeners(htmlNode = document) {
+  let buttons = htmlNode.getElementsByClassName("upvote-button-answer");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -26,7 +33,7 @@ function addVoteEventListeners() {
     });
   });
 
-  buttons = document.getElementsByClassName("downvote-button-answer");
+  buttons = htmlNode.getElementsByClassName("downvote-button-answer");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
