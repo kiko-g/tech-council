@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated"> Posting rules on Tech Council </div>
+  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated rounded-top"> Posting rules on Tech Council </div>
   <div class="card-body">
     <div class="card">
       <ul class="list-group list-group-flush">

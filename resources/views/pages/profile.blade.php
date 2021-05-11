@@ -2,9 +2,9 @@
 
 @section('content')
   @include('partials.filters.profile')
-  <section>
+  <section id="user-questions">
     @foreach ($user_questions as $question)
-      @include('partials.question.card', ['question' => $question, 'include_comments' => false])
+      @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
     @endforeach
   </section>
   @include('partials.pagination')

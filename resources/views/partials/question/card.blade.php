@@ -1,5 +1,5 @@
-<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
-  <div class="card-header bg-petrol text-white font-source-sans-pro">
+<div class="card mb-4 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
+  <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
     <div class="row">
       <div class="col-auto me-auto">
         <a class="a header" href="{{ url('question/' . $question->content_id) }}">
@@ -13,7 +13,7 @@
             <button class="btn p-0" type="submit">
               <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
             </button>
-            <!-- Button trigger modal -->
+            {{-- Button trigger modal --}}
             <button type="button" class="btn p-0 delete-question-modal-trigger" data-bs-toggle="modal"
               data-bs-target="#delete-question-modal-{{ $question->content_id }}">
               <i class="fas fa-trash text-wine mt-1 ms-2"></i>
@@ -32,19 +32,14 @@
   </div>
 
   <div class="card-body" data-content-id="{{ $question->content_id }}">
-    <article class="row row-cols-2 mb-1">
+    <article class="row row-cols-2 mb-1 pe-1">
       <div class="col-auto flex-wrap">
         <div id="votes-{{ $question->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
           @php
             $upClass = 'teal';
-            if ($voteValue === 1) {
-                $upClass = 'active-teal';
-            }
-            
             $downClass = 'pink';
-            if ($voteValue === -1) {
-                $downClass = 'active-pink';
-            }
+            if ($voteValue === 1) $upClass = 'active-teal';
+            if ($voteValue === -1) $downClass = 'active-pink';
           @endphp
           <a id="upvote-button-{{ $question->content_id }}"
             class="upvote-button-question my-btn-pad up btn btn-outline-success {{ $upClass }}"
@@ -53,7 +48,8 @@
           </a>
           <a id="vote-ratio-{{ $question->content_id }}"
             class="{{ $voteValue }} vote-ratio-question btn my-btn-pad fake disabled">
-            {{ $question->votes_difference }} </a>
+            {{ $question->votes_difference }} 
+          </a>
           <a id="downvote-button-{{ $question->content_id }}"
             class="downvote-button-question my-btn-pad down btn btn-outline-danger {{ $downClass }}"
             data-content-id="{{ $question->content_id }}">
@@ -61,21 +57,18 @@
           </a>
         </div>
       </div>
-
+      
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
         <div id="{{ 'question-content-' . $question->content_id }}" class="mb-1">
-
           {!! $question->content->main !!}
           {{-- <div class="collapse mt-2" id="collapseQuestionText2">
               Section inside <code>collapse</code>.
             </div> --}}
-
           {{-- <button class="btn btn-outline-info dark border-0 py-0 px-1" type="button" onclick="toogleText(this)"
               data-bs-toggle="collapse" data-bs-target="#collapseQuestionText2" aria-expanded="false"
               aria-controls="collapseQuestionText2">
               <i class="fas fa-ellipsis-h"></i>
             </button> --}}
-
         </div>
 
         <div class="row row-cols-2 mb-1">
@@ -89,7 +82,7 @@
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
                 <a class="comment-number-button btn teal my-btn-pad2"
-                  id="comment-number-button-{{ $question->content_id }}" href="#">
+                  id="comment-number-button-{{ $question->content_id }}" href="{{ url('question/' . $question->content_id . '#answers') }}">
                   <i class="far fa-comment-dots"></i>&nbsp;25
                 </a>
               </div>
@@ -109,22 +102,27 @@
             @endforeach
           </div>
         </div>
+        @if ($include_comments)
+          @include('partials.question.comment-section', ['comments' => $question->comments, 'id' => $question->content_id])
+        @endif
       </div>
     </article>
-
-    @if ($include_comments)
-      @include('partials.question.comment-section', ['comments' => $question->comments, 'id' => $question->content_id])
-    @endif
   </div>
 
-  <div class="card-footer text-muted text-end p-0">
+  <footer class="card-footer text-muted text-end p-0">
     <blockquote class="blockquote mb-0">
-      <p class="card-text px-1">
+      <p class="card-text px-1 h6">
         <small class="text-muted">asked {{ $question->content->creation_date }}</small>
         <small>
-          <a class="signature" href="#">{{ $question->content->author_id }}</a>
+          <a class="signature" href="#">{{ $question->content->author->name }}
+            @if ($question->content->author->moderator)
+              {!! '&nbsp;<i class="fas fa-briefcase fa-sm"></i>' !!}
+            @elseif($question->content->author->expert)
+              {!! '&nbsp;<i class="fas fa-medal fa-sm"></i>' !!}
+            @endif
+          </a>
         </small>
       </p>
     </blockquote>
-  </div>
+  </footer>
 </div>

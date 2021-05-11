@@ -11,37 +11,77 @@
 |
 */
 
-use App\Http\Controllers\AnswerController;
-use Illuminate\Support\Facades\Route;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AnswerController;
 
-// Auth check
+
+/* ------------------- */
 Route::get('auth/check', function () {
     return Auth::check();
 });
 
-/* M01: Authentication */
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
-Route::get('/login/reset', 'Auth\RecoverController@show');
 
-/* M02: Individual Profile */
-Route::get('/user/{id}', 'UserController@showProfile');
 
 /* M03: Content viewing and searching */
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');
+/*
+-------------------
+M01: Authentication
+TODO: R106, R107
+-------------------
+*/
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');                   // R101
+Route::post('login', 'Auth\LoginController@login');                                         // R102
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');                        // R103
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');   // R104
+Route::post('register', 'Auth\RegisterController@register');                                // R105
+Route::get('/login/reset', 'Auth\RecoverController@showResetForm');                         // R106
+Route::get('/login/reset', 'Auth\RecoverController@reset');                                 // R107
 
-/* M04: Content interaction */
+/*
+-----------------------
+M02: Individual Profile
+TODO: R203 - R205
+-----------------------
+*/
+Route::get('/user/{id}', 'UserController@showProfile');                                     // R201
+Route::get('/user/{id}/settings', 'UserController@showProfileSettings');                    // R202
+
+
+/* 
+----------------------------------
+M03: Content viewing and searching
+TODO: R303 - R305
+----------------------------------
+*/
+Route::get('/', 'MainController@showMural')->name('home');                                  // R301
+Route::get('search', function () {
+    return view('pages.search', [
+        'questions' => Question::paginate(10),
+        'tags' => Tag::paginate(10),
+        'users' => User::paginate(7),
+        'user' => Auth::user(),
+    ]);
+});                                                                                         // R302
+Route::get('/question/{id}', 'QuestionController@showPage');                                // R306
+
+
+/* 
+------------------------ 
+M04: Content interaction 
+------------------------
+*/
 Route::get('/create/question', function () {
     return view('pages.ask', [
         'user' => Auth::user(),
     ]);
-})->name('create/question');
+})->name('create/question'); // could be 'ask/'?
 
 Route::post('/api/follow/tag', 'FollowTagController@follow');
 Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');
@@ -63,10 +103,25 @@ Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // e
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
 
-/* M05: Moderation */
-// --
+/* TODO:
+--------------- 
+M05: Moderation
+---------------
+*/
+Route::get('moderator', function () {
+    return view('pages.moderator', [
+        'user' => Auth::user(),
+    ]);
+});
 
-/* M06: Static Pages */
+
+
+
+/* 
+-----------------
+M06: Static Pages
+-----------------
+*/
 Route::get('about', function () {
     return view('pages.about', [
         'user' => Auth::user(),
@@ -78,29 +133,3 @@ Route::get('faq', function () {
         'user' => Auth::user(),
     ]);
 })->name('faq');
-
-
-// JUST FOR DEBUGGING
-Route::get('ask', function () {
-    return view('pages.ask');
-});
-
-Route::get('moderator', function () {
-    return view('pages.moderator');
-});
-
-Route::get('profile', function () {
-    return view('pages.profile');
-});
-
-Route::get('profile-settings', function () {
-    return view('pages.profile-settings');
-}); // remove this
-
-Route::get('search', function () {
-    return view('pages.search');
-});
-
-Route::get('moderator', function () {
-    return view('pages.moderator');
-});

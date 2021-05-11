@@ -1,13 +1,3 @@
-# TODO (EAP)
-
--   Review YAML
-    -   URL syntax
-    -   General overview
--   Error pages and feedback for some actions
--   Profile page and settings
--   Production fully working
--   Overview of EAP Wiki and Checklist
-
 # Tech Council
 
 -   LBAW 2020/21 | Group 32

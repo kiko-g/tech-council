@@ -14,4 +14,9 @@ class Content extends Model
     public $timestamps = false;
 
     protected $table = 'content';
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User', 'author_id');
+    }
 }

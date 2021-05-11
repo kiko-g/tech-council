@@ -183,7 +183,7 @@ function answerAddedHandler() {
         let newAnswer = createAnswer(response.id);
 
         // Add new question
-        let answers = document.getElementById("answer-section");
+        let answers = document.getElementById("answers");
         answers.prepend(newAnswer);
 
         // Reset form value
