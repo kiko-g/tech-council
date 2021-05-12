@@ -25,11 +25,9 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-element/dist/markdown-element.min.js"></script>
 
-  {{-- Stackedit | Quill | Remarkable --}}
+  {{-- Stackedit | Remarkable --}}
   <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js"></script>
-  <script src = "https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.js" integrity="sha512-QRrpZjZVcoHxp1kQn6MecUMg7rXIE2p8l6kPdlS786pgmsDzYc+x+tlZzui1Spbl6wzLqlCNzGwb4Gt0WM2mew==" crossorigin="anonymous"></script>
 
   {{-- Page Icons --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">

@@ -13,7 +13,6 @@
           <button id="toggle-stackedit" class="toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">&lt;&#47;&gt;</button>
         </div>
         <script src="{{ '/js/stackedit.js' }}"> </script>
-
         <div class="row row-cols-auto mb-3">
           <div id="tags" class="col-lg-auto">
             <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag"
@@ -48,6 +47,7 @@
         </div>
       </form>
     </section>
+    {{-- <div id="demo"></div> --}}
   </div>
 @endsection
 
