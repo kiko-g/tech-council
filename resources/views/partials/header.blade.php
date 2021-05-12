@@ -16,16 +16,20 @@
           @auth
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                <img src="/images/dwight.png" class="rounded" alt="profile-image-{{ $user->id }}" width="20" height="20"> 
+                @php
+                  $photo = $user->profile_photo_obj->path;
+                  if (Storage::disk('public')->exists($photo)) $photo = '/storage/' . $photo;
+                  else $photo = '/storage/assets/photos/user-default.png';
+                @endphp                
+                <img src="{{ $photo }}" class="rounded" alt="profile-image-{{ $user->id }}" width="20" height="20"> 
               </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li>
-                <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li>
-                <li><hr class="dropdown-divider"></li>
+              <ul class="dropdown-menu profile">
                 <li><a class="dropdown-item" href="{{ url('user/' . $user->id) }}">Profile&nbsp;<i class="fas fa-address-card"></i></a></li>
-                <li><a class="dropdown-item" href="{{ url('user/' . $user->id . '/settings') }}">Profile Settings&nbsp;<i class="fas fa-tools fa-sm"></i></a></li>
+                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout&nbsp;&nbsp;<i class="fas fa-sign-out-alt fa-sm"></i></a> </li>
+                <li><a class="dropdown-item" href="{{ url('user/' . $user->id . '/settings') }}">Settings&nbsp;<i class="fas fa-cog fa-sm"></i></a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout&nbsp;<i class="fas fa-sign-out-alt fa-sm"></i></a> </li>
+                <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li>
+                <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li>
               </ul>
             </li>
             {{-- <li class="nav-item"> <a href="{{ route('home') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-envelope fa-sm"></i>&nbsp;Inbox&nbsp;<span class="badge stack align-middle">24</span> </a> </li> --}}

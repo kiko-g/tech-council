@@ -5,7 +5,7 @@
         @method('PUT')
         @csrf
         <div class="row row-cols-2">
-            <!-- edit text area -->
+            {{--edit text area --}}
             <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1 col-10 me-auto p-0">
                 <textarea id="answer-submit-input-{{ $answer->content_id }}" name="main" class="form-control shadow-sm border border-2 bg-light" rows="5" placeholder="Type your answer">
                     {!! $answer->content->main !!}

@@ -608,3 +608,45 @@ a.hover-cute:hover:after {
   width: 100%;
   left: 0;
 }
+
+.border-petrol {
+  border: 1px solid var(--petrol);
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+@media (min-width:1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1400px;
+  }
+}
+
+.dropdown-menu.profile {
+  background-color: whitesmoke;
+  opacity: 97%;
+  border: none;
+}
+
+.dropdown-item {
+  color: rgb(60, 70, 77);
+}
+
+.dropdown-item>i {
+  color: rgb(46, 101, 165);
+}
+
+.dropdown-item:hover {
+  color: whitesmoke;
+  background-color: rgb(46, 101, 165);
+}
+
+.dropdown-item:hover>i {
+  color: whitesmoke;
+  background-color: rgb(46, 101, 165);
+}

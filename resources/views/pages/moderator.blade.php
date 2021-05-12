@@ -25,14 +25,14 @@
       <div class="row">
         @for ($i = 0; $i < 3; $i++)
           <div class="col-lg">
-            @include('partials.user.card')
+            @include('partials.user.card', ['user' => $user[$i]])
           </div>
         @endfor
       </div>
       <div class="row">
-        @for ($i = 0; $i < 3; $i++)
+        @for ($i = 3; $i < 6; $i++)
           <div class="col-lg">
-            @include('partials.user.card')
+            @include('partials.user.card', ['user' => $user[$i]])
           </div>
         @endfor
       </div>

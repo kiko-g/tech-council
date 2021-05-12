@@ -131,6 +131,12 @@
     /* #3d77b1, #1c5288 */
 }
 
+/* Backgrounds */
+
+.special-bg {
+    background-color: #bbc4ce;
+}
+
 /* Text color pallette */
 
 .text-teal-alt {
@@ -203,6 +209,86 @@
 
 .text-gray {
     color: var(--gray-400);
+}
+
+.text-dark-gray {
+    color: var(--gray-600);
+}
+
+.bg-teal-alt {
+    background-color: var(--teal-alt);
+}
+
+.bg-dark-green {
+    background-color: var(--dark-green);
+}
+
+.bg-orange-300 {
+    background-color: var(--orange-300);
+}
+
+.bg-teal-200 {
+    background-color: var(--teal-200);
+}
+
+.bg-teal-300 {
+    background-color: var(--teal-300);
+}
+
+.bg-teal-400 {
+    background-color: var(--teal-400);
+}
+
+.bg-teal-500 {
+    background-color: var(--teal-500);
+}
+
+.bg-red-400 {
+    background-color: var(--red-400);
+}
+
+.bg-blue-100 {
+    background-color: var(--blue-100);
+}
+
+.bg-blue-200 {
+    background-color: var(--blue-200);
+}
+
+.bg-blue-300 {
+    background-color: var(--blue-300);
+}
+
+.bg-blue-400 {
+    background-color: var(--blue-400);
+}
+
+.bg-blue-500 {
+    background-color: var(--blue-500);
+}
+
+.bg-purple {
+    background-color: var(--indigo-300);
+}
+
+.bg-pink {
+    background-color: var(--pink-200);
+}
+
+.bg-wine {
+    background-color: #d16c7d;
+}
+
+.bg-petrol {
+    background-color: var(--petrol);
+}
+
+.bg-gray {
+    background-color: var(--gray-400);
+}
+
+.bg-dark-gray {
+    background-color: var(--gray-500);
 }
 
 .bg-petrol {

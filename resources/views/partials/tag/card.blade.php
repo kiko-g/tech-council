@@ -1,5 +1,7 @@
 @php
-  $follows = $user->followsTag($tag->id);
+  if(isset($user)) $follows = $user->followsTag($tag->id);
+  else $follows = null;
+
   if ($follows) {
     $follow_class = 'active-follow';
     $follow_text = 'Following';
@@ -39,12 +41,12 @@
       <div id="facts" class="col-lg-auto">
         <div class="btn-group mt-1 rounded">
           <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
-            <i class="fas fa-fire"></i>&nbsp;21k followers <!-- TODO: check followers -->
+            <i class="fas fa-fire"></i>&nbsp;21k followers {{--TODO: check followers --}}
           </span>
         </div>
         <div class="btn-group mt-1 rounded">
           <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
-            <i class="fas fa-question"></i>&nbsp;168k questions <!-- TODO: check questions -->
+            <i class="fas fa-question"></i>&nbsp;168k questions {{--TODO: check questions --}}
           </span>
         </div>
       </div>

@@ -31,6 +31,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'bio'
     ];
 
+    public function profile_photo_obj() {
+        return $this->belongsTo('App\Models\Photo', 'profile_photo');
+    }
+
     public function moderator() {
         return $this->hasOne('App\Models\Moderator', 'user_id');
     }

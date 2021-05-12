@@ -108,13 +108,7 @@ Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // d
 M05: Moderation
 ---------------
 */
-Route::get('moderator', function () {
-    return view('pages.moderator', [
-        'user' => Auth::user(),
-    ]);
-});
-
-
+Route::get('moderator', 'ModeratorController@showArea');
 
 
 /* 

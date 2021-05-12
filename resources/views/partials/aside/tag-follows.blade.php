@@ -4,7 +4,9 @@
         @foreach ($followTags as $followTag)
             <div class="btn-group" id="followed-tag-{{ $followTag->tag->id }}">
                 <a href="{{ route('tag', ['id' => $followTag->tag->id]) }}"
-                    class="btn blue-alt border-0 my-btn-pad2">{{ $followTag->tag->name }}</a>
+                   class="btn blue-alt border-0 my-btn-pad2">
+                   {{ $followTag->tag->name }}
+                </a>
             </div>
         @endforeach
     </div>

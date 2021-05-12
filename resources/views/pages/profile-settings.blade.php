@@ -26,7 +26,7 @@
           <div class="col-lg-6 form-group">
             <label for="pass" class="form-label">Password</label>
             <div class="input-group mb-3">
-              <input id="pass" type="password" value="{{ $user->password }}" class="form-control" aria-describedby="hide">
+              <input id="pass" type="password" class="form-control" aria-describedby="hide">
               <button id="hide" class="btn btn-outline-secondary" type="button">
                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
               </button>

@@ -25,13 +25,10 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-element/dist/markdown-element.min.js"></script>
 
-  {{-- Quill JS --}}
-  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js">
-    < script >
-      <
-      script src = "https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js" >
-
-  </script>
+  {{-- Stackedit | Quill | Remarkable --}}
+  <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js"></script>
+  <script src = "https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script>
 
 
   {{-- Page Icons --}}
@@ -66,6 +63,5 @@
   <script src={{ '/js/question.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
   <script src={{ '/js/follow.js' }} defer></script>
-  <script src={{ '/js/moderator-switch.js' }} defer></script>
   <script src={{ '/js/tag-selector.js' }} defer></script>
 </head>

@@ -1,11 +1,9 @@
-@extends('layouts.app')
-
-{{-- @include('partials.question.card')
-@include('partials.tag.card') --}}
+@extends('layouts.app', ['user' => $user])
 
 @section('content')
   <div class="tab-content" id="nav-tabContent">
     <div class="search-results-header rounded">
+      {{-- NAVIGATION --}}
       <main class="container pb-2">
         <div class="row justify-content-between search-and-pose">
           <div class="col-12 my-auto">
@@ -29,27 +27,28 @@
     {{--  QUESTIONS --}}
     <div class="tab-pane fade show active" id="nav-questions" role="tabpanel">
       @include('partials.filters.question')
-      <div>
+      <section id="search-tag-results">
         @foreach ($questions as $question)
           @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
         @endforeach
-      </div>
+      </section>
     </div>
 
     {{--  TAGS --}}
     <div class="tab-pane fade" id="nav-tags" role="tabpanel">
       @include('partials.filters.tag')
-      <div>
+        <section id="search-tag-results">
           @foreach ($tags as $tag)
-            {{--  @include('partials.tag.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])  --}}
+            @include('partials.tag.card', ['tag' => $tag, 'user' => $user])
           @endforeach
-      </div>
+        </section>
     </div>
 
     {{--  USERS  --}}
-    <div class="tab-pane fade" id="nav-users" role="tabpanel">
-      <div class="container">
+    <div class="tab-pane fade special-bg p-1 rounded" id="nav-users" role="tabpanel">
+      <div class="container p-0">
         @php
+          use App\Models\User;
           $user_amount = count($users);
           $rows_amount = ceil($user_amount / 3);
         @endphp
@@ -62,7 +61,7 @@
             @for($i = 0; $i < 3; $i++)
               <div class="col">
                 @if($i < $cols)
-                  @include('partials.user.card-simple')
+                  @include('partials.user.card-simple', ['user' => User::find(($row * 3) + ($i + 1))])
                 @endif
               </div>
             @endfor
