@@ -20,6 +20,7 @@ use App\Http\Controllers\AnswerController;
 
 
 /* ------------------- */
+
 Route::get('auth/check', function () {
     return Auth::check();
 });
@@ -108,8 +109,7 @@ Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // d
 M05: Moderation
 ---------------
 */
-Route::get('moderator', 'ModeratorController@showArea');
-
+Route::get('moderator', 'ModeratorController@showArea')->middleware('api');
 
 /* 
 -----------------

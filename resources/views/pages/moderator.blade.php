@@ -25,14 +25,14 @@
       <div class="row">
         @for ($i = 0; $i < 3; $i++)
           <div class="col-lg">
-            @include('partials.user.card', ['user' => $user[$i]])
+            @include('partials.user.card', ['user' => $displayed_users[$i]])
           </div>
         @endfor
       </div>
       <div class="row">
         @for ($i = 3; $i < 6; $i++)
           <div class="col-lg">
-            @include('partials.user.card', ['user' => $user[$i]])
+            @include('partials.user.card', ['user' => $displayed_users[$i]])
           </div>
         @endfor
       </div>
@@ -54,7 +54,7 @@
       </nav>
     </div>
     <div class="moderate-tag container">
-      @include('partials.tag.table')
+      @include('partials.tag.table', ['tags' => $displayed_tags])
     </div>
     <div class="results-picker">
       @include('partials.pagination')
@@ -69,6 +69,17 @@
         </form>
       </nav>
     </div>
+
+    <div id="user-reports" class="active">
+      @include('partials.reports.user', ['reports' => $user_reports])
+      @include('partials.pagination')
+    </div>
+
+    <div id="content-reports">
+      @include('partials.reports.content', ['reports' => $content_reports])
+      @include('partials.pagination')
+    </div>
+
   </div>
 @endsection
 

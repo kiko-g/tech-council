@@ -8,10 +8,13 @@
     <img src="{{ $photo }}" class="card-img-top user-img" alt="kermy">
     <div class="card-body">
       <h5 class="card-title">{{ $user->name }}</h5>
-      <p class="card-text">Banned: {{ $user->banned }}</p>
       <p class="card-text">Reputation: {{ $user->reputation }}</p>
       <p class="card-text">Joined: {{ $user->join_date }}</p>
+      @if ($user->banned)
+      <a href="#" class="btn blue-alt">Unban</a>
+      @else
       <a href="#" class="btn blue-alt">Ban</a>
+      @endif
     </div>
   </div>
 </section>
