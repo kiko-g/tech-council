@@ -51,7 +51,7 @@ M02: Individual Profile
 TODO: R203 - R205
 -----------------------
 */
-Route::get('/user/{id}', 'UserController@showProfile');                                     // R201
+Route::get('/user/{id}', 'UserController@showProfile')->name('user');                                     // R201
 Route::get('/user/{id}/settings', 'UserController@showProfileSettings');                    // R202
 
 
@@ -70,7 +70,7 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
-Route::get('/question/{id}', 'QuestionController@showPage');                                // R306
+Route::get('/question/{id}', 'QuestionController@showPage')->name('question');                                // R306
 
 
 /* 

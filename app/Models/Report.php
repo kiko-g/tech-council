@@ -14,4 +14,8 @@ class Report extends Model
     public $timestamps = false;
 
     protected $table = 'report';
+
+    public function reporter() {
+        return $this->belongsTo('App\Models\User', 'reporter_id');
+    }
 }

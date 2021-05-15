@@ -72,8 +72,4 @@ class User extends Authenticatable
         }
         return false;
     }
-
-    public function authoredTags() {
-        return $this->hasMany('App\Models\Tag');
-    }
 }

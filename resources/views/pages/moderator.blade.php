@@ -70,13 +70,13 @@
       </nav>
     </div>
 
-    <div id="user-reports" class="active">
-      @include('partials.reports.user', ['reports' => $user_reports])
+    <div id="user-reports">
+      @include('partials.reports.user', ['user_reports' => $user_reports])
       @include('partials.pagination')
     </div>
 
     <div id="content-reports">
-      @include('partials.reports.content', ['reports' => $content_reports])
+      @include('partials.reports.content', ['content_reports' => $content_reports])
       @include('partials.pagination')
     </div>
 
