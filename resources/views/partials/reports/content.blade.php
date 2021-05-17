@@ -4,7 +4,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Content type</th>
-                <th scope="col">Content</th>
+                <th scope="col">Content creator</th>
                 <th scope="col">Message</th>
                 <th scope="col">Actions</th>
             </tr>

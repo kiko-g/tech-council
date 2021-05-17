@@ -70,7 +70,7 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
-Route::get('/question/{id}', 'QuestionController@showPage')->name('question');                                // R306
+Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
 
 
 /* 
@@ -103,6 +103,7 @@ Route::post('/api/answer/{id}/vote', 'AnswerController@addVote');           // i
 Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // edit answer vote
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
+Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 /* TODO:
 --------------- 
