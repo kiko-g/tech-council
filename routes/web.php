@@ -102,6 +102,7 @@ Route::post('/api/answer/{id}/vote', 'AnswerController@addVote');           // i
 Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // edit answer vote
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
+Route::post('/api/content/{id}/report', 'ReportController@reportContent');
 
 /* TODO:
 --------------- 

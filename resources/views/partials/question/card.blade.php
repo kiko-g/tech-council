@@ -92,6 +92,16 @@
                 <i class="fas fa-share-alt"></i>&nbsp;Share
               </a>
             </div>
+            <div class="btn-group mt-1 rounded">
+              <a class="report-button btn red my-btn-pad2" id="report-button-{{ $question->content_id }}"
+                data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
+                <i class="fas fa-flag"></i>
+              </a>
+            </div>
+            @include('partials.report-modal', [
+              "type" => "question",
+              "content_id" => $question->content_id,
+            ])
           </div>
 
           <div id="tags" class="col-md-auto flex-wrap">

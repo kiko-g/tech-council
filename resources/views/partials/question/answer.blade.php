@@ -18,6 +18,16 @@
             <a id="downvote-button-{{ $answer->content_id }}" class="downvote-button-answer my-btn-pad btn btn-outline-danger {{ $downClass }}" data-content-id="{{ $answer->content_id }}">
               <i class="fas fa-chevron-down"></i>
             </a>
+            <div class="mt-3 rounded">
+              <a class="float-end report-button btn red my-btn-pad2" id="report-button-{{ $answer->content_id }}"
+                  data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}">
+                <i class="fas fa-flag"></i>
+              </a>
+            </div>
+            @include('partials.report-modal', [
+              "type" => "answer",
+              "content_id" => $answer->content_id,
+            ])
           </div>
         </div>
 

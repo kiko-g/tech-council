@@ -10,10 +10,20 @@
       <div class="comment d-flex justify-content-between shadow-sm border border-2 mb-1 px-2 bg-light rounded">
         <p class="mb-0">{!! $comment->content->main !!}</p>
         <blockquote class="blockquote mb-0">
-          <p class="card-text mb-0"><small class="text-muted">{{ $comment->content->creation_date }}&nbsp;
-              <a class="signature" href="#">{{ $comment->content->author_id }}</a></small>
+          <p class="card-text mb-0">
+              <small class="text-muted">{{ $comment->content->creation_date }}&nbsp;
+                <a class="signature" href="#">{{ $comment->content->author_id }}</a>
+                &nbsp;&nbsp; 
+              </small>
+              <i class="fas fa-flag fa-sm" id="report-button-{{ $comment->content_id }}"
+                data-bs-toggle="modal" data-bs-target="#report-modal-comment-{{ $comment->content_id }}"></i>
+                @include('partials.report-modal', [
+                  "type" => "comment",
+                  "content_id" => $comment->content_id,
+                ])
           </p>
         </blockquote>
+
       </div>
     </div>    
   @endforeach
@@ -43,7 +53,7 @@
       </a>
     </div>
   </form>
-
+  
   <div class="float-end mt-2">
     <a class="float-end btn blue-alt extra text-white add-comment px-2 py-1" data-bs-toggle="collapse"
       href="#collapse{{ $id }}" role="button" aria-expanded="false"
@@ -51,4 +61,5 @@
       Add comment
     </a>
   </div>
+
 </article>

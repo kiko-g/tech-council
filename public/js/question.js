@@ -221,3 +221,9 @@ function createAnswer(answerId) {
 }
 
 addQuestionEventListeners();
+addReportEventListener();
+
+function addReportEventListener() {
+    let form = document.querySelector("#report-form");
+    console.log(form);
+}
