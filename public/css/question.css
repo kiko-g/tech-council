@@ -87,24 +87,26 @@
   left: auto;
   z-index: 10;
   display: block;
-  padding: 0 0.1rem;
+  padding: 0.1rem 0.2rem;
   border: 2px #dee2e6 solid;
   border-radius: .25rem;
-  font-size: 0.8em;
+  font-size: 1.5rem;
   font-family: "Zilla Slab";
   font-weight: bold
 }
 
 #toggle-stackedit:hover {
   opacity: 90%;
+  color: #fff;
+  background-color: #1c5686;
 }
 
 .toggle-stackedit.off {
-  color: #1c866b;
+  color: #1c5686;
   background-color: #fff;
 }
 
 .toggle-stackedit.on {
   color: #fff;
-  background-color: #1c866b;
+  background-color: #1c5686;
 }

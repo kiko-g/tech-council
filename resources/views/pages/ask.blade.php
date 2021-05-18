@@ -10,7 +10,7 @@
         </div>
         <div class="textarea-container">
           <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
-          <button id="toggle-stackedit" class="toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">&lt;&#47;&gt;</button>
+          <button id="toggle-stackedit" class="toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit"><i class="fas fa-laptop-code"></i></button>
         </div>
         <script src="{{ '/js/stackedit.js' }}"> </script>
         <div class="row row-cols-auto mb-3">

@@ -20,7 +20,7 @@
                   $photo = $user->profile_photo_obj->path;
                   if (Storage::disk('public')->exists($photo)) $photo = '/storage/' . $photo;
                   else $photo = '/storage/assets/photos/user-default.png';
-                @endphp                
+                @endphp
                 <img src="{{ $photo }}" class="rounded" alt="profile-image-{{ $user->id }}" width="20" height="20"> 
               </a>
               <ul class="dropdown-menu profile">
