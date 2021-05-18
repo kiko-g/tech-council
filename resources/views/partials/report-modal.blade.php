@@ -7,7 +7,6 @@
       </div>
       <div class="modal-body">
         Please select the reason why you are reporting this content:
-
         <form id="report-form-{{ $content_id }}" action="
             @auth 
               {{ route('report/question') }}
@@ -57,16 +56,12 @@
               </label>
             </div>
           </div>
-
-					<textarea class="form-control shadow-sm border border-2 bg-light" rows="2"
-						placeholder="Describe the reason to report this {{ $type }}"></textarea>
-
+					<textarea class="form-control shadow-sm border border-2 bg-light" rows="2" placeholder="Describe the reason to report this {{ $type }}"></textarea>
         </form>
-
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary red disabled">Report</button>
+        <button id="submit-report-button-{{ $content_id }}" type="button" class="btn btn-secondary red disabled">Report</button>
       </div>
     </div>
   </div>

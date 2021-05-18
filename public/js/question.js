@@ -220,10 +220,15 @@ function createAnswer(answerId) {
     return newAnswer;
 }
 
+function addReportEventListener() {
+    let reportForms = document.querySelectorAll("[id^='report-form']");
+    let submitReportButtons = document.querySelectorAll("[id^='submit-report-button']");
+    console.log(reportForms);
+    console.log(submitReportButtons);
+}
+
+/**
+ * @brief script execution
+ */ 
 addQuestionEventListeners();
 addReportEventListener();
-
-function addReportEventListener() {
-    let form = document.querySelector("#report-form");
-    console.log(form);
-}

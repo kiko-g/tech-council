@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\ContentReport;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,19 +17,19 @@ class ReportController extends Controller
         Content::findOrFail($content_id);
 
         $this->authorize('create', Report::class);
-        $request->validate(['main' => 'required|max:' . Report::MAX_MAIN_LENGTH]);
+        $request->validate(['description' => 'required|max:' . Report::MAX_DESCRIPTION_LENGTH]);
 
-        $content = new Content();
-        $content->main = $request->input('main');
-        $content->author_id = Auth::user()->id;
+        $report = new Report();
+        $report->description = $request->input('description');
+        $report->reporter_id = Auth::user()->id;
 
         try {
-            DB::transaction(function () use ($content, $question_id) {
-                $content->save();
-                $answer = new Answer();
-                $answer->content_id = $content->id;
-                $answer->question_id = $question_id;
-                $answer->save();
+            DB::transaction(function () use ($report, $content_id) {
+                $report->save();
+                $content_report = new ContentReport();
+                $content_report->report_id = $report->id;
+                $content_report->content_id = $content_id;
+                $content_report->save();
             });
         } catch (PDOException $e) {
             error_log($e->getMessage());
@@ -36,8 +37,7 @@ class ReportController extends Controller
         }
 
         // TODO: Add notification here!
-
-        return response()->json($content);
+        return response()->json($report);
     }
 
 

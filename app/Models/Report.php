@@ -13,5 +13,5 @@ class Report extends Model
      * @var string
      */
     protected $table = 'report';
-    const MAX_MAIN_LENGTH = 1000;
+    const MAX_DESCRIPTION_LENGTH = 1000;
 }
