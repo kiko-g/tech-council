@@ -55,7 +55,7 @@ class User extends Authenticatable
         return $this->hasManyThrought('App\Models\AnswerComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function followTags() {
+    public function followedTags() {
         return $this->hasMany('App\Models\FollowTag');
     }
 

@@ -20,6 +20,7 @@ use App\Http\Controllers\AnswerController;
 
 
 /* ------------------- */
+
 Route::get('auth/check', function () {
     return Auth::check();
 });
@@ -50,7 +51,7 @@ M02: Individual Profile
 TODO: R203 - R205
 -----------------------
 */
-Route::get('/user/{id}', 'UserController@showProfile');                                     // R201
+Route::get('/user/{id}', 'UserController@showProfile')->name('user');                                     // R201
 Route::get('/user/{id}/settings', 'UserController@showProfileSettings');                    // R202
 
 
@@ -69,7 +70,7 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
-Route::get('/question/{id}', 'QuestionController@showPage');                                // R306
+Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
 
 
 /* 
@@ -102,14 +103,14 @@ Route::post('/api/answer/{id}/vote', 'AnswerController@addVote');           // i
 Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // edit answer vote
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
+Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 /* TODO:
 --------------- 
 M05: Moderation
 ---------------
 */
-Route::get('moderator', 'ModeratorController@showArea');
-
+Route::get('moderator', 'ModeratorController@showArea')->middleware('api');
 
 /* 
 -----------------

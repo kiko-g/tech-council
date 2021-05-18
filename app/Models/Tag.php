@@ -22,4 +22,8 @@ class Tag extends Model
     public function followers() {
         return $this->belongsToMany('App\Models\User', 'follow_tag', 'tag_id', '"user_id"');
     }
+
+    public function author() {
+        return $this->belongsTo('App\Models\User');
+    }
 }
