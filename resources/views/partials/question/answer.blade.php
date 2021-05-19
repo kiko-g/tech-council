@@ -19,9 +19,12 @@
               <i class="fas fa-chevron-down"></i>
             </a>
             <div class="mt-3 rounded">
-              <a class="float-end report-button btn red my-btn-pad2" id="report-button-{{ $answer->content_id }}"
-                  data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}">
-                <i class="fas fa-flag"></i>
+              <a id="report-button-{{ $answer->content_id }}"
+              class="float-end report-button my-btn-pad2 btn btn-outline-success report" 
+              onclick="toggleReportSimple(this)"
+              data-bs-toggle="modal"
+              data-bs-target="#report-modal-answer-{{ $answer->content_id }}">
+                <i class="far fa-flag"></i>
               </a>
             </div>
             @include('partials.report-modal', [
@@ -38,7 +41,7 @@
           @auth
           @if (Auth::user()->id == $answer->content->author_id)
             <div class="col-2 p-0 m-0 collapse show answer-control answer-collapse-{{ $answer->content_id }}" id="answer-control-{{ $answer->content_id }}">
-              <div class="btn-group float-end">
+              <div class="btn-group float-end border border-danger">
                 <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
                   <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
                 </button>

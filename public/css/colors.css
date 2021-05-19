@@ -16,6 +16,10 @@
     --first-font: "Open Sans";
     --second-font: "Source Sans Pro";
     --third-font: "Work Sans";
+    --orange: #dd9a5c;
+    --orange-dark: #b47133;
+    --wine: #c5545e;
+    --wine-dark: #b14952;
     --blue-100: #cfe2ff;
     --blue-200: #9ec5fe;
     --blue-300: #6ea8fe;
@@ -117,7 +121,7 @@
     --gray-900: #212529;
     --white: #ffffff;
     --black: #000000;
-    /* custom colors */
+    /*********************************/
     --teal-500-fade: #337c66;
     --petrol: #395768;
     --teal-alt: #496d8f;
@@ -127,7 +131,7 @@
     --dark-green: #1c866b;
     --background-color: #dae0e6;
     --background-color-2: #f1f1f1;
-    --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
+    --header-gradient: linear-gradient(170deg, #3d77b1, #1c5288);
     /* #3d77b1, #1c5288 */
 }
 
@@ -160,7 +164,11 @@
 }
 
 .text-teal-400 {
-    color: var(--teal-400);
+    color: var(--teal-500);
+}
+
+.text-teal-400.hover:hover {
+    color: var(--teal-300);
 }
 
 .text-teal-500 {
@@ -169,6 +177,10 @@
 
 .text-red-400 {
     color: var(--red-400);
+}
+
+.text-red-400.hover:hover {
+    color: var(--red-300);
 }
 
 .text-blue-100 {

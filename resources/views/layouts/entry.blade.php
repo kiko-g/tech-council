@@ -2,7 +2,7 @@
 
 <body>
   @include('partials.header')
-  <div class="d-flex entry-form flex-column justify-content-center border-top-bg">
+  <div class="d-flex container-fluid entry-form flex-column justify-content-center border-top-bg">
     @yield('content')
   </div>
   @include('partials.footer')

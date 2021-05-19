@@ -1,9 +1,14 @@
 <section class="user-card rounded">
   <div class="card text-center">
     @php
-      $photo = $user->profile_photo_obj->path;
-      if (Storage::disk('public')->exists($photo)) $photo = '/storage/' . $photo;
-      else $photo = '/storage/assets/photos/user-default.png';
+      if(!isset($user->profile_photo_obj->path)) {
+        $photo = '/storage/assets/photos/user-default.png';
+      }
+      else {
+        $photo = $user->profile_photo_obj->path;
+        if(Storage::disk('public')->exists($photo)) $photo = '/storage/' . $photo;
+        else $photo = '/storage/assets/photos/user-default.png';
+      }
     @endphp
     <img src="{{ $photo }}" class="card-img-top user-img" alt="kermy">
     <div class="card-body">

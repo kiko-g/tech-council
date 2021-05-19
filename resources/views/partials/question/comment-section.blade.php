@@ -12,15 +12,19 @@
         <blockquote class="blockquote mb-0">
           <p class="card-text mb-0">
               <small class="text-muted">{{ $comment->content->creation_date }}&nbsp;
-                <a class="signature" href="#">{{ $comment->content->author_id }}</a>
+                <a class="signature" href="#">{{ $comment->content->author->name }}</a>
                 &nbsp;&nbsp; 
               </small>
-              <i class="fas fa-flag fa-sm" id="report-button-{{ $comment->content_id }}"
-                data-bs-toggle="modal" data-bs-target="#report-modal-comment-{{ $comment->content_id }}"></i>
+              <a class="text-red-400 hover" href="#">
+                <i class="fas fa-flag fa-sm" data-bs-toggle="modal" 
+                  id="report-button-{{ $comment->content_id }}"
+                  data-bs-target="#report-modal-comment-{{ $comment->content_id }}">
+                </i>
                 @include('partials.report-modal', [
                   "type" => "comment",
                   "content_id" => $comment->content_id,
                 ])
+              </a>
           </p>
         </blockquote>
 

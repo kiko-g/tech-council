@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-sm red d-inline-flex align-items-center">
+<button type="button" class="btn btn-sm wine d-inline-flex align-items-center">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-trash-fill"
     viewBox="0 0 16 16">
     <path

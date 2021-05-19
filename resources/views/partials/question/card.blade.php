@@ -10,21 +10,21 @@
       @auth
         @if (Auth::user()->id == $question->content->author_id)
           <div class="col-auto btn-group">
-            <button class="btn p-0" type="submit">
-              <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+            <button class="btn p-0 border-active-none" type="submit">
+              <i class="fas fa-user-edit text-teal-400 hover mt-1 ms-2"></i>
             </button>
             {{-- Button trigger modal --}}
-            <button type="button" class="btn p-0 delete-question-modal-trigger" data-bs-toggle="modal"
+            <button type="button" class="btn p-0 border-active-none delete-question-modal-trigger" data-bs-toggle="modal"
               data-bs-target="#delete-question-modal-{{ $question->content_id }}">
-              <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+              <i class="fas fa-trash text-red-400 hover mt-1 ms-2"></i>
             </button>
           </div>
 
           @include('partials.question.delete-modal', [
-            "type" => "question",
-            "content_id" => $question->content_id,
-            "title" => $question->title,
-            "redirect" => $include_comments
+          "type" => "question",
+          "content_id" => $question->content_id,
+          "title" => $question->title,
+          "redirect" => $include_comments
           ])
         @endif
       @endauth
@@ -38,8 +38,12 @@
           @php
             $upClass = 'teal';
             $downClass = 'pink';
-            if ($voteValue === 1) $upClass = 'active-teal';
-            if ($voteValue === -1) $downClass = 'active-pink';
+            if ($voteValue === 1) {
+                $upClass = 'active-teal';
+            }
+            if ($voteValue === -1) {
+                $downClass = 'active-pink';
+            }
           @endphp
           <a id="upvote-button-{{ $question->content_id }}"
             class="upvote-button-question my-btn-pad up btn btn-outline-success {{ $upClass }}"
@@ -48,7 +52,7 @@
           </a>
           <a id="vote-ratio-{{ $question->content_id }}"
             class="{{ $voteValue }} vote-ratio-question btn my-btn-pad fake disabled">
-            {{ $question->votes_difference }} 
+            {{ $question->votes_difference }}
           </a>
           <a id="downvote-button-{{ $question->content_id }}"
             class="downvote-button-question my-btn-pad down btn btn-outline-danger {{ $downClass }}"
@@ -57,7 +61,7 @@
           </a>
         </div>
       </div>
-      
+
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
         <div id="{{ 'question-content-' . $question->content_id }}" class="mb-1">
           {!! $question->content->main !!}
@@ -75,45 +79,50 @@
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
               <a class="star-button my-btn-pad2 btn btn-outline-success bookmark"
-                id="star-button-{{ $question->content_id }}" onclick="toggleStar(this)" href="#">
+                id="star-button-{{ $question->content_id }}" onclick="toggleStar(this)">
                 <i class="far fa-bookmark"></i>&nbsp;Save
+              </a>
+            </div>
+            <div class="btn-group mt-1 rounded">
+              {{-- @if ($reportedBefore) {{ 'active-' }} --}}
+              <a id="report-button-{{ $question->content_id }}"
+                class="report-button my-btn-pad2 btn btn-outline-success report" onclick="toggleReport(this)"
+                data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
+                <i class="far fa-flag"></i>&nbsp;Report
               </a>
             </div>
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
                 <a class="comment-number-button btn teal my-btn-pad2"
-                  id="comment-number-button-{{ $question->content_id }}" href="{{ url('question/' . $question->content_id . '#answers') }}">
-                  <i class="far fa-comment-dots"></i>&nbsp;25
+                  id="comment-number-button-{{ $question->content_id }}"
+                  href="{{ url('question/' . $question->content_id . '#answers') }}">
+                  <i class="far fa-comment-dots"></i>{{-- &nbsp;25 --}}
                 </a>
               </div>
             @endif
             <div class="btn-group mt-1 rounded">
               <a class="share-button btn blue my-btn-pad2" id="share-button-{{ $question->content_id }}" href="#">
-                <i class="fas fa-share-alt"></i>&nbsp;Share
-              </a>
-            </div>
-            <div class="btn-group mt-1 rounded">
-              <a class="report-button btn red my-btn-pad2" id="report-button-{{ $question->content_id }}"
-                data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
-                <i class="fas fa-flag"></i>
+                <i class="fas fa-share-alt"></i>{{-- &nbsp;Share --}}
               </a>
             </div>
             @include('partials.report-modal', [
-              "type" => "question",
-              "content_id" => $question->content_id,
+            "type" => "question",
+            "content_id" => $question->content_id,
             ])
           </div>
 
           <div id="tags" class="col-md-auto flex-wrap">
             @foreach ($question->tags as $tag)
               <div class="btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
+                <a class="btn blue-alt border-0 my-btn-pad2"
+                  href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
               </div>
             @endforeach
           </div>
         </div>
         @if ($include_comments)
-          @include('partials.question.comment-section', ['comments' => $question->comments, 'id' => $question->content_id])
+          @include('partials.question.comment-section', ['comments' => $question->comments, 'id' =>
+          $question->content_id])
         @endif
       </div>
     </article>
