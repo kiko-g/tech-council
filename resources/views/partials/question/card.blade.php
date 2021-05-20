@@ -8,13 +8,27 @@
         </a>
       </div>
       @auth
-        @if (Auth::user()->id == $question->content->author_id)
+        @if (Auth::user()->id == $question->content->author_id || Auth::user()->moderator)
           <div class="col-auto btn-group">
-            <button class="btn p-0 border-active-none" type="submit">
-              <i class="fas fa-user-edit text-teal-400 hover mt-1 ms-2"></i>
+            @if (Auth::user()->id == $question->content->author_id && $include_comments)
+              <button type="button" class="btn p-0 edit-question-button">
+                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+              </button>
+            @elseif(Auth::user()->moderator && $include_comments)
+              <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+              </button>
+            @endif
+            
+            {{-- Confirm edit buttons --}}
+            <button type="button" id="confirm-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+              <i class="fas fa-check text-teal-300 mt-1 ms-2"></i>
             </button>
-            {{-- Button trigger modal --}}
-            <button type="button" class="btn p-0 border-active-none delete-question-modal-trigger" data-bs-toggle="modal"
+            <button type="button" id="cancel-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+              <i class="fas fa-close text-wine mt-1 ms-2"></i>
+            </button>
+
+            <button type="button" class="btn p-0 delete-question-modal-trigger collapse show moderator-edit" data-bs-toggle="modal"
               data-bs-target="#delete-question-modal-{{ $question->content_id }}">
               <i class="fas fa-trash text-red-400 hover mt-1 ms-2"></i>
             </button>
@@ -112,12 +126,20 @@
           </div>
 
           <div id="tags" class="col-md-auto flex-wrap">
+            <div class="collapse show moderator-edit" id="tag-original-view">
             @foreach ($question->tags as $tag)
-              <div class="btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2"
-                  href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
+              <div class="btn-group mt-1" id="question-tag-{{ $tag->id }}">
+                <a class="btn blue-alt border-0 my-btn-pad2" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
               </div>
             @endforeach
+            </div>
+            <div class="collapse moderator-edit" id="tag-moderator-view">
+            @foreach ($question->tags as $tag)
+              <div class="tag-edit btn-group mt-1" id="question-tag-edit-{{ $tag->id }}" data-tag-id="{{ $tag->id }}" data-question-id="{{ $question->content_id }}">
+                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;{{ $tag->name }}</a>
+              </div>
+            @endforeach
+            </div>
           </div>
         </div>
         @if ($include_comments)

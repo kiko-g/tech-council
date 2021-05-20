@@ -686,3 +686,7 @@ a.hover-cute:hover:after {
 .border-active-none:focus, .border-active-none:active {
   box-shadow: none;
 }
+
+.blockquote.wider {
+  width: auto;
+}

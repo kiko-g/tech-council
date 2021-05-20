@@ -60,6 +60,7 @@
   <script src={{ '/js/components.js' }} defer></script>
   <script src={{ '/js/app.js' }} defer></script>
   <script src={{ '/js/question.js' }} defer></script>
+  <script src={{ '/js/question-edit.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
   <script src={{ '/js/report.js' }} defer></script>
   <script src={{ '/js/follow.js' }} defer></script>

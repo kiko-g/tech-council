@@ -126,5 +126,7 @@
 
 .toggle-stackedit.on {
   color: #fff;
-  background-color: #007aff;
+  <<<<<<< HEAD background-color: #007aff;
+  =======background-color: #1c5686;
+  >>>>>>>master
 }

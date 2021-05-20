@@ -31,8 +31,6 @@ function deleteButtonsListeners(htmlNode = document) {
         for (button of questionDeleteButtons)
             button.addEventListener("click", handleDeleteQuestionModal);
     }
-
-    //TODO: question_edit_form
 }
 
 function editingAnswer() {
