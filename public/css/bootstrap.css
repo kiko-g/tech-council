@@ -403,6 +403,38 @@
   box-shadow: none;
 }
 
+/* Follow */
+
+.btn-outline-success:focus.follow, .btn-outline-success:active.follow, .btn-outline-success.follow {
+  color: var(--purple);
+  border-color: var(--purple);
+  background-color: white;
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.follow {
+  color: white;
+  border-color: var(--purple);
+  background-color: var(--purple);
+  box-shadow: none;
+}
+
+/* Follow inverted */
+
+.btn-outline-success.active-follow, .btn-outline-success:active.active-follow, .btn-outline-success:focus.active-follow {
+  color: white;
+  border-color: var(--purple);
+  background-color: var(--purple);
+  box-shadow: none;
+}
+
+.btn-outline-success:hover.active-follow {
+  color: white;
+  border-color: var(--purple-dark);
+  background-color: var(--purple-dark);
+  box-shadow: none;
+}
+
 /* Report */
 
 .btn-outline-success:focus.report, .btn-outline-success:active.report, .btn-outline-success.report {

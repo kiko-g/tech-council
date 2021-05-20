@@ -3,7 +3,7 @@ function addQuestionEventListeners() {
 
     try {
         answerSubmitForm.addEventListener("submit", submitAnswer);
-    } catch (e) {}
+    } catch (e) { }
 
     answerButtonsListeners();
     deleteButtonsListeners();
@@ -223,12 +223,10 @@ function createAnswer(answerId) {
 function addReportEventListener() {
     let reportForms = document.querySelectorAll("[id^='report-form']");
     let submitReportButtons = document.querySelectorAll("[id^='submit-report-button']");
-    console.log(reportForms);
-    console.log(submitReportButtons);
 }
 
 /**
  * @brief script execution
- */ 
+ */
 addQuestionEventListeners();
 addReportEventListener();

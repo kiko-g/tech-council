@@ -87,24 +87,44 @@
   left: auto;
   z-index: 10;
   display: block;
-  padding: 0 0.1rem;
+  padding: 0 0.2rem;
   border: 2px #dee2e6 solid;
   border-radius: .25rem;
   font-size: 0.8em;
-  font-family: "Zilla Slab";
-  font-weight: bold
+  font-family: var(--third-font);
+  font-weight: 500
 }
 
-#toggle-stackedit:hover {
-  opacity: 90%;
+#toggle-stackedit-tip {
+  color: #007aff;
+  z-index: 10;
+  display: inline;
+  font-size: 1em;
+  font-family: var(--third-font);
+  font-weight: 500;
+  opacity: 100%;
+}
+
+#toggle-stackedit-tip:hover {
+  opacity: 80%;
+  text-decoration: underline;
+}
+
+.toggle-stackedit.posrel {
+  position: relative !important;
+  display: flex !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
 }
 
 .toggle-stackedit.off {
-  color: #1c866b;
+  color: #007aff;
   background-color: #fff;
 }
 
 .toggle-stackedit.on {
   color: #fff;
-  background-color: #1c866b;
+  background-color: #007aff;
 }
