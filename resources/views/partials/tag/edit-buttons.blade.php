@@ -1,5 +1,5 @@
-<button type="button" class="collapse show tag-{{ $tag->id }}-edit btn btn-sm teal" data-bs-toggle="collapse"
-    data-bs-target=".tag-{{ $tag->id }}-edit">
+<button type="button" class="tag-editing collapse show tag-{{ $tag->id }}-edit btn btn-sm teal" data-bs-toggle="collapse"
+    data-bs-target=".tag-{{ $tag->id }}-edit" data-tag-id="{{ $tag->id }}">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-fill"
         viewBox="0 0 16 16">
         <path
@@ -15,12 +15,12 @@
     </svg>
 </button>
 
-<button type="button" id="confirm-edit" class="btn btn-sm teal collapse tag-{{ $tag->id }}-edit"
-    data-bs-toggle="collapse" data-bs-target=".tag-{{ $tag->id }}-edit" aria-expanded="false">
+<button type="button" id="confirm-tag-{{ $tag->id }}-edit" class="btn btn-sm teal collapse tag-{{ $tag->id }}-edit"
+    data-bs-toggle="collapse" data-bs-target=".tag-{{ $tag->id }}-edit" aria-expanded="false" data-tag-id="{{ $tag->id }}">
     <i class="fas fa-check"></i>
 </button>
-<button type="button" id="cancel-edit" class="btn btn-sm red collapse tag-{{ $tag->id }}-edit"
-    data-bs-toggle="collapse" data-bs-target=".tag-{{ $tag->id }}-edit" aria-expanded="false">
+<button type="button" id="cancel-tag-{{ $tag->id }}-edit" class="btn btn-sm red collapse tag-{{ $tag->id }}-edit"
+    data-bs-toggle="collapse" data-bs-target=".tag-{{ $tag->id }}-edit" aria-expanded="false" data-tag-id="{{ $tag->id }}">
     <i class="fas fa-close"></i>
 </button>
 

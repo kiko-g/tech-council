@@ -86,6 +86,9 @@ Route::get('/create/question', function () {
 
 Route::post('/api/follow/tag', 'FollowTagController@follow');
 Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');
+Route::put('/api/tag/{id}/edit', 'TagController@edit');
+Route::put('/api/tag/{id}/delete', 'TagController@delete');
+Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
 Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
@@ -103,7 +106,6 @@ Route::post('/api/answer/{id}/vote', 'AnswerController@addVote');           // i
 Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // edit answer vote
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
-Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 /* TODO:
 --------------- 
