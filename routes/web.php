@@ -31,6 +31,7 @@ Route::get('auth/check', function () {
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');
+Route::get('/api/search/tag', 'TagController@search');
 /*
 -------------------
 M01: Authentication
