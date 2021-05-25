@@ -19,13 +19,12 @@ const toggleSave = (saveButton) => {
 }
 
 function saveHandler() {
-  console.log(this.status)
-  console.log(this.responseText)
   if (this.status == 200 || this.status == 201) {
     let response = JSON.parse(this.responseText)
 
     // change save button
-    let saveButton = document.getElementById("save-" + response.id)
+    let saveButton = document.getElementById("save-" + response.content_id)
+    console.log(saveButton);
     saveButton.innerHTML = `<i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Saved`
     saveButton.classList.remove("bookmark")
     saveButton.classList.add("active-bookmark")
@@ -38,7 +37,7 @@ function unsaveHandler() {
     let response = JSON.parse(this.responseText)
 
     // change save button
-    let saveButton = document.getElementById("save-" + response.id)
+    let saveButton = document.getElementById("save-" + response.content_id)
     saveButton.innerHTML = `<i class="far fa-bookmark" aria-hidden="true"></i>&nbsp;Save`
     saveButton.classList.remove("active-bookmark")
     saveButton.classList.add("bookmark")

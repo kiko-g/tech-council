@@ -1,3 +1,18 @@
+@php
+  if(isset($user)) $hasSaved = $user->hasQuestionSaved($question->content_id);
+  else $hasSaved = null;
+
+  if ($hasSaved) {
+    $save_class = 'active-bookmark';
+    $save_text = 'Saved';
+    $save_icon = 'fa';
+  }
+  else {
+    $save_class = 'bookmark';
+    $save_text = 'Save';
+    $save_icon = 'far';
+  }
+@endphp
 <div class="card mb-4 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
   <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
     <div class="row">
@@ -92,12 +107,11 @@
         <div class="row row-cols-2 mb-1">
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
-              <a class="star-button my-btn-pad2 btn btn-outline-success bookmark"
+              <a class="star-button my-btn-pad2 btn btn-outline-success {{ $save_class }}"
                 id="save-{{ $question->content_id }}" 
                 @auth onclick="toggleSave(this)" @endauth
-                @guest href={{ route('login') }} @endguest
-              >
-                <i class="far fa-bookmark"></i>&nbsp;Save
+                @guest href={{ route('login') }} @endguest>
+                <i class="{{ $save_icon }} fa-bookmark"></i>&nbsp;{{ $save_text }}
               </a>
             </div>
             <div class="btn-group mt-1 rounded">

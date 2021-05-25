@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SaveQuestion extends Model
 {
+    use Traits\HasCompositePrimaryKey;
+    
     /**
      * No timestamps
      *
@@ -32,7 +34,7 @@ class SaveQuestion extends Model
      *
      * @var string
      */
-    protected $primaryKey = array('user_id', 'question_id');
+    protected $primaryKey = array('question_id', 'user_id');
 
     public function question()
     {
