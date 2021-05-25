@@ -34,6 +34,7 @@ Route::get('/user/{id}', 'UserController@showProfile');
 /* M03: Content viewing and searching */
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
+Route::get('/api/search/tag', 'TagController@search');
 
 /* M04: Content interaction */
 Route::get('/create/question', function () {

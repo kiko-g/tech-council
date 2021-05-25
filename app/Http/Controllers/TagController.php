@@ -81,4 +81,40 @@ class TagController extends Controller
 
 		return $tag;
 	}
+
+	/**
+	 * Search for a tag (full text search)
+	 * 
+	 * @param String $tag
+	 * @return |Illuminate\Http\Response
+	 */
+	public function search($request)
+	{
+		$request->validate([
+			'query' => ['required'. 'max:' . 100], #TODO: Make this a constant
+			'rpp' => ['required', 'integer'],
+			'page' => ['required', 'integer'],
+			'type' =>[ function ($attribute, $value, $fail) {
+				if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
+				}
+            }]
+		]);
+
+		$results = DB::select("
+			SELECT t.name, t.description, rank
+			FROM tag t,
+			ts_rank_cd(to_tsvector(search), plainto_tsquery('english', :query)) AS rank
+			WHERE search @@ plainto_tsquery('english', :query)
+			ORDER BY rank DESC
+			OFFSET :offset
+			LIMIT :limit
+		", [
+			'query' => $request->query,
+			'offset' => $request->rpp*($request->page - 1),
+			'limit' => $request->page
+		]);
+
+		error_log(print_r($results));
+	}
 }
