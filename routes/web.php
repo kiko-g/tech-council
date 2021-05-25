@@ -87,7 +87,7 @@ Route::get('/create/question', function () {
 Route::post('/api/follow/tag', 'FollowTagController@follow');
 Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');
 Route::put('/api/tag/{id}/edit', 'TagController@edit');
-Route::put('/api/tag/{id}/delete', 'TagController@delete');
+Route::delete('/api/tag/{id}/delete', 'TagController@delete');
 Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 

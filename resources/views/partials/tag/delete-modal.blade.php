@@ -13,13 +13,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <form class="tag-delete" id="tag-delete-{{ $tag->id }}" method="post"
-					action="{{ url('/tag/' . $tag->id . '/delete') }}">
+                <form class="tag-delete" id="tag-delete-{{ $tag->id }}" method="post">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-success delete-modal" 
+                    <button class="btn btn-success delete-tag-modal" 
 						id="delete-tag-{{ $tag->id }}"
-                        data-bs-dismiss="modal" type="submit">
+                        data-bs-dismiss="modal" type="submit" data-tag-id="{{ $tag->id }}">
                         Delete
                     </button>
                 </form>

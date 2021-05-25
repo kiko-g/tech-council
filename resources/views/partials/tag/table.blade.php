@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       @foreach($displayed_tags as $tag)
-      <tr>
+      <tr id="tag-{{ $tag->id }}-row">
         <th scope="row">{{ $tag->id }}</th>
         <td>
           <a href="{{ route('tag', ['id' => $tag->id]) }}" id="tag-{{ $tag->id }}-redirect" class="collapse show tag-{{ $tag->id }}-edit btn blue-alt border-0 my-btn-pad2 flex-column">{{ $tag->name }}</a>

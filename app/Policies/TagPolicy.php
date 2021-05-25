@@ -11,18 +11,16 @@ class TagPolicy
 {
     use HandlesAuthorization;
 
-    use HandlesAuthorization;
-
     public function create() {
         //TODO: create tag
         return Auth::check();
     }
 
     public function edit(User $user, Tag $tag) {
-        return $user->id == $tag->id || $user->moderator;
+        return $user->id == $tag->author_id || $user->moderator;
     }
 
     public function delete(User $user, Tag $tag) {
-        return $user->id == $tag->id || $user->moderator;
+        return $user->id == $tag->author_id || $user->moderator;
     }
 }

@@ -74,3 +74,46 @@ function editTagHandler() {
     }
     tagTable.parentNode.insertBefore(confirmation, tagTable);
 }
+
+const moderatorTagModalTriggers = document.getElementsByClassName(
+    "delete-tag-moderator-modal-trigger"
+);
+if (moderatorTagModalTriggers.length > 0) {
+    for (button of moderatorTagModalTriggers)
+        button.addEventListener("click", handleDeleteTagModal);
+}
+
+function handleDeleteTagModal() {
+    let deleteButton = document.getElementsByClassName("delete-tag-modal");
+
+    if (deleteButton.length > 0) {
+        for (button of deleteButton)
+            button.addEventListener("click", deleteTag);
+    }
+}
+
+function deleteTag() {
+    let id = this.dataset.tagId;
+
+    sendAjaxRequest(
+        "delete",
+        "/api/tag/" + id + "/delete",
+        null,
+        deleteTagHandler
+    );
+}
+
+function deleteTagHandler() {
+    console.log(this.responseText);
+    let confirmation = document.createElement("div");
+    let tagTable = document.getElementById("tag-table");
+    if (this.status == 200 || this.status == 201) {
+        let response = JSON.parse(this.responseText);
+        confirmation.innerHTML = successAlert("Tag deleted successfully");
+        tagTable.parentNode.insertBefore(confirmation, tagTable);
+        document.getElementById(`tag-${response.id}-row`).remove();
+    } else {
+        confirmation.innerHTML = errorAlert("Error deleting tag");
+    }
+    tagTable.parentNode.insertBefore(confirmation, tagTable);
+}
