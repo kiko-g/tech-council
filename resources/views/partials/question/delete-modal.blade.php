@@ -9,7 +9,7 @@ if ($type == "question") {
 @endphp
 
 <div class="modal fade" id="delete-{{ $type }}-modal-{{ $content_id }}" tabindex="-1"
-    aria-labelledby="delete-answer-modal-{{ $content_id }}-label" aria-hidden="true">
+    aria-labelledby="delete-{{ $type }}-modal-{{ $content_id }}-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
