@@ -12,7 +12,9 @@
           <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
           <button id="toggle-stackedit" class="btn btn blue toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">StackEdit</button>
         </div>
+        
         <script src="{{ '/js/stackedit.js' }}" defer> </script>
+        <script src={{ '/js/question-edit.js' }} defer></script>
         <div class="row row-cols-auto mb-3">
           <div id="tags" class="col-lg-auto">
             <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false">
