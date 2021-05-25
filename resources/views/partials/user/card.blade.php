@@ -1,12 +1,20 @@
 <section class="user-card rounded">
   <div class="card text-center">
-    <img src="images/dwight.png" class="card-img-top user-img" alt="kermy">
+    @php
+      $photo = $user->profile_photo_obj->path;
+      if (Storage::disk('public')->exists($photo)) $photo = '/storage/' . $photo;
+      else $photo = '/storage/assets/photos/user-default.png';
+    @endphp
+    <img src="{{ $photo }}" class="card-img-top user-img" alt="kermy">
     <div class="card-body">
-      <h5 class="card-title">Jeremiah</h5>
-      <p class="card-text">Reports: 0</p>
-      <p class="card-text">Wisdom points: 769</p>
-      <p class="card-text">Joined: 11/09/2020</p>
+      <h5 class="card-title">{{ $user->name }}</h5>
+      <p class="card-text">Reputation: {{ $user->reputation }}</p>
+      <p class="card-text">Joined: {{ $user->join_date }}</p>
+      @if ($user->banned)
+      <a href="#" class="btn blue-alt">Unban</a>
+      @else
       <a href="#" class="btn blue-alt">Ban</a>
+      @endif
     </div>
   </div>
 </section>

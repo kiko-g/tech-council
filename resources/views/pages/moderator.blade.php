@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+  <script src={{ '/js/moderator-switch.js' }} defer></script>
   <div class="users-tags-or-reports-picker">
     <div class="btn-group users-tags-or-reports-button" role="group">
       <button type="button" class="btn active blue-alt users-button">Users</button>
@@ -24,40 +25,20 @@
       <div class="row">
         @for ($i = 0; $i < 3; $i++)
           <div class="col-lg">
-            @include('partials.user.card')
+            @include('partials.user.card', ['user' => $displayed_users[$i]])
           </div>
         @endfor
       </div>
       <div class="row">
-        @for ($i = 0; $i < 3; $i++)
+        @for ($i = 3; $i < 6; $i++)
           <div class="col-lg">
-            @include('partials.user.card')
+            @include('partials.user.card', ['user' => $displayed_users[$i]])
           </div>
         @endfor
       </div>
     </div>
     <div class="results-picker">
-      <nav>
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          <li class="page-item"><a class="page-link blue" href="#">1</a></li>
-          <li class="page-item"><a class="page-link blue active" href="#">2</a></li>
-          <li class="page-item"><a class="page-link blue" href="#">3</a></li>
-
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      @include('partials.pagination')
     </div>
   </div>
 
@@ -73,30 +54,10 @@
       </nav>
     </div>
     <div class="moderate-tag container">
-      @include('partials.tag.table')
+      @include('partials.tag.table', ['tags' => $displayed_tags])
     </div>
     <div class="results-picker">
-      <nav>
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          <li class="page-item"><a class="page-link blue" href="#">1</a></li>
-          <li class="page-item"><a class="page-link blue active" href="#">2</a></li>
-          <li class="page-item"><a class="page-link blue" href="#">3</a></li>
-
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      @include('partials.pagination')
     </div>
   </div>
 
@@ -108,9 +69,20 @@
         </form>
       </nav>
     </div>
+
+    <div id="user-reports">
+      @include('partials.reports.user', ['user_reports' => $user_reports])
+      @include('partials.pagination')
+    </div>
+
+    <div id="content-reports">
+      @include('partials.reports.content', ['content_reports' => $content_reports])
+      @include('partials.pagination')
+    </div>
+
   </div>
 @endsection
 
 @section('aside')
-  @include('partials.aside')
+  @include('partials.aside', ['user' => $user])
 @endsection

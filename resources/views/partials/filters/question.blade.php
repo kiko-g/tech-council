@@ -8,17 +8,17 @@
 
       <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
       <label class="btn blue-alt rounded-when-responsive mb-responsive text-start-responsive" for="btnradio2">
-        <i class="fas fa-concierge-bell fa-xs text-teal-200"></i>&nbsp;New
+        <i class="fas fa-concierge-bell fa-xs text-teal-300"></i>&nbsp;New
       </label>
 
       <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
       <label class="btn blue-alt rounded-when-responsive mb-responsive text-start-responsive" for="btnradio3">
-        <i class="fas fa-chart-line fa-xs text-blue-200"></i>&nbsp;Trending
+        <i class="fas fa-chart-line fa-xs text-red-400"></i>&nbsp;Trending
       </label>
 
       <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
       <label class="btn blue-alt rounded-when-responsive text-start-responsive" for="btnradio4">
-        <i class="fas fa-bullseye fa-xs text-red-400"></i>&nbsp;Bountied
+        <i class="fas fa-bullseye fa-xs text-gray"></i>&nbsp;Bountied
         <span class="badge align-middle">57</span>
       </label>
     </div>

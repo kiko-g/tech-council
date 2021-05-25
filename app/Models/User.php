@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -30,6 +31,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'bio'
     ];
 
+    public function profile_photo_obj() {
+        return $this->belongsTo('App\Models\Photo', 'profile_photo');
+    }
+
     public function moderator() {
         return $this->hasOne('App\Models\Moderator', 'user_id');
     }
@@ -50,7 +55,21 @@ class User extends Authenticatable
         return $this->hasManyThrought('App\Models\AnswerComment', 'App\Models\Content', 'author_id', 'content_id', 'id', 'id');
     }
 
-    public function followTags() {
+    public function followedTags() {
         return $this->hasMany('App\Models\FollowTag');
+    }
+
+    public function followsTag($tag_id) {
+        $user_id = Auth::user()->id;
+
+        $follow_tag = FollowTag::where([
+            'user_id' => $user_id,
+            'tag_id' => $tag_id,
+        ])->first();
+
+        if (!empty($follow_tag)) {
+            return true;
+        }
+        return false;
     }
 }

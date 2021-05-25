@@ -332,8 +332,8 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found." 
-  
+          description: "Error. Not found."
+
   /api/user/notification/{id}:
     delete:
       operationId: R205
@@ -358,7 +358,7 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found." 
+          description: "Error. Not found."
 
   ########################################
   #  M03: Content viewing and searching  #
@@ -1223,7 +1223,7 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found."   
+          description: "Error. Not found."
     put:
       operationId: R420
       summary: "R420: Edit the election of an answer as the best for a question"
@@ -1247,7 +1247,7 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found." 
+          description: "Error. Not found."
     delete:
       operationId: R421
       summary: "R421: Delete the election of an answer as the best for a question"
@@ -1271,7 +1271,7 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found." 
+          description: "Error. Not found."
 
   /api/content/{id}/report:
     post:
@@ -1303,7 +1303,7 @@ paths:
         "403":
           description: "Error. Forbidden."
         "404":
-          description: "Error. Not found." 
+          description: "Error. Not found."
 
   #####################
   #  M05: Moderation  #
@@ -1323,7 +1323,7 @@ paths:
 
   /api/ban:
     post:
-      operationId: R5402
+      operationId: R502
       summary: "R502: Ban user"
       description: "Ban a user. Access: MOD"
       tags:

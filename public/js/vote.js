@@ -1,5 +1,10 @@
-function addEventListeners() {
-  let buttons = document.getElementsByClassName("upvote-button-question");
+function addVoteEventListeners() {
+  questionVoteListeners();
+  answerVoteListeners();
+}
+
+function questionVoteListeners(htmlNode = document) {
+  let buttons = htmlNode.getElementsByClassName("upvote-button-question");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -8,7 +13,7 @@ function addEventListeners() {
     });
   });
 
-  buttons = document.getElementsByClassName("downvote-button-question");
+  buttons = htmlNode.getElementsByClassName("downvote-button-question");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -16,8 +21,10 @@ function addEventListeners() {
       vote('down', element.parentNode, this.dataset, true);
     });
   });
+}
 
-  buttons = document.getElementsByClassName("upvote-button-answer");
+function answerVoteListeners(htmlNode = document) {
+  let buttons = htmlNode.getElementsByClassName("upvote-button-answer");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -26,7 +33,7 @@ function addEventListeners() {
     });
   });
 
-  buttons = document.getElementsByClassName("downvote-button-answer");
+  buttons = htmlNode.getElementsByClassName("downvote-button-answer");
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
@@ -118,19 +125,6 @@ const toggleStar = starButton => {
   }
 };
 
-const toggleFollow = followButton => {
-  if (followButton.children[0].classList.contains('far')) {
-    followButton.innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>&nbsp;Following'
-    followButton.classList.remove('follow')
-    followButton.classList.add('active-follow')
-  }
-  else {
-    followButton.innerHTML = '<i class="far fa-star" aria-hidden="true"></i>&nbsp;Follow'
-    followButton.classList.remove('active-follow')
-    followButton.classList.add('follow')
-  }
-};
-
 const toogleText = textDropdown => {
   if (textDropdown.classList.contains('active-dark')) {
     textDropdown.classList.remove('active-dark');
@@ -142,4 +136,4 @@ const toogleText = textDropdown => {
   }
 }
 
-addEventListeners();
+addVoteEventListeners();

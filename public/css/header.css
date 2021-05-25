@@ -1,9 +1,0 @@
-.home-header {
-  color: white;
-  background-image: var(--header-gradient);
-  padding: 0.2em 1em;
-}
-
-.header-gradient {
-  background-image: var(--header-gradient);
-}

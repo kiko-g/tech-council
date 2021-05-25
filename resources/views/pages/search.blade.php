@@ -1,100 +1,74 @@
-@include('partials.question.card')
-@include('partials.tag.card')
-
-@extends('layouts.app')
-
-@section('search')
-  <div class="search-results-header">
-    <main class="container">
-      <div class="row justify-content-between search-and-pose">
-        <div class="col-12 my-auto">
-          <h5>
-            Search Results for "windows"
-            <!--<small class="text-muted">for windows</small>-->
-          </h5>
-          <h6>
-            [163 results]
-          </h6>
-        </div>
-      </div>
-      <nav>
-        <div class="nav nav-tabs search-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-questions-tab" data-bs-toggle="tab" data-bs-target="#nav-questions"
-            type="button" role="tab">Questions</button>
-          <button class="nav-link" id="nav-tags-tab" data-bs-toggle="tab" data-bs-target="#nav-tags" type="button"
-            role="tab">Tags</button>
-          <button class="nav-link" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button"
-            role="tab">Users</button>
-        </div>
-      </nav>
-    </main>
-  </div>
-@endsection
+@extends('layouts.app', ['user' => $user])
 
 @section('content')
   <div class="tab-content" id="nav-tabContent">
+    <div class="search-results-header rounded">
+      {{-- NAVIGATION --}}
+      <main class="container pb-2">
+        <div class="row justify-content-between search-and-pose">
+          <div class="col-12 my-auto">
+            <h5> Search Results for "windows" </h5>
+            <h6> [163 results] </h6>
+          </div>
+        </div>
+        <nav>
+          <div class="btn-group nav nav-tabs search-tabs" id="nav-tab" role="tablist">
+            <button class="btn blue-alt users-button active" id="nav-questions-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-questions" type="button" role="tab">Questions</button>
+            <button class="btn blue-alt tags-button" id="nav-tags-tab" data-bs-toggle="tab" data-bs-target="#nav-tags"
+              type="button" role="tab">Tags</button>
+            <button class="btn blue-alt reports-button" id="nav-users-tab" data-bs-toggle="tab"
+              data-bs-target="#nav-users" type="button" role="tab">Users</button>
+          </div>
+        </nav>
+      </main>
+    </div>
+
+    {{--  QUESTIONS --}}
     <div class="tab-pane fade show active" id="nav-questions" role="tabpanel">
       @include('partials.filters.question')
-      <div>
-        @for ($i = 0; $i < 5; $i++)
-          <?php buildQuestion(null); ?>
-        @endfor
-      </div>
+      <section id="search-tag-results">
+        @foreach ($questions as $question)
+          @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
+        @endforeach
+      </section>
     </div>
+
+    {{--  TAGS --}}
     <div class="tab-pane fade" id="nav-tags" role="tabpanel">
-      @include('partials.filters.question')
-      <div>
-        @for ($i = 0; $i < 5; $i++)
-          <?php buildTag(null); ?>
+      @include('partials.filters.tag')
+        <section id="search-tag-results">
+          @foreach ($tags as $tag)
+            @include('partials.tag.card', ['tag' => $tag, 'user' => $user])
+          @endforeach
+        </section>
+    </div>
+
+    {{--  USERS  --}}
+    <div class="tab-pane fade special-bg p-1 rounded" id="nav-users" role="tabpanel">
+      <div class="container p-0">
+        @php
+          use App\Models\User;
+          $user_amount = count($users);
+          $rows_amount = ceil($user_amount / 3);
+        @endphp
+        @for($row = 0; $row < $rows_amount; $row++)
+          <div class="row">
+            @php
+              $cols = $user_amount - ($row * 3);
+              if($cols > 3) $cols = 3;
+            @endphp
+            @for($i = 0; $i < 3; $i++)
+              <div class="col">
+                @if($i < $cols)
+                  @include('partials.user.card-simple', ['user' => User::find(($row * 3) + ($i + 1))])
+                @endif
+              </div>
+            @endfor
+          </div>
         @endfor
       </div>
-    </div>
-    <div class="tab-pane fade" id="nav-users" role="tabpanel">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-          <div class="col">
-            @include('partials.user.card-simple')
-          </div>
-        </div>
-      </div>
-      <nav>
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          <li class="page-item"><a class="page-link blue" href="#">1</a></li>
-          <li class="page-item"><a class="page-link blue active" href="#">2</a></li>
-          <li class="page-item"><a class="page-link blue" href="#">3</a></li>
-
-          <li class="page-item">
-            <a class="page-link blue" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      @include('partials.pagination')
     </div>
   </div>
 @endsection

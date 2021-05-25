@@ -1,3 +1,3 @@
 @include('partials.aside.trends')
-@include('partials.aside.tag-follows')
+@auth @include('partials.aside.tag-follows', ['followedTags' => $user->followedTags]) @endauth
 @include('partials.aside.info')

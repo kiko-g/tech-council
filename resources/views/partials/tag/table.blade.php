@@ -9,136 +9,25 @@
       </tr>
     </thead>
     <tbody>
+      @foreach($displayed_tags as $tag)
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">{{ $tag->id }}</th>
         <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">python</a>
+          <a href="{{ route('tag', ['id' => $tag->id]) }}" class="btn blue-alt border-0 my-btn-pad2">{{ $tag->name }}</a>
         </td>
         <td>
-          <span>jlopes</span>
-          @include('partials.moderator-badge')
+          <span>{{ $tag->author->name }}</span>
+          @if ($tag->author->moderator)
+            @include('partials.moderator-badge')
+          @elseif ($tag->author->expert)
+            @include('partials.expert-badge')
+          @endif
         </td>
         <td>
           @include('partials.tag.edit-buttons')
         </td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">nvidia</a>
-        </td>
-        <td>
-          <span>jlopes</span>
-          @include('partials.moderator-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">windows</a>
-        </td>
-        <td>
-          <span>jlopes</span>
-          @include('partials.moderator-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">amd</a>
-        </td>
-        <td>
-          <span>mpinto05</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">smartphone</a>
-        </td>
-        <td>
-          <span>kikojpg</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">6</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">node</a>
-        </td>
-        <td>
-          <span>mpinto05</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">7</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">react</a>
-        </td>
-        <td>
-          <span>kikojpg</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">8</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">msi</a>
-        </td>
-        <td>
-          <span>jlopes</span>
-          @include('partials.moderator-badge'))
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">9</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">tensorflow</a>
-        </td>
-        <td>
-          <span>mpinto05</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">10</th>
-        <td>
-          <a href="#" class="btn blue-alt border-0 my-btn-pad2">linux</a>
-        </td>
-        <td>
-          <span>mpinto05</span>
-          @include('partials.expert-badge')
-        </td>
-        <td>
-          @include('partials.tag.edit-buttons')
-        </td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>

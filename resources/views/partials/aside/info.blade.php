@@ -1,5 +1,5 @@
 <div class="card mb-3">
-  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated"> Information </div>
+  <div class="card-header text-white bg-petrol font-source-sans-pro bg-animated rounded-top"> Information </div>
   <div class="card-body d-flex align-items-start p-3">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <button class="nav-link blue active h6 text-start" id="v-pills-home-tab" data-bs-toggle="pill"
@@ -24,8 +24,8 @@
     </div>
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        TechCouncil is a platform where users can post questions and share answers for everything tech-related, whether
-        it's how to build a custom PC, what new smartphone is the best or how to install a VPN.
+        TechCouncil is a platform where users can post questions and share answers for any tech-related topics, whether
+        it is about building a custom PC, programming languages, what new smartphones are the best, how to install a VPN... you name it!
       </div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
         Terms of service text

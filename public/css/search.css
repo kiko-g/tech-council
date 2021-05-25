@@ -2,8 +2,18 @@
   padding-top: 0.5em;
   margin: 0;
   color: white;
-  background-image: var(--header-gradient);
   border-top: 0.5px solid #dae0e6;
+  background: rgb(58, 88, 105);
+  background-size: 600% 600%;
+  animation: breathe 3s ease-in-out infinite;
+  /* df6c6c */
+}
+
+.search-results-header:hover {
+  zoom: 1;
+  filter: alpha(opacity=90);
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0.9;
 }
 
 .search-and-pose {
@@ -14,12 +24,12 @@
   border-bottom: 0;
 }
 
-.search-tabs > .nav-link.active {
+.search-tabs>.nav-link.active {
   color: #495057;
   font-size: 16px;
 }
 
-.nav-tabs > .nav-link {
+.nav-tabs>.nav-link {
   color: white;
 }
 

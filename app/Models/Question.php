@@ -40,8 +40,9 @@ class Question extends Model
         return $this->hasMany('App\Models\QuestionComment', 'question_id');
     }
 
-    public function getVoteValue() {
-        if(!Auth::check())
+    public function getVoteValue()
+    {
+        if (!Auth::check())
             return 0;
 
         $voteQuestion = VoteQuestion::where('user_id', Auth::user()->id)

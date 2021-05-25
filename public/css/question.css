@@ -1,4 +1,5 @@
 /* Full display question */
+
 .question {
   margin-bottom: 1em;
   border: 1px solid darkslategray;
@@ -28,6 +29,7 @@
 }
 
 /* Card display question */
+
 .question-card {
   margin-bottom: 1em;
   border: 1px solid darkslategray;
@@ -58,4 +60,53 @@
   border-radius: 5px 0 0 5px;
   padding: 10px;
   background-color: #ddd;
+}
+
+/* Stackedit */
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.textarea-container button {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#toggle-stackedit {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  left: auto;
+  z-index: 10;
+  display: block;
+  padding: 0.1rem 0.2rem;
+  border: 2px #dee2e6 solid;
+  border-radius: .25rem;
+  font-size: 1.5rem;
+  font-family: "Zilla Slab";
+  font-weight: bold
+}
+
+#toggle-stackedit:hover {
+  opacity: 90%;
+  color: #fff;
+  background-color: #1c5686;
+}
+
+.toggle-stackedit.off {
+  color: #1c5686;
+  background-color: #fff;
+}
+
+.toggle-stackedit.on {
+  color: #fff;
+  background-color: #1c5686;
 }

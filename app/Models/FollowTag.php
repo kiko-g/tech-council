@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FollowTag extends Model
 {
-    use HasCompositePrimaryKey;
+    use Traits\HasCompositePrimaryKey;
 
     /**
      * No timestamps
@@ -34,9 +34,9 @@ class FollowTag extends Model
      *
      * @var string
      */
-    protected $primaryKey = array('tag_id', '"user_id"');
+    protected $primaryKey = array('tag_id', 'user_id');
 
-    public function tags() {
-        return $this->belongsTo('App\Models\FollowTag');
+    public function tag() {
+        return $this->belongsTo('App\Models\Tag');
     }
 }
