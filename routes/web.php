@@ -85,7 +85,10 @@ Route::get('/create/question', function () {
 })->name('create/question'); // could be 'ask/'?
 
 Route::post('/api/follow/tag', 'FollowTagController@follow');
-Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');
+Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');       //TODO: delete
+
+Route::post('/api/save/question', 'SaveQuestionController@save');
+Route::delete('/api/unsave/question', 'SaveQuestionController@unsave');   //TODO: delete
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
 Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax

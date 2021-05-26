@@ -1,12 +1,32 @@
-const toggleReport = reportButton => {
-  if (reportButton.children[0].classList.contains('far')) {
-    reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported'
+let reportButton = null
+let reportActivated = false
+
+const saveReportButton = button => {
+  reportButton = button
+  console.log(reportButton);
+  console.log(reportActivated);
+}
+
+const submitReport = () => {
+  reportActivated = true
+  toggleReport(reportButton);
+}
+
+const deleteReport = () => {
+  reportActivated = false
+  toggleReport(reportButton);
+}
+
+const toggleReport = () => {
+  if (reportActivated) {
+    reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>&nbspReported'
     reportButton.classList.remove('report')
     reportButton.classList.add('active-report')
   }
 };
 
-const toggleReportSimple = reportButton => {
+const toggleReportSimple = () => {
+  rb = reportButton
   if (reportButton.children[0].classList.contains('far')) {
     reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>'
     reportButton.classList.remove('report')

@@ -8,7 +8,7 @@ function questionVoteListeners(htmlNode = document) {
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
-      if(!isAuthenticated) return;
+      if (!isAuthenticated) return;
       vote('up', element.parentNode, this.dataset, true);
     });
   });
@@ -17,7 +17,7 @@ function questionVoteListeners(htmlNode = document) {
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
-      if(!isAuthenticated) return;
+      if (!isAuthenticated) return;
       vote('down', element.parentNode, this.dataset, true);
     });
   });
@@ -28,7 +28,7 @@ function answerVoteListeners(htmlNode = document) {
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
-      if(!isAuthenticated) return;
+      if (!isAuthenticated) return;
       vote('up', element.parentNode, this.dataset, false);
     });
   });
@@ -37,7 +37,7 @@ function answerVoteListeners(htmlNode = document) {
   Array.from(buttons).forEach(element => {
     element.addEventListener('click', function (event) {
       event.preventDefault();
-      if(!isAuthenticated) return;
+      if (!isAuthenticated) return;
       vote('down', element.parentNode, this.dataset, false);
     });
   });
@@ -111,19 +111,6 @@ const vote = (vote, votes, dataset, isQuestion) => {
       return;
   }
 }
-
-const toggleStar = starButton => {
-  if (starButton.children[0].classList.contains('far')) {
-    starButton.innerHTML = '<i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Saved'
-    starButton.classList.remove('bookmark')
-    starButton.classList.add('active-bookmark')
-  }
-  else {
-    starButton.innerHTML = '<i class="far fa-bookmark" aria-hidden="true"></i>&nbsp;Save'
-    starButton.classList.remove('active-bookmark')
-    starButton.classList.add('bookmark')
-  }
-};
 
 const toogleText = textDropdown => {
   if (textDropdown.classList.contains('active-dark')) {

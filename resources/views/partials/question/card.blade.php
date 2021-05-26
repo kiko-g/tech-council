@@ -93,14 +93,17 @@
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
               <a class="star-button my-btn-pad2 btn btn-outline-success bookmark"
-                id="star-button-{{ $question->content_id }}" onclick="toggleStar(this)">
+                id="save-{{ $question->content_id }}" 
+                @auth onclick="toggleSave(this)" @endauth
+                @guest href={{ route('login') }} @endguest
+              >
                 <i class="far fa-bookmark"></i>&nbsp;Save
               </a>
             </div>
             <div class="btn-group mt-1 rounded">
               @if(!$isReportedByUser)
               <a id="report-button-{{ $question->content_id }}"
-                class="report-button my-btn-pad2 btn btn-outline-success report" onclick="toggleReport(this)"
+                class="report-button my-btn-pad2 btn btn-outline-success report" onclick="saveReportButton(this)"
                 data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
                 <i class="far fa-flag"></i>&nbsp;Report
               </a>

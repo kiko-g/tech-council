@@ -1,8 +1,14 @@
+@php
+  $contentWasReported = false;
+@endphp
 <div class="modal fade" id="report-modal-{{ $type }}-{{ $content_id }}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-flag text-wine"></i>&nbsp;&nbsp;Report {{ $type }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-flag text-wine"></i>&nbsp;&nbsp;
+          @if($contentWasReported) Edit {{ $type }} report
+          @else Report {{ $type }} @endif
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <form id="report-form-{{ $content_id }}" class="" action="
@@ -66,6 +72,13 @@
           </div>
         </form>
 
+      <div class="modal-footer">
+          @if($contentWasReported) 
+          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp deleteReport()" type="button" class="btn btn-secondary wine">Delete</button>
+          @else 
+          @endif
+          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp submitReport()" type="button" class="btn btn blue">Submit</button>
+      </div>
     </div>
   </div>
 </div>
