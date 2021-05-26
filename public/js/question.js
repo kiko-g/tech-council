@@ -218,13 +218,7 @@ function createAnswer(answerId) {
     return newAnswer;
 }
 
-function addReportEventListener() {
-    let reportForms = document.querySelectorAll("[id^='report-form']");
-    let submitReportButtons = document.querySelectorAll("[id^='submit-report-button']");
-}
-
 /**
  * @brief script execution
  */
 addQuestionEventListeners();
-addReportEventListener();

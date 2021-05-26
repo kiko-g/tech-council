@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ContentReport extends Model
 {
+    public $timestamps = false;
     /**
      * The table associated with the model.
      *

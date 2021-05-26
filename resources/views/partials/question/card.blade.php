@@ -98,12 +98,17 @@
               </a>
             </div>
             <div class="btn-group mt-1 rounded">
-              {{-- @if ($reportedBefore) {{ 'active-' }} --}}
+              @if(!$isReportedByUser)
               <a id="report-button-{{ $question->content_id }}"
                 class="report-button my-btn-pad2 btn btn-outline-success report" onclick="toggleReport(this)"
                 data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
                 <i class="far fa-flag"></i>&nbsp;Report
               </a>
+              @else
+              <a class="report-button my-btn-pad2 btn btn-outline-success report active-report disabled">
+                <i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported 
+              </a>
+              @endif
             </div>
             @if (!$include_comments)
               <div class="btn-group mt-1 rounded">
