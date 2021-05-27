@@ -11,5 +11,5 @@
 @endsection
 
 @section('aside')
-  @include('partials.user.aside')
+  @include('partials.user.aside', ['user' => $user])
 @endsection

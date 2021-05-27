@@ -50,8 +50,8 @@ class UserController extends Controller
         $user = User::find($id);
 
         return view('pages.profile', [
+            'user' => $user,
             'user_questions' => $user->questions,
-            'user' => Auth::user(),
         ]);
     }
 
@@ -66,7 +66,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         return view('pages.profile-settings', [
-            'user' => Auth::user(),
+            'user' => $user,
         ]);
     }
 

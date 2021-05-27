@@ -51,7 +51,7 @@ M02: Individual Profile
 TODO: R203 - R205
 -----------------------
 */
-Route::get('/user/{id}', 'UserController@showProfile')->name('user');                                     // R201
+Route::get('/user/{id}', 'UserController@showProfile')->name('user');                       // R201
 Route::get('/user/{id}/settings', 'UserController@showProfileSettings');                    // R202
 
 
