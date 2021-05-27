@@ -14,9 +14,13 @@ class ReportController extends Controller
 {    
     public function reportContent(Request $request, $content_id)
     {
+        error_log("content_id2");
+        
         Content::findOrFail($content_id);
+        error_log("content_id3");
 
         $this->authorize('create', Report::class);
+        error_log("content_id4");
         $request->validate(['description' => 'required|max:' . Report::MAX_DESCRIPTION_LENGTH]);
 
         $report = new Report();
@@ -24,6 +28,7 @@ class ReportController extends Controller
         $report->reporter_id = Auth::user()->id;
 
         try {
+            error_log($content_id);
             DB::transaction(function () use ($report, $content_id) {
                 $report->save();
                 $content_report = new ContentReport();
