@@ -23,8 +23,10 @@
               id="tag-close">
               <a class="btn btn-danger border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
-            <div class="tag-selected btn-group mt-1">
-              <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+            <div id="ask-selected-tags">
+              <div class="tag-selected btn-group mt-1">
+                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+              </div>
             </div>
           </div>
           <input class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />

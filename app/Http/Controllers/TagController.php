@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class TagController extends Controller
 {
+	const MAX_QUERY_STRING_LENGTH = 100;
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -99,33 +103,37 @@ class TagController extends Controller
 	 * @param String $tag
 	 * @return |Illuminate\Http\Response
 	 */
-	public function search($request)
+	public function search(Request $request)
 	{
 		$request->validate([
-			'query' => ['required'. 'max:' . 100], #TODO: Make this a constant
+			'query_string' => ['max:' . TagController::MAX_QUERY_STRING_LENGTH],
 			'rpp' => ['required', 'integer'],
 			'page' => ['required', 'integer'],
 			'type' =>[ function ($attribute, $value, $fail) {
 				if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
 				}
-            }]
+            }],
 		]);
 
-		$results = DB::select("
-			SELECT t.name, t.description, rank
-			FROM tag t,
-			ts_rank_cd(to_tsvector(search), plainto_tsquery('english', :query)) AS rank
-			WHERE search @@ plainto_tsquery('english', :query)
+		if(is_null($request->query_string)) {
+			$request->query_string = "";
+		}
+
+		$results = DB::select(
+			"SELECT t.name, t.description, ts_rank_cd(to_tsvector(t.name), plainto_tsquery('simple', :query)) as rank
+			FROM tag t
+			WHERE t.name @@ plainto_tsquery('english', :query)
 			ORDER BY rank DESC
 			OFFSET :offset
-			LIMIT :limit
-		", [
-			'query' => $request->query,
-			'offset' => $request->rpp*($request->page - 1),
-			'limit' => $request->page
-		]);
+			LIMIT :limit",
+			[
+				'query' => $request->query_string,
+				'offset' => $request->rpp*($request->page - 1),
+				'limit' => $request->rpp
+			]
+		);
 
-		error_log(print_r($results));
+		return json_encode($results);
 	}
 }
