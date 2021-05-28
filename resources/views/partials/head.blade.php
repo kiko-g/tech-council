@@ -62,6 +62,6 @@
   <script src={{ '/js/question-edit.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
   <script src={{ '/js/follow.js' }} defer></script>
-  <script src={{ '/js/tag-selector.js' }} defer></script>
   <script src={{ '/js/tag-search.js' }} defer></script>
+  <script src={{ '/js/tag-moderate.js' }} defer></script>
 </head>

@@ -73,12 +73,25 @@ class TagController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\Tag  $tag
+	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Tag $tag)
+	public function edit(Request $request, $id)
 	{
-		//TODO
+		$tag = Tag::findOrFail($id);
+
+		$this->authorize('edit', $tag);
+
+		$tag->name = $request->name;
+		$tag->description = $request->description;
+
+		try {
+				$tag->save();
+		} catch (PDOException $e) {
+				abort('403', $e->getMessage());
+		}
+
+		return response()->json($tag);
 	}
 
 	/**
@@ -87,14 +100,19 @@ class TagController extends Controller
 	 * @param  \App\Models\Tag  $tag
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function delete($id)
 	{
 		$tag = Tag::find($id);
 
 		$this->authorize('delete', $tag);
-		$tag->delete();
 
-		return $tag;
+		try {
+			$tag->delete();
+		} catch (PDOException $e) {
+				abort('403', $e->getMessage());
+		}
+
+		return response()->json($tag);
 	}
 
 	/**
