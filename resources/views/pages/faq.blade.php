@@ -13,7 +13,7 @@ $questionCounter = 0;
 @extends('layouts.entry')
 
 @section('content')
-  <header class="text-light mb-5">
+  <header class="text-light mb-5 mt-2">
     <h1>Tech Council</h1>
   </header>
 

@@ -4,7 +4,7 @@
   @include('partials.filters.profile')
   <section id="user-questions">
     @foreach ($user_questions as $question)
-      @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
+      @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue(), 'isReportedByUser' => $question->isReportedByUser()])
     @endforeach
   </section>
   @include('partials.pagination')

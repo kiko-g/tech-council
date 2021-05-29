@@ -73,10 +73,8 @@ class User extends Authenticatable
         return false;
     }
 
-    public function hasQuestionSaved($question_id)
+    public function hasQuestionSaved($question_id, $user_id)
     {
-        $user_id = Auth::user()->id;
-
         $save_question = SaveQuestion::where([
             'user_id' => $user_id,
             'question_id' => $question_id,

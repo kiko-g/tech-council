@@ -1,5 +1,21 @@
 /* Bootstrap expansion */
 
+.rounded-extra {
+  border-radius: 25px !important;
+}
+
+.opacity-hover:hover {
+  opacity: 80%;
+}
+
+.my-post-signature {
+  /* position: absolute; */
+  /* top: -0.5rem; */
+  /* left: -0.5rem; */
+  font-size: x-small;
+  /* transform: rotate(-15deg); */
+}
+
 .title {
   color: darkslategray;
 }

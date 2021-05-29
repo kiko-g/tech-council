@@ -64,7 +64,8 @@ class UserController extends Controller
     public function showProfileSettings($id)
     {
         $user = User::find($id);
-
+        //$this->authorize('logged_in', $user);
+        
         return view('pages.profile-settings', [
             'user' => $user,
         ]);

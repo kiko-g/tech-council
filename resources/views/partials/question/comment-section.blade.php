@@ -13,7 +13,13 @@
         <blockquote class="blockquote mb-0">
           <p class="card-text mb-0">
             <small class="text-muted">{{ $comment->content->creation_date }}&nbsp;&#8226;
-              <a class="signature" href="#">{{ $comment->content->author->name }}</a>&nbsp;
+              <a class="signature" href="{{ url('user/' . $comment->content->author->id) }}">{{ $comment->content->author->name }}</a>
+              @if ($comment->content->author->moderator)
+                @include('partials.icons.moderator', ['width' => 15, 'height' => 15, 'title' => 'Moderator'])
+              @elseif($comment->content->author->expert)
+                @include('partials.icons.medal', ['width' => 15, 'height' => 15, 'title' => 'Expert User'])
+              @endif
+              &#8226;
               <a class="text-red-400 hover" href="#">
                 <i class="fas fa-flag fa-sm" data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
                   data-bs-target="#report-modal-comment-{{ $comment->content_id }}">

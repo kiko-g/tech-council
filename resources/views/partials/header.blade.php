@@ -1,7 +1,7 @@
 <header>
   <nav class="bg-animated navbar navbar-expand-lg navbar-dark bg-dark p-2">
     <div class="container-fluid justify-content-left px-3">
-      <a class="navbar-brand me-5" href="{{ route('home') }}"> @include('partials.icon')Tech Council</a>
+      <a class="navbar-brand me-5" href="{{ route('home') }}"> @include('partials.icons.icon')Tech Council</a>
       <button class="navbar-toggler ms-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

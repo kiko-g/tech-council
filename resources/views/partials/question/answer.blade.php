@@ -30,12 +30,13 @@
           <div class="col-2 p-0 m-0 collapse show answer-control answer-collapse-{{ $answer->content_id }}" id="answer-control-{{ $answer->content_id }}">
             <div class="btn-group float-end">
               <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
-                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+                @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
               </button>
               
               {{-- Button trigger modal --}}
               <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
-                <i class="fas fa-trash text-wine mt-1 ms-2"></i>
+                &nbsp;
+                @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
               </button>
             </div>
           </div>
@@ -58,11 +59,11 @@
     <p class="card-text px-1 h6">
       <small class="text-muted">answered {{ $answer->content->creation_date }}</small>
       <small>
-        <a class="signature" href="#">{{ $answer->content->author->name }}
+        <a class="signature" href="{{ url('user/' . $user->id) }}">{{ $answer->content->author->name }}
           @if ($answer->content->author->moderator)
-            {!! '&nbsp;<i class="fas fa-briefcase fa-sm"></i>' !!}
+            @include('partials.icons.moderator', ['width' => 20, 'height' => 20, 'title' => 'Moderator'])
           @elseif($answer->content->author->expert)
-            {!! '&nbsp;<i class="fas fa-medal fa-sm"></i>' !!}
+            @include('partials.icons.medal', ['width' => 20, 'height' => 20, 'title' => 'Expert User'])
           @endif
         </a>
       </small>

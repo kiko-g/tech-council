@@ -38,7 +38,7 @@ $member_counter = 0;
 
 @section('content')
   <div id="description">
-    <header class="text-light mb-2">
+    <header class="text-light mb-2 mt-2">
       <h1>Tech Council</h1>
     </header>
     <header class="text-start text-light mb-3 ms-3">

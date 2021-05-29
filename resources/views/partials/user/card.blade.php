@@ -12,14 +12,27 @@
     @endphp
     <img src="{{ $photo }}" class="card-img-top user-img" alt="kermy">
     <div class="card-body">
-      <h5 class="card-title">{{ $user->name }}</h5>
-      <p class="card-text">Reputation: {{ $user->reputation }}</p>
-      <p class="card-text">Joined: {{ $user->join_date }}</p>
-      @if ($user->banned)
-        <a href="#" class="btn blue-alt">Unban</a>
-      @else
-        <a href="#" class="btn blue-alt">Ban</a>
-      @endif
+      <h4 class="card-title">{{ $user->name }}
+        @if ($user->moderator)
+          @include('partials.icons.moderator', ['width' => 25, 'height' => 25, 'title' => 'Moderator'])
+        @endif
+        @if($user->expert)
+          @include('partials.icons.medal', ['width' => 25, 'height' => 25, 'title' => 'Expert User'])
+        @endif
+      </h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <p class="card-text text-start">Reputation <strong class="float-end">{{ $user->reputation }}</strong></p>
+        </li>
+        <li class="list-group-item mb-3">
+          <p class="card-text text-start">Joined <strong class="float-end">{{ $user->join_date }}</strong></p>
+        </li>
+        @if ($user->banned)
+          <a href="#" class="btn blue-alt">Unban</a>
+        @else
+          <a href="#" class="btn blue-alt">Ban</a>
+        @endif
+      </ul>      
     </div>
   </div>
 </section>

@@ -15,8 +15,7 @@ function hideToast() {
 toast.style.opacity = 1;
 let intervalId = setInterval(function () {
   if (classes.contains('show')) {
-    toast.style.opacity -= 0.01;
-    //console.log(toast.style.opacity);
+    toast.style.opacity -= 0.04;
   }
   if (toast.style.opacity == 0) {
     classes.remove('show')

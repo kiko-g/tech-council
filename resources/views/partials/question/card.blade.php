@@ -1,17 +1,19 @@
 @php
-  if(isset($user)) $hasSaved = $user->hasQuestionSaved($question->content_id);
-  else $hasSaved = null;
+if (isset($user)) {
+    $hasSaved = $user->hasQuestionSaved($question->content_id, $user->id);
+} else {
+    $hasSaved = null;
+}
 
-  if ($hasSaved) {
+if ($hasSaved) {
     $save_class = 'active-bookmark';
     $save_text = 'Saved';
     $save_icon = 'fa';
-  }
-  else {
+} else {
     $save_class = 'bookmark';
     $save_text = 'Save';
     $save_icon = 'far';
-  }
+}
 @endphp
 <div class="card mb-4 p-2-0 border-0 rounded" id="{{ 'question-' . $question->content_id }}">
   <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
@@ -21,31 +23,41 @@
           {{ $question->title }}
           <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
         </a>
+        @auth
+          @if (Auth::user()->id == $question->content->author_id)
+            &nbsp;&nbsp;<span class="badge my-post-signature">My post</span>
+          @endif
+        @endauth
       </div>
       @auth
         @if (Auth::user()->id == $question->content->author_id || Auth::user()->moderator)
           <div class="col-auto btn-group">
             @if (Auth::user()->id == $question->content->author_id && $include_comments)
               <button type="button" class="btn p-0 edit-question-button">
-                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+                @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
               </button>
             @elseif(Auth::user()->moderator && $include_comments)
-              <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
-                <i class="fas fa-edit text-teal-300 mt-1 ms-2"></i>
+              <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
+                data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+                @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
               </button>
             @endif
-            
+
             {{-- Confirm edit buttons --}}
-            <button type="button" id="confirm-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+            <button type="button" id="confirm-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
+              data-bs-target=".moderator-edit" aria-expanded="false">
               <i class="fas fa-check text-teal-300 mt-1 ms-2"></i>
             </button>
-            <button type="button" id="cancel-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
+            <button type="button" id="cancel-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
+              data-bs-target=".moderator-edit" aria-expanded="false">
               <i class="fas fa-close text-wine mt-1 ms-2"></i>
             </button>
 
-            <button type="button" class="btn p-0 delete-question-modal-trigger collapse show moderator-edit" data-bs-toggle="modal"
-              data-bs-target="#delete-question-modal-{{ $question->content_id }}">
-              <i class="fas fa-trash text-red-400 hover mt-1 ms-2"></i>
+            <button type="button" class="btn p-0 delete-question-modal-trigger collapse show moderator-edit"
+              data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
+              &nbsp;
+              @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
+              {{-- <i class="fas fa-trash text-red-400 hover mt-1 ms-2"></i> --}}
             </button>
           </div>
 
@@ -108,84 +120,87 @@
           <div id="interact" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
               <a class="star-button my-btn-pad2 btn btn-outline-success {{ $save_class }}"
-                id="save-{{ $question->content_id }}" 
-                @auth onclick="toggleSave(this)" @endauth
-                @guest href={{ route('login') }} @endguest>
-                <i class="{{ $save_icon }} fa-bookmark"></i>&nbsp;{{ $save_text }}
-              </a>
-            </div>
-            <div class="btn-group mt-1 rounded">
-              @if(!$isReportedByUser)
+                id="save-{{ $question->content_id }}" @auth onclick="toggleSave(this)" @endauth @guest
+              href={{ route('login') }} @endguest>
+              <i class="{{ $save_icon }} fa-bookmark"></i>&nbsp;{{ $save_text }}
+            </a>
+          </div>
+          <div class="btn-group mt-1 rounded">
+            @if (!$isReportedByUser)
               <a id="report-button-{{ $question->content_id }}"
                 class="report-button my-btn-pad2 btn btn-outline-success report" onclick="saveReportButton(this)"
                 data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}">
                 <i class="far fa-flag"></i>&nbsp;Report
               </a>
-              @else
+            @else
               <a class="report-button my-btn-pad2 btn btn-outline-success report active-report disabled">
-                <i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported 
+                <i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported
               </a>
-              @endif
-            </div>
-            @if (!$include_comments)
-              <div class="btn-group mt-1 rounded">
-                <a class="comment-number-button btn teal my-btn-pad2"
-                  id="comment-number-button-{{ $question->content_id }}"
-                  href="{{ url('question/' . $question->content_id . '#answers') }}">
-                  <i class="far fa-comment-dots"></i>{{-- &nbsp;25 --}}
-                </a>
-              </div>
             @endif
+          </div>
+          @if (!$include_comments)
             <div class="btn-group mt-1 rounded">
-              <a class="share-button btn blue my-btn-pad2" id="share-button-{{ $question->content_id }}" href="#">
-                <i class="fas fa-share-alt"></i>{{-- &nbsp;Share --}}
+              <a class="comment-number-button btn teal my-btn-pad2"
+                id="comment-number-button-{{ $question->content_id }}"
+                href="{{ url('question/' . $question->content_id . '#answers') }}">
+                <i class="far fa-comment-dots"></i>{{-- &nbsp;Count --}}
               </a>
             </div>
-            @include('partials.report-modal', [
-            "type" => "question",
-            "content_id" => $question->content_id,
-            ])
+          @endif
+          <div class="btn-group mt-1 rounded">
+            <a class="share-button btn blue my-btn-pad2" id="share-button-{{ $question->content_id }}" href="#">
+              <i class="fas fa-share-alt"></i>{{-- &nbsp;Share --}}
+            </a>
           </div>
+          @include('partials.report-modal', [
+          "type" => "question",
+          "content_id" => $question->content_id,
+          ])
+        </div>
 
-          <div id="tags" class="col-md-auto flex-wrap">
-            <div class="collapse show moderator-edit" id="tag-original-view">
+        <div id="tags" class="col-md-auto flex-wrap">
+          <div class="collapse show moderator-edit" id="tag-original-view">
             @foreach ($question->tags as $tag)
               <div class="btn-group mt-1" id="question-tag-{{ $tag->id }}">
-                <a class="btn blue-alt border-0 my-btn-pad2" href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
+                <a class="btn blue-alt border-0 my-btn-pad2"
+                  href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
               </div>
             @endforeach
-            </div>
-            <div class="collapse moderator-edit" id="tag-moderator-view">
+          </div>
+          <div class="collapse moderator-edit" id="tag-moderator-view">
             @foreach ($question->tags as $tag)
-              <div class="tag-edit btn-group mt-1" id="question-tag-edit-{{ $tag->id }}" data-tag-id="{{ $tag->id }}" data-question-id="{{ $question->content_id }}">
-                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;{{ $tag->name }}</a>
+              <div class="tag-edit btn-group mt-1" id="question-tag-edit-{{ $tag->id }}"
+                data-tag-id="{{ $tag->id }}" data-question-id="{{ $question->content_id }}">
+                <a class="btn blue-alt border-0 my-btn-pad2"><i
+                    class="fas fa-minus-square"></i>&nbsp;{{ $tag->name }}</a>
               </div>
             @endforeach
-            </div>
           </div>
         </div>
-        @if ($include_comments)
-          @include('partials.question.comment-section', ['comments' => $question->comments, 'id' =>
-          $question->content_id])
-        @endif
       </div>
-    </article>
-  </div>
+      @if ($include_comments)
+        @include('partials.question.comment-section', ['comments' => $question->comments, 'id' =>
+        $question->content_id])
+      @endif
+    </div>
+  </article>
+</div>
 
-  <footer class="card-footer text-muted text-end p-0">
-    <blockquote class="blockquote mb-0">
-      <p class="card-text px-1 h6">
-        <small class="text-muted">asked {{ $question->content->creation_date }}</small>
-        <small>
-          <a class="signature" href="#">{{ $question->content->author->name }}
-            @if ($question->content->author->moderator)
-              {!! '&nbsp;<i class="fas fa-briefcase fa-sm"></i>' !!}
-            @elseif($question->content->author->expert)
-              {!! '&nbsp;<i class="fas fa-medal fa-sm"></i>' !!}
-            @endif
-          </a>
-        </small>
-      </p>
-    </blockquote>
-  </footer>
+<footer class="card-footer text-muted text-end p-0">
+  <blockquote class="blockquote mb-0">
+    <p class="card-text px-1 h6">
+      <small class="text-muted">asked {{ $question->content->creation_date }}</small>
+      <small>
+        <a class="signature"
+          href="{{ url('user/' . $question->content->author->id) }}">{{ $question->content->author->name }}
+          @if ($question->content->author->moderator)
+            @include('partials.icons.moderator', ['width' => 20, 'height' => 20, 'title' => 'Moderator'])
+          @elseif($question->content->author->expert)
+            @include('partials.icons.medal', ['width' => 20, 'height' => 20, 'title' => 'Expert User'])
+          @endif
+        </a>
+      </small>
+    </p>
+  </blockquote>
+</footer>
 </div>

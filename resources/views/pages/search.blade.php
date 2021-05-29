@@ -29,7 +29,7 @@
       @include('partials.filters.question')
       <section id="search-tag-results">
         @foreach ($questions as $question)
-          @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
+          @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue(), 'isReportedByUser' => $question->isReportedByUser()])
         @endforeach
       </section>
     </div>
