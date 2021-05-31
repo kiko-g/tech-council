@@ -1,7 +1,7 @@
 @include('partials.head')
 
 <body>
-  @include('partials.header', ['user' => $user])
+  @include('partials.header', ['user' => Auth::user()])
   <main class="container">
     <div class="row">
       <article class="col-lg-9 order-last order-lg-first">

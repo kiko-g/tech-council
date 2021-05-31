@@ -3,7 +3,7 @@ function addQuestionEventListeners() {
 
     try {
         answerSubmitForm.addEventListener("submit", submitAnswer);
-    } catch (e) {}
+    } catch (e) { }
 
     answerButtonsListeners();
     deleteButtonsListeners();
@@ -104,13 +104,22 @@ function deleteQuestion(event) {
 
 function deleteQuestionHandler() {
     let response = JSON.parse(this.responseText);
-
     let deletedQuestion = document.getElementById("question-" + response.id);
     let confirmation = document.createElement("div");
+
     if (this.status == 200 || this.status == 201) {
+        confirmation.style.opacity = 1;
         confirmation.innerHTML = successAlert("Question deleted successfully");
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
         deletedQuestion.remove();
+
+        let intervalId = setInterval(function () {
+            confirmation.style.opacity -= 0.02;
+            if (confirmation.style.opacity == 0) {
+                confirmation.remove();
+                clearInterval(intervalId)
+            }
+        }, 200);
     } else {
         confirmation.innerHTML = errorAlert("Error deleting question");
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
@@ -146,9 +155,18 @@ function deleteAnswerHandler() {
     let deleteAnswer = document.getElementById("answer-" + response.id);
     let confirmation = document.createElement("div");
     if (this.status == 200 || this.status == 201) {
+        confirmation.style.opacity = 1;
         confirmation.innerHTML = successAlert("Answer deleted successfully");
         deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
         deleteAnswer.remove();
+
+        let intervalId = setInterval(function () {
+            confirmation.style.opacity -= 0.02;
+            if (confirmation.style.opacity == 0) {
+                confirmation.remove();
+                clearInterval(intervalId)
+            }
+        }, 200);
     } else {
         confirmation.innerHTML = errorAlert("Error deleting answer");
         deleteAnswer.parentNode.insertBefore(confirmation, deleteAnswer);
@@ -218,4 +236,7 @@ function createAnswer(answerId) {
     return newAnswer;
 }
 
+/**
+ * @brief script execution
+ */
 addQuestionEventListeners();

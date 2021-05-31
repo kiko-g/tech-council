@@ -48,8 +48,7 @@ function unfollowHandler() {
 
         // change follow button
         let followButton = document.getElementById("follow-" + response.id);
-        followButton.innerHTML =
-            '<i class="far fa-star" aria-hidden="true"></i>&nbsp;Follow';
+        followButton.innerHTML = `<i class="far fa-star" aria-hidden="true"></i>&nbsp;Follow`
         followButton.classList.remove("active-follow");
         followButton.classList.add("follow");
 

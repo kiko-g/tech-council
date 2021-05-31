@@ -1,8 +1,9 @@
 let toggleButton = document.querySelector('#toggle-stackedit');
+let toggleButtonTip = document.querySelector('#toggle-stackedit-tip');
 let element = document.querySelector('#input-body');
 let stackedit = new Stackedit();
 
-toggleButton.addEventListener('click', function (event) {
+toggleStackEdit = (event) => {
   if (toggleButton.classList.contains('off')) {
     toggleButton.classList.remove('off');
     toggleButton.classList.add('on');
@@ -19,7 +20,11 @@ toggleButton.addEventListener('click', function (event) {
       text: element.value // and the Markdown content.
     }
   });
-});
+}
+
+toggleButton.addEventListener('click', toggleStackEdit);
+toggleButtonTip.addEventListener('click', toggleStackEdit);
+
 
 // Listen to StackEdit events and apply the changes to the textarea.
 stackedit.on('fileChange', (file) => {
@@ -32,4 +37,7 @@ stackedit.on('fileChange', (file) => {
 stackedit.on('close', () => {
   toggleButton.classList.remove('on');
   toggleButton.classList.add('off');
+  toggleButtonTip.classList.remove('on');
+  toggleButtonTip.classList.add('off');
 });
+
