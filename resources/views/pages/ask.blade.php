@@ -33,7 +33,8 @@
         {{-- Select tags --}}
         <div class="card collapse" id="addTag" style="width: 18rem;">
           <div class="card-body">
-            <input type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Search tag" />
+            <input id="ask-search-tag" type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1"
+              placeholder="Search tag" />
             <div id="tags" class="col-lg-auto">
               <div class="search-tag btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;unix</a>

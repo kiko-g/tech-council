@@ -31,6 +31,7 @@ Route::get('auth/check', function () {
 Route::get('/', 'MainController@showMural')->name('home');
 Route::get('/question/{id}', 'QuestionController@showPage');
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');
+Route::get('/api/search/tag', 'TagController@search');
 /*
 -------------------
 M01: Authentication
@@ -85,18 +86,21 @@ Route::get('/create/question', function () {
 })->name('create/question'); // could be 'ask/'?
 
 Route::post('/api/follow/tag', 'FollowTagController@follow');
-Route::post('/api/unfollow/tag', 'FollowTagController@unfollow');       //TODO: delete
-
+Route::post('/api/unfollow/tag', 'FollowTagController@unfollow'); //TODO: delete
 Route::post('/api/save/question', 'SaveQuestionController@save');
-Route::delete('/api/unsave/question', 'SaveQuestionController@unsave');   //TODO: delete
+Route::delete('/api/unsave/question', 'SaveQuestionController@unsave'); //TODO: delete
+
+Route::put('/api/tag/{id}/edit', 'TagController@edit');
+Route::delete('/api/tag/{id}/delete', 'TagController@delete');
+Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 Route::post('/api/question/insert', 'QuestionController@create');           // create question 
-Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
 Route::delete('/question/{id}/delete', 'QuestionController@delete');        // delete question
+Route::delete('/api/question/{id}/delete', 'QuestionController@deleteAPI'); // delete question ajax
 
 Route::post('/api/question/{id}/answer', 'AnswerController@create')->name('answer.create'); // create answer
-Route::put('/api/answer/{id}/edit', 'AnswerController@edit');                // edit answer
-Route::delete('/api/answer/{id}/delete', 'AnswerController@delete');            // delete answer
+Route::put('/api/answer/{id}/edit', 'AnswerController@edit');               // edit answer
+Route::delete('/api/answer/{id}/delete', 'AnswerController@delete');        // delete answer
 Route::get('/api/answer/{id}', 'AnswerController@get');
 
 Route::post('/api/question/{id}/vote', 'QuestionController@addVote');       // insert question vote
@@ -107,7 +111,6 @@ Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // e
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
 Route::post('/api/content/{id}/report', 'ReportController@reportContent');
-Route::delete('/api/question/remove_tag', 'QuestionTagController@remove');
 
 /* TODO:
 --------------- 

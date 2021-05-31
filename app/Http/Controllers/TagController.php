@@ -6,6 +6,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class TagController extends Controller
 {
@@ -69,12 +70,25 @@ class TagController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\Tag  $tag
+	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Tag $tag)
+	public function edit(Request $request, $id)
 	{
-		//TODO
+		$tag = Tag::findOrFail($id);
+
+		$this->authorize('edit', $tag);
+
+		$tag->name = $request->name;
+		$tag->description = $request->description;
+
+		try {
+				$tag->save();
+		} catch (PDOException $e) {
+				abort('403', $e->getMessage());
+		}
+
+		return response()->json($tag);
 	}
 
 	/**
@@ -83,13 +97,54 @@ class TagController extends Controller
 	 * @param  \App\Models\Tag  $tag
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function delete($id)
 	{
 		$tag = Tag::find($id);
 
 		$this->authorize('delete', $tag);
-		$tag->delete();
 
-		return $tag;
+		try {
+			$tag->delete();
+		} catch (PDOException $e) {
+				abort('403', $e->getMessage());
+		}
+
+		return response()->json($tag);
+	}
+
+	/**
+	 * Search for a tag (full text search)
+	 * 
+	 * @param String $tag
+	 * @return |Illuminate\Http\Response
+	 */
+	public function search($request)
+	{
+		$request->validate([
+			'query' => ['required'. 'max:' . 100], #TODO: Make this a constant
+			'rpp' => ['required', 'integer'],
+			'page' => ['required', 'integer'],
+			'type' =>[ function ($attribute, $value, $fail) {
+				if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
+				}
+            }]
+		]);
+
+		$results = DB::select("
+			SELECT t.name, t.description, rank
+			FROM tag t,
+			ts_rank_cd(to_tsvector(search), plainto_tsquery('english', :query)) AS rank
+			WHERE search @@ plainto_tsquery('english', :query)
+			ORDER BY rank DESC
+			OFFSET :offset
+			LIMIT :limit
+		", [
+			'query' => $request->query,
+			'offset' => $request->rpp*($request->page - 1),
+			'limit' => $request->page
+		]);
+
+		error_log(print_r($results));
 	}
 }
