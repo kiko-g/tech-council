@@ -706,3 +706,19 @@ a.hover-cute:hover:after {
 .blockquote.wider {
   width: auto;
 }
+
+.bg-wine {
+  color: white;
+  /* feb272 */
+  border-color: #b44b62;
+  background-color: #b44b62;
+}
+
+.form-check-input.report:checked {
+  background-color: #b14952;
+  border-color: #662d31;
+}
+
+.form-check-input.report:focus {
+  box-shadow: none;
+}

@@ -59,7 +59,7 @@
     <p class="card-text px-1 h6">
       <small class="text-muted">answered {{ $answer->content->creation_date }}</small>
       <small>
-        <a class="signature" href="{{ url('user/' . $user->id) }}">{{ $answer->content->author->name }}
+        <a class="signature" href="{{ url('user/' . $answer->content->author->id) }}">{{ $answer->content->author->name }}
           @if ($answer->content->author->moderator)
             @include('partials.icons.moderator', ['width' => 20, 'height' => 20, 'title' => 'Moderator'])
           @elseif($answer->content->author->expert)
