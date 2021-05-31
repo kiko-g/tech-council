@@ -23,8 +23,12 @@
             <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false" id="tag-close">
               <a class="btn btn-danger wine border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
-            <div class="tag-selected btn-group mt-1">
-              <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+            <div id="ask-selected-tags">
+              <!--
+              <div class="tag-selected btn-group mt-1">
+                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+              </div>
+              -->
             </div>
           </div>
           <input class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
@@ -35,13 +39,15 @@
           <div class="card-body">
             <input id="ask-search-tag" type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1"
               placeholder="Search tag" />
-            <div id="tags" class="col-lg-auto">
+            <div id="ask-tag-search-results" class="col-lg-auto">
+              <!--
               <div class="search-tag btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;unix</a>
               </div>
               <div class="search-tag btn-group mt-1">
                 <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;ps4</a>
               </div>
+              -->
             </div>
           </div>
         </div>

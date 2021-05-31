@@ -67,7 +67,6 @@
   <script src={{ '/js/report.js' }} defer></script>
   <script src={{ '/js/follow.js' }} defer></script>
   <script src={{ '/js/save.js' }} defer></script>
-  <script src={{ '/js/tag-selector.js' }} defer></script>
-  <script src={{ '/js/tag.js' }} defer></script>
-  <script src={{ '/js/search.js' }} defer></script>
+  <script src={{ '/js/tag-search.js' }} defer></script>
+  <script src={{ '/js/tag-moderate.js' }} defer></script>
 </head>

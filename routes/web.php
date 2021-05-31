@@ -25,13 +25,6 @@ Route::get('auth/check', function () {
     return Auth::check();
 });
 
-
-
-/* M03: Content viewing and searching */
-Route::get('/', 'MainController@showMural')->name('home');
-Route::get('/question/{id}', 'QuestionController@showPage');
-Route::get('tag/{id}', 'TagController@showPage')->name('tag');
-Route::get('/api/search/tag', 'TagController@search');
 /*
 -------------------
 M01: Authentication
@@ -59,7 +52,7 @@ Route::get('/user/{id}/settings', 'UserController@showProfileSettings');        
 /* 
 ----------------------------------
 M03: Content viewing and searching
-TODO: R303 - R305
+TODO: R303, R305
 ----------------------------------
 */
 Route::get('/', 'MainController@showMural')->name('home');                                  // R301
@@ -71,7 +64,9 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
+Route::get('/api/search/tag', 'TagController@search');                                      // R304
 Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
+Route::get('tag/{id}', 'TagController@showPage')->name('tag');                              // R307
 
 
 /* 
