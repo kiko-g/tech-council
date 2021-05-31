@@ -722,3 +722,9 @@ a.hover-cute:hover:after {
 .form-check-input.report:focus {
   box-shadow: none;
 }
+
+.table-dark.petrol {
+  --bs-table-bg: var(--petrol) !important;
+  background-color: var(--petrol) !important;
+  font-weight: 100;
+}

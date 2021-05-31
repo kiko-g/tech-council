@@ -4,9 +4,9 @@
   <script src={{ '/js/moderator-switch.js' }} defer></script>
   <div class="users-tags-or-reports-picker">
     <div class="btn-group users-tags-or-reports-button" role="group">
-      <button type="button" class="btn active blue-alt users-button">Users</button>
+      <button type="button" class="btn blue-alt users-button">Users</button>
       <button type="button" class="btn blue-alt tags-button">Tags</button>
-      <button type="button" class="btn blue-alt reports-button">Reports</button>
+      <button type="button" class="btn blue-alt reports-button active">Reports</button>
     </div>
   </div>
 
