@@ -1,4 +1,19 @@
-@extends('layouts.profile', ['user' => $user, 'user_questions' => $user_questions])
+@extends('layouts.profile', 
+  [
+    'user' => $user,
+    'user_questions' => $user_questions,
+    'js' => [
+      'input.js',
+      'components.js',
+      'question.js',
+      'app.js',
+      'vote.js',
+      'report.js',
+      'follow.js',
+      'save.js',
+    ]
+  ]
+)
 
 @section('content')
   @include('partials.filters.profile')

@@ -1,4 +1,20 @@
-@extends('layouts.app', ['user' => $user])
+@extends('layouts.app', 
+  [
+    'user' => $user,
+    'js' => [
+      'input.js',
+      'components.js',
+      'question.js',
+      'app.js',
+      'vote.js',
+      'report.js',
+      'follow.js',
+      'save.js',
+      'tag-search.js',
+      'tag-moderate.js',
+    ]
+  ]
+)
 
 @section('content')
 

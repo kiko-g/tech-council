@@ -1,4 +1,4 @@
-@include('partials.head')
+@include('partials.head', ['js' => $js ?? []])
 
 <body>
   @include('partials.header', ['user' => Auth::user()])
