@@ -72,4 +72,17 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function hasQuestionSaved($question_id, $user_id)
+    {
+        $save_question = SaveQuestion::where([
+            'user_id' => $user_id,
+            'question_id' => $question_id,
+        ])->first();
+
+        if (!empty($save_question)) {
+            return true;
+        }
+        return false;
+    }    
 }

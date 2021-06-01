@@ -1,31 +1,48 @@
 <article id="comment-section-{{ $id }}" class="row mt-4">
-  @php 
-  $comment_limit = 2; 
-  $comment_count = 0; 
+  @php
+    $comment_limit = 2;
+    $comment_count = 0;
   @endphp
 
   @foreach ($comments as $comment)
-    @php $comment_count++; @endphp 
-    <div class="comment-box<?php if($comment_count > $comment_limit) { ?> collapse hidden{{ $id }} <?php } ?>">
+    @php $comment_count++; @endphp
+    <div
+      class="comment-box<?php if ($comment_count > $comment_limit) { ?> collapse hidden{{ $id }} <?php } ?>">
       <div class="comment d-flex justify-content-between shadow-sm border border-2 mb-1 px-2 bg-light rounded">
-        <p class="mb-0">{!! $comment->content->main !!}</p>
+        <p class="mb-0 w-75">{!! $comment->content->main !!}</p>
         <blockquote class="blockquote mb-0">
-          <p class="card-text mb-0"><small class="text-muted">{{ $comment->content->creation_date }}&nbsp;
-              <a class="signature" href="#">{{ $comment->content->author_id }}</a></small>
+          <p class="card-text mb-0">
+            <small class="text-muted">{{ $comment->content->creation_date }}&nbsp;&#8226;
+              <a class="signature" href="{{ url('user/' . $comment->content->author->id) }}">{{ $comment->content->author->name }}</a>
+              @if ($comment->content->author->moderator)
+                @include('partials.icons.moderator', ['width' => 15, 'height' => 15, 'title' => 'Moderator'])
+              @elseif($comment->content->author->expert)
+                @include('partials.icons.medal', ['width' => 15, 'height' => 15, 'title' => 'Expert User'])
+              @endif
+              &#8226;
+              <a class="text-red-400 hover" href="#">
+                <i class="fas fa-flag fa-sm" data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
+                  data-bs-target="#report-modal-comment-{{ $comment->content_id }}">
+                </i>
+                @include('partials.report-modal', [
+                  "type" => "comment",
+                  "content_id" => $comment->content_id,
+                ])
+              </a>
+            </small>
           </p>
         </blockquote>
+
       </div>
-    </div>    
+    </div>
   @endforeach
 
-  
+
   @if ($comment_count > $comment_limit)
-    <a class="show-more text-sky me-2 mt-2" 
-      data-bs-toggle="collapse" href=".hidden{{ $id }}"
+    <a class="show-more text-sky me-2 mt-2" data-bs-toggle="collapse" href=".hidden{{ $id }}"
       aria-expanded="false">Show {{ $comment_count - $comment_limit }} more comments
     </a>
-    <a class="show-less text-sky me-2 mt-2" 
-      data-bs-toggle="collapse" href=".hidden{{ $id }}"
+    <a class="show-less text-sky me-2 mt-2" data-bs-toggle="collapse" href=".hidden{{ $id }}"
       aria-expanded="false">Hide {{ $comment_count - $comment_limit }} last comments
     </a>
   @endif
@@ -51,4 +68,5 @@
       Add comment
     </a>
   </div>
+
 </article>

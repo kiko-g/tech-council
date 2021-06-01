@@ -12,10 +12,9 @@
     font-family: var(--third-font), Arial, sans-serif;
 }
 
+/* Generic Palette */
+
 :root {
-    --first-font: "Open Sans";
-    --second-font: "Source Sans Pro";
-    --third-font: "Work Sans";
     --blue-100: #cfe2ff;
     --blue-200: #9ec5fe;
     --blue-300: #6ea8fe;
@@ -117,7 +116,22 @@
     --gray-900: #212529;
     --white: #ffffff;
     --black: #000000;
-    /* custom colors */
+}
+
+:root {
+    --orange: #dd9a5c;
+    --orange-dark: #b47133;
+    --wine: #c5545e;
+    --wine-dark: #b14952;
+    --purple: #a684df;
+    --purple-dark: #7c59b4;
+}
+
+:root {
+    --first-font: "Open Sans";
+    --second-font: "Source Sans Pro";
+    --third-font: "Work Sans";
+    /* #3d77b1, #1c5288 */
     --teal-500-fade: #337c66;
     --petrol: #395768;
     --teal-alt: #496d8f;
@@ -127,14 +141,50 @@
     --dark-green: #1c866b;
     --background-color: #dae0e6;
     --background-color-2: #f1f1f1;
-    --header-gradient: linear-gradient(170deg, #155799, #5aa3c0);
-    /* #3d77b1, #1c5288 */
+    --header-gradient: linear-gradient(170deg, #3d77b1, #1c5288);
 }
 
 /* Backgrounds */
 
 .special-bg {
     background-color: #bbc4ce;
+}
+
+.bg-expert {
+    background-color: #f7f3f0;
+    border-left: 7px solid #be460044;
+    /* f1f9fd, 0059be44 */
+}
+
+.expert {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #e6a37c !important;
+}
+
+.bg-great {
+    background-color: #f1fdf7;
+    border-left: 5px solid #00925a44;
+}
+
+.great {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #3b746c !important;
+}
+
+.bg-mod {
+    background-color: #f1f9fd;
+    border-left: 5px solid #0181bd44;
+}
+
+.mod {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #7bb6e6 !important;
 }
 
 /* Text color pallette */
@@ -159,8 +209,24 @@
     color: var(--teal-300);
 }
 
+.text-yellow-400.hover {
+    color: var(--yellow-300);
+}
+
+.text-yellow-400.hover:hover {
+    color: var(--yellow-500);
+}
+
 .text-teal-400 {
     color: var(--teal-400);
+}
+
+.text-teal-400.hover {
+    color: var(--teal-300);
+}
+
+.text-teal-400.hover:hover {
+    color: var(--teal-500);
 }
 
 .text-teal-500 {
@@ -169,6 +235,14 @@
 
 .text-red-400 {
     color: var(--red-400);
+}
+
+.text-red-400.hover {
+    color: var(--red-300);
+}
+
+.text-red-400.hover:hover {
+    color: var(--red-500);
 }
 
 .text-blue-100 {

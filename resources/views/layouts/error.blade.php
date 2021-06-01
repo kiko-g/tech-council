@@ -1,7 +1,7 @@
 @include('partials.head')
 
 <body>
-  @include('partials.header')
+  @include('partials.header', ['user' => Auth::user()])
   <main class="container d-flex justify-content-center my-4">
     @yield('body')
   </main>

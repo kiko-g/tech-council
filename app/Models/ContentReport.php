@@ -7,21 +7,25 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ContentReport extends Model
 {
-    /**
-     * No 'create' and 'update' timestamps.
-     *
-     * @var boolean
-     */
     public $timestamps = false;
-
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'content_report';
+    protected $primaryKey = 'content_id';
+    const MAX_MAIN_LENGTH = 1000;
 
-    public function content() {
-        return $this->belongsTo('App\Models\Content', 'content_id');
+
+    public function report()
+    {
+        return $this->belongsTo('App\Models\Report', 'report_id');
     }
 
-    public function report() {
-        return $this->belongsTo('App\Models\Report', 'report_id');
+    public function content()
+    {
+        return $this->belongsTo('App\Models\Content', 'content_id');
     }
 
     public function content_type_reported($content_id) {

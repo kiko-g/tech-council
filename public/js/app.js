@@ -33,7 +33,7 @@ function sendAjaxRequest(method, url, data, handler) {
 }
 
 let isAuthenticated = false;
-sendAjaxRequest('get', '/auth/check', null, function() {
-  if(this.response) isAuthenticated = true;
+sendAjaxRequest('get', '/auth/check', null, function () {
+  if (this.response) isAuthenticated = true;
   else isAuthenticated = false;
 });

@@ -37,11 +37,11 @@ $member_counter = 0;
 @extends('layouts.entry')
 
 @section('content')
-  <header class="text-light mb-5">
-    <h1>Tech Council</h1>
-  </header>
   <div id="description">
-    <header class="text-start text-light mb-4 ms-4">
+    <header class="text-light mb-2 mt-2">
+      <h1>Tech Council</h1>
+    </header>
+    <header class="text-start text-light mb-3 ms-3">
       <h2>About</h2>
     </header>
     <div class="shadow p-3 mb-5 bg-light border border-5 rounded-3 fs-5 text-start">
@@ -49,27 +49,34 @@ $member_counter = 0;
       how to build a custom PC, what new smartphone is the best or how to install a VPN.
     </div>
   </div>
-  <div id="team">
-    <header class="text-start text-light mb-4 ms-4">
-      <h3>Team</h3>
-    </header>
 
-    <div class="d-flex team-cards justify-content-center">
+  <div id="team">
+    <header class="text-start text-light mb-3 ms-3">
+      <h2>Team</h2>
+    </header>
+    <div class="card-group">
       @foreach ($team_members as $name => $attrs)
         @php $member_counter++; @endphp
-        <div class="card me-3 mb-2 border border-5 rounded-3" style="width: 18rem;">
-          <img src="{{ '/images/team' . $member_counter . '.jpeg' }}" class="card-img-top img-fluid"
-            alt="Team member number {{ $member_counter }}">
+        <div class="card">
+          <img src="{{ '/images/team' . $member_counter . '.jpeg' }}" class="card-img-top"
+            alt="Team Member #{{ $member_counter }}">
           <div class="card-body">
             <h5 class="card-title">{{ $name }}</h5>
             <p class="card-text">{{ $attrs['bio'] }}</p>
-            @foreach ($attrs['social'] as $social_net => $link)
-              <a href="{{ $link }}" class="btn btn-primary"><i class="fa fa-{{ $social_net }}"
-                  aria-hidden="true"></i></a>
-            @endforeach
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              @foreach ($attrs['social'] as $social_net => $link)
+                <a href="{{ $link }}" class="btn btn blue btn-sm"> <i class="fa fa-{{ $social_net }}" aria-hidden="true"></i> </a>
+              @endforeach
+            </small>
           </div>
         </div>
       @endforeach
     </div>
+
+    <div class="d-flex team-cards justify-content-center"> </div>
   </div>
+
+
 @endsection

@@ -1,0 +1,24 @@
+@php
+if (!isset($width)) {
+$width = 20;
+}
+if (!isset($height)) {
+$height = 20;
+}
+if (!isset($title)) {
+$title = 'SVG Icon';
+}
+@endphp
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="opacity-hover" width="{{ $width }}" height="{{ $height }}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+  <title>{{ $title }}</title>
+  <circle style="fill:#6DC180;" cx="256" cy="256" r="256"/>
+  <path style="fill:#5CA15D;" d="M256,0v512c141.385,0,256-114.615,256-256S397.385,0,256,0z"/>
+  <polygon style="fill:#F2F2F4;" points="219.429,367.932 108.606,257.108 147.394,218.32 219.429,290.353 355.463,154.32 
+    394.251,193.108 "/>
+  <polygon style="fill:#DFDFE1;" points="256,331.361 394.251,193.108 355.463,154.32 256,253.782 "/>
+</svg>
+
+	 

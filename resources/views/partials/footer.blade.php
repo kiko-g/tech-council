@@ -9,7 +9,7 @@
           <li><i class="fa fa-phone"></i>&nbsp; +91 999 99 99</li>
           <li><i class="fa fa fa-envelope"></i>&nbsp; lbaw2132@gmail.com</li>
           <br>
-          <li class="border-top-medium text-end pt-1"> Designed using Bootstrap5 by <a href="#">LBAW 2132</a> &copy; </li>
+          <li class="border-top-medium text-end pt-1"> Designed using Bootstrap5 by <strong>LBAW 2132</strong>&nbsp;&copy;</li>
         </ul>
       </div>
 

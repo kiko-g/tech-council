@@ -1,8 +1,8 @@
 @include('partials.head')
 
 <body>
-  @include('partials.header')
-  <div class="d-flex entry-form flex-column justify-content-center border-top-bg">
+  @include('partials.header', ['user' => Auth::user()])
+  <div class="d-flex container-fluid entry-form flex-column border-top-bg">
     @yield('content')
   </div>
   @include('partials.footer')

@@ -53,15 +53,20 @@
   <link rel="stylesheet" href={{ '/css/question-page.css' }} />
   <link rel="stylesheet" href={{ '/css/ask.css' }} />
   <link rel="stylesheet" href={{ '/css/profile.css' }} />
+  
+  {{--  Prism  --}}
+  <link rel="stylesheet" href={{ '/css/prism.css' }} />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js" integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 
   {{-- Scripts --}}
   <script src={{ '/js/input.js' }} defer></script>
   <script src={{ '/js/components.js' }} defer></script>
   <script src={{ '/js/app.js' }} defer></script>
   <script src={{ '/js/question.js' }} defer></script>
-  <script src={{ '/js/question-edit.js' }} defer></script>
   <script src={{ '/js/vote.js' }} defer></script>
+  <script src={{ '/js/report.js' }} defer></script>
   <script src={{ '/js/follow.js' }} defer></script>
+  <script src={{ '/js/save.js' }} defer></script>
   <script src={{ '/js/tag-search.js' }} defer></script>
   <script src={{ '/js/tag-moderate.js' }} defer></script>
 </head>

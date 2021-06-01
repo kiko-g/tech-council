@@ -5,7 +5,19 @@
     <div class="card-header text-white bg-petrol font-source-sans-pro rounded-top"> User Settings </div>
     <div class="row g-0">
       <div class="col-lg-4">
-        <img src="{{ '/images/morty.gif' }}" class="card-img-top rounded p-3" alt="user-image-{{ $user->id }}">
+        @php
+          if (!isset($user->profile_photo_obj->path)) {
+              $photo = '/storage/assets/photos/user-default.png';
+          } else {
+              $photo = $user->profile_photo_obj->path;
+              if (Storage::disk('public')->exists($photo)) {
+                  $photo = '/storage/' . $photo;
+              } else {
+                  $photo = '/storage/assets/photos/user-default.png';
+              }
+          }
+        @endphp
+        <img src="{{ $photo }}" class="card-img-top rounded-extra p-3" alt="user-image-{{ $user->id }}">
       </div>
       <div class="col-lg-8">
         <div class="card-body">
@@ -53,42 +65,16 @@
     <div class="card-body">
       <h5 class="card-title">Need help?</h5>
       <p class="card-text">Don't hesitate hitting us up.</p>
-      <a href="#" class="btn blue">Contact us</a>
+      <a href="{{ route('about') }}" class="btn blue">Contact us</a>
     </div>
   </div>
 
   <div class="card mb-3">
     <div class="card-header text-white bg-petrol font-source-sans-pro rounded-top"> Other options </div>
     <div class="card-body">
-      <a href="#" class="btn blue"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+      @auth
+        <a href="{{ route('logout') }}" class="btn blue"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+      @endauth
     </div>
   </div>
 @endsection
-
-{{-- <div class="col-12">
-  <label for="inputAddress" class="form-label">Address</label>
-  <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor">
-</div>
-<div class="col-lg-6">
-  <label for="inputCity" class="form-label">City</label>
-  <input type="text" class="form-control" id="inputCity">
-</div>
-<div class="col-lg-4">
-  <label for="inputState" class="form-label">State</label>
-  <select id="inputState" class="form-select">
-    <option selected>Choose...</option>
-    <option>...</option>
-  </select>
-</div>
-<div class="col-lg-2">
-  <label for="inputZip" class="form-label">Zip</label>
-  <input type="text" class="form-control" id="inputZip">
-</div>
-<div class="col-12">
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="gridCheck">
-    <label class="form-check-label" for="gridCheck">
-      Check me out
-    </label>
-  </div>
-</div> --}}

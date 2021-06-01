@@ -39,4 +39,12 @@ class Answer extends Model
 
         return is_null($voteAnswer) ? 0 : $voteAnswer->vote;
     }
+
+    public function isBest()
+    {
+        if (!Auth::check()) 
+            return 0;
+
+        return $this->question();
+    }
 }
