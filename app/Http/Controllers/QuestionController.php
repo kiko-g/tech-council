@@ -12,6 +12,8 @@ use PDOException;
 
 class QuestionController extends Controller
 {
+    const MAX_QUERY_STRING_LENGTH = 100;
+
     /**
      * Display a listing of the resource.
      *
@@ -209,5 +211,49 @@ class QuestionController extends Controller
         VoteQuestion::where('user_id', Auth::user()->id)
             ->where('question_id', $content_id)
             ->delete();
+    }
+
+    public function search(Request $request) {
+        $request->validate([
+			'query_string' => ['max:' . QuestionController::MAX_QUERY_STRING_LENGTH],
+            'author' => ['string' . QuestionController::MAX_QUERY_STRING_LENGTH],
+            'tags' => ['string' . QuestionController::MAX_QUERY_STRING_LENGTH],
+			'rpp' => ['required', 'integer'],
+			'page' => ['required', 'integer'],
+			'type' =>[ function ($attribute, $value, $fail) {
+				if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
+				}
+            }],
+		]);
+
+		if(is_null($request->query_string)) {
+			$request->query_string = "";
+		}
+		if(is_null($request->author)) {
+			$request->author = "";
+		}
+        if(is_null($request->tags)) {
+			$request->tags = "";
+		}
+
+        $tags = explode(";", $request->tags);
+
+		$results = DB::select(
+            "SELECT q.title, q.votes_difference, c.main, c.creation_date, c.edited, u.name, rank
+            FROM content c inner join question q on c.id = q.content_id inner join 'user' u on c.author_id = u.id,
+            ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || setweight(to_tsvector('simple', c.main), 'B') || ' ' || setweight(to_tsvector('simple', u.name), 'D'), plainto_tsquery('simple', :query)) as rank
+            WHERE rank > 0
+            ORDER BY rank DESC
+            OFFSET :offset
+			LIMIT :limit",
+			[
+				'query' => $request->query_string,
+				'offset' => $request->rpp*($request->page - 1),
+				'limit' => $request->rpp
+			]
+		);
+
+		return json_encode($results);
     }
 }
