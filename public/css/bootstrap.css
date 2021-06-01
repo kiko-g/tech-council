@@ -728,3 +728,7 @@ a.hover-cute:hover:after {
   background-color: var(--petrol) !important;
   font-weight: 100;
 }
+
+button:focus {
+  box-shadow: none !important;
+}

@@ -28,23 +28,23 @@ if ($type == 'question') {
           action="{{ url('/' . $type . '/' . $content_id . '/delete') }}">
           @method('DELETE')
           @csrf
+          <button class="btn btn-success teal @if (!$redirect) delete-modal @endif" id="delete-{{ $type }}-{{ $content_id }}" @if (!$redirect) data-bs-dismiss="modal" @endif type="submit">
+            Delete
+          </button>
+        </form>
+        <button type="button" class="btn btn-danger wine" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{--       <div class="modal-footer">
+        <form class="{{ $type }}-delete" id="{{ $type }}-delete-{{ $content_id }}" method="post"
+          action="{{ url('/' . $type . '/' . $content_id . '/delete') }}">
+          @method('DELETE')
+          @csrf
           <button class="btn btn-success @if (!$redirect) delete-modal @endif" id="delete-{{ $type }}-{{ $content_id }}" @if (!$redirect) data-bs-dismiss="modal" @endif type="submit">
             Delete
           </button>
         </form>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <form class="{{ $type }}-delete" id="{{ $type }}-delete-{{ $content_id }}" method="post"
-      action="{{ url('/' . $type . '/' . $content_id . '/delete') }}">
-      @method('DELETE')
-      @csrf
-      <button class="btn btn-success teal @if (!$redirect) delete-modal @endif" id="delete-{{ $type }}-{{ $content_id }}" @if (!$redirect) data-bs-dismiss="modal" @endif type="submit">
-        Delete
-      </button>
-    </form>
-    <button type="button" class="btn btn-danger wine" data-bs-dismiss="modal">Cancel</button>
-  </div>
-</div>
+      </div> --}}

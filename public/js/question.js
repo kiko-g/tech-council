@@ -113,13 +113,16 @@ function deleteQuestionHandler() {
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);
         deletedQuestion.remove();
 
+        let timer = 0;
+        let interval = 200;
         let intervalId = setInterval(function () {
-            confirmation.style.opacity -= 0.02;
+            timer += 200;
+            if (timer > 2000) confirmation.style.opacity -= 0.05;
             if (confirmation.style.opacity == 0) {
                 confirmation.remove();
                 clearInterval(intervalId)
             }
-        }, 200);
+        }, interval);
     } else {
         confirmation.innerHTML = errorAlert("Error deleting question");
         deletedQuestion.parentNode.insertBefore(confirmation, deletedQuestion);

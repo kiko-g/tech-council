@@ -47,30 +47,31 @@ if ($hasResported) {
           <div class="col-auto btn-group">
             @if (Auth::user()->id == $question->content->author_id && $include_comments)
               <button type="button" class="btn p-0 edit-question-button">
-                @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
+                {{-- @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
+                <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </button>
             @elseif(Auth::user()->moderator && $include_comments)
               <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
                 data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
-                @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
+                {{-- @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
+                <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </button>
             @endif
 
             {{-- Confirm edit buttons --}}
             <button type="button" id="confirm-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
               data-bs-target=".moderator-edit" aria-expanded="false">
-              <i class="fas fa-check text-teal-300 mt-1 ms-2"></i>
+              <i class="fas fa-check text-teal-400 hover mt-1 ms-2"></i>
             </button>
             <button type="button" id="cancel-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
               data-bs-target=".moderator-edit" aria-expanded="false">
-              <i class="fas fa-close text-wine mt-1 ms-2"></i>
+              <i class="fas fa-close text-red-400 hover mt-1 ms-2"></i>
             </button>
 
             <button type="button" class="btn p-0 delete-question-modal-trigger collapse show moderator-edit"
               data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
-              &nbsp;
-              @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete'])
-              {{-- <i class="fas fa-trash text-red-400 hover mt-1 ms-2"></i> --}}
+              {{-- @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
+              <i class="far fa-trash-alt text-red-400 hover mt-1 ms-2"></i>
             </button>
           </div>
 

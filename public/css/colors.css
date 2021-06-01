@@ -150,6 +150,43 @@
     background-color: #bbc4ce;
 }
 
+.bg-expert {
+    background-color: #f7f3f0;
+    border-left: 7px solid #be460044;
+    /* f1f9fd, 0059be44 */
+}
+
+.expert {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #e6a37c !important;
+}
+
+.bg-great {
+    background-color: #f1fdf7;
+    border-left: 5px solid #00925a44;
+}
+
+.great {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #3b746c !important;
+}
+
+.bg-mod {
+    background-color: #f1f9fd;
+    border-left: 5px solid #0181bd44;
+}
+
+.mod {
+    padding: 0.4rem !important;
+    margin-left: 2rem !important;
+    font-size: medium !important;
+    background-color: #7bb6e6 !important;
+}
+
 /* Text color pallette */
 
 .text-teal-alt {
@@ -172,12 +209,24 @@
     color: var(--teal-300);
 }
 
+.text-yellow-400.hover {
+    color: var(--yellow-300);
+}
+
+.text-yellow-400.hover:hover {
+    color: var(--yellow-500);
+}
+
 .text-teal-400 {
-    color: var(--teal-500);
+    color: var(--teal-400);
+}
+
+.text-teal-400.hover {
+    color: var(--teal-300);
 }
 
 .text-teal-400.hover:hover {
-    color: var(--teal-300);
+    color: var(--teal-500);
 }
 
 .text-teal-500 {
@@ -188,8 +237,12 @@
     color: var(--red-400);
 }
 
-.text-red-400.hover:hover {
+.text-red-400.hover {
     color: var(--red-300);
+}
+
+.text-red-400.hover:hover {
+    color: var(--red-500);
 }
 
 .text-blue-100 {
