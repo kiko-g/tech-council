@@ -107,12 +107,14 @@ if __name__ == '__main__':
     # answer table strings
     populate_string += "\n\n\n-- ANSWER TABLE\n"
     for i in range(len(answer)):
-        populate_string += "INSERT INTO answer(content_id,votes_difference,question_id) VALUES ("
+        populate_string += "INSERT INTO answer(content_id,votes_difference,question_id,is_best_answer) VALUES ("
         populate_string += str(answer.loc[i, 'content_id'])
         populate_string += ","
         populate_string += str(answer.loc[i, 'votes_difference'])
         populate_string += ","
         populate_string += str(answer.loc[i, 'question_id'])
+        populate_string += ","
+        populate_string += "'" + str(answer.loc[i, 'is_best_answer']) + "'"
         populate_string += ");\n"
 
 

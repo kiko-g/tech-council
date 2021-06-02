@@ -2,9 +2,10 @@
   if (!isset($width)) $width = 20;
   if (!isset($height)) $height = 20;
   if (!isset($title)) $title = 'SVG Icon';
+  if (!isset($classes)) $classes = '';
 @endphp
 <?xml version="1.0" encoding="iso-8859-1"?>
-<svg class="opacity-hover" width="{{ $width }}" height="{{ $height }}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+<svg class="opacity-hover {{ $classes }}" width="{{ $width }}" height="{{ $height }}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
  <title>{{ $title }}</title>
  <polygon style="fill:#3EBD91;" points="386.593,10.447 125.41,10.447 125.41,186.558 175.365,260.138 340.816,260.138 386.593,186.558 "/>
  <rect x="177.647" y="10.447" style="fill:#ECF0F1;" width="156.709" height="249.69"/>

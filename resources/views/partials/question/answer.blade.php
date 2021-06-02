@@ -1,7 +1,7 @@
 @php
 $cardHighlight = "";
 $bestAnswer = false;
-$bestAnswer = $answer->isBest;
+$bestAnswer = $answer->is_best_answer;
 $expertAnswer = $answer->content->author->expert;
 $moderatorAnswer = $answer->content->author->moderator;
 
@@ -18,9 +18,38 @@ if ($bestAnswer) {
 }
   
 @endphp
-<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'answer-' . $answer->content_id }}"> {{-- bg-{{ $answer->is_best_answer ? 'teal-600' : 'background-color' }} --}}
-  <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top">
-    {{-- {{ $bestAnswer }} --}}
+<div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'answer-' . $answer->content_id }}">
+  <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top py-1">
+    <div class="row">
+      <div class="col-auto me-auto ps-1">
+        @auth
+          @if (Auth::user()->id == $answer->content->author_id)
+            <span class="badge my-post-signature mt-1">My answer</span>
+          @endif
+        @endauth
+      </div>
+      @auth
+        @if (Auth::user()->id == $answer->content->author_id)
+          <div class="col-auto btn-group float-end" id="answer-control-{{ $answer->content_id }}">
+            <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
+              <i class="fas fa-pencil-alt text-yellow-400 hover ms-2"></i>
+            </button>
+        
+            {{-- Button trigger modal --}}
+            <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
+              <i class="far fa-trash-alt text-red-400 hover ms-2"></i>
+            </button>
+          </div>
+
+          @include('partials.question.delete-modal', [
+            "type" => "answer",
+            "content_id" => $answer->content_id,
+            "title" => $answer->question->title,
+            "redirect" => false
+          ])
+        @endif
+      @endauth
+    </div>
   </div>
   <div class="card-body {{ $cardHighlight }}">
     <article class="row row-cols-3 mb-1 pe-1" data-content-id="{{ $answer->content_id }}">
@@ -47,41 +76,15 @@ if ($bestAnswer) {
         @if ($expertAnswer || $bestAnswer || $moderatorAnswer)
           <div class="float-end">
             <div class="btn-group-vertical mb-2" role="group">
-              @if($moderatorAnswer)<span class="badge float-end mod">Mod&nbsp;@include('partials.icons.moderator', ['width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
-              @if($bestAnswer)<span class="badge float-end great">Best&nbsp;@include('partials.icons.check', ['width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span>@endif
-              @if($expertAnswer)<span class="badge float-end expert">Expert&nbsp;@include('partials.icons.medal', ['width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
+              @if($bestAnswer) <span class="badge float-end text-start great"  style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> @endif
+              @if($moderatorAnswer)<span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
+              @if($expertAnswer)   <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
             </div>
           </div>        
         @endif
         <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
             {!! $answer->content->main !!}
         </div>
-        @auth
-        @if (Auth::user()->id == $answer->content->author_id)
-          <div class="col-2 p-0 m-0 collapse show answer-control answer-collapse-{{ $answer->content_id }}" id="answer-control-{{ $answer->content_id }}">
-            <div class="btn-group float-end">
-              <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
-                {{-- @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
-                <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
-              </button>
-              
-              {{-- Button trigger modal --}}
-              <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
-                &nbsp;
-                {{-- @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
-                <i class="far fa-trash-alt text-yellow-400 hover mt-1 ms-2"></i>
-              </button>
-            </div>
-          </div>
-
-          @include('partials.question.delete-modal', [
-            "type" => "answer",
-            "content_id" => $answer->content_id,
-            "title" => $answer->question->title,
-            "redirect" => false
-          ])
-        @endif
-        @endauth
         @include('partials.question.edit-answer-form', ['answer' => $answer])
         @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
       </div>
