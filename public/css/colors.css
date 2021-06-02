@@ -157,9 +157,11 @@
 }
 
 .expert {
-    padding: 0.4rem !important;
-    margin-left: 2rem !important;
+    font-family: var(--second-font), Arial, sans-serif;
+    padding: 0.2rem 0.3rem !important;
+    margin-left: 1.5rem !important;
     font-size: medium !important;
+    font-weight: 500;
     background-color: #e6a37c !important;
 }
 
@@ -169,9 +171,11 @@
 }
 
 .great {
-    padding: 0.4rem !important;
-    margin-left: 2rem !important;
+    font-family: var(--second-font), Arial, sans-serif;
+    padding: 0.2rem 0.3rem !important;
+    margin-left: 1.5rem !important;
     font-size: medium !important;
+    font-weight: 500;
     background-color: #3b746c !important;
 }
 
@@ -181,9 +185,11 @@
 }
 
 .mod {
-    padding: 0.4rem !important;
-    margin-left: 2rem !important;
+    font-family: var(--second-font), Arial, sans-serif;
+    padding: 0.2rem 0.3rem !important;
+    margin-left: 1.5rem !important;
     font-size: medium !important;
+    font-weight: 500;
     background-color: #7bb6e6 !important;
 }
 
@@ -388,7 +394,13 @@
 .bg-animated {
     background: linear-gradient(45deg, #375c80, #6cb5dfad, #375c80);
     background-size: 600% 600%;
-    animation: breathe 5s ease infinite;
+    animation: breathe 6s ease infinite;
+}
+
+.bg-animated.longer {
+    background: linear-gradient(45deg, #375c80, #6cb5dfad, #375c80);
+    background-size: 600% 600%;
+    animation: none;
 }
 
 .bg-animated-tags {

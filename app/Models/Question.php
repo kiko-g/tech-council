@@ -54,10 +54,11 @@ class Question extends Model
 
     public function isReportedByUser()
     {
+        //TODO:
         if (!Auth::check())
             return false;
             
-        error_log("ola" );
+        error_log("ola");
 
         $content_report = DB::table('content_report')
             ->join('report', 'content_report.report_id', '=', 'report.id')
@@ -66,5 +67,14 @@ class Question extends Model
             ->get();
         
         return count($content_report) > 0 ? true : false;
+    }
+
+    public function countInteractions() {
+        $counter = count($this->answers) + count($this->comments);
+        foreach($this->answers as $answer) {
+            $counter += count($answer->comments);
+        }
+
+        return $counter;
     }
 }

@@ -10,9 +10,9 @@
         else $photo = '/storage/assets/photos/user-default.png';
       }
     @endphp
-    <img src="{{ $photo }}" class="card-img-top user-img rounded-top mb-1" alt="user-profile-picture">
-    <div class="card-body "> 
-      <h4 class="card-title">{{ $user->name }}
+    <img src="{{ $photo }}" id="user-img-{{ $user->id }}" class="card-img-top rounded-top mb-1" alt="user-profile-picture">
+    <div class="card-body"> 
+      <h4 class="card-title"><a href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
         @if ($user->moderator)
           @include('partials.icons.moderator', ['width' => 25, 'height' => 25, 'title' => 'Moderator'])
         @endif

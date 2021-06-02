@@ -1,17 +1,12 @@
 @php
-if (!isset($width)) {
-$width = 20;
-}
-if (!isset($height)) {
-$height = 20;
-}
-if (!isset($title)) {
-$title = 'SVG Icon';
-}
+  if (!isset($width)) $width = 20;
+  if (!isset($height)) $height = 20;
+  if (!isset($title)) $title = 'SVG Icon';
+  if (!isset($classes)) $classes = '';
 @endphp
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg class="opacity-hover" width="{{ $width }}" height="{{ $height }}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg class="opacity-hover {{ $classes }}" width="{{ $width }}" height="{{ $height }}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
   <title>{{ $title }}</title>
   <circle style="fill:#6DC180;" cx="256" cy="256" r="256"/>

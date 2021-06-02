@@ -1,7 +1,7 @@
 /* Bootstrap expansion */
 
 .rounded-extra {
-  border-radius: 25px !important;
+  border-radius: 20px !important;
 }
 
 .opacity-hover:hover {
@@ -9,11 +9,8 @@
 }
 
 .my-post-signature {
-  /* position: absolute; */
-  /* top: -0.5rem; */
-  /* left: -0.5rem; */
-  font-size: x-small;
-  /* transform: rotate(-15deg); */
+  font-size: 12px;
+  background-color: #7f9eec !important;
 }
 
 .title {
@@ -199,8 +196,8 @@
 .btn.wine {
   color: white;
   /* feb272 */
-  border-color: #b44b62;
-  background-color: #b44b62;
+  border-color: var(--wine);
+  background-color: var(--wine);
 }
 
 .btn.wine:hover {
@@ -731,4 +728,17 @@ a.hover-cute:hover:after {
 
 button:focus {
   box-shadow: none !important;
+}
+
+.height-cap {
+  object-fit: contain !important;
+  object-position: 50% 50%;
+  max-height: 293px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.py-0_5 {
+  padding-top: 0.1rem !important;
+  padding-bottom: 0.1rem !important;
 }

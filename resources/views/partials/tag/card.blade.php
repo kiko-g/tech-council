@@ -15,7 +15,7 @@
 @endphp
 
 <div class="card mb-4 p-2-0 border-0 rounded">
-  <div class="card-header bg-animated text-white font-source-sans-pro rounded-top">
+  <div class="card-header bg-animated longer text-white font-source-sans-pro rounded-top">
     # {{ $tag->name }}
   </div>
   <div class="card-body">

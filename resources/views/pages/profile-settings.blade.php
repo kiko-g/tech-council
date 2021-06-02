@@ -35,7 +35,9 @@
       </div>
       <div class="col-lg-8">
         <div class="card-body">
-          <h5 class="card-title">{{ $user->name }}</h5>
+          <h5 class="card-title">
+            <a class="signature" href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
+          </h5>
           <p class="card-text">{{ $user->bio }}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           <a href="#" class="btn blue">Change photo</a>

@@ -5,17 +5,17 @@ function encodeForAjax(data) {
   }).join('&');
 }
 
-function formatParams( params ){
+function formatParams(params) {
   return "?" + Object
     .keys(params)
-    .map(function(key){
-      return key+"="+encodeURIComponent(params[key])
+    .map(function (key) {
+      return key + "=" + encodeURIComponent(params[key])
     })
     .join("&");
 }
 
 function sendAjaxRequest(method, url, data, handler) {
-  if(method === 'get' && data) {
+  if (method === 'get' && data) {
     url += formatParams(data);
   }
 
@@ -25,7 +25,7 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.addEventListener('load', handler);
 
-  if(method === 'get') {
+  if (method === 'get') {
     request.send();
   } else {
     request.send(encodeForAjax(data));

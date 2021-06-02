@@ -14,7 +14,7 @@
     @endphp
     <img src="{{ $photo }}" class="card-img-top rounded-extra p-3" alt="profile-picture-{{ $user->name }}">
     <div class="card-body pt-0">
-      <h4 class="card-title">{{ $user->name }}
+      <h4 class="card-title"><a href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
         @if ($user->moderator)
           @include('partials.icons.moderator', ['width' => 25, 'height' => 25, 'title' => 'Moderator'])
         @endif
@@ -50,8 +50,13 @@
       @endif
       @if (Auth::user()->moderator && !$user->moderator)
         <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
-          <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn wine">Ban</a>
+          <a type="button" href="#" class="btn wine">Ban </a>
         </div>
       @endif
+      @if (!Auth::user()->moderator && !$user->moderator)
+        <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
+          <a type="button" href="#" class="btn wine">Report</a>
+        </div>
+      @endif      
     @endauth
   </div>

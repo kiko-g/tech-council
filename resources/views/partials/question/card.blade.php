@@ -33,7 +33,7 @@ if ($hasResported) {
     <div class="row">
       <div class="col-auto me-auto">
         <a class="a header" href="{{ url('question/' . $question->content_id) }}">
-          {{ $question->title }}
+          {{ $question->title }} 
           <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
         </a>
         @auth
@@ -47,13 +47,11 @@ if ($hasResported) {
           <div class="col-auto btn-group">
             @if (Auth::user()->id == $question->content->author_id && $include_comments)
               <button type="button" class="btn p-0 edit-question-button">
-                {{-- @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </button>
             @elseif(Auth::user()->moderator && $include_comments)
               <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
                 data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
-                {{-- @include('partials.icons.edit', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </button>
             @endif
@@ -70,7 +68,6 @@ if ($hasResported) {
 
             <button type="button" class="btn p-0 delete-question-modal-trigger collapse show moderator-edit"
               data-bs-toggle="modal" data-bs-target="#delete-question-modal-{{ $question->content_id }}">
-              {{-- @include('partials.icons.trash', ['width' => 22, 'height' => 22, 'title' => 'Delete']) --}}
               <i class="far fa-trash-alt text-red-400 hover mt-1 ms-2"></i>
             </button>
           </div>
@@ -142,7 +139,7 @@ if ($hasResported) {
               <a class="comment-number-button btn teal my-btn-pad2"
                 id="comment-number-button-{{ $question->content_id }}"
                 href="{{ url('question/' . $question->content_id . '#answers') }}">
-                <i class="far fa-comment-dots"></i>
+                <i class="far fa-comment-dots"></i>&nbsp;{{ $question->countInteractions() }}
               </a>
             </div>
             @endif
