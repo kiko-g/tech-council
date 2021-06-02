@@ -64,7 +64,7 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
-Route::get('/api/search/tag', 'TagController@search');                                      // R304
+Route::get('/api/search/tag', 'SearchController@searchTags');                               // R304
 Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');                              // R307
 

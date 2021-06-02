@@ -10,6 +10,7 @@ function searchAskTags(event) {
         "get", 
         "/api/search/tag", 
         {
+            bundled: 0,
             query_string: event.target.value,
             rpp: 10,
             page: 1,
@@ -20,6 +21,7 @@ function searchAskTags(event) {
 }
 
 function tagSearchHandler() {
+    console.log(this.responseText);
     let response = JSON.parse(this.responseText);
 
     if (this.status == 200 || this.status == 201) {
