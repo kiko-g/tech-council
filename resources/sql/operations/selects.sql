@@ -164,7 +164,7 @@ ORDER BY rank DESC;
  * Hundreds per day
  */
 SELECT u."name", u.email, u.bio, u.join_date, u.expert, u.banned, p.path as photo_path
-FROM "user" u INNER JOIN photo p ON u.photo_id = p.id, 
-ts_rank_cd(to_tsvector(u.name), plainto_tsquery('simple', $search_str)) as rank
+FROM "user" u INNER JOIN photo p ON u.profile_photo = p.id, 
+ts_rank_cd(to_tsvector(u.name), plainto_tsquery('simple', 'jdiogueiro')) as rank
 WHERE rank > 0
 ORDER BY rank DESC;

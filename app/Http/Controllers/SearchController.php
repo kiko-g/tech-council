@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -16,34 +19,21 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function search(Request $request) {
-        /*
         $request->validate([
-            'bundled' => ['required', 'boolean'],
-			'questions.query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-			'questions.rpp' => ['required', 'integer'],
-			'questions.page' => ['required', 'integer'],
-			'questions.type' =>[ function ($attribute, $value, $fail) {
-				if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
-                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
-				}
-            },
-            'tags.query_string'
-        ],
-		]);
-        */
+            'q' => ['required', 'string']
+        ]);        
+
+        $questions = Question::hydrate(Question::search($request->q, 5, 1));
+        $tags = Tag::hydrate(Tag::search($request->q, 6, 1));
+        $users = User::hydrate(User::search($request->q, 6, 1));
         
-        $questions = $this->searchQuestions($request);
-        $tags = $this->searchTags($request);
-        $users = $this->searchUsers($request);
-
-        error_log("QUESTIONS");
-        error_log(json_encode($questions));
-        error_log("TAGS");
-        error_log(json_encode($tags));
-        error_log("USERS");
-        error_log(json_encode($users));
-
-        $results = json_encode(array('questions' => $questions, 'tags' => $tags, 'users' => $users));
+        return view('pages.search', [
+            'query_string' => $request->q,
+            'questions' => $questions,
+            'tags' => $tags,
+            'users' => $users,
+            'user' => Auth::user(),
+        ]);
     }
 
     /**
@@ -53,73 +43,34 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function searchQuestions(Request $request) {
-        $params = (object) array();
-
         $request->validate([
-            'bundled' => ['required', 'boolean']
+            'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'author' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'tags' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'rpp' => ['required', 'integer'],
+            'page' => ['required', 'integer'],
+            'type' =>[ function ($attribute, $value, $fail) {
+                if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
+                }
+            }],
         ]);
 
-        if($request->bundled) {
-            $request->validate([
-                'questions.query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'questions.author' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'questions.tags' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'questions.rpp' => ['required', 'integer'],
-                'questions.page' => ['required', 'integer'],
-                'questions.type' =>[ function ($attribute, $value, $fail) {
-                    if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
-                        $fail('The '.$attribute.' must be "best", "new" or "trending"');
-                    }
-                }],
-            ]);
-
-            $params = $request->questions;
-        } else {
-            $request->validate([
-                'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'author' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'tags' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'rpp' => ['required', 'integer'],
-                'page' => ['required', 'integer'],
-                'type' =>[ function ($attribute, $value, $fail) {
-                    if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
-                        $fail('The '.$attribute.' must be "best", "new" or "trending"');
-                    }
-                }],
-            ]);
-
-            $params->$request;
-        }
-
-		if(is_null($params->query_string)) {
-			$params->query_string = "";
+		if(is_null($request->query_string)) {
+			$request->query_string = "";
 		}
-		if(is_null($params->author)) {
-			$params->author = "";
+		if(is_null($request->author)) {
+			$request->author = "";
 		}
-        if(is_null($params->tags)) {
-			$params->tags = "";
+        if(is_null($request->tags)) {
+			$request->tags = "";
 		}
 
-        $tags = explode(";", $params->tags);
+        $tags = explode(";", $request->tags);
 
-		$results = DB::select(
-            "SELECT q.title, q.votes_difference, c.main, c.creation_date, c.edited, u.name, rank
-            FROM content c inner join question q on c.id = q.content_id inner join 'user' u on c.author_id = u.id,
-            ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || setweight(to_tsvector('simple', c.main), 'B') || ' ' || setweight(to_tsvector('simple', u.name), 'D'), plainto_tsquery('simple', :query)) as rank
-            WHERE rank > 0
-            ORDER BY rank DESC
-            OFFSET :offset
-			LIMIT :limit",
-			[
-				'query' => $params->query_string,
-				'offset' => $params->rpp*($params->page - 1),
-				'limit' => $params->rpp
-			]
-		);
+		$results = Question::search($request->query_string, $request->rpp, $request->page);
 
 		return json_encode($results);
-
     }
 
     /**
@@ -129,57 +80,23 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function searchTags(Request $request) {
-        $params = (object) array();
-
         $request->validate([
-            'bundled' => ['required', 'boolean']
+            'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'rpp' => ['required', 'integer'],
+            'page' => ['required', 'integer'],
+            'type' =>[ function ($attribute, $value, $fail) {
+                if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                    $fail('The '.$attribute.' must be "best", "new" or "trending"');
+                }
+            }],
         ]);
 
-        if($request->bundled) {
-            $request->validate([
-                'tags.query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'tags.rpp' => ['required', 'integer'],
-                'tags.page' => ['required', 'integer'],
-                'tags.type' =>[ function ($attribute, $value, $fail) {
-                    if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
-                        $fail('The '.$attribute.' must be "best", "new" or "trending"');
-                    }
-                }],
-            ]);
-            
-            $params = $request->tags;
-        } else {
-            $request->validate([
-                'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-                'rpp' => ['required', 'integer'],
-                'page' => ['required', 'integer'],
-                'type' =>[ function ($attribute, $value, $fail) {
-                    if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
-                        $fail('The '.$attribute.' must be "best", "new" or "trending"');
-                    }
-                }],
-            ]);
 
-            $params = $request;
-        }
-
-		if(is_null($params->query_string)) {
-			$params->query_string = "";
+		if(is_null($request->query_string)) {
+			$request->query_string = "";
 		}
 
-		$results = DB::select(
-			"SELECT t.name, t.description, ts_rank_cd(to_tsvector(t.name), plainto_tsquery('simple', :query)) as rank
-			FROM tag t
-			WHERE t.name @@ plainto_tsquery('english', :query)
-			ORDER BY rank DESC
-			OFFSET :offset
-			LIMIT :limit",
-			[
-				'query' => $params->query_string,
-				'offset' => $params->rpp*($params->page - 1),
-				'limit' => $params->rpp
-			]
-		);
+        $results = Tag::search($request->query_string, $request->rpp, $request->page);
 
 		return json_encode($results);
     }

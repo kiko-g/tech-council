@@ -16,6 +16,17 @@
   ]
 )
 
+@php
+  if (strlen($query_string) > 30) {
+      $results_for = "Search Results for \"" . substr("$query_string", 0, 27) . "...\"";
+  } else {
+    $results_for = "Search Results for \"" . $query_string . "\"";
+  }
+
+  $total_results = count($questions) + count($tags) + count($users);
+  $results_num = "[" . $total_results . " result" . ($total_results !== 1 ? "s]" : "]");
+@endphp
+
 @section('content')
   <div class="tab-content" id="nav-tabContent">
     <div class="search-results-header rounded">
@@ -23,8 +34,8 @@
       <main class="container pb-2">
         <div class="row justify-content-between search-and-pose">
           <div class="col-12 my-auto">
-            <h5> Search Results for "windows" </h5>
-            <h6> [163 results] </h6>
+            <h5> {{ $results_for }} </h5>
+            <h6> {{ $results_num }} </h6>
           </div>
         </div>
         <nav>
@@ -77,7 +88,7 @@
             @for($i = 0; $i < 3; $i++)
               <div class="col">
                 @if($i < $cols)
-                  @include('partials.user.card-simple', ['user' => User::find(($row * 3) + ($i + 1))])
+                  @include('partials.user.card-simple', ['user' => $users[$i]])
                 @endif
               </div>
             @endfor
