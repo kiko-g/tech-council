@@ -12,6 +12,8 @@
       'save.js',
       'tag-search.js',
       'tag-moderate.js',
+      'search.js',
+      'filters.js'
     ]
   ]
 )
@@ -53,11 +55,9 @@
 
     {{--  QUESTIONS --}}
     <div class="tab-pane fade show active" id="nav-questions" role="tabpanel">
-      @include('partials.filters.question')
-      <section id="search-tag-results">
-        @foreach ($questions as $question)
-          @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
-        @endforeach
+      @include('partials.filters.question', ['filter_prefix' => "search"])
+      <section id="search-question-results">
+        @include('partials.search.results', ['questions' => $questions])
       </section>
     </div>
 

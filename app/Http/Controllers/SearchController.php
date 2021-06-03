@@ -24,7 +24,7 @@ class SearchController extends Controller
         ]);        
 
         $questions = Question::hydrate(Question::search($request->q, 5, 1));
-        $tags = Tag::hydrate(Tag::search($request->q, 6, 1));
+        $tags = Tag::hydrate(Tag::searchFull($request->q, 6, 1));
         $users = User::hydrate(User::search($request->q, 6, 1));
         
         return view('pages.search', [
@@ -50,7 +50,7 @@ class SearchController extends Controller
             'rpp' => ['required', 'integer'],
             'page' => ['required', 'integer'],
             'type' =>[ function ($attribute, $value, $fail) {
-                if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+                if($value !== '' && $value !== 'best' && $value !== 'new' && $value !== 'trending') {
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
                 }
             }],
@@ -65,12 +65,31 @@ class SearchController extends Controller
         if(is_null($request->tags)) {
 			$request->tags = "";
 		}
+        if(is_null($request->isView)) {
+            $request->isView = 0;
+        }
 
         $tags = explode(";", $request->tags);
+        $results = [];
 
-		$results = Question::search($request->query_string, $request->rpp, $request->page);
+        switch($request->type) {
+            case 'best':
+                $results = Question::searchBest($request->query_string, $request->rpp, $request->page);
+                break;
+            case 'new':
+                $results = Question::searchNew($request->query_string, $request->rpp, $request->page);
+                break;
+            case 'trending':
+                $results = Question::searchTrending($request->query_string, $request->rpp, $request->page);
+                break;
+            default:
+                $results = Question::search($request->query_string, $request->rpp, $request->page);
+                break;
+        }
 
-		return json_encode($results);
+        return view('partials.search.results', [
+            'questions' => Question::hydrate($results),
+        ]);
     }
 
     /**
@@ -96,7 +115,7 @@ class SearchController extends Controller
 			$request->query_string = "";
 		}
 
-        $results = Tag::search($request->query_string, $request->rpp, $request->page);
+        $results = Tag::searchSimple($request->query_string, $request->rpp, $request->page);
 
 		return json_encode($results);
     }
