@@ -3,13 +3,6 @@ let reportActivated = false
 
 const saveReportButton = button => {
   reportButton = button
-  console.log(reportButton);
-  console.log(reportActivated);
-}
-
-const submitReport = () => {
-  reportActivated = true
-  toggleReport(reportButton);
 }
 
 const deleteReport = () => {
@@ -20,6 +13,8 @@ const deleteReport = () => {
 const toggleReport = () => {
   if (reportActivated) {
     reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>&nbspReported'
+    reportButton.className += 'disabled'
+
     reportButton.classList.remove('report')
     reportButton.classList.add('active-report')
   }
@@ -38,11 +33,10 @@ const toggleReportSimple = () => {
   }
 };
 
-function submitReport(event) {
-  event.preventDefault();
+function submitReport(id) {
   if (!isAuthenticated) return;
 
-  let idString = this.id
+  let idString = id
   let contentId = idString.split("-").pop()
   let radioGroup = document.querySelectorAll('input[name="report-radio-' + contentId + '"]')
 
@@ -52,7 +46,8 @@ function submitReport(event) {
       reportReason = radio.parentNode.querySelector('label').innerText
     }
   });
-
+  
+  console.log(contentId)
   let reportDescription = document.querySelector('textarea[id="report-description-' + contentId + '"]').value
   sendAjaxRequest(
     'post',
@@ -69,21 +64,13 @@ function reportContentHandler() {
   if (this.status == 200 || this.status == 201) {
     let response = JSON.parse(this.responseText)
 
-    console.log(response.id)
-    let reportButton = document.getElementById('report-button-' + response.id)
+    let reportButton = document.getElementById('report-button-' + response.content_id)
     reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported'
+    reportButton.className += 'disabled'
     reportButton.classList.remove('report')
     reportButton.classList.add('active-report')
+    let modal = document.getElementsByClassName('report-modal-' + response.content_id) //TODO: dismiss modal
+
   } else { }
 }
 
-function addReportEventListener() {
-  let reportForms = document.querySelectorAll("[id^='report-form']");
-  let submitReportButtons = document.querySelectorAll("[id^='submit-report-button']");
-  let buttons = document.getElementsByClassName("submit-report-button");
-  Array.from(buttons).forEach(element => {
-    element.addEventListener('click', submitReport)
-  });
-}
-
-addReportEventListener();

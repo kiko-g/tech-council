@@ -1,4 +1,10 @@
 @php
+if (isset($user)) {
+  $hasResported = $answer->isReportedByUser();
+} else {
+  $hasResported = null;
+}
+
 $cardHighlight = "";
 $bestAnswer = false;
 $bestAnswer = $answer->is_best_answer;
@@ -17,6 +23,18 @@ if ($bestAnswer) {
   $cardHighlight = "bg-great";
 }
   
+if ($hasResported) {
+  $report_class = 'active-report';
+  $report_text = 'Reported';
+  $report_icon = 'fa';  
+  $report_availability = 'disabled';
+} else {
+  $report_class = 'report';
+  $report_text = 'Report';
+  $report_icon = 'far';
+  $report_availability = '';
+}
+
 @endphp
 <div class="card mb-5 p-2-0 border-0 rounded" id="{{ 'answer-' . $answer->content_id }}">
   <div class="card-header bg-petrol text-white font-source-sans-pro rounded-top py-1">
@@ -69,7 +87,17 @@ if ($bestAnswer) {
           <a id="downvote-button-{{ $answer->content_id }}" class="downvote-button-answer my-btn-pad btn btn-outline-danger {{ $downClass }}" data-content-id="{{ $answer->content_id }}">
             <i class="fas fa-chevron-down"></i>
           </a>
+          <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
+            id="report-button-{{ $answer->content_id }}"
+            @guest href={{ route('login') }} @endguest 
+            @auth onclick="saveReportButton(this)"data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
+            <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
+          </a>
         </div>
+        @include('partials.report-modal', [
+          "type" => "answer",
+          "content_id" => $answer->content_id,
+        ])
       </div>
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">

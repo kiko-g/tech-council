@@ -14,13 +14,9 @@ class ReportController extends Controller
 {    
     public function reportContent(Request $request, $content_id)
     {
-        error_log("content_id2");
-        
         Content::findOrFail($content_id);
-        error_log("content_id3");
 
         $this->authorize('create', Report::class);
-        error_log("content_id4");
         $request->validate(['description' => 'required|max:' . Report::MAX_DESCRIPTION_LENGTH]);
 
         $report = new Report();
@@ -40,9 +36,11 @@ class ReportController extends Controller
             error_log($e->getMessage());
             abort(403, $e->getMessage());
         }
-
+        
         // TODO: Add notification here!
-        return response()->json($report);
+        $response = response()->json(['report' => $report, 'content_id' => $content_id]);
+        error_log($response);
+        return $response;
     }
 
 

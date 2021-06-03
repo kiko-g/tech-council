@@ -21,10 +21,12 @@ if ($hasResported) {
   $report_class = 'active-report';
   $report_text = 'Reported';
   $report_icon = 'fa';  
+  $report_availability = 'disabled';
 } else {
   $report_class = 'report';
   $report_text = 'Report';
   $report_icon = 'far';
+  $report_availability = '';
 }
 @endphp
 
@@ -33,7 +35,7 @@ if ($hasResported) {
     <div class="row">
       <div class="col-auto me-auto">
         <a class="a header" href="{{ url('question/' . $question->content_id) }}">
-          {{ $question->title }} 
+            {{ $question->title }} 
           <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
         </a>
         @auth
@@ -127,7 +129,7 @@ if ($hasResported) {
               </a>
             </div>
             <div class="btn-group mt-1 rounded">
-              <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }}" 
+              <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
                 id="report-button-{{ $question->content_id }}"
                 @guest href={{ route('login') }} @endguest 
                 @auth onclick="saveReportButton(this)"data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}" @endauth>

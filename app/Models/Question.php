@@ -58,8 +58,6 @@ class Question extends Model
         if (!Auth::check())
             return false;
             
-        error_log("ola");
-
         $content_report = DB::table('content_report')
             ->join('report', 'content_report.report_id', '=', 'report.id')
             ->where('content_id', $this->content_id)
