@@ -75,4 +75,21 @@ class Question extends Model
 
         return $counter;
     }
+
+    public static function search($query_string, $rpp, $page) {
+        return DB::select(
+            "SELECT q.content_id, q.title, q.votes_difference, c.main, c.creation_date, c.edited, u.name, rank
+            FROM content c inner join question q on c.id = q.content_id inner join \"user\" u on c.author_id = u.id,
+            ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || setweight(to_tsvector('simple', c.main), 'B') || ' ' || setweight(to_tsvector('simple', u.name), 'D'), plainto_tsquery('simple', :query)) as rank
+            WHERE rank > 0
+            ORDER BY rank DESC
+            OFFSET :offset
+			LIMIT :limit",
+			[
+				'query' => $query_string,
+				'offset' => $rpp*($page - 1),
+				'limit' => $rpp
+			]
+		);
+    }
 }

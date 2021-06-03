@@ -56,6 +56,7 @@ TODO: R303, R305
 ----------------------------------
 */
 Route::get('/', 'MainController@showMural')->name('home');                                  // R301
+/*
 Route::get('search', function () {
     return view('pages.search', [
         'questions' => Question::paginate(10),
@@ -64,6 +65,8 @@ Route::get('search', function () {
         'user' => Auth::user(),
     ]);
 });                                                                                         // R302
+*/
+Route::get('search', 'SearchController@search')->name('search');
 Route::get('/api/search/tag', 'SearchController@searchTags');                               // R304
 Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');                              // R307

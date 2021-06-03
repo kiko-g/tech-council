@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -85,4 +86,22 @@ class User extends Authenticatable
         }
         return false;
     }    
+
+    public static function search($query_string, $rpp, $page)
+    {
+        return DB::select(
+            "SELECT u.\"name\", u.email, u.bio, u.join_date, u.expert, u.banned, p.path as photo_path
+            FROM \"user\" u INNER JOIN photo p ON u.profile_photo = p.id, 
+            ts_rank_cd(to_tsvector(u.name), plainto_tsquery('simple', :query)) as rank
+            WHERE rank > 0
+            ORDER BY rank DESC
+			OFFSET :offset
+			LIMIT :limit",
+			[
+				'query' => $query_string,
+				'offset' => $rpp*($page - 1),
+				'limit' => $rpp
+			]
+		);
+    }
 }
