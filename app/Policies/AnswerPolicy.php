@@ -13,7 +13,7 @@ class AnswerPolicy
 
     public function create()
     {
-        return Auth::check();
+        return Auth::check() && !Auth::user()->banned;
     }
 
     public function edit(User $user, Answer $answer) {
@@ -22,5 +22,10 @@ class AnswerPolicy
 
     public function delete(User $user, Answer $answer) {
         return $user->id == $answer->content->author_id || $user->moderator;
+    }
+
+    public function set_best(User $user, Answer $answer) {
+        print_r($answer->question->bestAnswer());
+        return $user->id == $answer->question->content->author_id && is_null($answer->question->bestAnswer());
     }
 }

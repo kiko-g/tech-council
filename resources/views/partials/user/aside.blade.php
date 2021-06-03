@@ -44,19 +44,19 @@
         <a type="button" href="mailto:{{ $user->email }}" class="btn blue-alt">Contact</a>
       </div>
       @if($user->id == Auth::user()->id)
-        <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
-          <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
-        </div>
+      <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
+        <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
+      </div>
       @endif
       @if (Auth::user()->moderator && !$user->moderator)
-        <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
-          <a type="button" href="#" class="btn wine">Ban </a>
-        </div>
+      <div class="card-body btn-group pt-0" role="group" aria-label="Second group">
+        <a type="button" href="#" class="btn wine">Ban </a>
+      </div>
       @endif
-      @if (!Auth::user()->moderator && !$user->moderator)
-        <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
-          <a type="button" href="#" class="btn wine">Report</a>
-        </div>
+      @if (!Auth::user()->moderator && !$user->moderator && Auth::user()->id != $user->id)
+      <div class="card-body btn-group pt-0" role="group" aria-label="Second group">
+        <a type="button" href="#" class="btn wine">Report</a>
+      </div>
       @endif      
     @endauth
   </div>

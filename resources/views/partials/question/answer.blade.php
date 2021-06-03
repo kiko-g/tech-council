@@ -6,20 +6,19 @@ if (isset($user)) {
 }
 
 $cardHighlight = "";
-$bestAnswer = false;
-$bestAnswer = $answer->is_best_answer;
-$expertAnswer = $answer->content->author->expert;
-$moderatorAnswer = $answer->content->author->moderator;
+$isBestAnswer = $answer->is_best_answer;
+$isExpertAnswer = $answer->content->author->expert;
+$isModeratorAnswer = $answer->content->author->moderator;
 
-if ($expertAnswer) {
+if ($isExpertAnswer) {
   $cardHighlight = "bg-expert";
 }
 
-if ($moderatorAnswer) {
+if ($isModeratorAnswer) {
   $cardHighlight = "bg-mod";
 }
 
-if ($bestAnswer) {
+if ($isBestAnswer) {
   $cardHighlight = "bg-great";
 }
   
@@ -44,6 +43,9 @@ if ($hasResported) {
           @if (Auth::user()->id == $answer->content->author_id)
             <span class="badge my-post-signature mt-1">My answer</span>
           @endif
+          @if (Auth::user()->id == $answer->content->edited)
+            <span class="badge edit-signature mt-1">Edited</span>
+          @endif          
         @endauth
       </div>
       @auth
@@ -87,12 +89,6 @@ if ($hasResported) {
           <a id="downvote-button-{{ $answer->content_id }}" class="downvote-button-answer my-btn-pad btn btn-outline-danger {{ $downClass }}" data-content-id="{{ $answer->content_id }}">
             <i class="fas fa-chevron-down"></i>
           </a>
-          <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
-            id="report-button-{{ $answer->content_id }}"
-            @guest href={{ route('login') }} @endguest 
-            @auth onclick="saveReportButton(this)"data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
-            <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
-          </a>
         </div>
         @include('partials.report-modal', [
           "type" => "answer",
@@ -101,19 +97,48 @@ if ($hasResported) {
       </div>
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
-        @if ($expertAnswer || $bestAnswer || $moderatorAnswer)
+        @if ($isExpertAnswer || $bestAnswer || $isModeratorAnswer)
           <div class="float-end">
             <div class="btn-group-vertical mb-2" role="group">
-              @if($bestAnswer) <span class="badge float-end text-start great"  style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> @endif
-              @if($moderatorAnswer)<span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
-              @if($expertAnswer)   <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
+              @if($isBestAnswer) <span class="badge float-end text-start great"  style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> @endif
+              @if($isModeratorAnswer)<span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
+              @if($isExpertAnswer)   <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
             </div>
-          </div>        
+          </div>
         @endif
         <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
             {!! $answer->content->main !!}
         </div>
         @include('partials.question.edit-answer-form', ['answer' => $answer])
+          <div id="interact-answer-{{ $answer->content_id }}" class="col-md flex-wrap">
+            <div class="btn-group mt-1 rounded">
+              <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
+                id="report-button-{{ $answer->content_id }}"
+                @guest href={{ route('login') }} @endguest
+                @auth data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
+                <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
+              </a>
+            </div>
+            @auth
+              @if((Auth::user()->id == $answer->question->content->author_id) && is_null($answer->question->bestAnswer($question->content_id)))
+                <div class="btn-group mt-1 rounded">
+                  <a class="best-button my-btn-pad2 btn teal" 
+                    id="best-button-{{ $answer->content_id }}"
+                    @guest href={{ route('login') }} @endguest 
+                    @auth data-bs-toggle="modal" data-bs-target="#best-answer-modal-{{ $answer->content_id }}" @endauth>
+                    <i class="fa fa-check-circle"></i>&nbsp;Set Best Answer
+                  </a>
+                </div>
+              @endif
+            @endauth
+            @include('partials.report-modal', [
+              "type" => "answer",
+              "content_id" => $answer->content_id,
+            ])
+            @include('partials.best-modal', [
+              "content_id" => $answer->content_id,
+            ])
+          </div>
         @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
       </div>
     </article>
@@ -124,9 +149,9 @@ if ($hasResported) {
       <small class="text-muted">answered {{ $answer->content->creation_date }}</small>
       <small>
         <a class="signature" href="{{ url('user/' . $answer->content->author->id) }}">{{ $answer->content->author->name }}
-          @if ($moderatorAnswer)
+          @if ($isModeratorAnswer)
             @include('partials.icons.moderator', ['width' => 20, 'height' => 20, 'title' => 'Moderator'])
-          @elseif($expertAnswer)
+          @elseif($isExpertAnswer)
             @include('partials.icons.medal', ['width' => 20, 'height' => 20, 'title' => 'Expert User'])
           @endif
         </a>

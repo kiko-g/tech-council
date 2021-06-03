@@ -42,17 +42,27 @@ class ContentReport extends Model
         }
     }
     
-    public function get_question_id($content_id) {
-        try {
-            Question::findOrFail($content_id);
-            return $content_id;
-        } catch(ModelNotFoundException $e) {
-            try {
+    public function get_question_id($type, $content_id) {
+        error_log($type);
+        switch ($type) {
+            case 'Question':
+                Question::findOrFail($content_id);
+                return $content_id;
+
+            case 'Answer':
                 $answer = Answer::findOrFail($content_id);
-                return $answer->question->id;
-            } catch(ModelNotFoundException $e) {
-                //TODO: when comment model is implemented
-            }
+                return $answer->question->content_id;
+
+            case 'QuestionComment':
+                $comment = QuestionComment::findOrFail($content_id);
+                return $comment->question->content_id;
+            
+            case 'AnswerComment':
+                $comment = AnswerComment::findOrFail($content_id);
+                return $comment->question->content_id;
+                
+            default:
+                break;
         }
     }
 }

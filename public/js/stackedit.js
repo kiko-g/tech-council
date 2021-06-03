@@ -29,8 +29,6 @@ toggleButtonTip.addEventListener('click', toggleStackEdit);
 // Listen to StackEdit events and apply the changes to the textarea.
 stackedit.on('fileChange', (file) => {
   element.value = file.content.text;
-  let md = new Remarkable();
-  console.log(md.render(element.value));
   //document.getElementById("demo").innerHTML = md.render(element.value);
 });
 

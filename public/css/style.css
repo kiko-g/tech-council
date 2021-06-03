@@ -22,6 +22,16 @@ a.different {
   text-decoration: underline;
 }
 
+a.light {
+  color: #ffffff;
+  font-size: large;
+}
+
+a.light:hover {
+  color: #ffffffdd;
+  text-decoration: none;
+}
+
 ul.aside {
   list-style: none;
   padding-left: 0;

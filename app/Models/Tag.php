@@ -30,7 +30,7 @@ class Tag extends Model
 
     public static function searchSimple($query_string, $rpp, $page) {
         return DB::select(
-			"SELECT t.name, t.description, ts_rank_cd(to_tsvector(t.name), plainto_tsquery('simple', :query)) as rank
+			"SELECT t.id, t.name, t.description, ts_rank_cd(to_tsvector(t.name), plainto_tsquery('simple', :query)) as rank
 			FROM tag t
 			WHERE t.name @@ plainto_tsquery('english', :query)
 			ORDER BY rank DESC

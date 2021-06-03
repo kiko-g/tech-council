@@ -212,4 +212,16 @@ class Question extends Model
     public function scopeSaved($query) {
 
     }
+
+    public function bestAnswer($id)
+    {
+        $array = DB::select("SELECT a.content_id FROM answer a
+        WHERE a.question_id = $id AND a.is_best_answer = TRUE");
+
+        if (count($array)) {
+            return $array[0]->content_id;
+        }
+
+        return "null";
+    }
 }
