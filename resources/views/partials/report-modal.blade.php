@@ -2,7 +2,7 @@
   $contentWasReported = false;
 @endphp
 
-<div class="modal fade" id="report-modal-{{ $type }}-{{ $content_id }}" tabindex="-1">
+<div class="modal fade report-modal-{{ $content_id }}" id="report-modal-{{ $type }}-{{ $content_id }}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-wine">
@@ -51,10 +51,10 @@
 
       <div class="modal-footer">
           @if($contentWasReported) 
-          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp deleteReport()" type="button" class="btn btn-secondary wine">Delete</button>
+          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp deleteReport(this.id)" type="button" class="btn btn-secondary wine">Delete</button>
           @else 
           @endif
-          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp submitReport()" type="button" class="submit-report-button btn btn blue">Submit</button>
+          <button id="submit-report-button-{{ $content_id }}" onclick="@php $contentWasReported = true; @endphp submitReport(this.id)" type="button" class="submit-report-button btn btn blue">Submit</button>
       </div>
     </div>
   </div>

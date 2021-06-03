@@ -20,7 +20,7 @@
                 @include('partials.icons.medal', ['width' => 15, 'height' => 15, 'title' => 'Expert User'])
               @endif
               &#8226;
-              <a class="text-red-400 hover" href="#">
+              <a class="text-red-400 hover">
                 <i class="fas fa-flag fa-sm" data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
                   data-bs-target="#report-modal-comment-{{ $comment->content_id }}">
                 </i>
