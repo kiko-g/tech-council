@@ -218,10 +218,10 @@ class Question extends Model
         $array = DB::select("SELECT a.content_id FROM answer a
         WHERE a.question_id = $id AND a.is_best_answer = TRUE");
 
-        if (count($array)) {
+        if (count($array) > 0) {
             return $array[0]->content_id;
         }
 
-        return "null";
+        return null;
     }
 }

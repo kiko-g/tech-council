@@ -744,3 +744,7 @@ button:focus {
 .p-slight {
   padding: 0.1rem 0.2rem !important;
 }
+
+.hidden {
+  display: none !important;
+}
