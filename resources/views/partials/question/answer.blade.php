@@ -50,7 +50,7 @@ if ($hasResported) {
       </div>
       @auth
         @if (Auth::user()->id == $answer->content->author_id)
-          <div class="col-auto btn-group float-end" id="answer-control-{{ $answer->content_id }}">
+          <div class="col-auto btn-group float-end collapse show answer-control answer-collapse-{{ $answer->content_id }}" id="answer-control-{{ $answer->content_id }}">
             <button class="btn p-0 answer-edit" id="answer-edit-{{ $answer->content_id }}" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
               <i class="fas fa-pencil-alt text-yellow-400 hover ms-2"></i>
             </button>
@@ -58,6 +58,15 @@ if ($hasResported) {
             {{-- Button trigger modal --}}
             <button type="button" class="btn p-0 delete-answer-modal-trigger" data-bs-toggle="modal" data-bs-target="#delete-answer-modal-{{ $answer->content_id }}">
               <i class="far fa-trash-alt text-red-400 hover ms-2"></i>
+            </button>
+          </div>
+
+          <div class="col-auto btn-group float-end collapse answer-control answer-collapse-{{ $answer->content_id }}" id="answer-control-{{ $answer->content_id }}">
+            <button id="confirm-edit-{{ $answer->content_id }}" class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}" data-id="{{ $answer->content_id }}">
+              <i class="fas fa-check text-teal-300 mt-1 ms-2"></i>
+            </button>
+            <button class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target=".answer-collapse-{{ $answer->content_id }}" aria-expanded="true" aria-controls="answer-content-{{ $answer->content_id }} answer-control-{{ $answer->content_id }}">
+              <i class="fas fa-close text-wine mt-1 ms-2"></i>
             </button>
           </div>
 
@@ -101,44 +110,44 @@ if ($hasResported) {
           <div class="float-end">
             <div class="btn-group-vertical mb-2" role="group">
               @if($isBestAnswer) <span class="badge float-end text-start great"  style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> @endif
-              @if($isModeratorAnswer)<span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
-              @if($isExpertAnswer)   <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
+              @if($isModeratorAnswer) <span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
+              @if($isExpertAnswer) <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
             </div>
           </div>
         @endif
-        <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
+        <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1 collapse show answer-collapse-{{ $answer->content_id }}">
             {!! $answer->content->main !!}
         </div>
         @include('partials.question.edit-answer-form', ['answer' => $answer])
-          <div id="interact-answer-{{ $answer->content_id }}" class="col-md flex-wrap">
-            <div class="btn-group mt-1 rounded">
-              <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
-                id="report-button-{{ $answer->content_id }}"
-                @guest href={{ route('login') }} @endguest
-                @auth data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
-                <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
-              </a>
-            </div>
-            @auth
-              @if((Auth::user()->id == $answer->question->content->author_id) && is_null($answer->question->bestAnswer($question->content_id)))
-                <div class="btn-group mt-1 rounded">
-                  <a class="best-button my-btn-pad2 btn teal" 
-                    id="best-button-{{ $answer->content_id }}"
-                    @guest href={{ route('login') }} @endguest 
-                    @auth data-bs-toggle="modal" data-bs-target="#best-answer-modal-{{ $answer->content_id }}" @endauth>
-                    <i class="fa fa-check-circle"></i>&nbsp;Set Best Answer
-                  </a>
-                </div>
-              @endif
-            @endauth
-            @include('partials.report-modal', [
-              "type" => "answer",
-              "content_id" => $answer->content_id,
-            ])
-            @include('partials.best-modal', [
-              "content_id" => $answer->content_id,
-            ])
+        <div id="interact-answer-{{ $answer->content_id }}" class="col-md flex-wrap">
+          <div class="btn-group mt-1 rounded">
+            <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
+              id="report-button-{{ $answer->content_id }}"
+              @guest href={{ route('login') }} @endguest
+              @auth data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
+              <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
+            </a>
           </div>
+          @auth
+            @if((Auth::user()->id == $answer->question->content->author_id) && is_null($answer->question->bestAnswer($question->content_id)))
+              <div class="btn-group mt-1 rounded">
+                <a class="best-button my-btn-pad2 btn teal" 
+                  id="best-button-{{ $answer->content_id }}"
+                  @guest href={{ route('login') }} @endguest 
+                  @auth data-bs-toggle="modal" data-bs-target="#best-answer-modal-{{ $answer->content_id }}" @endauth>
+                  <i class="fa fa-check-circle"></i>&nbsp;Set Best Answer
+                </a>
+              </div>
+            @endif
+          @endauth
+          @include('partials.report-modal', [
+            "type" => "answer",
+            "content_id" => $answer->content_id,
+          ])
+          @include('partials.best-modal', [
+            "content_id" => $answer->content_id,
+          ])
+        </div>
         @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
       </div>
     </article>
