@@ -1,14 +1,17 @@
 <header>
   <nav class="bg-animated navbar navbar-expand-lg navbar-dark bg-dark p-2">
     <div class="container-fluid justify-content-left px-3">
-      <a class="navbar-brand me-5" href="{{ route('home') }}"> @include('partials.icons.icon')Tech Council</a>
+      <a class="navbar-brand me-5" href="{{ route('home') }}"> 
+        @include('partials.icons.icon')
+        Tech Council&nbsp;
+      </a>
       <button class="navbar-toggler ms-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse border-left-0" id="navbarNav">
         <form class="btn-group d-flex my-2" action="{{ route('search') }}">
-          <input class="search-focus rounded-end must form-control bg-light border-0" type="q" placeholder="Search" aria-label="Search" name="q" value={{$search_string ?? ''}}>
+          <input class="search-focus rounded-end must form-control bg-light border-0" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ $search_string ?? ''}}">
           <button class="btn btn-outline-light blue" type="submit" id="button-addon2"><i class="fas fa-search fa-sm"></i></button>
         </form>
 
@@ -46,8 +49,8 @@
               </ul>
             </li>
             @else
-            <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a> </li>
-            <li class="nav-item"> <a href="{{ route('register') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a> </li>
+            <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a> </li>
+            <li class="nav-item"> <a href="{{ route('register') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a> </li>
           @endauth
         </ul>
       </div>

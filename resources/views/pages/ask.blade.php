@@ -17,9 +17,8 @@
 @section('content')
   <div class="card mb-4 p-2-0 border-0 rounded">
     <header class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
-    <section class="card-body">
-      <form method="post" action="{{ route('question.create') }}">
-        @csrf
+    <div class="card-body">
+      <form method="POST" action="{{ url('/api/question/insert') }}">
         <div>
           <textarea id="input-title" class="form-control border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
         </div>
@@ -31,7 +30,7 @@
         <script src="{{ '/js/stackedit.js' }}" defer> </script>
         <script src={{ '/js/question-edit.js' }} defer></script>
         <div class="row row-cols-auto mb-3">
-          <div id="tags" class="col-lg-auto">
+          <div id="add-tags" class="col-lg-auto">
             <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false">
               <a class="btn blue-alt extra border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
             </div>
@@ -59,7 +58,7 @@
           </div>
         </div>
       </form>
-    </section>
+    </div>
   </div>
 
   <script src="{{ '/js/toasts.js' }}" defer></script>

@@ -4,8 +4,8 @@ let addedEventListeners = false;
 
 if (editQuestion != null) {
     editQuestion.addEventListener("click", function () {
-        let confirmEdit = document.getElementById("confirm-edit");
-        let cancelEdit = document.getElementById("cancel-edit");
+        let confirmEdit = document.getElementById("id=^[confirm-edit]");
+        let cancelEdit = document.getElementById("id=^[cancel-edit]");
 
         if (!addedEventListeners) {
             addEventListeners(confirmEdit, cancelEdit);
@@ -47,10 +47,10 @@ function addEventListeners(confirmEdit, cancelEdit) {
 function removeTagHandler() {
     if (this.status == 200 || this.status == 201) {
         let response = JSON.parse(this.responseText);
-        let tag = document.getElementById("question-tag-" + response.tag_id);
+        let tag = document.getElementById("question-tag-" + response.tag_id + "-q" + response.question_id);
         tag.remove();
         let editTag = document.getElementById(
-            "question-tag-edit-" + response.tag_id
+            "question-tag-edit-" + response.tag_id + "-q" + response.question_id
         );
         editTag.remove();
     } else {
@@ -66,7 +66,7 @@ function editQuestionInPage(event) {
     let title = document.getElementById("input-title").value;
     let main = document.getElementById("input-body").value;
     let tagElements = document.getElementById("ask-selected-tags").children;
-    
+
     let tags = [];
     for (const tag of tagElements) tags.push(tag.dataset.tag);
     let id = document.getElementById("edit-question-header").dataset.id;

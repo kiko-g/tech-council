@@ -6,7 +6,7 @@
         data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
         About
       </button>
-      <button class="nav-link blue h6 text-start" id="v-pills-profile-tab" data-bs-toggle="pill"
+      {{-- <button class="nav-link blue h6 text-start" id="v-pills-profile-tab" data-bs-toggle="pill"
         data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
         aria-selected="false">
         Terms
@@ -15,7 +15,7 @@
         data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
         aria-selected="false">
         Policy
-      </button>
+      </button> --}}
       <button class="nav-link blue h6 text-start" id="v-pills-settings-tab" data-bs-toggle="pill"
         data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
         aria-selected="false">
@@ -23,17 +23,17 @@
       </button>
     </div>
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel">
         TechCouncil is a platform where users can post questions and share answers for any tech-related topics, whether
         it is about building a custom PC, programming languages, what new smartphones are the best, how to install a VPN... you name it!
       </div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel">
         Terms of service text
       </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel">
         Privacy Policy text
       </div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel">
         <ul class="aside">
           <li><a class="different" target="_blank" href="https://github.com/ffriande">Francisco Friande </a></li>
           <li><a class="different" target="_blank" href="https://github.com/kiko-g">Francisco Gonçalves </a></li>

@@ -75,7 +75,10 @@ $member_counter = 0;
       @endforeach
     </div>
 
-    <div class="d-flex team-cards justify-content-center"> </div>
+
+    <div class="shadow p-3 mb-5 bg-light border border-5 rounded-3 fs-5 text-start">
+      Any doubts contact us at <a href="mailto:lbaw2132@gmail.com"></a>
+    </div>
   </div>
 
 

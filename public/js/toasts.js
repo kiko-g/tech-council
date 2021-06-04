@@ -12,9 +12,12 @@ function hideToast() {
   }
 }
 
+let stepTime = 200;
+let totalTime = 0;
 toast.style.opacity = 1;
 let intervalId = setInterval(function () {
-  if (classes.contains('show')) {
+
+  if (classes.contains('show') && totalTime > 10 * stepTime) {
     toast.style.opacity -= 0.04;
   }
   if (toast.style.opacity == 0) {
@@ -22,4 +25,6 @@ let intervalId = setInterval(function () {
     classes.add('hide')
     clearInterval(intervalId)
   }
+
+  totalTime += stepTime;
 }, 200);

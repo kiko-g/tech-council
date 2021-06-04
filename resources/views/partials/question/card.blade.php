@@ -54,18 +54,18 @@ if ($hasResported) {
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </a>
             @elseif(Auth::user()->moderator && $include_comments)
-              <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
+              <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button" 
                 data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
               </button>
             @endif
 
             {{-- Confirm edit buttons --}}
-            <button type="button" id="confirm-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
+            <button type="button" id="confirm-edit-{{ $question->content_id }}" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
               data-bs-target=".moderator-edit" aria-expanded="false">
               <i class="fas fa-check text-teal-400 hover mt-1 ms-2"></i>
             </button>
-            <button type="button" id="cancel-edit" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
+            <button type="button" id="cancel-edit-{{ $question->content_id }}" class="btn p-0 collapse moderator-edit" data-bs-toggle="collapse"
               data-bs-target=".moderator-edit" aria-expanded="false">
               <i class="fas fa-close text-red-400 hover mt-1 ms-2"></i>
             </button>
@@ -121,7 +121,7 @@ if ($hasResported) {
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
         <div id="{{ 'question-content-' . $question->content_id }}" class="mb-1"> {!! $question->content->main !!} </div>
         <div class="row row-cols-2 mb-1">
-          <div id="interact" class="col-md flex-wrap">
+          <div id="interact-{{ $question->content_id }}" class="col-md flex-wrap">
             <div class="btn-group mt-1 rounded">
               <a class="star-button my-btn-pad2 btn btn-outline-success {{ $save_class }}"
                 id="save-{{ $question->content_id }}" 
@@ -158,18 +158,18 @@ if ($hasResported) {
             ])
           </div>
 
-          <div id="tags" class="col-md-auto flex-wrap">
-            <div class="collapse show moderator-edit" id="tag-original-view">
+          <div id="tags-q{{ $question->content_id }}" class="col-md-auto flex-wrap">
+            <div class="collapse show moderator-edit" id="tag-original-view-q{{ $question->content_id }}">
               @foreach ($question->tags as $tag)
-                <div class="btn-group mt-1" id="question-tag-{{ $tag->id }}">
+                <div class="btn-group mt-1" id="question-tag-{{ $tag->id }}-q{{ $question->content_id }}">
                   <a class="btn blue-alt border-0 my-btn-pad2"
                     href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}</a>
                 </div>
               @endforeach
             </div>
-            <div class="collapse moderator-edit" id="tag-moderator-view">
+            <div class="collapse moderator-edit" id="tag-moderator-view-q{{ $question->content_id }}">
               @foreach ($question->tags as $tag)
-                <div class="tag-edit btn-group mt-1" id="question-tag-edit-{{ $tag->id }}"
+                <div class="tag-edit btn-group mt-1" id="question-tag-edit-{{ $tag->id }}-q{{ $question->content_id }}"
                   data-tag-id="{{ $tag->id }}" data-question-id="{{ $question->content_id }}">
                   <a class="btn blue-alt border-0 my-btn-pad2"><i
                       class="fas fa-minus-square"></i>&nbsp;{{ $tag->name }}</a>

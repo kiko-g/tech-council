@@ -72,4 +72,5 @@
         "user_id" => $user->id,
       ])
     @endauth
+    </div>
   </div>

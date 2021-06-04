@@ -9,8 +9,7 @@ if (!isset($title)) {
     $title = 'SVG Icon';
 }
 @endphp
-<?xml version="1.0" encoding="iso-8859-1"?>
-<svg class="opacity-hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 512 512" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<svg class="opacity-hover" width="{{ $width }}" height="{{ $height }}" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve">
   <title>{{ $title }}</title>
   <path style="fill:#3771bc;" d="M437.175,136.909L415.849,8.914c-0.859-5.14-5.312-8.905-10.53-8.905H106.673
     c-5.219,0-9.672,3.765-10.516,8.905L74.814,136.909c-0.516,3.094,0.359,6.25,2.391,8.641c2.016,2.406,5,3.781,8.14,3.781h341.316

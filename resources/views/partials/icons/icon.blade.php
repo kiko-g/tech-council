@@ -1,34 +1,34 @@
 <svg version="1.1" width="50" height="50" viewBox="0 0 320 320" fill="#a6e9d5" stroke="#a6e9d5" stroke-linecap="round"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <path id="r1">
+    <path id="r1" d="L 0, 0">
       <animate id="p1" attributeName="d"
         values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="6s"
         repeatCount="indefinite" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin" />
     </path>
-    <path id="r2">
+    <path id="r2" d="L 0, 0">
       <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0"
         dur="6s" repeatCount="indefinite" begin="p1.begin+1s" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin+1s" />
     </path>
-    <path id="r3">
+    <path id="r3" d="L 0, 0">
       <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0"
         dur="6s" repeatCount="indefinite" begin="p1.begin+2s" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin+2s" />
     </path>
-    <path id="r4">
-      <animate id="p1" attributeName="d"
+    <path id="r4" d="L 0, 0">
+      <animate id="p2" attributeName="d"
         values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0" dur="6s"
         repeatCount="indefinite" begin="p1.begin+3s" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin+3s" />
     </path>
-    <path id="r5">
+    <path id="r5" d="L 0, 0">
       <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0"
         dur="6s" repeatCount="indefinite" begin="p1.begin+4s" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin+4s" />
     </path>
-    <path id="r6">
+    <path id="r6" d="L 0, 0">
       <animate attributeName="d" values="m160,160l0,0 0,0;m130,110l30,-17 30,17;m130,60l30,-17 30,17;m160,20l0,0 0,0"
         dur="6s" repeatCount="indefinite" begin="p1.begin+5s" />
       <animate attributeName="stroke-width" values="0;4;4;4;0" dur="6s" repeatCount="indefinite" begin="p1.begin+5s" />
