@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,40 @@ class Answer extends Model
             ->get();
 
         return count($content_report) > 0 ? true : false;
+    }
+
+    public static function search($rpp, $page, $author) 
+    {
+        $query = Answer::query()
+        ->select('a.*', 'c.*')
+        ->distinct();
+
+        $query->fromRaw(
+            "content c inner join answer a on c.id = a.content_id 
+            inner join \"user\" u on c.author_id = u.id"
+        );
+
+        $query->author($author);
+
+        $query->latest('c.creation_date');
+
+        return self::paginateQuery($query, $rpp, $page);
+    }
+
+    public static function paginateQuery($query, $rpp, $page) {
+        return [
+            'count' => count($query->get()),
+            'data' => $query
+                ->offset($rpp*($page-1))
+                ->limit($rpp)
+                ->get()
+                ->toArray()
+        ];
+    }
+
+    public function scopeAuthor($query, $author) {
+        if ($author != null) {
+            $query->orWhere('c.author_id', $author);
+        }
     }
 }

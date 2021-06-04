@@ -19,7 +19,7 @@ class UserController extends Controller
     public function showProfile($id)
     {
         $user = User::find($id);
-        $questions_result = Question::search('', 6, 1, null, null, $user->id);
+        $questions_result = Question::searchBest('', 6, 1, null, null, $user->id);
 
         return view('pages.profile', [
             'user' => $user,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tag;
 use App\Models\User;
@@ -24,7 +25,7 @@ class SearchController extends Controller
         ]);        
 
         $question_results = Question::search($request->q, 6, 1);
-        $tag_results = Tag::searchFull($request->q, 6, 1);
+        $tag_results = Tag::searchFull($request->q, 6, 1, 'follows');
         $user_results = User::searchFull($request->q, 6, 1);
         
         return view('pages.search', [
@@ -48,12 +49,13 @@ class SearchController extends Controller
     public function searchQuestions(Request $request) {
         $request->validate([
             'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
-            'author' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
-            'tags' => ['string' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'author' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'saved' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'tags' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
             'rpp' => ['required', 'integer'],
             'page' => ['required', 'integer'],
             'type' =>[ function ($attribute, $value, $fail) {
-                if($value !== '' && $value !== 'best' && $value !== 'new' && $value !== 'trending') {
+                if($value !== '' && $value !== 'best' && $value !== 'new' && $value !== 'trending' && $value !== 'default') {
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
                 }
             }],
@@ -62,31 +64,24 @@ class SearchController extends Controller
 		if(is_null($request->query_string)) {
 			$request->query_string = "";
 		}
-		if(is_null($request->author)) {
-			$request->author = "";
-		}
-        if(is_null($request->tags)) {
-			$request->tags = "";
-		}
         if(is_null($request->isView)) {
             $request->isView = 0;
         }
 
-        $tags = explode(";", $request->tags);
         $results = [];
 
         switch($request->type) {
             case 'best':
-                $results = Question::searchBest($request->query_string, $request->rpp, $request->page);
+                $results = Question::searchBest($request->query_string, $request->rpp, $request->page, $request->tag, $request->author, $request->saved);
                 break;
             case 'new':
-                $results = Question::searchNew($request->query_string, $request->rpp, $request->page);
+                $results = Question::searchNew($request->query_string, $request->rpp, $request->page, $request->tag, $request->author, $request->saved);
                 break;
             case 'trending':
-                $results = Question::searchTrending($request->query_string, $request->rpp, $request->page);
+                $results = Question::searchTrending($request->query_string, $request->rpp, $request->page, $request->tag, $request->author, $request->saved);
                 break;
             default:
-                $results = Question::search($request->query_string, $request->rpp, $request->page);
+                $results = Question::search($request->query_string, $request->rpp, $request->page, $request->tag, $request->author, $request->saved);
                 break;
         }
 
@@ -110,7 +105,7 @@ class SearchController extends Controller
             'rpp' => ['required', 'integer'],
             'page' => ['required', 'integer'],
             'type' => [ function ($attribute, $value, $fail) {
-                if($value != '' && $value != 'popular' && $value != 'recent') {
+                if($value != '' && $value != 'follows' && $value != 'questions' && $value != 'alphabetical') {
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
                 }
             }],
@@ -127,7 +122,8 @@ class SearchController extends Controller
         }
 
         if($request->is_view) {
-            $results = Tag::searchFull($request->query_string, $request->rpp, $request->page);
+            $results = Tag::searchFull($request->query_string, $request->rpp, $request->page, $request->type);
+
             return view('partials.search.tag', [
                 'tags' => Tag::hydrate($results['data']),
                 'count' => $results['count'],
@@ -148,6 +144,42 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function searchUsers(Request $request) {
-        return "INCOMPLETE";
+        $request->validate([
+            'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'rpp' => ['required', 'integer'],
+            'page' => ['required', 'integer'],
+        ]);
+
+        $results = User::searchFull($request->query_string, $request->rpp, $request->page);
+        return view('partials.search.user', [
+            'users' => User::hydrate($results['data']),
+            'count' => $results['count'],
+            'page' => $request->page,
+            'rpp' => $request->rpp,
+            'user' => Auth::user()
+        ]);
+    }
+    
+    /**
+	 * Search for answers (full text search)
+	 * 
+	 * @param Request $request An HTTP request containing the query fields
+	 * @return |Illuminate\Http\Response
+	 */
+    public function searchAnswers(Request $request) {
+        $request->validate([
+            'author' => ['required', 'max:' . SearchController::MAX_QUERY_STRING_LENGTH],
+            'rpp' => ['required', 'integer'],
+            'page' => ['required', 'integer']
+        ]);
+
+        $results = Answer::search($request->rpp, $request->page, $request->author);
+
+        return view('partials.search.answer', [
+            'answers' => Answer::hydrate($results['data']),
+            'count' => $results['count'],
+            'page' => $request->page,
+            'rpp' => $request->rpp
+        ]);
     }
 }

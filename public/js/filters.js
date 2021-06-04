@@ -20,8 +20,6 @@ questionRadioFilters.forEach(element => {
 });
 
 function sendQuestionFilterRequest(filterType) {
-    console.log(`OLA: ${queryString}`);
-
     sendAjaxRequest(
         "get", 
         "api/search/question", 
@@ -64,7 +62,7 @@ tagRadioFilters.forEach(element => {
 
  function sendTagFilterRequest(filterType) {
 
-    console.log(queryString);
+    console.log(filterType);
 
     sendAjaxRequest(
         "get", 
@@ -95,22 +93,28 @@ function tagFilterHandler() {
 let questionPrevious = document.getElementById("search-question-previous");
 let questionNext = document.getElementById("search-question-next");
 let questionCurrent = document.getElementById("search-question-current");
-questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
-questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
+
+try {
+    questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
+    questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
+} catch(ignore) {}
 
 function updateQuestionHandlers() {
     questionPrevious = document.getElementById("search-question-previous");
     questionNext = document.getElementById("search-question-next");
     questionCurrent = document.getElementById("search-question-current");
-    questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
-    questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
+
+    try {
+        questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
+        questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
+    } catch(ignore) {}
 }
 
 function paginateQuestion(event, type) {
     event.preventDefault();
-    currentPage = parseInt(questionCurrent.getAttribute("page"));
-    maxPage = parseInt(questionCurrent.getAttribute("pages"));
-    resultsPerPage = parseInt(questionCurrent.getAttribute("rpp"));
+    currentPage = parseInt(questionCurrent.getAttribute("data-page"));
+    maxPage = parseInt(questionCurrent.getAttribute("data-pages"));
+    resultsPerPage = parseInt(questionCurrent.getAttribute("data-rpp"));
     if(type === "prev") {
         currentPage--;
     } else {
@@ -149,23 +153,29 @@ let tagPrevious = document.getElementById("search-tag-previous");
 let tagNext = document.getElementById("search-tag-next");
 let tagCurrent = document.getElementById("search-tag-current");
 
-tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
-tagNext.addEventListener("click", event => paginateTag(event, "next"));
+try {
+    tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
+    tagNext.addEventListener("click", event => paginateTag(event, "next"));
+} catch(ignore) {}
+
 
 function updateTagHandlers() {
-    console.log("HELLO");
     tagPrevious = document.getElementById("search-tag-previous");
     tagNext = document.getElementById("search-tag-next");
     tagCurrent = document.getElementById("search-tag-current");
-    tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
-    tagNext.addEventListener("click", event => paginateTag(event, "next"));
+
+    try {
+        tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
+        tagNext.addEventListener("click", event => paginateTag(event, "next"));
+    } catch(ignore) {}
 }
 
 function paginateTag(event, type) {
     event.preventDefault();
-    currentPage = parseInt(tagCurrent.getAttribute("page"));
-    maxPage = parseInt(tagCurrent.getAttribute("pages"));
-    resultsPerPage = parseInt(tagCurrent.getAttribute("rpp"));
+    currentPage = parseInt(tagCurrent.getAttribute("data-page"));
+    maxPage = parseInt(tagCurrent.getAttribute("data-pages"));
+    resultsPerPage = parseInt(tagCurrent.getAttribute("data-rpp"));
+
     if(type === "prev") {
         currentPage--;
     } else {
@@ -199,6 +209,63 @@ function updateTagPagination() {
 }
 
 // User pagination
-const userPrevious = document.getElementById("search-user-previous");
-const userNext = document.getElementById("search-user-next");
-const userCurrent = document.getElementById("search-user-current");
+let userPrevious = document.getElementById("search-user-previous");
+let userNext = document.getElementById("search-user-next");
+let userCurrent = document.getElementById("search-user-current");
+
+try {
+    userPrevious.addEventListener("click", event => paginateUser(event, "prev"));
+    userNext.addEventListener("click", event => paginateUser(event, "next"));
+} catch(ignore) {}
+
+
+function updateUserHandlers() {
+    userPrevious = document.getElementById("search-user-previous");
+    userNext = document.getElementById("search-user-next");
+    userCurrent = document.getElementById("search-user-current");
+
+    try {
+        userPrevious.addEventListener("click", event => paginateUser(event, "prev"));
+        userNext.addEventListener("click", event => paginateUser(event, "next"));
+    } catch(ignore) {}
+}
+
+function paginateUser(event, type) {
+    event.preventDefault();
+    currentPage = parseInt(userCurrent.getAttribute("data-page"));
+    maxPage = parseInt(userCurrent.getAttribute("data-pages"));
+    resultsPerPage = parseInt(userCurrent.getAttribute("data-rpp"));
+
+    if(type === "prev") {
+        currentPage--;
+    } else {
+        currentPage++;
+    }
+
+    if(currentPage == 0 || currentPage > maxPage) return;
+
+    console.log(currentPage);
+    console.log(maxPage);
+    console.log(resultsPerPage);
+
+    sendAjaxRequest(
+        "get",
+        "/api/search/user",
+        {
+            query_string: queryString,
+            page: currentPage,
+            rpp: resultsPerPage
+        },
+        updateUserPagination
+    )
+}
+
+function updateUserPagination() {
+    if (this.status == 200 || this.status == 201) {
+        const searchResults = document.getElementById("search-user-results");
+        window.scrollTo(0, 0);
+        searchResults.innerHTML = this.responseText;
+
+        updateUserHandlers();
+    }
+}

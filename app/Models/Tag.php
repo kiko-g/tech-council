@@ -21,11 +21,15 @@ class Tag extends Model
     }
 
     public function followers() {
-        return $this->belongsToMany('App\Models\User', 'follow_tag', 'tag_id', '"user_id"');
+        return $this->belongsToMany('App\Models\User', 'follow_tag', 'tag_id', 'user_id');
     }
 
     public function author() {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function popularity() {
+        return -(count($this->questions) + count($this->followers));
     }
 
     public static function search($query_string, $rpp, $page) {
@@ -64,20 +68,65 @@ class Tag extends Model
 		);
     }
 
-    public static function searchFull($query_string, $rpp, $page) {
-        $query = Tag::query()
-        ->select('t.*', 'rank')
-        ->distinct();
+    public static function searchFull($query_string, $rpp, $page, $type='follows') {
+        $query = Tag::query();
 
-        $query->fromRaw(
-            "tag t,
-            ts_rank_cd(setweight(to_tsvector('simple', t.name), 'A') || ' ' || 
-                setweight(to_tsvector('simple', t.description), 'C'), 
-                plainto_tsquery('simple', ?)) as rank",
-            [ $query_string ]
-        );
-        $query->whereRaw("rank > 0");
-        $query->order("rank");
+
+        if($type === 'follows') {
+            $query->select('t.*', DB::raw('count(ft) as cft'))->distinct();
+
+            if($query_string !== '') {
+                $query->whereRaw("rank > 0");
+            }
+
+            $query->fromRaw(
+                "tag t inner join follow_tag ft on t.id = ft.tag_id,
+                ts_rank_cd(setweight(to_tsvector('simple', t.name), 'A') || ' ' || 
+                    setweight(to_tsvector('simple', t.description), 'C'), 
+                    plainto_tsquery('simple', ?)) as rank",
+                [ $query_string ]
+            );
+
+            $query->groupBy('t.id');
+            $query->orderBy('cft', 'desc');
+
+        } else if($type === 'questions') {
+            $query->select('t.*', DB::raw('count(qt) as cqt'))->distinct();
+            
+            if($query_string !== '') {
+                $query->whereRaw("rank > 0");
+            }
+
+            $query->fromRaw(
+                "tag t inner join question_tag qt on t.id = qt.tag_id,
+                ts_rank_cd(setweight(to_tsvector('simple', t.name), 'A') || ' ' || 
+                    setweight(to_tsvector('simple', t.description), 'C'), 
+                    plainto_tsquery('simple', ?)) as rank",
+                [ $query_string ]
+            );
+
+            $query->groupBy('t.id');
+            $query->orderBy('cqt', 'desc');
+
+        } else {
+            $query->select('t.*', 'rank')->distinct();
+
+            if($query_string !== '') {
+                $query->whereRaw("rank > 0");
+                $query->order("rank");
+            }
+
+            $query->fromRaw(
+                "tag t,
+                ts_rank_cd(setweight(to_tsvector('simple', t.name), 'A') || ' ' || 
+                    setweight(to_tsvector('simple', t.description), 'C'), 
+                    plainto_tsquery('simple', ?)) as rank",
+                [ $query_string ]
+            );
+
+            $query->orderBy('t.name', 'asc');
+
+        }
 
         return self::paginateQuery($query, $rpp, $page);
     }
@@ -100,5 +149,16 @@ class Tag extends Model
             else if (strcmp($order, "similar") == 0)
                 $query->orderBy('rank', 'desc');
         }
+    }
+
+    public static function sortPopularity(Tag $tag1, Tag $tag2) {
+        $pop1 = $tag1->popularity();
+        $pop2 = $tag2->popularity();
+
+        if ($pop1 == $pop2) {
+            return 0;
+        }
+
+        return ($pop1 < $pop2) ? -1 : 1;
     }
 }

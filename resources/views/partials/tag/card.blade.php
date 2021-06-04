@@ -49,7 +49,7 @@ if ($follows) {
     <div id="facts" class="col-lg-auto">
       <div class="btn-group mt-1 rounded">
         <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
-          <i class="fas fa-fire"></i>&nbsp; followers {{-- {{ $tag->countFollowers() }} --}}
+          <i class="fas fa-fire"></i>&nbsp;{{ count($tag->followers) }} followers {{-- {{ $tag->countFollowers() }} --}}
         </span>
       </div>
       <div class="btn-group mt-1 rounded">

@@ -10,8 +10,8 @@
       'report.js',
       'follow.js',
       'save.js',
-      'tag-search.js',
       'tag-moderate.js',
+      'tag-filters.js'
     ]
   ]
 )
