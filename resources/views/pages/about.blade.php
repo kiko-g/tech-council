@@ -1,14 +1,14 @@
 @php
 $team_members = [
     'fiambre' => [
-        'bio' => 'Team member bio 1',
+        'bio' => 'Francesinhas enthusiast',
         'social' => [
             'github' => 'https://github.com/ffriande',
             'twitter' => 'https://github.com/ffriande',
         ],
     ],
     'kikojpg' => [
-        'bio' => 'Team member bio 2',
+        'bio' => 'Beer expert',
         'social' => [
             'github' => 'https://github.com/kiko-g',
             'twitter' => 'https://twitter.com/kikogoncalves_',
@@ -16,14 +16,14 @@ $team_members = [
         ],
     ],
     'jdiogueiro' => [
-        'bio' => 'Team member bio 3',
+        'bio' => 'The next great Midfielder',
         'social' => [
             'github' => 'https://github.com/TsarkFC',
             'facebook' => 'https://github.com/TsarkFC',
         ],
     ],
     'mpinto01' => [
-        'bio' => 'Team member bio 4',
+        'bio' => 'Bezo\'s pupil',
         'social' => [
             'github' => 'https://github.com/MiguelDelPinto',
             'twitter' => 'https://github.com/MiguelDelPinto',
@@ -77,7 +77,7 @@ $member_counter = 0;
 
 
     <div class="shadow p-3 mb-5 bg-light border border-5 rounded-3 fs-5 text-start">
-      Any doubts contact us at <a href="mailto:lbaw2132@gmail.com"></a>
+      Any doubts contact us at <a href="techcouncilfeup@gmail.com">techcouncilfeup@gmail.com</a>
     </div>
   </div>
 
