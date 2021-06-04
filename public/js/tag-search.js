@@ -3,6 +3,8 @@ const askQuestionSelectedTags = new Set();
 function addEventListeners() {
     const tagSearch = document.getElementById("ask-search-tag");
     try { tagSearch.addEventListener("keyup", searchAskTags); } catch(ignore) {}
+    const tags = document.getElementById("ask-selected-tags").children;
+    for (const tag of tags) tag.addEventListener("click", removeTagSearch);
 }
 
 function searchAskTags(event) {
@@ -46,6 +48,7 @@ function createTagSearchResult(searchResult) {
         "btn-group",
         "mt-1"
     );
+    tagSearchResult.dataset.tag = searchResult.name;
 
     const tagAnchor = document.createElement("a");
     tagAnchor.classList.add(
@@ -54,6 +57,7 @@ function createTagSearchResult(searchResult) {
         "border-0",
         "my-btn-pad2"
     );
+    
     tagAnchor.innerHTML = `<i class="fas fa-plus-square"></i>&nbsp;${searchResult.name}`;
     tagSearchResult.appendChild(tagAnchor);
     

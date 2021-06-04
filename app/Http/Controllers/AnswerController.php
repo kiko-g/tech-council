@@ -160,4 +160,19 @@ class AnswerController extends Controller
             ->where('answer_id', $content_id)
             ->delete();
     }
+
+    public function setBest($id)
+    {
+        $answer = Answer::findOrFail($id);
+        $this->authorize('set_best', $answer);
+
+        $answer->is_best_answer = true;
+        try {
+            $answer->save();
+        } catch (PDOException $e) {
+            abort('403', $e->getMessage());
+        }
+
+        return response()->json($answer);
+    }    
 }

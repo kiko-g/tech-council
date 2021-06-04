@@ -47,6 +47,7 @@ TODO: R203 - R205
 */
 Route::get('/user/{id}', 'UserController@showProfile')->name('user');                       // R201
 Route::get('/user/{id}/settings', 'UserController@showProfileSettings');                    // R202
+Route::put('/user/{id}/edit', 'UserController@saveProfileSettings');                        // R203
 
 
 /* 
@@ -68,8 +69,9 @@ Route::get('search', function () {
 */
 Route::get('search', 'SearchController@search')->name('search');
 Route::get('/api/search/tag', 'SearchController@searchTags');      
-Route::get('/api/search/question', 'SearchController@searchQuestions');                         // R304
+Route::get('/api/search/question', 'SearchController@searchQuestions');                     // R304
 Route::get('/question/{id}', 'QuestionController@showPage')->name('question');              // R306
+Route::get('/answer/{id}', 'QuestionController@showPage')->name('answer');
 Route::get('tag/{id}', 'TagController@showPage')->name('tag');                              // R307
 
 
@@ -83,6 +85,9 @@ Route::get('/create/question', function () {
         'user' => Auth::user(),
     ]);
 })->name('create/question'); // could be 'ask/'?
+
+Route::get('/edit/question/{id}', 'QuestionController@edit');
+Route::put('/api/edit/question/{id}', 'QuestionController@update');
 
 Route::post('/api/follow/tag', 'FollowTagController@follow');
 Route::post('/api/unfollow/tag', 'FollowTagController@unfollow'); //TODO: delete
@@ -101,6 +106,7 @@ Route::post('/api/question/{id}/answer', 'AnswerController@create')->name('answe
 Route::put('/api/answer/{id}/edit', 'AnswerController@edit');               // edit answer
 Route::delete('/api/answer/{id}/delete', 'AnswerController@delete');        // delete answer
 Route::get('/api/answer/{id}', 'AnswerController@get');
+Route::post('/api/answer/{id}/best', 'AnswerController@setBest');
 
 Route::post('/api/question/{id}/vote', 'QuestionController@addVote');       // insert question vote
 Route::put('/api/question/{id}/vote', 'QuestionController@addVote');        // edit question vote
@@ -110,6 +116,7 @@ Route::put('/api/answer/{id}/vote', 'AnswerController@addVote');            // e
 Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // delete answer vote
 
 Route::post('/api/content/{id}/report', 'ReportController@reportContent');
+Route::post('/api/user/{id}/report', 'ReportController@reportUser');
 
 /* TODO:
 --------------- 

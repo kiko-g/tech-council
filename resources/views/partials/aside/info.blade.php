@@ -43,6 +43,14 @@
       </div>
     </div>
   </div>
+
+  {{-- <div class="border-top border-bottom card-body">
+    <h5 class="card-title">Need help?</h5>
+    <p class="card-text">Don't hesitate hitting us up.</p>
+    <a href="{{ route('faq') }}" class="btn blue">FAQ</a>
+    <a href="{{ route('about') }}" class="btn blue">Contact us</a>    
+  </div> --}}
+  
   <div class="p-2 text-end text-muted">
     © 2021 Tech Council, Inc.
   </div>

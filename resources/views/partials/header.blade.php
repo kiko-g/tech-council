@@ -14,7 +14,7 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
           @auth
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown dropstart">
               <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                 @php
                   if(!isset($user->profile_photo_obj->path)) {
@@ -26,31 +26,29 @@
                     else $photo = '/storage/assets/photos/user-default.png';
                   }
                 @endphp
-                <img src="{{ $photo }}" class="rounded" alt="profile-image-{{ $user->id }}" width="20" height="20"> 
+                <img src="{{ $photo }}" class="rounded" alt="profile-image-{{ $user->id }}" width="30" height="30"> 
               </a>
               <ul class="dropdown-menu profile">
+                @if ($user->moderator)
+                <li> <a class="dropdown-item" href="{{ url('moderator') }}">Moderator&nbsp;<i class="fas fa-briefcase fa-sm"></i></a></li>
+                <li><hr class="dropdown-divider"></li>
+                @endif
                 <li><a class="dropdown-item" href="{{ url('user/' . $user->id) }}">Profile&nbsp;<i class="fas fa-address-card"></i></a></li>
                 <li><a class="dropdown-item" href="{{ url('user/' . $user->id . '/settings') }}">Settings&nbsp;<i class="fas fa-cog fa-sm"></i></a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout&nbsp;&nbsp;<i class="fas fa-sign-out-alt fa-sm"></i></a> </li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url('user/' . $user->id) }}">Ask Question&nbsp;<i class="fas fa-plus-square fa-sm"></i></a></li>
-                <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li>
-                <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li>
+                {{-- <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li> --}}
+                {{-- <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li> --}}
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('faq') }}">FAQ&nbsp;<i class="fas fa-question-circle fa-sm"></i></a></li>
                 <li><a class="dropdown-item" href="{{ route('about') }}">About&nbsp;<i class="fas fa-info-circle fa-sm"></i></a></li>
               </ul>
             </li>
-            {{-- <li class="nav-item"> <a href="{{ route('home') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-envelope fa-sm"></i>&nbsp;Inbox&nbsp;<span class="badge stack align-middle">24</span> </a> </li> --}}
-            @if ($user->moderator)
-              <li class="nav-item"> <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ url('moderator') }}"> <i class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator</a> </li>
-            @endif
             @else
             <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a> </li>
             <li class="nav-item"> <a href="{{ route('register') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a> </li>
           @endauth
-          <li class="nav-item"> <a href="{{ route('about') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-info-circle fa-sm"></i>&nbsp;About</a></li>
-          <li class="nav-item"> <a href="{{ route('faq') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"> <i class="fas fa-question-circle fa-sm"></i>&nbsp;FAQ</a></li>
         </ul>
       </div>
     </div>

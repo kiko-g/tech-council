@@ -22,7 +22,6 @@
 
   @include('partials.division')
 
-
   @include('partials.filters.question', ['filter_prefix' => "question_search"])
   @include('partials.search.question', [
     'questions' => $questions,

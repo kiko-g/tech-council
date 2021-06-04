@@ -1,5 +1,5 @@
 const hide = document.querySelector('#hide');
-const pass = document.querySelector('#pass');
+const pass = document.querySelector('#inputPass');
 
 hide.addEventListener('click', function () {
   if (pass.type == 'text') {

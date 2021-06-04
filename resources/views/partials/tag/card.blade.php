@@ -16,7 +16,7 @@
 
 <div class="card mb-4 p-2-0 border-0 rounded">
   <div class="card-header bg-animated longer text-white font-source-sans-pro rounded-top">
-    # {{ $tag->name }}
+    <a href="{{ route('tag', ['id' => $tag->id]) }}" class="light"># {{ $tag->name }} </a>
   </div>
   <div class="card-body">
     <p class="mb-3">
@@ -32,8 +32,14 @@
           </a>
         </div>
         <div class="btn-group mt-1 rounded">
+          <a class="upvote-button btn teal my-btn-pad2" id="follow-{{ $tag->id }}"
+            href="{{ route('tag', ['id' => $tag->id]) }}">
+            <i class="fas fa-hashtag"></i>&nbsp;Link
+          </a>
+        </div>
+        <div class="btn-group mt-1 rounded">
           <a class="upvote-button btn blue my-btn-pad2" id="upvote-button" href="#">
-            <i class="fas fa-share-alt"></i>&nbsp;Share
+            <i class="fas fa-share-alt"></i>
           </a>
         </div>
       </div>
@@ -41,12 +47,12 @@
       <div id="facts" class="col-lg-auto">
         <div class="btn-group mt-1 rounded">
           <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
-            <i class="fas fa-fire"></i>&nbsp;21k followers {{--TODO: check followers --}}
+            <i class="fas fa-fire"></i>&nbsp; followers {{-- {{ $tag->countFollowers() }} --}}
           </span>
         </div>
         <div class="btn-group mt-1 rounded">
           <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
-            <i class="fas fa-question"></i>&nbsp;168k questions {{--TODO: check questions --}}
+            <i class="fas fa-question"></i>&nbsp;{{ count($tag->questions) }} questions
           </span>
         </div>
       </div>

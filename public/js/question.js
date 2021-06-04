@@ -6,7 +6,7 @@ function addQuestionEventListeners() {
     } catch (e) { }
 
     answerButtonsListeners();
-    deleteButtonsListeners();
+    questionButtonsListeners();
 }
 
 function answerButtonsListeners(htmlNode = document) {
@@ -23,7 +23,7 @@ function answerButtonsListeners(htmlNode = document) {
     }
 }
 
-function deleteButtonsListeners(htmlNode = document) {
+function questionButtonsListeners(htmlNode = document) {
     let questionDeleteButtons = htmlNode.getElementsByClassName(
         "delete-question-modal-trigger"
     );
@@ -36,23 +36,17 @@ function deleteButtonsListeners(htmlNode = document) {
 function editingAnswer() {
     let idArray = this.id.split("-");
     let answerId = idArray.pop();
-    idArray.push("form");
-    idArray.push(answerId);
-    let formId = idArray.join("-");
 
-    let editForm = document.getElementById(formId);
-    editForm.addEventListener("submit", editAnswer);
+    let confirmEdit = document.getElementById(`confirm-edit-${answerId}`);
+    confirmEdit.addEventListener("click", editAnswer);
 }
 
 function editAnswer(event) {
-    event.preventDefault();
-    let idString = this.id;
-    let answerId = idString.split("-").pop();
-    let main = document.getElementById("answer-submit-input-" + answerId).value;
-
+    let id = this.dataset.id;
+    let main = document.getElementById("answer-submit-input-" + id).value;
     sendAjaxRequest(
         "put",
-        "/api/answer/" + answerId + "/edit",
+        "/api/answer/" + id + "/edit",
         { main: main },
         editAnswerHandler
     );
@@ -184,12 +178,14 @@ function submitAnswer(event) {
     // TODO clear form input feedback here
     // TODO validate form input here
 
+    let md = new Remarkable();
     let questionId = this.dataset.questionId;
     // TODO add loading here
+
     sendAjaxRequest(
         "post",
         "/api/question/" + questionId + "/answer",
-        { main: fields.main },
+        { main: md.render(fields.main) },
         answerAddedHandler
     );
 }
@@ -209,7 +205,7 @@ function answerAddedHandler() {
         let form = document.getElementById("answer-submit-input");
         form.value = "";
     } else {
-        // TODO set input error
+        // TODO: set input error
     }
 }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\QuestionTag;
 use App\Models\Content;
 use App\Models\QuestionTag;
 use App\Models\Tag;
@@ -11,20 +12,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDOException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class QuestionController extends Controller
 {
     const MAX_QUERY_STRING_LENGTH = 100;
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,13 +29,13 @@ class QuestionController extends Controller
 
         $request->validate([
             'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
-            'main' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'main' => ['required', 'max:' . Question::MAX_MAIN_LENGTH],
             'tags' => ['required', function ($attribute, $value, $fail) {
                 $tags = explode(' ', $value);
                 if(count($tags) !== count(array_flip($tags))) {
                     $fail('The '.$attribute.' must have unique tags.');
                 }
-                if(count($tags) < 1 || count($tags) > 1) {
+                if(count($tags) < 1 || count($tags) > 5) {
                     $fail('The '.$attribute.' must have between 1 and 5 tags.');
                 }
             }] // Parse and check if there are between 1 and 5 tags -> no repeated
@@ -104,18 +96,6 @@ class QuestionController extends Controller
         return response()->json($content);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
@@ -154,24 +134,60 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        return view('pages.edit-question', ['question' => $question, 'user' => Auth::user()]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request)
     {
-        //
+        error_log($request);
+
+        error_log("step1");
+        $question = Question::findOrFail($request->id);
+        $question->title = $request->title;
+        $question->content->main = $request->main;
+        $tags = $request->tags;
+        $question_tags = explode(',', $tags);
+
+        $request->validate([
+            'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'main' => ['required', 'max:' . Question::MAX_MAIN_LENGTH],
+            'tags' => ['required', function ($attribute, $value, $fail) {
+                $tags = explode(' ', $value);
+                if(count($tags) !== count(array_flip($tags))) {
+                    $fail('The '.$attribute.' must have unique tags.');
+                }
+                if(count($tags) < 1 || count($tags) > 5) {
+                    $fail('The '.$attribute.' must have between 1 and 5 tags.');
+                }
+            }] // Parse and check if there are between 1 and 5 tags -> no repeated
+        ]);
+
+        QuestionTag::where('question_id', $request->id)->delete();
+        
+        foreach($question_tags as $tag) {
+            $tag_id = DB::table('tag')->where('name', $tag)->value('id');
+            $new_question_tag = new QuestionTag();
+            $new_question_tag->tag_id = $tag_id;
+            $new_question_tag->question_id = $request->id;
+            $new_question_tag->save();
+        }
+
+        return view('pages.question', [
+            'question' => $question,
+            'user' => Auth::user()
+        ]);
     }
 
     public function addVote(Request $request, $content_id)

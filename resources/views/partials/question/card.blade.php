@@ -35,12 +35,14 @@ if ($hasResported) {
     <div class="row">
       <div class="col-auto me-auto">
         <a class="a header" href="{{ url('question/' . $question->content_id) }}">
-            {{ $question->title }} 
-          <i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>
+            {{ $question->title }}<i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>&nbsp;&nbsp;&nbsp;
         </a>
         @auth
           @if (Auth::user()->id == $question->content->author_id)
-            &nbsp;&nbsp;<span class="badge my-post-signature">My post</span>
+            &nbsp;<span class="badge my-post-signature">My post</span>
+          @endif
+          @if ($question->content->edited)
+            &nbsp;<span class="badge edit-signature">Edited</span>
           @endif
         @endauth
       </div>
@@ -48,9 +50,9 @@ if ($hasResported) {
         @if (Auth::user()->id == $question->content->author_id || Auth::user()->moderator)
           <div class="col-auto btn-group">
             @if (Auth::user()->id == $question->content->author_id && $include_comments)
-              <button type="button" class="btn p-0 edit-question-button">
+              <a type="button" class="btn p-0 collapse show edit-question-button" href={{ url("edit/question/" . $question->content_id) }}>
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
-              </button>
+              </a>
             @elseif(Auth::user()->moderator && $include_comments)
               <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
                 data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
@@ -132,7 +134,7 @@ if ($hasResported) {
               <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
                 id="report-button-{{ $question->content_id }}"
                 @guest href={{ route('login') }} @endguest 
-                @auth onclick="saveReportButton(this)"data-bs-toggle="modal" data-bs-target="#report-modal-question-{{ $question->content_id }}" @endauth>
+                @auth data-bs-toggle="modal" data-bs-target="#report-modal-{{ $question->content_id }}" @endauth>
                 <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
               </a>
             </div>
