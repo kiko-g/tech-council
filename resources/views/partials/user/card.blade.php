@@ -28,8 +28,8 @@
           <p class="card-text text-start">Joined <strong class="float-end">{{ $user->join_date }}</strong></p>
         </li>
         @if(Auth::user()->moderator)
-          @if ($user->banned) <a href="#" class="btn blue-alt">Unban</a>
-          @else <a href="#" class="btn blue-alt">Ban</a>
+          @if ($user->banned) <button class="btn blue-alt" disabled>Banned</a>
+          @else <button id="ban-card-{{ $user->id }}" class="ban-card btn blue-alt" data-user-id="{{ $user->id }}">Ban</a>
           @endif
         @endif
       </ul>      

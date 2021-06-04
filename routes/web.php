@@ -25,8 +25,6 @@ Route::get('auth/check', function () {
     return Auth::check();
 });
 
-Route::get('sendmail','MailController@send');
-
 /*
 -------------------
 M01: Authentication
@@ -135,6 +133,8 @@ M05: Moderation
 ---------------
 */
 Route::get('moderator', 'ModeratorController@showArea')->middleware('api');
+Route::post('/api/ban', 'BanController@create');
+Route::put('/api/solve_report/{id}', 'ReportController@solve');
 
 /* 
 -----------------
