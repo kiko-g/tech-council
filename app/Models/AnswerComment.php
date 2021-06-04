@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class AnswerComment extends Model
 {
+    const MAX_MAIN_LENGTH = 1000;
+
+    public $timestamps = false;
     protected $table = 'answer_comment';
     protected $primaryKey = 'content_id';
 

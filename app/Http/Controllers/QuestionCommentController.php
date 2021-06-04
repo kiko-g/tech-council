@@ -3,83 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Models\QuestionComment;
+use App\Models\Question;
+use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class QuestionCommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a comment to a question.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function insert(Request $request)
     {
-        //
-    }
+        Question::findOrFail($request->question_id);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $request->validate(['main' => 'required|max:' . QuestionComment::MAX_MAIN_LENGTH]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $content = new Content();
+        $content->main = $request->main;
+        $content->author_id = Auth::user()->id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(QuestionComment $questionComment)
-    {
-        //
-    }
+        $question_comment = null;
+        try {
+            DB::transaction(function () use ($content, $request, &$question_comment) {
+                $content->save();
+                $question_comment = new QuestionComment();
+                $question_comment->content_id = $content->id;
+                $question_comment->question_id = $request->question_id;
+                $question_comment->save();
+            });
+        } catch (PDOException $e) {
+            abort(403, $e->getMessage());
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(QuestionComment $questionComment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, QuestionComment $questionComment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(QuestionComment $questionComment)
-    {
-        //
+        return response()->json(['parent_id' => $request->question_id, 'comment' => view('partials.question.comment', ['comment' => $question_comment])->render()]);
     }
 }

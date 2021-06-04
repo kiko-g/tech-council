@@ -3,83 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnswerComment;
+use App\Models\Answer;
+use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class AnswerCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    const MAX_MAIN_LENGTH = 1000;
 
     /**
-     * Show the form for creating a new resource.
+     * Create comment to an answer.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function insert(Request $request)
     {
-        //
-    }
+        Answer::findOrFail($request->answer_id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $request->validate(['main' => 'required|max:' . AnswerComment::MAX_MAIN_LENGTH]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AnswerComment  $answerComment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AnswerComment $answerComment)
-    {
-        //
-    }
+        $content = new Content();
+        $content->main = $request->main;
+        $content->author_id = Auth::user()->id;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AnswerComment  $answerComment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AnswerComment $answerComment)
-    {
-        //
-    }
+        $answer_comment = null;
+        try {
+            DB::transaction(function () use ($content, $request, &$answer_comment) {
+                $content->save();
+                $answer_comment = new AnswerComment();
+                $answer_comment->content_id = $content->id;
+                $answer_comment->answer_id = $request->answer_id;
+                $answer_comment->save();
+            });
+        } catch (PDOException $e) {
+            abort(403, $e->getMessage());
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AnswerComment  $answerComment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AnswerComment $answerComment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AnswerComment  $answerComment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AnswerComment $answerComment)
-    {
-        //
+        return response()->json(['parent_id' => $request->answer_id, 'comment' => view('partials.question.comment', ['comment' => $answer_comment])->render()]);
     }
 }

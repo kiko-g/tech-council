@@ -180,7 +180,7 @@ if ($hasResported) {
         </div>
         @if ($include_comments)
           @include('partials.question.comment-section', ['comments' => $question->comments, 'id' =>
-          $question->content_id])
+          $question->content_id, 'type' => 'question'])
         @endif
       </div>
     </article>

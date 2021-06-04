@@ -25,6 +25,8 @@ Route::get('auth/check', function () {
     return Auth::check();
 });
 
+Route::get('sendmail','MailController@send');
+
 /*
 -------------------
 M01: Authentication
@@ -118,6 +120,9 @@ Route::delete('/api/answer/{id}/vote', 'AnswerController@deleteVote');      // d
 
 Route::post('/api/content/{id}/report', 'ReportController@reportContent');
 Route::post('/api/user/{id}/report', 'ReportController@reportUser');
+
+Route::post('/api/answer/comment/insert', 'AnswerCommentController@insert');
+Route::post('/api/question/comment/insert', 'QuestionCommentController@insert');
 
 /* TODO:
 --------------- 

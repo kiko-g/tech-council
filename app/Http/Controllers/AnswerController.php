@@ -53,8 +53,6 @@ class AnswerController extends Controller
             abort(403, $e->getMessage());
         }
 
-        // TODO: Add notification here!
-
         return response()->json($content);
     }
 

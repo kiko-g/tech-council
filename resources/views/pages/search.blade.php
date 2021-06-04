@@ -6,6 +6,7 @@
       'input.js',
       'components.js',
       'question.js',
+      'comment.js',
       'app.js',
       'vote.js',
       'report.js',
