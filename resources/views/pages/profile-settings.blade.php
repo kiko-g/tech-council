@@ -36,20 +36,25 @@
           <img src="{{ $photo }}" class="card-img-top rounded-extra p-3" alt="user-image-{{ $user->id }}">
         </div>
         <div class="col-lg-8">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a class="signature" href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
-            </h5>
-            <p class="card-text">{{ $user->bio }}</p>
-            {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
-            <button onclick="" id="save-edit-{{ $user->id }}" class="btn wine">Request password change</button>
+          <div class="card m-3 ms-0">
+            <div class="card-header">Status</div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <a id="user-name" class="signature" href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
+              </h5>
+              <p id="user-email" class="card-text pb-2 border-bottom"><strong>Email</strong>:&nbsp;{{ $user->email }}</p>
+              <h5 class="card-title mt-1"><strong>Biography</strong></h5>
+              <p id="user-biography" class="card-text">{{ $user->bio }}</p>
+              {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+              <button id="save-edit-{{ $user->id }}" class="btn wine mt-3 float-end">Request password change</button>
+            </div>
           </div>
         </div>
         
         <div class="card-body bg-light">
           <form id="profile-settings-form" class="row g-3">
             <div class="col-12">
-              <label class="mt-0 mb-1" id="inputImage">Change Photo</label>
+              <label class="mt-0 mb-1" for="inputImage">Change Photo</label>
               <input id="inputImage" type="file" class="form-control" accept="image/*" aria-label="profile picture" >
               <div class="invalid-feedback">Example invalid form file feedback</div>
             </div>

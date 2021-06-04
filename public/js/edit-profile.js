@@ -20,8 +20,6 @@ function submitEditProfile() {
     let bioArg = inputBio.value
     if (imageArg === undefined) imageArg = null;
 
-    console.log("hypocrticial people");
-    console.log("/user/" + userID + "/edit");
     sendAjaxRequest(
         'put',
         "/user/" + userID + "/edit",
@@ -34,14 +32,19 @@ function submitEditProfile() {
         },
         editProfileHandler
     )
-    console.log("be like");
-    console.log("yeah this one fucking sucks");
 }
 
 function editProfileHandler() {
     if (this.status == 200 || this.status == 201) {
         let response = JSON.parse(this.responseText)
-        console.log(response)
+        console.log(response);
+        let displayName = document.getElementById('user-name')
+        let displayEmail = document.getElementById('user-email')
+        let displayBio = document.getElementById('user-biography')
+
+        displayName.innerHTML = response.username;
+        displayEmail.innerHTML = `<strong> Email</strong>:&nbsp;` + response.email;
+        displayBio.innerHTML = response.bio;
     }
     else { }
 }
