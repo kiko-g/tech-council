@@ -93,8 +93,6 @@ class Question extends Model
         ->select('q.*', 'rank')
         ->distinct();
 
-        # TODO: add tags to weight
-
         $query->fromRaw(
             "content c inner join question q on c.id = q.content_id 
             inner join \"user\" u on c.author_id = u.id
@@ -153,9 +151,9 @@ class Question extends Model
     public static function searchTrending($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
         $query = self::baseSearch($query_string, $tag, $author, $saved);
 
-        # TODO: change base query
+        $query->orWhereRaw("date_part('day', now() - c.creation_date) < 14");
 
-        $query->order('date');
+        $query->order('numerical');
 
         return self::paginateQuery($query, $rpp, $page);
     }
