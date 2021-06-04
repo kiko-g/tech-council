@@ -8,6 +8,7 @@
       'app.js',
       'vote.js',
       'report.js',
+      'best-answer.js',
       'follow.js',
       'save.js',
     ]
@@ -19,7 +20,7 @@
   @include('partials.question.answer-submit', ['question_id' => $question->content_id])
   <section id="answers">
     @foreach ($question->answers as $answer)
-      @include('partials.question.answer', ['answer' => $answer ?? '', 'voteValue' => $answer->getVoteValue()])
+      @include('partials.question.answer', ['answer' => $answer ?? '', 'voteValue' => $answer->getVoteValue(), 'bestAnswer' => $question->bestAnswer($question->content_id)])
     @endforeach
   </section>
 @endsection

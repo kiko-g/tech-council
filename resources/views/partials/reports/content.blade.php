@@ -14,9 +14,9 @@
         <tr>
           <th scope="row">{{ $content_report->report->id }}</th>
           <td>
-            <a
-              href="{{ route('question', ['id' => $content_report->get_question_id($content_report->content_id)]) }}">
-              {{ $content_report->content_type_reported($content_report->content_id) }}
+            @php $type = $content_report->content_type_reported($content_report->content_id) @endphp
+            <a href="{{ route(strtolower($type), ['id' => $content_report->get_question_id($type, $content_report->content_id)]) }}">
+              {{ $type }}
             </a>
           </td>
           <td>
@@ -24,9 +24,9 @@
               {{ $content_report->report->reporter->name }}
             </a>
             @if ($content_report->report->reporter->moderator)
-              @include('partials.moderator-badge')
+              @include('partials.icons.moderator')
             @elseif ($content_report->report->reporter->expert)
-              @include('partials.expert-badge')
+              @include('partials.icons.medal')
             @endif
           </td>
           <td>

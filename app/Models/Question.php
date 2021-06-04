@@ -76,20 +76,152 @@ class Question extends Model
         return $counter;
     }
 
+    public static function baseSearch($query_string) {
+        $query = Question::query()
+        ->select('q.*', 'rank')
+        ->distinct();
+
+        # TODO: add tags to weight
+
+        $query->fromRaw(
+            "content c inner join question q on c.id = q.content_id 
+            inner join \"user\" u on c.author_id = u.id
+            inner join question_tag qt on qt.question_id = q.content_id
+            inner join tag t on t.id = qt.tag_id,
+            ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || 
+                setweight(to_tsvector('simple', c.main), 'B') || ' ' || 
+                setweight(to_tsvector('simple', u.name), 'D'), 
+                plainto_tsquery('simple', ?)) as rank",
+            [ $query_string ]
+        );
+        $query->whereRaw("rank > 0");
+        $query->order("rank");
+
+        return $query;
+    }
+
     public static function search($query_string, $rpp, $page) {
-        return DB::select(
-            "SELECT q.content_id, q.title, q.votes_difference, c.main, c.creation_date, c.edited, u.name, rank
-            FROM content c inner join question q on c.id = q.content_id inner join \"user\" u on c.author_id = u.id,
-            ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || setweight(to_tsvector('simple', c.main), 'B') || ' ' || setweight(to_tsvector('simple', u.name), 'D'), plainto_tsquery('simple', :query)) as rank
-            WHERE rank > 0
-            ORDER BY rank DESC
-            OFFSET :offset
-			LIMIT :limit",
-			[
-				'query' => $query_string,
-				'offset' => $rpp*($page - 1),
-				'limit' => $rpp
-			]
-		);
+        $query = self::baseSearch($query_string)
+            ->get()
+            ->toArray();
+
+        # TODO: paginate
+
+        return $query;
+    }
+
+    public static function searchBest($query_string, $rpp, $page) {
+        $query = self::baseSearch($query_string);
+
+        $query->order('numerical');
+
+        # TODO: paginate
+
+        return $query->get()->toArray();
+    }
+
+    public static function searchNew($query_string, $rpp, $page) {
+        $query = self::baseSearch($query_string);
+
+        $query->order('date');
+
+        # TODO: paginate
+
+        return $query->get()->toArray();
+    }
+
+    public static function searchTrending($query_string, $rpp, $page) {
+        $query = self::baseSearch($query_string);
+
+        # TODO: change base query
+
+        $query->order('date');
+
+        # TODO: paginate
+
+        return $query->get()->toArray();
+    }
+
+    /**
+     * Used to order questions in search results
+     * 
+     * @param order:
+     *  - 'alpha' for ascending alphanumeric titles
+     *  - 'numerical' for decreasing vote difference
+     *  - 'similar' for most similar to query string
+     *  - otherwise ordered by latest date
+     * @return none
+     */
+    public function scopeOrder($query, $order) {
+        if ($order != null) {
+            if (strcmp($order, "alpha") == 0)
+                $query->orderBy('q.title', 'asc');
+            else if (strcmp($order, "numerical") == 0)
+                $query->orderBy('q.votes_difference', 'desc');
+            else if (strcmp($order, "similar") == 0)
+                $query->orderBy('rank', 'desc');
+        } else {
+            $query->latest('c.creation_date');
+        }
+    }
+
+    /**
+     * Used to filter questions by authors in search results
+     * 
+     * @param authorTypes list containing possible author types
+     *  - 'expert' for questions made by expert users
+     *  - 'own' for the authenticated user's questions
+     * @return none
+     */
+    public function scopeAuthor($query, $author_types) {
+        if ($author_types != null) {
+
+            $query = $query->where(function ($q) use ($author_types) {
+                foreach ($author_types as $author_type) {
+                    if (strcmp($author_type, "expert") == 0)
+                        $q->orWhere('u.expert', true);
+                    else if (strcmp($author_type, "own") == 0 && Auth::check())
+                        $q->orWhere('u.id', Auth::user()->id);
+                }
+            });
+        }
+    }
+
+    /**
+     * Used to filter questions by tags in search results
+     * 
+     * @param serialized_tags list containing serialized tag ids, separated by commas
+     * @return none
+     */
+    public function scopeTags($query, $serialized_tags) {
+        if ($serialized_tags != null) {
+            $tags = explode(",", $serialized_tags);
+            $query = $query->where(function ($q) use ($tags) {
+                foreach ($tags as $tag) {
+                    $q->orWhere('t.id', $tag);
+                }
+            });
+        }
+    }
+
+    /**
+     * Used to filer by the user's saved questions
+     * 
+     * @param 
+     */
+    public function scopeSaved($query) {
+
+    }
+
+    public function bestAnswer($id)
+    {
+        $array = DB::select("SELECT a.content_id FROM answer a
+        WHERE a.question_id = $id AND a.is_best_answer = TRUE");
+
+        if (count($array) > 0) {
+            return $array[0]->content_id;
+        }
+
+        return null;
     }
 }

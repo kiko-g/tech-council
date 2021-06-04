@@ -110,7 +110,7 @@ function reportContentHandler() {
 
     let reportButton = document.getElementById('report-button-' + response.content_id)
     reportButton.innerHTML = '<i class="fa fa-flag" aria-hidden="true"></i>&nbsp;Reported'
-    reportButton.className += 'disabled'
+    reportButton.classList.add('disabled')
     reportButton.classList.remove('report')
     reportButton.classList.add('active-report')
     let modal = document.getElementsByClassName('report-modal-' + response.content_id) //TODO: dismiss modal

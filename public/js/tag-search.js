@@ -21,7 +21,6 @@ function searchAskTags(event) {
 }
 
 function tagSearchHandler() {
-    console.log(this.responseText);
     let response = JSON.parse(this.responseText);
 
     if (this.status == 200 || this.status == 201) {

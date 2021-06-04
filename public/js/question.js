@@ -184,12 +184,14 @@ function submitAnswer(event) {
     // TODO clear form input feedback here
     // TODO validate form input here
 
+    let md = new Remarkable();
     let questionId = this.dataset.questionId;
     // TODO add loading here
+
     sendAjaxRequest(
         "post",
         "/api/question/" + questionId + "/answer",
-        { main: fields.main },
+        { main: md.render(fields.main) },
         answerAddedHandler
     );
 }
@@ -209,7 +211,7 @@ function answerAddedHandler() {
         let form = document.getElementById("answer-submit-input");
         form.value = "";
     } else {
-        // TODO set input error
+        // TODO: set input error
     }
 }
 

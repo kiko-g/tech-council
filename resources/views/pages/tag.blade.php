@@ -21,7 +21,7 @@
   @include('partials.tag.card', ['tag' => $tag, 'user' => $user])
 
   @include('partials.division')
-  @include('partials.filters.question')
+  @include('partials.filters.question', ['filter_prefix' => 'tag'])
 
   @foreach ($tag->questions as $question)
     @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])

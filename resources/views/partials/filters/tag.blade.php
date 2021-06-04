@@ -1,4 +1,4 @@
-<nav class="navbar-dark bg-petrol mb-3 rounded p-2">
+<nav id="tag-filters" class="navbar-dark bg-petrol mb-3 rounded p-2">
   <div class="btn-toolbar justify-content-between px-1">
     <div class="btn-group btn-group-vertical-when-responsive" role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check" name="btnradio" id="radio5_popular" autocomplete="off" checked>
@@ -21,8 +21,8 @@
           {{ route('login') }}
         @endguest
         ">
-        <input type="submit" class="btn-check" id="ask-question">
-        <label class="btn blue" for="ask-question">
+        <input type="submit" class="btn-check" id="ask-question-tags">
+        <label class="btn blue" for="ask-question-tags">
           Ask Question&nbsp;<i class="fas fa-plus-square fa-xs"></i>
         </label>
       </form>

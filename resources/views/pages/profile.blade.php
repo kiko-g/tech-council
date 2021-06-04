@@ -11,6 +11,7 @@
       'report.js',
       'follow.js',
       'save.js',
+      'filters.js'
     ]
   ]
 )

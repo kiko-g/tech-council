@@ -383,8 +383,19 @@
     background-color: var(--teal-600) !important;
 }
 
+.bg-teal {
+    background-color: var(--teal-600) !important;
+}
+
 .bg-teal-alt {
     background-color: var(--teal-alt) !important;
+}
+
+.bg-wine {
+    color: white;
+    /* feb272 */
+    border-color: #b44b62;
+    background-color: #b44b62;
 }
 
 .bg-background-color {
