@@ -5,6 +5,7 @@
       'input.js',
       'components.js',
       'question.js',
+      'ban.js',
       'comment.js',
       'app.js',
       'vote.js',

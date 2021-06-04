@@ -11,7 +11,8 @@
     </thead>
     <tbody>
       @foreach ($content_reports as $content_report)
-        <tr>
+        @if(!$content_report->report->solved)
+        <tr id="report-{{ $content_report->report->id }}">
           <th scope="row">{{ $content_report->report->id }}</th>
           <td>
             @php $type = $content_report->content_type_reported($content_report->content_id) @endphp
@@ -33,11 +34,13 @@
             <p class="mb-0">{{ $content_report->report->description }}</p>
           </td>
           <td>
-            <button type="button" class="btn btn-sm teal d-inline-flex align-items-center">
+            <button type="button" class="solve-report btn btn-sm teal d-inline-flex align-items-center" data-report-id="{{ $content_report->report->id }}"
+              id="solve-report-{{ $content_report->report->id }}">
               Solve
             </button>
           </td>
         </tr>
+        @endif
       @endforeach
     </tbody>
   </table>

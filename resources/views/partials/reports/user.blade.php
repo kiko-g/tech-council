@@ -11,7 +11,8 @@
     </thead>
     <tbody>
       @foreach ($user_reports as $user_report)
-        <tr>
+        @if (!$user_report->report->solved)
+        <tr id="report-{{ $user_report->report->id }}">
           <th scope="row">{{ $user_report->report->id }}</th>
           <td>
             <a href="{{ route('user', ['id' => $user_report->reported_user->id]) }}">
@@ -32,9 +33,13 @@
             <p class="mb-0">{{ $user_report->report->description }}</p>
           </td>
           <td class="">
-            <button type="button" class="btn btn-sm teal d-inline-flex align-items-center"> Solve </button>
+            <button type="button" class="solve-report btn btn-sm teal d-inline-flex align-items-center" data-report-id="{{ $user_report->report->id }}"
+              id="solve-report-{{ $user_report->report->id }}">
+              Solve
+            </button>
           </td>
         </tr>
+        @endif
       @endforeach
     </tbody>
   </table>
