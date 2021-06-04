@@ -85,6 +85,7 @@ Route::get('/create/question', function () {
         'user' => Auth::user(),
     ]);
 })->name('create/question'); // could be 'ask/'?
+Route::post('/api/create/question', 'QuestionController@create');
 
 Route::get('/edit/question/{id}', 'QuestionController@edit');
 Route::put('/api/edit/question/{id}', 'QuestionController@update');

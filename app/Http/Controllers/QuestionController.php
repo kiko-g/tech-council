@@ -42,18 +42,31 @@ class QuestionController extends Controller
         ]);
 
         $content = new Content();
-        $question = new Question($content->id);
-
-        $content->main = $request->input('main');
+        $content->main = $request->main;
         $content->author_id = Auth::user()->id;
-        $question->title = $request->input('title');
 
-        DB::transaction(function () use ($content, $question) {
+        $tags = $request->tags;
+        $question_tags = explode(',', $tags);
+
+        $question = null;
+        DB::transaction(function () use ($content, $request, $question_tags, &$question) {
             $content->save();
+            $question = new Question(['content_id' => $content->id, 'title' => $request->title]);
             $question->save();
+
+            foreach($question_tags as $tag) {
+                $tag_id = DB::table('tag')->where('name', $tag)->value('id');
+                $new_question_tag = new QuestionTag();
+                $new_question_tag->tag_id = $tag_id;
+                $new_question_tag->question_id = $question->content_id;
+                $new_question_tag->save();
+            }
         });
 
-        return $question;
+        return view('pages.question', [
+            'question' => $question,
+            'user' => Auth::user()
+        ]);;
     }
 
      /**
@@ -151,9 +164,6 @@ class QuestionController extends Controller
      */
     public function update(Request $request)
     {
-        error_log($request);
-
-        error_log("step1");
         $question = Question::findOrFail($request->id);
         $question->title = $request->title;
         $question->content->main = $request->main;

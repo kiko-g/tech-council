@@ -16,6 +16,16 @@ class Question extends Model
      */
     protected $table = 'question';
     protected $primaryKey = 'content_id';
+    public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable.
+     * 
+     * @var array
+     */
+    protected $fillable = [
+        'content_id', 'title'
+    ];
 
     const MAX_TITLE_LENGTH = 100;
     const MAX_MAIN_LENGTH = 1000;
