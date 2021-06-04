@@ -6,6 +6,7 @@
         'input.js',
         'components.js',
         'question.js',
+        'comment.js',
         'app.js',
         'vote.js',
         'report.js',
@@ -46,7 +47,7 @@
               <h5 class="card-title mt-1"><strong>Biography</strong></h5>
               <p id="user-biography" class="card-text">{{ $user->bio }}</p>
               {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
-              <button id="save-edit-{{ $user->id }}" class="btn wine mt-3 float-end">Request password change</button>
+              <button id="request-password-{{ $user->id }}" class="btn wine mt-3 float-end">Request password change</button>
             </div>
           </div>
         </div>
@@ -66,7 +67,7 @@
 
             <div class="col-lg-6 form-group">
               <label for="inputUsername" class="form-label mb-1">Username</label>
-              <input id="inputUsername" type="username" class="form-control" value="{{ $user->name }}">
+              <input id="inputUsername" type="text" class="form-control" value="{{ $user->name }}">
             </div>
             {{-- <script src="{{ '/js/password.js' }}"></script> --}}
 

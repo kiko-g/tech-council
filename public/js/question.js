@@ -1,3 +1,4 @@
+const md = new Remarkable();
 function addQuestionEventListeners() {
     answerButtonsListeners();
     questionButtonsListeners();
@@ -182,14 +183,13 @@ function submitAnswer(event) {
     // TODO clear form input feedback here
     // TODO validate form input here
 
-    let md = new Remarkable();
     let questionId = this.dataset.questionId;
     // TODO add loading here
 
     sendAjaxRequest(
         "post",
         "/api/question/" + questionId + "/answer",
-        { main: fields.main },
+        { main: md.render(fields.main) },
         answerAddedHandler
     );
 }
@@ -251,7 +251,7 @@ function submitQuestion(event) {
 
     console.log({
         title: title,
-        main: main,
+        main: md.render(main),
         tags: tags
     });
 
@@ -260,7 +260,7 @@ function submitQuestion(event) {
         "/api/create/question",
         {
             title: title,
-            main: main,
+            main: md.render(main),
             tags: tags
         },
         createQuestionHandler,
@@ -273,7 +273,6 @@ function submitQuestion(event) {
 
 function createQuestionHandler() {
     if (this.status != 200 && this.status != 201) {
-
         let responseErrors = JSON.parse(this.response).errors
         let alertArea = document.getElementById("ask-errors");
         let alert = document.createElement("div");
@@ -292,7 +291,9 @@ function createQuestionHandler() {
         alert.appendChild(alertErrors);
         alertArea.appendChild(alert);
     } else {
-        document.documentElement.innerHTML = this.responseText;
+        let response = JSON.parse(this.response);
+        window.location = `/question/${response.id}`;
+        //document.documentElement.innerHTML = this.responseText;
     }
 }
 

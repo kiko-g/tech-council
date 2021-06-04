@@ -6,6 +6,7 @@
       'input.js',
       'components.js',
       'question.js',
+      'comment.js',
       'app.js',
       'vote.js',
       'report.js',
@@ -34,7 +35,7 @@
   <div class="tab-content" id="nav-tabContent">
     <div class="search-results-header rounded">
       {{-- NAVIGATION --}}
-      <main class="container pb-2">
+      <div class="main container pb-2">
         <div class="row justify-content-between search-and-pose">
           <div class="col-12 my-auto">
             <h5> {{ $results_for }} </h5>
@@ -51,7 +52,7 @@
               data-bs-target="#nav-users" type="button" role="tab">Users</button>
           </div>
         </nav>
-      </main>
+      </div>
     </div>
 
     {{--  QUESTIONS --}}

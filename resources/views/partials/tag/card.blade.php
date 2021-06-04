@@ -18,7 +18,7 @@ if ($follows) {
 
 <div class="card mb-4 p-2-0 border-0 rounded">
   <div class="card-header bg-animated longer text-white font-source-sans-pro rounded-top">
-    <a href="{{ route('tag', ['id' => $tag->id]) }}" class="light"># {{ $tag->name }} </a>
+    <a href="{{ route('tag', ['id' => $tag->id]) }}" class="light"># {{ $tag->name }}<i class="fas fa-link fa-xs text-blue-200 mt-1dot5 ms-2"></i>&nbsp;&nbsp;&nbsp;</a>
   </div>
   <div class="card-body">
     <p class="mb-3">
@@ -33,27 +33,27 @@ if ($follows) {
           <i class="{{ $follow_icon }} fa-star"></i>&nbsp;{{ $follow_text }}
         </a>
       </div>
-      <div class="btn-group mt-1 rounded">
+      {{-- <div class="btn-group mt-1 rounded">
         <a class="upvote-button btn teal my-btn-pad2" id="follow-{{ $tag->id }}"
           href="{{ route('tag', ['id' => $tag->id]) }}">
           <i class="fas fa-hashtag"></i>&nbsp;Link
         </a>
-      </div>
-      <div class="btn-group mt-1 rounded">
+      </div> --}}
+      {{-- <div class="btn-group mt-1 rounded">
         <a class="upvote-button btn blue my-btn-pad2" id="upvote-button" href="#">
           <i class="fas fa-share-alt"></i>
         </a>
-      </div>
+      </div> --}}
     </div>
 
     <div id="facts" class="col-lg-auto">
       <div class="btn-group mt-1 rounded">
-        <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
+        <span class="btn blue-alt static my-btn-pad2 nohover">
           <i class="fas fa-fire"></i>&nbsp;{{ count($tag->followers) }} followers {{-- {{ $tag->countFollowers() }} --}}
         </span>
       </div>
       <div class="btn-group mt-1 rounded">
-        <span class="upvote-button btn blue-alt static my-btn-pad2 nohover" id="upvote-button">
+        <span class=" blue-alt static my-btn-pad2 nohover">
           <i class="fas fa-question"></i>&nbsp;{{ count($tag->questions) }} questions
         </span>
       </div>

@@ -98,6 +98,7 @@ function editQuestionHandler() {
         confirmation.innerHTML = errorAlert("Question could not be updated!");
         header.parentNode.parentNode.insertBefore(confirmation, header.parentNode);
     } else {
-        document.documentElement.innerHTML = this.responseText;
+        let response = JSON.parse(this.responseText);
+        window.location = `/question/${response.id}`;
     }
 }

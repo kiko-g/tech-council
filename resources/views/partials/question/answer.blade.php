@@ -153,7 +153,7 @@ if ($hasResported) {
               "content_id" => $answer->content_id,
             ])
           </div>
-        @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
+        @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id, 'type' => 'answer'])
       </div>
     </article>
   </div>

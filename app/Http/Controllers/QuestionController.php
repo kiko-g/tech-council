@@ -64,10 +64,7 @@ class QuestionController extends Controller
             }
         });
 
-        return view('pages.question', [
-            'question' => $question,
-            'user' => Auth::user()
-        ]);;
+        return response()->json(["id" => $content->id]);
     }
 
      /**
@@ -173,12 +170,6 @@ class QuestionController extends Controller
      */
     public function update(Request $request)
     {
-        $question = Question::findOrFail($request->id);
-        $question->title = $request->title;
-        $question->content->main = $request->main;
-        $tags = $request->tags;
-        $question_tags = explode(',', $tags);
-
         $request->validate([
             'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
             'main' => ['required', 'max:' . Question::MAX_MAIN_LENGTH],
@@ -192,7 +183,14 @@ class QuestionController extends Controller
                 }
             }] // Parse and check if there are between 1 and 5 tags -> no repeated
         ]);
+        $question = Question::findOrFail($request->id);
+        $question->title = $request->title;
+        $question->content->main = $request->main;
+        $question->content->save();
+        $question->save();
 
+        $tags = $request->tags;
+        $question_tags = explode(',', $tags);
         QuestionTag::where('question_id', $request->id)->delete();
         
         foreach($question_tags as $tag) {
@@ -203,10 +201,7 @@ class QuestionController extends Controller
             $new_question_tag->save();
         }
 
-        return view('pages.question', [
-            'question' => $question,
-            'user' => Auth::user()
-        ]);
+        return response()->json(["id" => $question->content_id]);
     }
 
     public function addVote(Request $request, $content_id)

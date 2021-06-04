@@ -56,12 +56,13 @@
   
   {{--  Prism  --}}
   <link rel="stylesheet" href={{ '/css/prism.css' }} />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js" integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js" integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script> 
 
   {{-- Scripts --}}
   @isset($js)
     @foreach ( $js as $script)
       <script src={{ asset('js/' . $script)}} defer></script>
-    @endforeach   
+    @endforeach
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.js" integrity="sha512-QRrpZjZVcoHxp1kQn6MecUMg7rXIE2p8l6kPdlS786pgmsDzYc+x+tlZzui1Spbl6wzLqlCNzGwb4Gt0WM2mew==" crossorigin="anonymous"></script>
   @endisset
 </head>

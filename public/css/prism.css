@@ -7,6 +7,12 @@
  * @license MIT
  */
 
+pre {
+  padding: 1em !important;
+  margin: 1em 0 !important;
+  background-color: #eef1f5;
+}
+
 code[class*="language-"], pre[class*="language-"] {
   color: #111b27;
   background: none;
