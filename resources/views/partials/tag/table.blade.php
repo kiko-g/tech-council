@@ -14,8 +14,8 @@
         <th scope="row">{{ $tag->id }}</th>
         <td>
           <a href="{{ route('tag', ['id' => $tag->id]) }}" id="tag-{{ $tag->id }}-redirect" class="collapse show tag-{{ $tag->id }}-edit btn blue-alt border-0 my-btn-pad2 flex-column">{{ $tag->name }}</a>
-          <input id="tag-{{ $tag->id }}-name" type="text" class="collapse form-control shadow-sm border border-2 bg-light tag-{{ $tag->id }}-edit" placeholder="Tag name" value="{{ $tag->name }}" required>
-          <textarea id="tag-{{ $tag->id }}-description" name="main" class="collapse tag-{{ $tag->id }}-edit form-control shadow-sm border border-2 bg-light" rows="2" placeholder="Type your answer">{{ $tag->description }}</textarea>
+          <input id="tag-{{ $tag->id }}-name" type="text" class="collapse form-control border border-2 bg-light tag-{{ $tag->id }}-edit" placeholder="Tag name" value="{{ $tag->name }}" required>
+          <textarea id="tag-{{ $tag->id }}-description" name="main" class="collapse tag-{{ $tag->id }}-edit form-control border border-2 bg-light" rows="2" placeholder="Type your answer">{{ $tag->description }}</textarea>
         </td>
         <td>
           <span>{{ $tag->author->name }}</span>

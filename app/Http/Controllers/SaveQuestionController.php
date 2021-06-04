@@ -19,29 +19,20 @@ class SaveQuestionController extends Controller
      */
     public function save(Request $request)
     {
-        error_log("ola 1");
         $user_id = Auth::user()->id;
         $question_id = $request->id;
-
-        error_log("ola 1.1");
         $this->authorize('save', SaveQuestion::class);
 
-        error_log("ola 2");
         $save_question = new SaveQuestion();
-        error_log("ola 3");
         $save_question->user_id = $user_id;
-        error_log("ola 4");
         $save_question->question_id = $question_id;
         
         try {
-            error_log("ola 4.1");
             $save_question->save();
-            error_log("ola 4.2");
         } catch (PDOException $e) {
             abort('403', $e->getMessage());
         }
 
-        error_log("ola 5");
         return response()->json(Question::find($question_id));
     }
 

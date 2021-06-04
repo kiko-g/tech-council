@@ -11,6 +11,7 @@
         'report.js',
         'follow.js',
         'save.js',
+        'edit-profile.js',
       ]
     ]
   )
@@ -40,37 +41,38 @@
               <a class="signature" href="{{ url('user/' . $user->id) }}">{{ $user->name }} </a>
             </h5>
             <p class="card-text">{{ $user->bio }}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <a href="#" class="btn blue">Change photo</a>
+            {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+            <button onclick="" id="save-edit-{{ $user->id }}" class="btn wine">Request password change</button>
           </div>
         </div>
+        
+        <div class="card-body bg-light">
+          <form id="profile-settings-form" class="row g-3">
+            <div class="col-12">
+              <label class="mt-0 mb-1" id="inputImage">Change Photo</label>
+              <input id="inputImage" type="file" class="form-control" accept="image/*" aria-label="profile picture" >
+              <div class="invalid-feedback">Example invalid form file feedback</div>
+            </div>
 
-        <div class="card-body">
-          <form class="row g-3">
             <div class="col-lg-6">
-              <label for="inputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail" value="{{ $user->email }}">
+              <label for="inputEmail" class="form-label mb-1">Email</label>
+              <input id="inputEmail" type="email" class="form-control" value="{{ $user->email }}">
             </div>
 
             <div class="col-lg-6 form-group">
-              <label for="pass" class="form-label">Password</label>
-              <div class="input-group mb-3">
-                <input id="pass" type="password" class="form-control" aria-describedby="hide">
-                <button id="hide" class="btn btn-outline-secondary" type="button">
-                  <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                </button>
-              </div>
+              <label for="inputUsername" class="form-label mb-1">Username</label>
+              <input id="inputUsername" type="username" class="form-control" value="{{ $user->name }}">
             </div>
-            <script src="{{ '/js/password.js' }}"></script>
+            {{-- <script src="{{ '/js/password.js' }}"></script> --}}
 
             <div class="col-12">
-              <label for="inputBio" class="form-label">Biography</label>
+              <label for="inputBio" class="form-label mb-1">Biography</label>
               <textarea class="form-control" id="inputBio" rows="4">{{ $user->bio }}</textarea>
             </div>
-            <div class="col-12 text-end">
-              <button type="submit" class="btn teal">Save changes</button>
-            </div>
           </form>
+          <div class="col-12 text-end mt-3">
+            <button id="save-edit-{{ $user->id }}" onclick="submitEditProfile()" type="submit" class="btn teal">Save changes</button>
+          </div>
         </div>
       </div>
     </div>
@@ -83,9 +85,6 @@
       <div class="card-body">
         <a href="{{ route('logout') }}" class="btn blue"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
       </div>
-      <div class="card-body">
-        <a href="{{ route('logout') }}" class="btn blue"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
-      </div>      
     </div>
   @endsection
 @endauth

@@ -43,7 +43,6 @@ class ContentReport extends Model
     }
     
     public function get_question_id($type, $content_id) {
-        error_log($type);
         switch ($type) {
             case 'Question':
                 Question::findOrFail($content_id);

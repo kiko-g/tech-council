@@ -42,8 +42,7 @@
               </p>
             </div>
           </section>
-          <div class="mt-3">
-					  <textarea class="form-control shadow-sm border border-2 bg-light" id="report-description-{{ $content_id }}" rows="3" 
+					<textarea class="form-control border border-2 bg-light mt-3" id="report-description-{{ $content_id }}" rows="3" 
               placeholder="Talk us through the situation in more detail."></textarea>
             <div class="invalid-feedback">
               Please enter a description with > 10 and < 1000 characters.

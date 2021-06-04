@@ -20,10 +20,10 @@
     <section class="card-body">
       <form method="POST" action="{{ url('/api/question/insert') }}">
         <div>
-          <textarea id="input-title" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
+          <textarea id="input-title" class="form-control border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
         </div>
         <div class="textarea-container">
-          <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
+          <textarea id="input-body" class="form-control border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
           <button id="toggle-stackedit" class="btn btn blue toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">StackEdit</button>
         </div>
         
@@ -51,7 +51,7 @@
         {{-- Select tags --}}
         <div class="card collapse" id="addTag" style="width: 18rem;">
           <div class="card-body">
-            <input id="ask-search-tag" type="text" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1"
+            <input id="ask-search-tag" type="text" class="form-control border border-2 bg-light mb-2" rows="1"
               placeholder="Search tag" />
             <div id="ask-tag-search-results" class="col-lg-auto">
               <!--
