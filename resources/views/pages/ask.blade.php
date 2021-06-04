@@ -19,12 +19,13 @@
   <div class="card mb-4 p-2-0 border-0 rounded">
     <header class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
     <section class="card-body">
-      <form method="POST" action="{{ url('/api/question/insert') }}">
+      <form method="post" action="{{ route('question.create') }}">
+        @csrf
         <div>
-          <textarea id="input-title" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
+          <textarea id="input-title" name="title" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
         </div>
         <div class="textarea-container">
-          <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
+          <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body" name="body"></textarea>
           <button id="toggle-stackedit" class="btn btn blue toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">StackEdit</button>
         </div>
         

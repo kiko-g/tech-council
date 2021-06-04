@@ -22,10 +22,15 @@ class ModeratorController extends Controller
         if (!Auth::check() || !Auth::user()->moderator)
             return redirect()->route('home');
 
+        $user_results = User::search('', 6, 1);
+        $tag_results = Tag::search('', 10, 1);
+
         return view('pages.moderator', [
             'user' => Auth::user(),
-            'displayed_users' => User::paginate(6),
-            'displayed_tags' => Tag::paginate(10),
+            'displayed_users' => User::hydrate($user_results["data"]),
+            'user_count' => $user_results['count'],
+            'displayed_tags' => Tag::hydrate($tag_results["data"]),
+            'tag_count' => $tag_results['count'],
             'user_reports' => UserReport::paginate(10),
             'content_reports' => ContentReport::paginate(10)
         ]);

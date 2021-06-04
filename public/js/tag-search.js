@@ -10,11 +10,11 @@ function searchAskTags(event) {
         "get", 
         "/api/search/tag", 
         {
-            bundled: 0,
             query_string: event.target.value,
             rpp: 10,
             page: 1,
-            type: 'best',
+            type: 'popular',
+            is_view: 0
         }, 
         tagSearchHandler
     );

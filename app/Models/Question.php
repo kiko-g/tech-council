@@ -87,27 +87,39 @@ class Question extends Model
             "content c inner join question q on c.id = q.content_id 
             inner join \"user\" u on c.author_id = u.id
             inner join question_tag qt on qt.question_id = q.content_id
-            inner join tag t on t.id = qt.tag_id,
+            inner join tag t on t.id = qt.tag_id
+            inner join saved_question sq on sq.question_id = q.content_id,
             ts_rank_cd(setweight(to_tsvector('simple', q.title), 'A') || ' ' || 
                 setweight(to_tsvector('simple', c.main), 'B') || ' ' || 
                 setweight(to_tsvector('simple', u.name), 'D'), 
                 plainto_tsquery('simple', ?)) as rank",
             [ $query_string ]
         );
-        $query->whereRaw("rank > 0");
-        $query->order("rank");
+
+        if($query_string !== '') {
+            $query->whereRaw("rank > 0");
+            $query->order("rank");
+        }
 
         return $query;
     }
 
-    public static function search($query_string, $rpp, $page) {
-        $query = self::baseSearch($query_string)
-            ->get()
-            ->toArray();
+    public static function search($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
+        $query = self::baseSearch($query_string);
 
-        # TODO: paginate
+        if(isset($tag)) {
+            $query->tag([$tag]);
+        }
 
-        return $query;
+        if(isset($author)) {
+            $query->author($author);
+        }
+
+        if(isset($saved)) {
+            $query->saved($saved);
+        }
+
+        return self::paginateQuery($query, $rpp, $page);
     }
 
     public static function searchBest($query_string, $rpp, $page) {
@@ -115,9 +127,7 @@ class Question extends Model
 
         $query->order('numerical');
 
-        # TODO: paginate
-
-        return $query->get()->toArray();
+        return self::paginateQuery($query, $rpp, $page);
     }
 
     public static function searchNew($query_string, $rpp, $page) {
@@ -125,9 +135,7 @@ class Question extends Model
 
         $query->order('date');
 
-        # TODO: paginate
-
-        return $query->get()->toArray();
+        return self::paginateQuery($query, $rpp, $page);
     }
 
     public static function searchTrending($query_string, $rpp, $page) {
@@ -137,9 +145,18 @@ class Question extends Model
 
         $query->order('date');
 
-        # TODO: paginate
+        return self::paginateQuery($query, $rpp, $page);
+    }
 
-        return $query->get()->toArray();
+    public static function paginateQuery($query, $rpp, $page) {
+        return [
+            'count' => count($query->get()),
+            'data' => $query
+                ->offset($rpp*($page-1))
+                ->limit($rpp)
+                ->get()
+                ->toArray()
+        ];
     }
 
     /**
@@ -173,17 +190,9 @@ class Question extends Model
      *  - 'own' for the authenticated user's questions
      * @return none
      */
-    public function scopeAuthor($query, $author_types) {
-        if ($author_types != null) {
-
-            $query = $query->where(function ($q) use ($author_types) {
-                foreach ($author_types as $author_type) {
-                    if (strcmp($author_type, "expert") == 0)
-                        $q->orWhere('u.expert', true);
-                    else if (strcmp($author_type, "own") == 0 && Auth::check())
-                        $q->orWhere('u.id', Auth::user()->id);
-                }
-            });
+    public function scopeAuthor($query, $author) {
+        if ($author != null) {
+            $query->orWhere('u.id', $author);
         }
     }
 
@@ -204,12 +213,20 @@ class Question extends Model
         }
     }
 
+    public function scopeTag($query, $tag) {
+        if ($tag != null) {
+            $query->where('t.id', $tag);
+        }
+    }
+
     /**
      * Used to filer by the user's saved questions
      * 
      * @param 
      */
-    public function scopeSaved($query) {
-
+    public function scopeSaved($query, $user) {
+        if ($user != null) {
+            $query->where('sq.user_id', $user);
+        }
     }
 }

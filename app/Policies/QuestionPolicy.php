@@ -13,7 +13,7 @@ class QuestionPolicy
     use HandlesAuthorization;
 
     public function create() {
-        return Auth::check();
+        return Auth::check() && !Auth::user()->banned;
     }
 
     public function edit(User $user, Question $question) {

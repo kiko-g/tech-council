@@ -89,19 +89,52 @@ class User extends Authenticatable
 
     public static function search($query_string, $rpp, $page)
     {
-        return DB::select(
-            "SELECT u.\"name\", u.email, u.bio, u.join_date, u.expert, u.banned, p.path as photo_path
-            FROM \"user\" u INNER JOIN photo p ON u.profile_photo = p.id, 
-            ts_rank_cd(to_tsvector(u.name), plainto_tsquery('simple', :query)) as rank
-            WHERE rank > 0
-            ORDER BY rank DESC
-			OFFSET :offset
-			LIMIT :limit",
-			[
-				'query' => $query_string,
-				'offset' => $rpp*($page - 1),
-				'limit' => $rpp
-			]
-		);
+        $query = User::query()
+        ->select('u.*', 'rank')
+        ->distinct();
+
+        $query->fromRaw(
+            "\"user\" u,
+            ts_rank_cd(to_tsvector('simple', u.name), 
+                plainto_tsquery('simple', ?)) as rank",
+            [ $query_string ]
+        );
+
+        if($query_string !== '') {
+            $query->whereRaw("rank > 0");
+            $query->orderBy("rank");
+        }
+
+        return self::paginateQuery($query, $rpp, $page);
+    }
+
+    public static function searchFull($query_string, $rpp, $page)
+    {
+        $query = User::query()
+        ->select('u.*', 'rank')
+        ->distinct();
+
+        $query->fromRaw(
+            "\"user\" u,
+            ts_rank_cd(setweight(to_tsvector('simple', u.name), 'A') || ' ' || 
+                setweight(to_tsvector('simple', u.bio), 'D'), 
+                plainto_tsquery('simple', ?)) as rank",
+            [ $query_string ]
+        );
+        $query->whereRaw("rank > 0");
+        $query->orderBy("rank");
+
+        return self::paginateQuery($query, $rpp, $page);
+    }
+
+    public static function paginateQuery($query, $rpp, $page) {
+        return [
+            'count' => count($query->get()),
+            'data' => $query
+                ->offset($rpp*($page-1))
+                ->limit($rpp)
+                ->get()
+                ->toArray()
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Tag;
 use Exception;
 use Illuminate\Http\Request;
@@ -53,7 +54,13 @@ class TagController extends Controller
 	public function showPage($id)
 	{
 		$tag = Tag::find($id);
-		return view('pages.tag', ['tag' => $tag, 'user' => Auth::user()]);
+		$question_results = Question::search('', 6, 1, $tag->id);
+		return view('pages.tag', [
+			'tag' => $tag, 
+			'user' => Auth::user(),
+			'questions' => Question::Hydrate($question_results['data']),
+			'question_count' => $question_results['count']
+		]);
 	}
 
 	/**

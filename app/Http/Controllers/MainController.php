@@ -16,9 +16,10 @@ class MainController extends Controller
 	 */
 	public function showMural()
 	{
-		$questions = Question::paginate(10);
+		$question_results = Question::searchBest('', 6, 1);
 		return view('pages.main', [
-			'questions' => $questions,
+			'questions' => Question::hydrate($question_results['data']),
+			'question_count' => $question_results['count'],
 			'user' => Auth::user()
 		]);
 	}

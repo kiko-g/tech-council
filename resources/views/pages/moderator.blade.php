@@ -40,20 +40,24 @@
       <div class="row">
         @for ($i = 0; $i < 3; $i++)
           <div class="col-lg">
-            @include('partials.user.card', ['user' => $displayed_users[$i]])
+            @if ($i < count($displayed_users))
+              @include('partials.user.card', ['user' => $displayed_users[$i]])
+            @endif
           </div>
         @endfor
       </div>
       <div class="row">
         @for ($i = 3; $i < 6; $i++)
           <div class="col-lg">
-            @include('partials.user.card', ['user' => $displayed_users[$i]])
+            @if ($i < count($displayed_users))
+              @include('partials.user.card', ['user' => $displayed_users[$i]])
+            @endif
           </div>
         @endfor
       </div>
     </div>
     <div class="results-picker">
-      @include('partials.pagination')
+      {{--@include('partials.pagination')--}}
     </div>
   </div>
 
@@ -72,7 +76,7 @@
       @include('partials.tag.table', ['tags' => $displayed_tags])
     </div>
     <div class="results-picker">
-      @include('partials.pagination')
+      {{--@include('partials.pagination')--}}
     </div>
   </div>
 
@@ -87,12 +91,12 @@
 
     <div id="user-reports">
       @include('partials.reports.user', ['user_reports' => $user_reports])
-      @include('partials.pagination')
+      {{--@include('partials.pagination')--}}
     </div>
 
     <div id="content-reports">
       @include('partials.reports.content', ['content_reports' => $content_reports])
-      @include('partials.pagination')
+      {{--@include('partials.pagination')--}}
     </div>
 
   </div>

@@ -28,6 +28,26 @@ class Tag extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public static function search($query_string, $rpp, $page) {
+        $query = Tag::query()
+        ->select('t.*', 'rank')
+        ->distinct();
+
+        $query->fromRaw(
+            "tag t,
+            ts_rank_cd(to_tsvector('simple', t.name), 
+                plainto_tsquery('simple', ?)) as rank",
+            [ $query_string ]
+        );
+
+        if($query_string !== '') {
+            $query->whereRaw("rank > 0");
+            $query->order("rank");
+        }
+
+        return self::paginateQuery($query, $rpp, $page);
+    }
+
     public static function searchSimple($query_string, $rpp, $page) {
         return DB::select(
 			"SELECT t.name, t.description, ts_rank_cd(to_tsvector(t.name), plainto_tsquery('simple', :query)) as rank
@@ -59,9 +79,18 @@ class Tag extends Model
         $query->whereRaw("rank > 0");
         $query->order("rank");
 
-        # TODO: paginate
+        return self::paginateQuery($query, $rpp, $page);
+    }
 
-        return $query->get()->toArray();
+    public static function paginateQuery($query, $rpp, $page) {
+        return [
+            'count' => count($query->get()),
+            'data' => $query
+                ->offset($rpp*($page-1))
+                ->limit($rpp)
+                ->get()
+                ->toArray()
+        ];
     }
 
     public function scopeOrder($query, $order) {

@@ -8,7 +8,7 @@
 
       <div class="collapse navbar-collapse border-left-0" id="navbarNav">
         <form class="btn-group d-flex my-2" action="{{ route('search') }}">
-          <input class="search-focus rounded-end must form-control bg-light border-0" type="q" placeholder="Search" aria-label="Search" name="q">
+          <input class="search-focus rounded-end must form-control bg-light border-0" type="q" placeholder="Search" aria-label="Search" name="q" value={{$search_string ?? ''}}>
           <button class="btn btn-outline-light blue" type="submit" id="button-addon2"><i class="fas fa-search fa-sm"></i></button>
         </form>
 

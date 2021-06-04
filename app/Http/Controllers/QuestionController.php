@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Content;
+use App\Models\QuestionTag;
+use App\Models\Tag;
 use App\Models\VoteQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

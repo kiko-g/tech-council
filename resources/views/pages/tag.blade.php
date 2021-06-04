@@ -21,11 +21,15 @@
   @include('partials.tag.card', ['tag' => $tag, 'user' => $user])
 
   @include('partials.division')
-  @include('partials.filters.question')
 
-  @foreach ($tag->questions as $question)
-    @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
-  @endforeach
+
+  @include('partials.filters.question', ['filter_prefix' => "question_search"])
+  @include('partials.search.question', [
+    'questions' => $questions,
+    'count' => $question_count,
+    'page' => 1,
+    'rpp' => 6
+  ])
 @endsection
 
 @section('aside')

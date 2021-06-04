@@ -1,6 +1,7 @@
 @extends('layouts.app', 
   [
     'user' => $user,
+    'search_string' => $query_string,
     'js' => [
       'input.js',
       'components.js',
@@ -12,8 +13,8 @@
       'save.js',
       'tag-search.js',
       'tag-moderate.js',
-      'search.js',
-      'filters.js'
+      'filters.js',
+      'search.js'
     ]
   ]
 )
@@ -25,7 +26,7 @@
     $results_for = "Search Results for \"" . $query_string . "\"";
   }
 
-  $total_results = count($questions) + count($tags) + count($users);
+  $total_results = $question_count + $tag_count + $user_count;
   $results_num = "[" . $total_results . " result" . ($total_results !== 1 ? "s]" : "]");
 @endphp
 
@@ -55,47 +56,38 @@
 
     {{--  QUESTIONS --}}
     <div class="tab-pane fade show active" id="nav-questions" role="tabpanel">
-      @include('partials.filters.question', ['filter_prefix' => "search"])
-      <section id="search-question-results">
-        @include('partials.search.results', ['questions' => $questions])
-      </section>
+      @include('partials.filters.question', ['filter_prefix' => "question_search"])
+      @include('partials.search.question', [
+        'questions' => $questions,
+        'count' => $question_count,
+        'page' => 1,
+        'rpp' => 6
+      ])
     </div>
 
     {{--  TAGS --}}
     <div class="tab-pane fade" id="nav-tags" role="tabpanel">
-      @include('partials.filters.tag')
-        <section id="search-tag-results">
-          @foreach ($tags as $tag)
-            @include('partials.tag.card', ['tag' => $tag, 'user' => $user])
-          @endforeach
-        </section>
+      @include('partials.filters.tag', ['filter_prefix' => "tag_search"])
+      @include('partials.search.tag', [
+        'tags' => $tags,
+        'count' => $tag_count,
+        'page' => 1,
+        'rpp' => 6,
+        'user' => $user
+      ])
     </div>
 
     {{--  USERS  --}}
     <div class="tab-pane fade special-bg p-1 rounded" id="nav-users" role="tabpanel">
       <div class="container p-0">
-        @php
-          use App\Models\User;
-          $user_amount = count($users);
-          $rows_amount = ceil($user_amount / 3);
-        @endphp
-        @for($row = 0; $row < $rows_amount; $row++)
-          <div class="row">
-            @php
-              $cols = $user_amount - ($row * 3);
-              if($cols > 3) $cols = 3;
-            @endphp
-            @for($i = 0; $i < 3; $i++)
-              <div class="col">
-                @if($i < $cols)
-                  @include('partials.user.card-simple', ['user' => $users[$i]])
-                @endif
-              </div>
-            @endfor
-          </div>
-        @endfor
+        @include('partials.search.user', [
+          'users' => $users,
+          'count' => $user_count,
+          'page' => 1,
+          'rpp' => 6,
+          'user' => $user
+        ])
       </div>
-      @include('partials.pagination')
     </div>
   </div>
 @endsection

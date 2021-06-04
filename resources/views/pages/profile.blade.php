@@ -23,7 +23,6 @@
       @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
     @endforeach
   </section>
-  @include('partials.pagination')
 @endsection
 
 @section('aside')

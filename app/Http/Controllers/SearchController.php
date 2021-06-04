@@ -23,15 +23,18 @@ class SearchController extends Controller
             'q' => ['required', 'string']
         ]);        
 
-        $questions = Question::hydrate(Question::search($request->q, 5, 1));
-        $tags = Tag::hydrate(Tag::searchFull($request->q, 6, 1));
-        $users = User::hydrate(User::search($request->q, 6, 1));
+        $question_results = Question::search($request->q, 6, 1);
+        $tag_results = Tag::searchFull($request->q, 6, 1);
+        $user_results = User::searchFull($request->q, 6, 1);
         
         return view('pages.search', [
             'query_string' => $request->q,
-            'questions' => $questions,
-            'tags' => $tags,
-            'users' => $users,
+            'questions' => Question::hydrate($question_results['data']),
+            'question_count' => $question_results['count'],
+            'tags' => Tag::hydrate($tag_results['data']),
+            'tag_count' => $tag_results['count'],
+            'users' => User::hydrate($user_results['data']),
+            'user_count' => $user_results['count'],
             'user' => Auth::user(),
         ]);
     }
@@ -87,8 +90,11 @@ class SearchController extends Controller
                 break;
         }
 
-        return view('partials.search.results', [
-            'questions' => Question::hydrate($results),
+        return view('partials.search.question', [
+            'questions' => Question::hydrate($results['data']),
+            'count' => $results['count'],
+            'page' => $request->page,
+            'rpp' => $request->rpp
         ]);
     }
 
@@ -103,11 +109,12 @@ class SearchController extends Controller
             'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
             'rpp' => ['required', 'integer'],
             'page' => ['required', 'integer'],
-            'type' =>[ function ($attribute, $value, $fail) {
-                if($value != '' && $value != 'best' && $value != 'new' && $value != 'trending') {
+            'type' => [ function ($attribute, $value, $fail) {
+                if($value != '' && $value != 'popular' && $value != 'recent') {
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
                 }
             }],
+            'is_view' => ['boolean'],
         ]);
 
 
@@ -115,9 +122,23 @@ class SearchController extends Controller
 			$request->query_string = "";
 		}
 
-        $results = Tag::searchSimple($request->query_string, $request->rpp, $request->page);
+        if(is_null($request->is_view)) {
+            $request->is_view = 0;
+        }
 
-		return json_encode($results);
+        if($request->is_view) {
+            $results = Tag::searchFull($request->query_string, $request->rpp, $request->page);
+            return view('partials.search.tag', [
+                'tags' => Tag::hydrate($results['data']),
+                'count' => $results['count'],
+                'page' => $request->page,
+                'rpp' => $request->rpp,
+                'user' => Auth::user()
+            ]);
+        } else {
+            $results = Tag::searchSimple($request->query_string, $request->rpp, $request->page);
+            return json_encode($results);
+        }
     }
 
     /**
