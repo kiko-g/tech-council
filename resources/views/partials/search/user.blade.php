@@ -20,7 +20,7 @@
         @for($i = 0; $i < 3; $i++)
           <div class="col">
             @if($i < $cols)
-              @include('partials.user.card-simple', ['user' => $users[$i]])
+              @include('partials.user.card-simple', ['user' => $users[$i + ($cols*$row)]])
             @endif
           </div>
         @endfor
