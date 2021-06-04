@@ -59,13 +59,13 @@
         <a type="button" href="mailto:{{ $user->email }}" class="btn blue-alt">Contact</a>
       </div>
       @if($user->id == Auth::user()->id)
-      <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
-        <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
-      </div>
+        <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
+          <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
+        </div>
       @endif
       <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
         <a type="button" class="btn wine {{ $report_class }} {{ $report_availability }}" id="user-report-button-{{ $user->id }}"
-          onclick="saveReportButton(this)"data-bs-toggle="modal" data-bs-target="#user-report-modal-{{ $user->id }}"> {{ $report_text }}
+         data-bs-toggle="modal" data-bs-target="#user-report-modal-{{ $user->id }}"> {{ $report_text }}
         </a>
       </div>
       @include('partials.user-report-modal', [

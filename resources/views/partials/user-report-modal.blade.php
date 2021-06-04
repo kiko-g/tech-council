@@ -53,7 +53,7 @@
       </div>
 
       <div class="modal-footer">
-          <button id="submit-user-report-button-{{ $user_id }}" onclick="submitUserReport(this.id)" type="button" class="submit-user-report-button btn btn blue">Submit</button>
+          <button id="submit-user-report-button-{{ $user_id }}" onclick="submitUserReport(this.id)" type="button" class="submit-user-report-button btn blue">Submit</button>
       </div>
     </div>
   </div>

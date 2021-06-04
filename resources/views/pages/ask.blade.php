@@ -7,7 +7,6 @@
       'question.js',
       'app.js',
       'vote.js',
-      'report.js',
       'follow.js',
       'save.js',
       'tag-search.js',
