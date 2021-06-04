@@ -26,7 +26,6 @@ class ReportController extends Controller
         $report->reporter_id = Auth::user()->id;
 
         try {
-            error_log($content_id);
             DB::transaction(function () use ($report, $content_id) {
                 $report->save();
                 $content_report = new ContentReport();

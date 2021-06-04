@@ -20,16 +20,16 @@
                 @include('partials.icons.medal', ['width' => 15, 'height' => 15, 'title' => 'Expert User'])
               @endif
               &#8226;
-              <a class="text-red-400 hover">
-                <i class="fas fa-flag fa-sm" data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
-                  data-bs-target="#report-modal-{{ $comment->content_id }}">
-                </i>
-                @include('partials.report-modal', [
-                  "type" => "comment",
-                  "content_id" => $comment->content_id,
-                ])
-              </a>
             </small>
+            <a class="clear-text">
+              <i class="fas fa-flag fa-sm text-red-400 hover " data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
+                data-bs-target="#report-modal-{{ $comment->content_id }}">
+              </i>
+              @include('partials.report-modal', [
+                "type" => "comment",
+                "content_id" => $comment->content_id,
+              ])
+            </a>
           </p>
         </blockquote>
 

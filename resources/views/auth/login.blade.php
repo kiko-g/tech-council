@@ -29,7 +29,7 @@
       <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
       <div>
         <button onclick="" class="btn wine">Request password change</button>
-        <input type="submit" value="Submit" class="btn teal" />
+        <input type="submit" value="Submit" class="btn blue" />
       </div>
     </div>
   </form>

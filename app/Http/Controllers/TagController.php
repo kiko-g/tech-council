@@ -53,7 +53,11 @@ class TagController extends Controller
 	 */
 	public function showPage($id)
 	{
-		$tag = Tag::find($id);
+		try {
+			$tag = Tag::findOrFail($id);
+		} catch (PDOException $e) {
+			abort('404', $e->getMessage());
+		}
 		$question_results = Question::search('', 6, 1, $tag->id);
 		return view('pages.tag', [
 			'tag' => $tag, 

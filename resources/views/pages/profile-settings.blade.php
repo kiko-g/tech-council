@@ -55,7 +55,7 @@
           <form id="profile-settings-form" class="row g-3">
             <div class="col-12">
               <label class="mt-0 mb-1" for="inputImage">Change Photo</label>
-              <input id="inputImage" type="file" class="form-control" accept="image/*" aria-label="profile picture" >
+              <input id="inputImage" type="file" class="form-control" accept="image/png" aria-label="profile picture" >
               <div class="invalid-feedback">Example invalid form file feedback</div>
             </div>
 

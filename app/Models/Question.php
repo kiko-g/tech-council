@@ -29,6 +29,8 @@ class Question extends Model
 
     const MAX_TITLE_LENGTH = 100;
     const MAX_MAIN_LENGTH = 1000;
+    const MIN_TITLE_LENGTH = 15;
+    const MIN_MAIN_LENGTH = 25;
 
     public function content()
     {
