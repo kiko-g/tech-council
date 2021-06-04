@@ -100,6 +100,7 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function searchTags(Request $request) {
+        error_log("OLA");
         $request->validate([
             'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
             'rpp' => ['required', 'integer'],
@@ -109,7 +110,7 @@ class SearchController extends Controller
                     $fail('The '.$attribute.' must be "best", "new" or "trending"');
                 }
             }],
-            'is_view' => ['boolean'],
+            'is_view' => ['integer'],
         ]);
 
 
@@ -123,6 +124,16 @@ class SearchController extends Controller
 
         if($request->is_view) {
             $results = Tag::searchFull($request->query_string, $request->rpp, $request->page, $request->type);
+            
+            if($request->is_view == 2) {
+                return view('partials.search.tag-table', [
+                    'tags' => Tag::hydrate($results['data']),
+                    'count' => $results['count'],
+                    'page' => $request->page,
+                    'rpp' => $request->rpp,
+                    'user' => Auth::user()
+                ]);
+            }
 
             return view('partials.search.tag', [
                 'tags' => Tag::hydrate($results['data']),
@@ -151,6 +162,9 @@ class SearchController extends Controller
         ]);
 
         $results = User::searchFull($request->query_string, $request->rpp, $request->page);
+
+        error_log($results['count']);
+
         return view('partials.search.user', [
             'users' => User::hydrate($results['data']),
             'count' => $results['count'],

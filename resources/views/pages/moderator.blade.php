@@ -13,6 +13,7 @@
       'follow.js',
       'save.js',
       'tag-moderate.js',
+      'moderator-filters.js'
     ]
   ]
 )
@@ -33,33 +34,19 @@
         <form class="container-fluid">
           <div class="input-group">
             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user text-teal-alt"></i></span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+            <input type="text" id="user-search-input" class="form-control" placeholder="Username" aria-label="Username">
           </div>
         </form>
       </nav>
     </div>
     <div class="ban-users">
-      <div class="row">
-        @for ($i = 0; $i < 3; $i++)
-          <div class="col-lg">
-            @if ($i < count($displayed_users))
-              @include('partials.user.card', ['user' => $displayed_users[$i]])
-            @endif
-          </div>
-        @endfor
-      </div>
-      <div class="row">
-        @for ($i = 3; $i < 6; $i++)
-          <div class="col-lg">
-            @if ($i < count($displayed_users))
-              @include('partials.user.card', ['user' => $displayed_users[$i]])
-            @endif
-          </div>
-        @endfor
-      </div>
-    </div>
-    <div class="results-picker">
-      {{--@include('partials.pagination')--}}
+      @include('partials.search.user', [
+        'users' => $displayed_users,
+        'count' => $user_count,
+        'page' => 1,
+        'rpp' => 6,
+        'user' => $user
+      ])
     </div>
   </div>
 
@@ -69,16 +56,19 @@
         <form class="container-fluid">
           <div class="input-group">
             <span class="input-group-text" id="basic-addon1"><i class="fas fa-tag text-dark-green"></i></span>
-            <input type="text" class="form-control" placeholder="Tag" aria-label="Tag">
+            <input type="text" id="tag-search-input" class="form-control" placeholder="Tag" aria-label="Tag">
           </div>
         </form>
       </nav>
     </div>
     <div class="moderate-tag container">
-      @include('partials.tag.table', ['tags' => $displayed_tags])
-    </div>
-    <div class="results-picker">
-      {{--@include('partials.pagination')--}}
+      @include('partials.search.tag-table', [
+        'tags' => $displayed_tags,
+        'count' => $tag_count,
+        'page' => 1,
+        'rpp' => 10,
+        'user' => $user
+      ])
     </div>
   </div>
 

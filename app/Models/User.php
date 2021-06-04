@@ -100,9 +100,11 @@ class User extends Authenticatable
             [ $query_string ]
         );
 
-        if($query_string !== '') {
+        if(isset($query_string) && $query_string !== '') {
             $query->whereRaw("rank > 0");
             $query->orderBy("rank");
+        } else {
+            $query->orderBy("u.name");
         }
 
         return self::paginateQuery($query, $rpp, $page);
@@ -122,7 +124,9 @@ class User extends Authenticatable
             [ $query_string ]
         );
 
-        if($query_string !== '') {
+        if(isset($query_string) && $query_string !== '') {
+            error_log("OLA");
+            error_log($query_string);
             $query->whereRaw("rank > 0");
             $query->orderBy("rank");
         }

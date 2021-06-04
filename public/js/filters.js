@@ -244,10 +244,6 @@ function paginateUser(event, type) {
 
     if(currentPage == 0 || currentPage > maxPage) return;
 
-    console.log(currentPage);
-    console.log(maxPage);
-    console.log(resultsPerPage);
-
     sendAjaxRequest(
         "get",
         "/api/search/user",

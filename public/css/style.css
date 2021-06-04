@@ -55,7 +55,7 @@ a.header:hover {
   opacity: 80%;
 }
 
-main {
+main, div.main {
   width: auto;
   margin: 1em auto;
 }

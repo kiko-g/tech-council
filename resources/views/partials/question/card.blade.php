@@ -147,11 +147,11 @@ if ($hasResported) {
               </a>
             </div>
             @endif
-            <div class="btn-group mt-1 rounded">
+            {{-- <div class="btn-group mt-1 rounded">
               <a class="share-button btn blue my-btn-pad2" id="share-button-{{ $question->content_id }}" href="#">
                 <i class="fas fa-share-alt"></i>
               </a>
-            </div>
+            </div> --}}
             @include('partials.report-modal', [
               "type" => "question",
               "content_id" => $question->content_id,
@@ -189,7 +189,7 @@ if ($hasResported) {
   <footer class="card-footer text-muted text-end p-0">
     <blockquote class="blockquote mb-0">
       <p class="card-text px-1 h6">
-        <small class="text-muted">asked {{ $question->content->creation_date }}</small>
+        <small class="text-muted">asked on {{ date_format(date_create($question->content->creation_date), "d/m/Y") }}&nbsp;&#8226;</small>
         <small>
           <a class="signature"
             href="{{ url('user/' . $question->content->author->id) }}">{{ $question->content->author->name }}

@@ -758,26 +758,26 @@ INSERT INTO photo(path) VALUES ('assets/photos/user20.png');
 
 
 -- USER TABLE
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('francisco.friande@fe.up.pt','fiambre','$2b$12$aQ/NVblfeqzfmppFKf9SfuYH.R5mF4eRl49ilkyHc3SK1VZWPq16q','3/14/2021','2000','My name is Francisco Friande, I am 23 years old and I live in Bắc Giang, Vietnam. I''m interested in Photos and Videos','False','True',2);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('francisco.jpg@fe.up.pt','kikogoncalves','$2b$12$4BXMmOuuukR2kRLtQW/pNeatShPKPRgJpFd0tRlgrZrBaY065he/O','3/13/2021','2000','My name is Francisco Gonçalves, I am 21 years old and I live in Porto, Portugal. I''m interested in Android, Keras, Data and JavaScript','False','True',3);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('joao.romao@fe.up.pt','jdiogueiro','$2b$12$tewmm.mBh8tckmhdyjmJF.Lk7sr32pIGDsxm4cW/RBg1z5JPG8Cl2','11/23/2020','2000','My name is João Romão, I am 20 years old and I live in Raghunathpur, India. I''m interested in PyCharm, Eclipse and Mac','False','True',4);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('miguel.pinto@fe.up.pt','mpintarolas','$2b$12$gxJLz6Yo27Emi/S3Cx5WGOdtT3jj5OWOVitTMS7RgyUTd7QstgyMy','10/27/2020','2000','My name is Miguel Pinto, I am 22 years old and I live in Moscow, Russia. I''m interested in Keyboards, Linux and Mac','False','True',5);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cmoore4@amazonaws.com','jlo4ever','$2b$12$GrnqHf4r6iPO5NLkuINTa.6bZf/IMk5cqqzyiwPYY/ojxU9Pb/yui','5/27/2020','45','My name is Cross Moore, I am 31 years old and I live in Kundiān, Pakistan. I''m interested in Powershell, Linux and Angular','False','False',6);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('lwooder5@msu.edu','eliseu_goat','$2b$12$oH5pwtAZBJWbm4Evp2cOwOiRSRSvegBfJHdvVa/DsPBdDdV8603Ba','12/23/2020','63','My name is Lazarus Wooder, I am 25 years old and I live in Paradise, Trinidad and Tobago. I''m interested in XML, Excel, Security and Xiamoi','False','False',7);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('lbrashier6@eepurl.com','LuceB3','$2b$12$w31FLaXXbWLb8HTyQxFjiO/PA6Tws2zkRibOqj7xv1QgnTP4O2gTm','2021-09-02 00:00:00','182','My name is Luce Brashier, I am 18 years old and I live in Nagqu, China. I''m interested in Photo Editing, DOM, CMD and Regex','False','False',8);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('bfolshom7@squarespace.com','john_cleeeese','$2b$12$Pk7mBJ5U4aiZkMHsaO0am.e8YncH68GfeC2wgLyTCN.12QDBNX.NC','2020-05-07 00:00:00','0','My name is Bess Folshom, I am 57 years old and I live in Dobryanka, Russia. I''m interested in Eclipse and HP','True','True',9);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('srugg8@bigcartel.com','ShaylynnR','$2b$12$3DFJAG/73NT9BqCmc4UxueGju46uWBf13K.g0LG6B6dnv5fyv9k4S','2020-12-05 00:00:00','11','My name is Shaylynn Rugg, I am 32 years old and I live in Västervik, Sweden. I''m interested in XML and Cloud','False','False',10);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('byates9@blogs.com','LilYatty','$2b$12$Fu9atx2ZRDHwIry431W2..rHDfcFJgC46wbhAAk3qpwObbXB4yS4K','11/30/2020','0','My name is Babita Yates, I am 25 years old and I live in Chilakalūrupet, India. I''m interested in Web Applications, Algorithms, Circle CI and PlayStation','True','False',11);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('fcastagnea@berkeley.edu','floribella69','$2b$12$DlqmeHRKPHTxDYaDJWmugeptkHzzmTPb3S1J0ocExmef6Q2DEI7H.','11/28/2020','1700','My name is Florella Castagne, I am 34 years old and I live in Hanawa, Japan. I''m interested in Keyboard and Samsung','False','True',12);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('bclaringboldb@utexas.edu','bugsboony12','$2b$12$fVTJt5QLge8ntIPDQ8zcLek8U5LROJMDcYKczTeV93VpwN7s.lwXu','9/23/2020','80','My name is Boony Claringbold, I am 57 years old and I live in ’Aïn el Turk, Algeria. I''m interested in Google Drive and PHP','False','False',13);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('hbetancourtc@altervista.org','hakeeeeeeem123','$2b$12$jC4TkSrDlVj9/EN4s9iEj.aCqDf1QASwX8eLfSPE4hNQzvzHIMaXK','2020-10-08 00:00:00','1930','My name is Hakeem Betancourt, I am 43 years old and I live in Forlì, Italy. I''m interested in Mouse','False','True',14);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('sfitterd@instagram.com','the_office_lover','$2b$12$U7lr.a2WAWBh.LqNBjW8Bu/nskooC2L/GzO06Cz4g1GrFhLpDUH8i','7/17/2020','22','My name is Stanleigh Fitter, I am 47 years old and I live in Oria, Spain. I''m interested in PHP','False','False',15);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('alikelye@goo.gl','fireToTheRain','$2b$12$UOkPBS1tpQl8YqokBQRZnukVDwZEmDnKmCdnHAz0JNQjNWzuuDt2G','2021-07-02 00:00:00','1860','My name is Adelbert Likely, I am 52 years old and I live in Harburg, Germany. I''m interested in Web Scraping, Apache and XML','False','True',16);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('oapperleyf@msu.edu','olive_oil','$2b$12$I5ix3UT4AcJCcaxlqOSPxeXTeMs03ytY59I/B75LtA0Pg86sJuoeC','2020-01-08 00:00:00','4','My name is Olivier Apperley, I am 59 years old and I live in Kōnosu, Japan. I''m interested in Cloud and SQL','False','False',17);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('icasierg@cnbc.com','CaseyNeistat','$2b$12$wmtqgaCYWoR9ItHO2mv2A.tJhyyEC99m/hzUj3b42MxongmgZW/Z2','6/26/2020','2100','My name is Inez Casier, I am 21 years old and I live in Burg Unter-Falkenstein, Germany. I''m interested in Eclipse','True','True',18);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cpatshullh@sciencedaily.com','Patcholi','$2b$12$hsLr9Xe9M5fMD1xIGZNOXuKFMctCpc6xjjP840Q5QOgKuqICpTKG.','2021-12-03 00:00:00','31','My name is Chrysa Patshull, I am 19 years old and I live in Nabatîyé et Tahta, Lebanon. I''m interested in Oracle and C#','False','False',19);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cgasperoi@ehow.com','GassyCassy','$2b$12$kRnmKn.QuNjcGdh.yVALXOiCMauBipNp3xeC78R7tjFjf90AgRnIm','2021-12-03 00:00:00','31','My name is Casandra Gaspero, I am 44 years old and I live in Shāhpura, India. I''m interested in Regex','False','False',20);
-INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('paulocarvalho6@youtu.be','paulinho33','$2b$12$d8OIw6Cf/JLd0slZnMSDoOhYps6Hn48YwvcP9.IPhCoMpM2PA4nHC','4/23/2020','1953','My name is Paulo Carvalho, I am 34 years old and I live in Funchal, Portugal. I''m interested in Data Science and PyCharm','False','True',21);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('francisco.friande@fe.up.pt','fiambre','$2b$12$x6L5XA33SzjSQYgI4sRziOl2l0VZzm8PDy6G2GOsxGwaZrQB0N4d.','3/14/2021','2000','My name is Francisco Friande, I am 23 years old and I live in Bắc Giang, Vietnam. I''m interested in Photos and Videos','False','True',2);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('francisco.jpg@fe.up.pt','kikogoncalves','$2b$12$Vug7AdJLsYB6jvo7.zyr2.5eWjgH4u9xavB3tp7cTxTXeHW9ME.U6','3/13/2021','2000','My name is Francisco Gonçalves, I am 21 years old and I live in Porto, Portugal. I''m interested in Android, Keras, Data and JavaScript','False','True',3);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('joao.romao@fe.up.pt','jdiogueiro','$2b$12$s2WAkN.U/W3fbIkvFPdw2.5ko96o/vuXuogGziBhmkeWlcV258Mv2','11/23/2020','2000','My name is João Romão, I am 20 years old and I live in Raghunathpur, India. I''m interested in PyCharm, Eclipse and Mac','False','True',4);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('miguel.pinto@fe.up.pt','mpintarolas','$2b$12$eQiHDid9PUhwYO57KLIxO.VHYiI9tfonoYEgLO03BnbSNXHOdTxfy','10/27/2020','2000','My name is Miguel Pinto, I am 22 years old and I live in Moscow, Russia. I''m interested in Keyboards, Linux and Mac','False','True',5);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cmoore4@amazonaws.com','jlo4ever','$2b$12$7A/lcb8bKmZLnAQK84OH4.SnITYHIDRy3R3bw1exuVFnxTpFLBPBG','5/27/2020','45','My name is Cross Moore, I am 31 years old and I live in Kundiān, Pakistan. I''m interested in Powershell, Linux and Angular','False','False',6);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('lwooder5@msu.edu','eliseu_goat','$2b$12$oXl.h0FV67IqdNoDOO3k/e0WA3moyUFlMPXMUspnSW1BrNcIZfxH2','12/23/2020','63','My name is Lazarus Wooder, I am 25 years old and I live in Paradise, Trinidad and Tobago. I''m interested in XML, Excel, Security and Xiamoi','False','False',7);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('lbrashier6@eepurl.com','LuceB3','$2b$12$cUmKEpL/G3KqjlJLPTMfzeFdaY64QpfisY.ROGraCuDD.45bfsbS.','2021-09-02 00:00:00','182','My name is Luce Brashier, I am 18 years old and I live in Nagqu, China. I''m interested in Photo Editing, DOM, CMD and Regex','False','False',8);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('bfolshom7@squarespace.com','john_cleeeese','$2b$12$uztSESmv7sF9bSfLm9ZjveXb9MNonxpgOzI5vG4sbTYhzzH.wrwMu','2020-05-07 00:00:00','0','My name is Bess Folshom, I am 57 years old and I live in Dobryanka, Russia. I''m interested in Eclipse and HP','True','True',9);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('srugg8@bigcartel.com','ShaylynnR','$2b$12$HQzFduxfe6v4SQQvMQFbKug0eb4zegmJ.OyXO6s02AFth3VnnLbtm','2020-12-05 00:00:00','11','My name is Shaylynn Rugg, I am 32 years old and I live in Västervik, Sweden. I''m interested in XML and Cloud','False','False',10);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('byates9@blogs.com','LilYatty','$2b$12$PVdrNAVTaaiF0mKSiiPc/OlGzlWS1bbEf1AEGYScIUR.8DUy0M22m','11/30/2020','0','My name is Babita Yates, I am 25 years old and I live in Chilakalūrupet, India. I''m interested in Web Applications, Algorithms, Circle CI and PlayStation','True','False',11);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('fcastagnea@berkeley.edu','floribella69','$2b$12$x7HJaXx4SpjN7KmhuDo7LOg.qtImCaFgZJJkfeoKzZTtJAxTtSMve','11/28/2020','1700','My name is Florella Castagne, I am 34 years old and I live in Hanawa, Japan. I''m interested in Keyboard and Samsung','False','True',12);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('bclaringboldb@utexas.edu','bugsboony12','$2b$12$/.pHc4fSrGUfGWsl0KeaQOlO976JlqGxOH9hZqiX1m0DPJuEitjPG','9/23/2020','80','My name is Boony Claringbold, I am 57 years old and I live in ’Aïn el Turk, Algeria. I''m interested in Google Drive and PHP','False','False',13);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('hbetancourtc@altervista.org','hakeeeeeeem123','$2b$12$LJY0RBoN8Tb/iW0TZgF/weS298UnHANPh.CvwNCYQNZb7U/H.r.jW','2020-10-08 00:00:00','1930','My name is Hakeem Betancourt, I am 43 years old and I live in Forlì, Italy. I''m interested in Mouse','False','True',14);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('sfitterd@instagram.com','the_office_lover','$2b$12$0XsScBr7dNhVGXAkk.dRa.tHPjPt/AeqNgMQ2gCma/uOb/aqVU3nW','7/17/2020','22','My name is Stanleigh Fitter, I am 47 years old and I live in Oria, Spain. I''m interested in PHP','False','False',15);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('alikelye@goo.gl','fireToTheRain','$2b$12$.sXEFNWtNLYiiAtvB0O6COa/SSfHcZp99G6lZIf6.qLOn4LwocbOa','2021-07-02 00:00:00','1860','My name is Adelbert Likely, I am 52 years old and I live in Harburg, Germany. I''m interested in Web Scraping, Apache and XML','False','True',16);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('oapperleyf@msu.edu','olive_oil','$2b$12$62VxQ4xYCrq9Zo5Tb6wjGOB5zWW2u/9UtjvQRq./X1jFIbGx.0.8K','2020-01-08 00:00:00','4','My name is Olivier Apperley, I am 59 years old and I live in Kōnosu, Japan. I''m interested in Cloud and SQL','False','False',17);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('icasierg@cnbc.com','CaseyNeistat','$2b$12$VGex2oYPQnKmmDNGYvviV.Kzs9y22MdJczKqnAg0Lt/D/4mWz3qiW','6/26/2020','2100','My name is Inez Casier, I am 21 years old and I live in Burg Unter-Falkenstein, Germany. I''m interested in Eclipse','True','True',18);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cpatshullh@sciencedaily.com','Patcholi','$2b$12$ef/mAPrjr8xlXm7AY7wWYe41QKFy.lS9QH0nEe94SyRU7pgSV.OHK','2021-12-03 00:00:00','31','My name is Chrysa Patshull, I am 19 years old and I live in Nabatîyé et Tahta, Lebanon. I''m interested in Oracle and C#','False','False',19);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('cgasperoi@ehow.com','GassyCassy','$2b$12$VShxdPuj5Qe6/kyRsCYPgeRcEIhrwmorUhhBAikntHQlC/zNvPPkW','2021-12-03 00:00:00','31','My name is Casandra Gaspero, I am 44 years old and I live in Shāhpura, India. I''m interested in Regex','False','False',20);
+INSERT INTO "user"(email,"name","password",join_date,reputation,bio,banned,expert,profile_photo) VALUES ('paulocarvalho6@youtu.be','paulinho33','$2b$12$VoijKG2YXD6kPqVu/DdosOiSXC7yW6ao5qom1iTs0WzDNrnv6z61G','4/23/2020','1953','My name is Paulo Carvalho, I am 34 years old and I live in Funchal, Portugal. I''m interested in Data Science and PyCharm','False','True',21);
 
 
 
@@ -865,8 +865,8 @@ INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Are
 
 printFiles();
 </code></pre>
-This code does work, but could something go wrong with this? I had someone tell me that you&#39;re not supposed to use <code>async</code>/<code>await</code> in a higher-order function like this, so I just wanted to ask if there was any issue with this.','2021-02-19 10:16:07','2021-02-19 23:28:07',5);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('How can you find out which process is listening on a TCP or UDP port on Windows?','2021-02-19 10:44:55',NULL,6);
+This code does work, but could something go wrong with this? I had someone tell me that you&#39;re not supposed to use <code>async</code>/<code>await</code> in a higher-order function like this, so I just wanted to ask if there was any issue with this.','2021-02-01 10:16:07','2021-02-01 23:28:07',5);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('How can you find out which process is listening on a TCP or UDP port on Windows?','2021-02-02 15:04:07',NULL,6);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('If I go to settings -&gt; iCloud -&gt; manage storage There are 2 categories:
 <ol>
 <li>Backups (118 GB)</li>
@@ -874,21 +874,21 @@ INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('If 
 </ol>
 In my backups, there&#39;s photo library (109.25 GB)
 I&#39;m confused, what&#39;s the difference between storing my photos in iCloud and backing them up then storing them in iCloud.
-What happens if I click on &quot; turn off and delete&quot; the backup for my photo library?','2021-02-19 11:13:43',NULL,7);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<code>pip</code> is a replacement for <code>easy_install</code>. But should I install <code>pip</code> using <code>easy_install</code> on Windows? Is there a better way?','2021-02-19 11:42:31',NULL,8);
+What happens if I click on &quot; turn off and delete&quot; the backup for my photo library?','2021-02-03 19:52:07',NULL,7);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<code>pip</code> is a replacement for <code>easy_install</code>. But should I install <code>pip</code> using <code>easy_install</code> on Windows? Is there a better way?','2021-02-05 00:40:07',NULL,8);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('How to remove the debug banner in flutter?
 I am using flutter screenshot and I would like the screenshot not to have banner. Now it does have.
 Note that I get not supported for emulator message for profile and release mode.
-','2021-02-19 12:11:19',NULL,9);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I have a question. I am subscribed to PS+, and I started downloading a free game in June. Can I download it anytime I want or is there a deadline before they charge me for it?','2021-02-19 12:40:07',NULL,10);
+','2021-02-06 05:28:07',NULL,9);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I have a question. I am subscribed to PS+, and I started downloading a free game in June. Can I download it anytime I want or is there a deadline before they charge me for it?','2021-02-07 10:16:07',NULL,10);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I am really interested in AI and want to start programming in this field. What are the various areas within AI? e.g. Neural Networks etc.
 What book can be recommended for a beginner in AI and are there any preferred languages used in the field of AI?
-What book can be recommended for a beginner in AI and are there any preferred languages used in the field of AI?','2021-02-19 13:08:55',NULL,11);
+What book can be recommended for a beginner in AI and are there any preferred languages used in the field of AI?','2021-02-08 15:04:07',NULL,11);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I am an amateur game developer, and I&#39;ve been reading a lot on how computer graphics rendering works lately. I was reading on the Z-buffer recently and I can&#39;t quite seem to be able to wrap my head around what exactly the Z-buffer looks like in terms of memory. It&#39;s described to contain depth information for each fragment that will be drawn on-screen, and that modern Z-buffers have 32-bits, so would that mean that on a, let&#39;s say, 1920x1080 screen it&#39;d be just above 8MB (1920 <em> 1080 </em> 32) per frame?
-I still don&#39;t quite understand what this value would be to a GPU (maybe it can crunch it easily), or if this value is even correct. Most demostrative implementations I found implement the Z-buffer as a simple array with size (height * width), so I&#39;m basing myself off of that.','2021-02-19 13:37:43',NULL,12);
+I still don&#39;t quite understand what this value would be to a GPU (maybe it can crunch it easily), or if this value is even correct. Most demostrative implementations I found implement the Z-buffer as a simple array with size (height * width), so I&#39;m basing myself off of that.','2021-02-09 19:52:07',NULL,12);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('When viewing videos with the YouTube app, constant info message popups during playback shows. Videos that show those info popups show a white circle with the letter &#39;i&#39;.
-Is there a way to disable that?','2021-02-19 14:06:31',NULL,13);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Can I use comments inside a JSON file? If so, how?','2021-02-19 14:35:19','2021-02-19 15:47:19',14);
+Is there a way to disable that?','2021-02-11 00:40:07',NULL,13);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Can I use comments inside a JSON file? If so, how?','2021-02-12 05:28:07','2021-02-12 06:40:07',14);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<p>Sure the code does work, but I&#39;m pretty sure it doesn&#39;t do what you expect it to do. It just fires off multiple asynchronous calls, but the <code>printFiles</code> function does immediately return after that.</p>
 <h3 id="reading-in-sequence">Reading in sequence</h3>
 <p>If you want to read the files in sequence, you cannot use forEach indeed. Just use a modern for &hellip; of loop instead, in which await will work as expected:</p>
@@ -910,7 +910,7 @@ INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<p>
      <span class="hljs-built_in">console</span>.log(contents);
   })); 
 }
-</code></pre>','2021-02-19 15:04:07',NULL,20);
+</code></pre>','2021-02-13 10:16:07',NULL,20);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<pre><code class="lang-js"><span class="hljs-keyword">const</span> { forEach } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"p-iteration"</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs-promise"</span>);
 
@@ -922,7 +922,7 @@ INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<pr
     <span class="hljs-built_in">console</span>.log(contents);
   });
 }
-</code></pre>','2021-02-19 15:32:55',NULL,19);
+</code></pre>','2021-02-14 15:04:07',NULL,19);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<h3 id="on-powershell">On Powershell</h3>
 TCP
 <pre><code><span class="hljs-keyword">Get</span>-Process -Id (<span class="hljs-keyword">Get</span>-NetTCPConnection -LocalPort YourPortNumberHere).OwningProcess
@@ -930,24 +930,24 @@ TCP
 <pre><code><span class="hljs-keyword">Get</span>-Process -Id (<span class="hljs-keyword">Get</span>-NetUDPEndpoint -LocalPort YourPortNumberHere).OwningProcess
 </code></pre><h3 id="on-cmd">On CMD</h3>
 <pre><code>C:\&gt; netstat -<span class="hljs-selector-tag">a</span> -b
-</code></pre>','2021-02-19 16:01:43',NULL,18);
+</code></pre>','2021-02-15 19:52:07',NULL,18);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Cloud Photos is for syncing between your devices and replacing your photos if you lose your device. It retains a full copy of your photos in iCloud (accessible on iCloud.com as well).
 
 iCloud Backup is a one-way backup of your current photo library on your device. It can only be restored by restoring your entire iCloud Backup.
 
 You can safely turn off Photos from your backup - unless you prefer to manually manage your photos, I''d recommend doing this instead of turning off iCloud Photos.
 
-If iCloud Photo Library is on, there will be a note saying "Photo Library is backed up separately as part of iCloud Photos" - if you don''t see this message, double check that your device is actually syncing with iCloud Photos. You can do this in the Photos Setting or in iCloud Settings > Photos.','2021-02-19 16:30:31',NULL,17);
+If iCloud Photo Library is on, there will be a note saying "Photo Library is backed up separately as part of iCloud Photos" - if you don''t see this message, double check that your device is actually syncing with iCloud Photos. You can do this in the Photos Setting or in iCloud Settings > Photos.','2021-02-17 00:40:07',NULL,17);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('<pre><code><span class="hljs-keyword">python</span> <span class="hljs-built_in">get</span>-pip.<span class="hljs-keyword">py</span>
-</code></pre>','2021-02-19 16:59:19',NULL,16);
+</code></pre>','2021-02-18 05:28:07',NULL,16);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('On your <code>MaterialApp</code> set <code>debugShowCheckedModeBanner</code> to <code>false</code>.
 <pre><code class="lang-dart"><span class="hljs-selector-tag">MaterialApp</span>(
   <span class="hljs-attribute">debugShowCheckedModeBanner</span>: false,
 )
 </code></pre>
 The debug banner will also automatically be removed on release build.
-','2021-02-19 17:28:07',NULL,15);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Once you added the PS+ game to your library, you can download and play it any time, as long as you still have PS+. If you stop having PS+, you can no longer play/download the game AFAIK.','2021-02-19 17:56:55',NULL,14);
+','2021-02-19 10:16:07',NULL,15);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Once you added the PS+ game to your library, you can download and play it any time, as long as you still have PS+. If you stop having PS+, you can no longer play/download the game AFAIK.','2021-02-20 15:04:07',NULL,14);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Classical application areas of AI:
 <ul>
 <li>Robotics</li>
@@ -976,7 +976,7 @@ Recommendable programming languages:
 <li>Lisp</li>
 <li>Java (many algorithms are discussed in Java nowadays)</li>
 </ul>
-There are also a number of interesting answers to this question (which sort of covers the same ground).','2021-02-19 18:25:43',NULL,13);
+There are also a number of interesting answers to this question (which sort of covers the same ground).','2021-02-21 19:52:07',NULL,13);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('The Z buffer used to be specialized memory set aside for a single purpose, some web sites still explain it like that, but no longer.
 Now the Z buffer is just a chunk of memory you allocate, or an API like OpenGL allocates on your behalf.
 The size of that chunk of memory will depend on the type of the Z buffer values, in the example you gave it is a 32bit [floating point] values, but 24 bits is also very common. Always choose the smallest size the program needs as it can have a large effect on the performance of the application. It is indeed multiplied by the size of framebuffer so 8mb is correct for the example you gave.
@@ -986,26 +986,26 @@ A few other little details:
 The Z buffer is generally cleared at the beginning of each frame with a clear value that can be set (or must be set) via the API. This becomes the default value that writes to the Z buffer are tested against.
 GPU&#39;s have specialized hardware for writing the Z buffer, this hardware can speed up writing to memory by a factor of 2 or more and can be leveraged when creating things like shadow maps, so it is not limited for use with just the Z buffer.
 Depth testing can be turned off/on for each draw call, which can be useful.
-','2021-02-19 18:54:31',NULL,12);
+','2021-02-23 00:40:07',NULL,12);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('No.
 The JSON is data only, and if you include a comment, then it will be data too.
 You could have a designated data element called &quot;_comment&quot; (or something) that should be ignored by apps that use the JSON data.
-You would probably be better having the comment in the processes that generates/receives the JSON, as they are supposed to know what the JSON data will be in advance, or at least the structure of it.','2021-02-19 19:23:19',NULL,11);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Could you please explain why does <code>for ... of ...</code> work?','2021-02-19 19:52:07',NULL,18);
+You would probably be better having the comment in the processes that generates/receives the JSON, as they are supposed to know what the JSON data will be in advance, or at least the structure of it.','2021-02-24 05:28:07',NULL,11);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Could you please explain why does <code>for ... of ...</code> work?','2021-02-25 10:16:07',NULL,18);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Ok i know why... Using <strong>Babel</strong> will transform <code>async</code>/<code>await</code> to generator function and using <code>forEach</code> means that each iteration has an individual generator function, which has nothing to do with the others. so they will be executed independently and has no context of <code>next()</code> with others. Actually, a simple <code>for()</code> loop also works because the iterations are also in one single generator function.
-','2021-02-19 20:20:55',NULL,19);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('In short, because it was designed to work :-) await suspends the current function evaluation, including all control structures. Yes, it is quite similar to generators in that regard (which is why they are used to polyfill async/await).','2021-02-19 20:49:43',NULL,20);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('So <code>files.map(async (file) =&gt; ...</code> is equivalent to <code>files.map((file) =&gt; new Promise((rej, res) =&gt; { ...</code>?','2021-02-19 21:18:31',NULL,18);
+','2021-02-26 15:04:07',NULL,19);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('In short, because it was designed to work :-) await suspends the current function evaluation, including all control structures. Yes, it is quite similar to generators in that regard (which is why they are used to polyfill async/await).','2021-02-27 19:52:07',NULL,20);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('So <code>files.map(async (file) =&gt; ...</code> is equivalent to <code>files.map((file) =&gt; new Promise((rej, res) =&gt; { ...</code>?','2021-03-01 00:40:07',NULL,18);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Not really, an async function is quite different from a Promise executor callback, but yes the map callback returns a promise in both cases.
-','2021-02-19 21:47:19',NULL,20);
+','2021-03-02 05:28:07',NULL,20);
 INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('When you come to learn about JS promises, but instead use half an hour translating latin ;)
-','2021-02-19 22:16:07',NULL,20);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Worked for me! Thanks a lot!','2021-02-19 22:44:55',NULL,7);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('You''re welcome :D','2021-02-19 23:13:43',NULL,6);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Worked for me on Powershell. Thanks!','2021-02-19 23:42:31',NULL,9);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('You''re welcome :)','2021-02-20 00:11:19',NULL,8);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Great question. Should be bountied!','2021-02-20 00:40:07',NULL,10);
-INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I really need an answer for this!','2021-02-20 01:08:55',NULL,11);
+','2021-03-03 10:16:07',NULL,20);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Worked for me! Thanks a lot!','2021-03-04 15:04:07',NULL,7);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('You''re welcome :D','2021-03-05 19:52:07',NULL,6);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Worked for me on Powershell. Thanks!','2021-03-07 00:40:07',NULL,9);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('You''re welcome :)','2021-03-08 05:28:07',NULL,8);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('Great question. Should be bountied!','2021-03-09 10:16:07',NULL,10);
+INSERT INTO content(main,creation_date,modification_date,author_id) VALUES ('I really need an answer for this!','2021-03-10 15:04:07',NULL,11);
 
 
 
