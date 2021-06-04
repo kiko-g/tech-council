@@ -120,7 +120,7 @@ if ($hasResported) {
               <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
                 id="report-button-{{ $answer->content_id }}"
                 @guest href={{ route('login') }} @endguest
-                @auth data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
+                @auth data-bs-toggle="modal" data-bs-target="#report-modal-{{ $answer->content_id }}" @endauth>
                 <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
               </a>
             </div>

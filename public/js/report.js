@@ -96,7 +96,9 @@ function reportContentHandler() {
     reportButton.classList.add('disabled')
     reportButton.classList.remove('report')
     reportButton.classList.add('active-report')
-    let modal = document.getElementsByClassName('report-modal-' + response.content_id) //TODO: dismiss modal
+    let closeBtn = document.getElementById('btn-close-content-' + response.content_id) //TODO: dismiss modal
+    closeBtn.click()
+
 
   } else { }
 }
@@ -112,7 +114,8 @@ function reportUserHandler() {
         reportButton.classList.remove('report')
         reportButton.classList.add('active-report')
         
-        let modal = document.getElementsByClassName('user-report-modal-' + response.content_id) //TODO: dismiss modal
+        let closeBtn = document.getElementById('user-report-modal-' + response.content_id) //TODO: dismiss modal
+        closeBtn.click()
 
     } else {}
 }

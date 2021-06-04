@@ -1,11 +1,11 @@
-<div class="modal fade report-modal-{{ $content_id }}" id="report-modal-{{ $type }}-{{ $content_id }}" tabindex="-1">
+<div class="modal fade report-modal-{{ $content_id }}" id="report-modal-{{ $content_id }}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-wine">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-flag text-white"></i>&nbsp;
           Report {{ $type }}
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" id="btn-close-content-{{ $content_id }}" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="report-form-{{ $content_id }}" class="" action="
