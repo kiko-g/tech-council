@@ -104,4 +104,18 @@ class User extends Authenticatable
 			]
 		);
     }
+
+    public function isReportedByUser()
+    {
+        if (!Auth::check())
+            return false;
+
+        $user_report = DB::table('user_report')
+        ->join('report', 'user_report.report_id', '=', 'report.id')
+        ->where('user_id', $this->id)
+            ->where('reporter_id', Auth::user()->id)
+            ->get();
+
+        return count($user_report) > 0 ? true : false;
+    }
 }

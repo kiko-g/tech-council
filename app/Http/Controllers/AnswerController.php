@@ -164,7 +164,6 @@ class AnswerController extends Controller
     public function setBest($id)
     {
         $answer = Answer::findOrFail($id);
-        error_log("OLAAAA");
         $this->authorize('set_best', $answer);
 
         $answer->is_best_answer = true;

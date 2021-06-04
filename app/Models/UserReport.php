@@ -14,6 +14,8 @@ class UserReport extends Model
     public $timestamps = false;
 
     protected $table = 'user_report';
+    protected $primaryKey = 'user_id';
+    const MAX_MAIN_LENGTH = 1000;
 
     public function report() {
         return $this->belongsTo('App\Models\Report', 'report_id');

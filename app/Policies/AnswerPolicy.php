@@ -25,7 +25,6 @@ class AnswerPolicy
     }
 
     public function set_best(User $user, Answer $answer) {
-        print_r($answer->question->bestAnswer());
-        return $user->id == $answer->question->content->author_id && is_null($answer->question->bestAnswer());
+        return ($user->id == $answer->question->content->author_id);
     }
 }

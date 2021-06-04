@@ -9,17 +9,24 @@ $cardHighlight = "";
 $isBestAnswer = $answer->is_best_answer;
 $isExpertAnswer = $answer->content->author->expert;
 $isModeratorAnswer = $answer->content->author->moderator;
+$bestBadgeClass = "hidden";
+$expertBadgeClass = "hidden";
+$moderatorBadgeClass = "hidden";
+
 
 if ($isExpertAnswer) {
   $cardHighlight = "bg-expert";
+  $expertBadgeClass = "";
 }
 
 if ($isModeratorAnswer) {
   $cardHighlight = "bg-mod";
+  $moderatorBadgeClass = "";
 }
 
 if ($isBestAnswer) {
   $cardHighlight = "bg-great";
+  $bestBadgeClass = "";
 }
   
 if ($hasResported) {
@@ -80,7 +87,7 @@ if ($hasResported) {
       @endauth
     </div>
   </div>
-  <div class="card-body {{ $cardHighlight }}">
+  <div id="answer-body-{{ $answer->content_id }}" class="card-body {{ $cardHighlight }}">
     <article class="row row-cols-3 mb-1 pe-1" data-content-id="{{ $answer->content_id }}">
       <div class="col-auto flex-wrap">
         <div id="votes-{{ $answer->content_id }}" class="votes btn-group-vertical mt-1 flex-wrap">
@@ -106,48 +113,46 @@ if ($hasResported) {
       </div>
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">
-        @if ($isExpertAnswer || $bestAnswer || $isModeratorAnswer)
-          <div class="float-end">
-            <div class="btn-group-vertical mb-2" role="group">
-              @if($isBestAnswer) <span class="badge float-end text-start great"  style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> @endif
-              @if($isModeratorAnswer) <span class="badge float-end text-start mod"    style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>@endif
-              @if($isExpertAnswer) <span class="badge float-end text-start expert" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>@endif
+        <div class="float-end">
+          <div class="btn-group-vertical mb-2" role="group">
+              <span id="best-badge-{{ $answer->content_id }}" class="badge float-end text-start great {{ $bestBadgeClass }}"    style="width: 75px">Best&nbsp;@include('partials.icons.check', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Best Answer']) </span> 
+              <span class="badge float-end text-start mod {{ $moderatorBadgeClass }}" style="width: 75px">Mod&nbsp;@include('partials.icons.moderator', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Moderator Medal']) </span>
+              <span class="badge float-end text-start expert {{ $expertBadgeClass }}" style="width: 75px">Expert&nbsp;@include('partials.icons.medal', ['classes' => 'float-end', 'width' => 17, 'height' => 17, 'title' => 'Expert Medal']) </span>
             </div>
           </div>
-        @endif
-        <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1 collapse show answer-collapse-{{ $answer->content_id }}">
+        <div id="{{ 'answer-content-' . $answer->content_id }}" class="mb-1">
             {!! $answer->content->main !!}
         </div>
         @include('partials.question.edit-answer-form', ['answer' => $answer])
-        <div id="interact-answer-{{ $answer->content_id }}" class="col-md flex-wrap">
-          <div class="btn-group mt-1 rounded">
-            <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
-              id="report-button-{{ $answer->content_id }}"
-              @guest href={{ route('login') }} @endguest
-              @auth data-bs-toggle="modal" data-bs-target="#report-modal-answer-{{ $answer->content_id }}" @endauth>
-              <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
-            </a>
+          <div id="interact-answer-{{ $answer->content_id }}" class="col-md flex-wrap">
+            <div class="btn-group mt-1 rounded">
+              <a class="report-button my-btn-pad2 btn btn-outline-success {{ $report_class }} {{ $report_availability }}" 
+                id="report-button-{{ $answer->content_id }}"
+                @guest href={{ route('login') }} @endguest
+                @auth data-bs-toggle="modal" data-bs-target="#report-modal-{{ $answer->content_id }}" @endauth>
+                <i class="{{ $report_icon }} fa-flag"></i>&nbsp;{{ $report_text }}
+              </a>
+            </div>
+            @auth
+              @if((Auth::user()->id == $answer->question->content->author_id) && is_null($answer->question->bestAnswer($question->content_id)))
+                <div class="btn-group mt-1 rounded">
+                  <a class="best-button my-btn-pad2 btn teal" 
+                    id="best-button-{{ $answer->content_id }}"
+                    @guest href={{ route('login') }} @endguest 
+                    @auth data-bs-toggle="modal" data-bs-target="#best-answer-modal-{{ $answer->content_id }}" @endauth>
+                    <i class="fa fa-check-circle"></i>&nbsp;Set Best Answer
+                  </a>
+                </div>
+              @endif
+            @endauth
+            @include('partials.report-modal', [
+              "type" => "answer",
+              "content_id" => $answer->content_id,
+            ])
+            @include('partials.best-modal', [
+              "content_id" => $answer->content_id,
+            ])
           </div>
-          @auth
-            @if((Auth::user()->id == $answer->question->content->author_id) && is_null($answer->question->bestAnswer($question->content_id)))
-              <div class="btn-group mt-1 rounded">
-                <a class="best-button my-btn-pad2 btn teal" 
-                  id="best-button-{{ $answer->content_id }}"
-                  @guest href={{ route('login') }} @endguest 
-                  @auth data-bs-toggle="modal" data-bs-target="#best-answer-modal-{{ $answer->content_id }}" @endauth>
-                  <i class="fa fa-check-circle"></i>&nbsp;Set Best Answer
-                </a>
-              </div>
-            @endif
-          @endauth
-          @include('partials.report-modal', [
-            "type" => "answer",
-            "content_id" => $answer->content_id,
-          ])
-          @include('partials.best-modal', [
-            "content_id" => $answer->content_id,
-          ])
-        </div>
         @include('partials.question.comment-section', ['comments' => $answer->comments, 'id' => $answer->content_id])
       </div>
     </article>

@@ -40,23 +40,36 @@
 
     
     @auth
+      @php
+        if (isset($user)) {
+          if ($user->isReportedByUser()) {
+            $report_class = 'active-report';
+            $report_text = 'Reported';
+            $report_availability = 'disabled';
+          }
+          else {  
+            $report_class = 'report';
+            $report_text = 'Report';
+            $report_availability = '';
+          }
+        }
+      @endphp
+
       <div class="card-body btn-group @if($user->id == Auth::user()->id) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
         <a type="button" href="mailto:{{ $user->email }}" class="btn blue-alt">Contact</a>
       </div>
       @if($user->id == Auth::user()->id)
-      <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
-        <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
-      </div>
+        <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
+          <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
+        </div>
       @endif
-      @if (Auth::user()->moderator && !$user->moderator)
-      <div class="card-body btn-group pt-0" role="group" aria-label="Second group">
-        <a type="button" href="#" class="btn wine">Ban </a>
+      <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
+        <a type="button" class="btn wine {{ $report_class }} {{ $report_availability }}" id="user-report-button-{{ $user->id }}"
+         data-bs-toggle="modal" data-bs-target="#user-report-modal-{{ $user->id }}"> {{ $report_text }}
+        </a>
       </div>
-      @endif
-      @if (!Auth::user()->moderator && !$user->moderator && Auth::user()->id != $user->id)
-      <div class="card-body btn-group pt-0" role="group" aria-label="Second group">
-        <a type="button" href="#" class="btn wine">Report</a>
-      </div>
-      @endif      
+      @include('partials.user-report-modal', [
+        "user_id" => $user->id,
+      ])
     @endauth
   </div>

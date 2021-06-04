@@ -22,7 +22,7 @@
               &#8226;
               <a class="text-red-400 hover">
                 <i class="fas fa-flag fa-sm" data-bs-toggle="modal" id="report-button-{{ $comment->content_id }}"
-                  data-bs-target="#report-modal-comment-{{ $comment->content_id }}">
+                  data-bs-target="#report-modal-{{ $comment->content_id }}">
                 </i>
                 @include('partials.report-modal', [
                   "type" => "comment",

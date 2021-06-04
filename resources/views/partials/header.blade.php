@@ -38,8 +38,8 @@
                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout&nbsp;&nbsp;<i class="fas fa-sign-out-alt fa-sm"></i></a> </li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ url('user/' . $user->id) }}">Ask Question&nbsp;<i class="fas fa-plus-square fa-sm"></i></a></li>
-                <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li>
-                <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li>
+                {{-- <li><a class="dropdown-item" href="#">Saved Items&nbsp;<i class="fa fa-bookmark fa-sm"></i></a></li> --}}
+                {{-- <li><a class="dropdown-item" href="#">Unread Posts&nbsp;<span class="badge align-middle">24</span></a></li> --}}
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('faq') }}">FAQ&nbsp;<i class="fas fa-question-circle fa-sm"></i></a></li>
                 <li><a class="dropdown-item" href="{{ route('about') }}">About&nbsp;<i class="fas fa-info-circle fa-sm"></i></a></li>
