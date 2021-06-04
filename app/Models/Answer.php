@@ -43,7 +43,6 @@ class Answer extends Model
 
     public function isReportedByUser()
     {
-        //TODO:
         if (!Auth::check())
             return false;
 
