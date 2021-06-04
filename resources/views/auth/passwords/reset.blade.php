@@ -1,11 +1,14 @@
+ 
 @extends('layouts.entry')
 
 @section('content')
-  <form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
+  <form method="POST" action="{{ route('password.update') }}">
+    @csrf
+
+    <input type="hidden" name="token" value="{{ $token }}">
 
     <header class="text-start text-light mb-4 ms-4">
-      <h3>Sign in</h3>
+      <h3>Reset password</h3>
     </header>
     <div class="form-floating mb-4">
       <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
@@ -25,13 +28,23 @@
         </span>
       @endif
     </div>
-    <div class="d-flex justify-content-between">
-      <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
-      <div>
-        <a href="{{ route('password.form') }}" class="btn wine">Request password change</a>
-        <input type="submit" value="Submit" class="btn blue" />
+    <div class="form-floating mb-4">
+        <input name="password_confirmation" type="password" class="form-control" id="floatingPasswordConfirmation" placeholder="Password" required>
+        <label for="floatingPasswordConfirmation">Confirm Password</label>
+        @if ($errors->has('floatingPasswordConfirmation'))
+          <span class="error">
+            {{ $errors->first('floatingPasswordConfirmation') }}
+          </span>
+        @endif
       </div>
-    </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
+        <div>
+          <button onclick="" class="btn wine">Reset</button>
+          <input type="submit" value="Submit" class="btn blue" />
+        </div>
+      </div>
   </form>
 
   @if ($errors->any())

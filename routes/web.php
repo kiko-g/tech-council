@@ -38,8 +38,11 @@ Route::post('login', 'Auth\LoginController@login');                             
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');                        // R103
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');   // R104
 Route::post('register', 'Auth\RegisterController@register');                                // R105
-Route::get('/login/reset', 'Auth\RecoverController@showResetForm');                         // R106
-Route::get('/login/reset', 'Auth\RecoverController@reset');                                 // R107
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name("password.form");
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name("password.email");
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name("password.reset");
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name("password.update");
 
 /*
 -----------------------

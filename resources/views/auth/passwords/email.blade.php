@@ -1,11 +1,11 @@
 @extends('layouts.entry')
 
 @section('content')
-  <form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
+  <form method="POST" action="{{ route('password.email') }}">
+    @csrf
 
     <header class="text-start text-light mb-4 ms-4">
-      <h3>Sign in</h3>
+      <h3>Recover password</h3>
     </header>
     <div class="form-floating mb-4">
       <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
@@ -16,22 +16,13 @@
         </span>
       @endif
     </div>
-    <div class="form-floating mb-4">
-      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-      <label for="floatingPassword">Password</label>
-      @if ($errors->has('floatingPassword'))
-        <span class="error">
-          {{ $errors->first('floatingPassword') }}
-        </span>
-      @endif
-    </div>
-    <div class="d-flex justify-content-between">
-      <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
-      <div>
-        <a href="{{ route('password.form') }}" class="btn wine">Request password change</a>
-        <input type="submit" value="Submit" class="btn blue" />
+
+      <div class="d-flex justify-content-between">
+        <a href="{{ route('register') }}" class="link-light entry-anchor text-start">Don't have an account? <br> Sign up</a>
+        <div>
+          <input type="submit" value="Send reset link" class="btn blue" />
+        </div>
       </div>
-    </div>
   </form>
 
   @if ($errors->any())

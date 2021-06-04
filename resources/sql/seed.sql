@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS user_vote_answer CASCADE;
 DROP TABLE IF EXISTS saved_question CASCADE;
 DROP TABLE IF EXISTS question_tag CASCADE;
 
+
 ------------------
 -- Create types
 ------------------
@@ -48,8 +49,18 @@ CREATE TABLE "user" (
     bio TEXT,
     expert BOOLEAN NOT NULL DEFAULT FALSE,
     banned BOOLEAN NOT NULL DEFAULT FALSE,
+    remember_token VARCHAR,
     search tsvector,
     profile_photo INTEGER REFERENCES photo(id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+DROP TABLE IF EXISTS password_resets CASCADE;
+
+CREATE TABLE password_resets (
+    id SERIAL PRIMARY KEY,
+    email TEXT NOT NULL,
+    token TEXT NOT NULL,
+    created_at TIMESTAMP
 );
 
 CREATE TABLE tag (

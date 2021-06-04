@@ -47,7 +47,6 @@
               <h5 class="card-title mt-1"><strong>Biography</strong></h5>
               <p id="user-biography" class="card-text">{{ $user->bio }}</p>
               {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
-              <button id="request-password-{{ $user->id }}" class="btn wine mt-3 float-end">Request password change</button>
             </div>
           </div>
         </div>
