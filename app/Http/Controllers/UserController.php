@@ -65,14 +65,6 @@ class UserController extends Controller
         $user = User::find($request->user_id);
         $this->authorize('logged_in', $user);
 
-        if($request->image != "null") {
-            if ($request->file('image')) {
-                // error_log("need saving");
-                // $image = new
-                // Storage::put('assets/photos' . $request->user_id . '.png', $image);
-            }
-        }
-
         if($request->username != $user->name) {
             $user->name = $request->username;
         }
