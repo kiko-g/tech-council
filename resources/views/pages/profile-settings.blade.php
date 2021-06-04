@@ -1,21 +1,19 @@
-@auth 
+@auth
   @extends('layouts.app', 
     [
       'user' => $user,
       'js' => [
         'input.js',
         'components.js',
-    <d v  'oss="cand">
-      <djv c'a,="cd-body">
-          N 
-      </div>
-    </div>
+        'question.js',
         'comment.js',
-        app.js',
+        'app.js',
         'vote.js',
         'report.js',
-        'follow.js',()
-        'sav.js',-profile.js
+        'follow.js',
+        'save.js',
+        'edit-profile.js',
+      ]
     ]
   )
 
@@ -28,8 +26,7 @@
             if (!isset($user->profile_photo_obj->path)) {
                 $photo = '/storage/assets/photos/user-default.png';
             } else {
-          
-      $photo = $user->profile_photo_obj->path;
+                $photo = $user->profile_photo_obj->path;
                 if (Storage::disk('public')->exists($photo)) {
                     $photo = '/storage/' . $photo;
                 } else {
@@ -37,7 +34,7 @@
                 }
             }
           @endphp
-          <img id="user-photo" src="{{ $photo }}" class="card-img-top rounded-extra p-3" alt="user-image-{{ $user->id }}">
+          <img src="{{ $photo }}" class="card-img-top rounded-extra p-3" alt="user-image-{{ $user->id }}">
         </div>
         <div class="col-lg-8">
           <div class="card m-3 ms-0">

@@ -249,12 +249,6 @@ function submitQuestion(event) {
     let tags = [];
     for (const tag of tagElements) tags.push(tag.dataset.tag);
 
-    console.log({
-        title: title,
-        main: md.render(main),
-        tags: tags
-    });
-
     sendAjaxRequest(
         "post",
         "/api/create/question",

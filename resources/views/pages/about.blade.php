@@ -76,7 +76,7 @@ $member_counter = 0;
     </div>
 
 
-    <div class="shadow p-3 mb-5 bg-light border border-5 rounded-3 fs-5 text-start">
+    <div class="shadow p-3 mb-5 mt-3 bg-light border border-5 rounded-3 fs-5 text-start">
       Any doubts contact us at <a href="techcouncilfeup@gmail.com">techcouncilfeup@gmail.com</a>
     </div>
   </div>

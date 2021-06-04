@@ -71,13 +71,6 @@ function editQuestionInPage(event) {
     for (const tag of tagElements) tags.push(tag.dataset.tag);
     let id = document.getElementById("edit-question-header").dataset.id;
 
-    console.log({
-        id: id,
-        title: title,
-        main: main,
-        tags: tags
-    });
-
     sendAjaxRequest(
         "put",
         "/api/edit/question/" + id,

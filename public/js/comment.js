@@ -11,15 +11,8 @@ function addListeners() {
 }
 
 function submitQuestionComment() {
-    console.log("question comment");
-
     let id = this.dataset.parentId;
     let main = document.getElementById(`comment-main-${id}`).value;
-
-    console.log({
-        question_id: id,
-        main: main
-    });
 
     sendAjaxRequest(
         'post',
@@ -35,11 +28,6 @@ function submitQuestionComment() {
 function submitAnswerComment() {
     let id = this.dataset.parentId;
     let main = document.getElementById(`comment-main-${id}`).value;
-
-    console.log({
-        answer_id: id,
-        main: main
-    });
 
     sendAjaxRequest(
         'post',

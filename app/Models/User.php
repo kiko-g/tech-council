@@ -132,8 +132,6 @@ class User extends Authenticatable
         );
 
         if(isset($query_string) && $query_string !== '') {
-            error_log("OLA");
-            error_log($query_string);
             $query->whereRaw("rank > 0");
             $query->orderBy("rank");
         }

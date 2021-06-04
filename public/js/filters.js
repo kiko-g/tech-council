@@ -12,7 +12,7 @@ questionRadioFilters.forEach(element => {
     if (element.checked) questionActiveRadio = element.id.split('_')[1];
     element.addEventListener('click', event => {
         questionActiveRadio = element.id.split('_')[1];
-        if(questionActiveRadio !== questionPreviousRadio) {
+        if (questionActiveRadio !== questionPreviousRadio) {
             sendQuestionFilterRequest(questionActiveRadio);
         }
         questionPreviousRadio = questionActiveRadio;
@@ -21,8 +21,8 @@ questionRadioFilters.forEach(element => {
 
 function sendQuestionFilterRequest(filterType) {
     sendAjaxRequest(
-        "get", 
-        "api/search/question", 
+        "get",
+        "api/search/question",
         {
             query_string: queryString,
             type: filterType,
@@ -48,25 +48,22 @@ function questionFilterHandler() {
 let tagActiveRadio = null;
 let tagPreviousRadio = null;
 let tagRadioFilters = document.querySelectorAll('[id^=tagFilterRadio]');
- 
+
 tagRadioFilters.forEach(element => {
-     if (element.checked) tagActiveRadio = element.id.split('_')[1];
-     element.addEventListener('click', event => {
-         tagActiveRadio = element.id.split('_')[1];
-         if(tagActiveRadio !== tagPreviousRadio) {
-             sendTagFilterRequest(tagActiveRadio);
-         }
-         tagPreviousRadio = tagActiveRadio;
-     })
- });
+    if (element.checked) tagActiveRadio = element.id.split('_')[1];
+    element.addEventListener('click', event => {
+        tagActiveRadio = element.id.split('_')[1];
+        if (tagActiveRadio !== tagPreviousRadio) {
+            sendTagFilterRequest(tagActiveRadio);
+        }
+        tagPreviousRadio = tagActiveRadio;
+    })
+});
 
- function sendTagFilterRequest(filterType) {
-
-    console.log(filterType);
-
+function sendTagFilterRequest(filterType) {
     sendAjaxRequest(
-        "get", 
-        "/api/search/tag", 
+        "get",
+        "/api/search/tag",
         {
             query_string: queryString,
             type: filterType,
@@ -97,7 +94,7 @@ let questionCurrent = document.getElementById("search-question-current");
 try {
     questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
     questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
-} catch(ignore) {}
+} catch (ignore) { }
 
 function updateQuestionHandlers() {
     questionPrevious = document.getElementById("search-question-previous");
@@ -107,7 +104,7 @@ function updateQuestionHandlers() {
     try {
         questionPrevious.addEventListener("click", event => paginateQuestion(event, "prev"));
         questionNext.addEventListener("click", event => paginateQuestion(event, "next"));
-    } catch(ignore) {}
+    } catch (ignore) { }
 }
 
 function paginateQuestion(event, type) {
@@ -115,13 +112,13 @@ function paginateQuestion(event, type) {
     currentPage = parseInt(questionCurrent.getAttribute("data-page"));
     maxPage = parseInt(questionCurrent.getAttribute("data-pages"));
     resultsPerPage = parseInt(questionCurrent.getAttribute("data-rpp"));
-    if(type === "prev") {
+    if (type === "prev") {
         currentPage--;
     } else {
         currentPage++;
     }
 
-    if(currentPage == 0 || currentPage > maxPage) return;
+    if (currentPage == 0 || currentPage > maxPage) return;
 
     sendAjaxRequest(
         "get",
@@ -156,7 +153,7 @@ let tagCurrent = document.getElementById("search-tag-current");
 try {
     tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
     tagNext.addEventListener("click", event => paginateTag(event, "next"));
-} catch(ignore) {}
+} catch (ignore) { }
 
 
 function updateTagHandlers() {
@@ -167,7 +164,7 @@ function updateTagHandlers() {
     try {
         tagPrevious.addEventListener("click", event => paginateTag(event, "prev"));
         tagNext.addEventListener("click", event => paginateTag(event, "next"));
-    } catch(ignore) {}
+    } catch (ignore) { }
 }
 
 function paginateTag(event, type) {
@@ -176,13 +173,13 @@ function paginateTag(event, type) {
     maxPage = parseInt(tagCurrent.getAttribute("data-pages"));
     resultsPerPage = parseInt(tagCurrent.getAttribute("data-rpp"));
 
-    if(type === "prev") {
+    if (type === "prev") {
         currentPage--;
     } else {
         currentPage++;
     }
 
-    if(currentPage == 0 || currentPage > maxPage) return;
+    if (currentPage == 0 || currentPage > maxPage) return;
 
     sendAjaxRequest(
         "get",
@@ -216,7 +213,7 @@ let userCurrent = document.getElementById("search-user-current");
 try {
     userPrevious.addEventListener("click", event => paginateUser(event, "prev"));
     userNext.addEventListener("click", event => paginateUser(event, "next"));
-} catch(ignore) {}
+} catch (ignore) { }
 
 
 function updateUserHandlers() {
@@ -227,7 +224,7 @@ function updateUserHandlers() {
     try {
         userPrevious.addEventListener("click", event => paginateUser(event, "prev"));
         userNext.addEventListener("click", event => paginateUser(event, "next"));
-    } catch(ignore) {}
+    } catch (ignore) { }
 }
 
 function paginateUser(event, type) {
@@ -236,13 +233,13 @@ function paginateUser(event, type) {
     maxPage = parseInt(userCurrent.getAttribute("data-pages"));
     resultsPerPage = parseInt(userCurrent.getAttribute("data-rpp"));
 
-    if(type === "prev") {
+    if (type === "prev") {
         currentPage--;
     } else {
         currentPage++;
     }
 
-    if(currentPage == 0 || currentPage > maxPage) return;
+    if (currentPage == 0 || currentPage > maxPage) return;
 
     sendAjaxRequest(
         "get",

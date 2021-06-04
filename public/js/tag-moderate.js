@@ -7,7 +7,7 @@ function editingTag() {
     const tagId = this.dataset.tagId;
     const confirmButton = document.getElementById(`confirm-tag-${tagId}-edit`);
     const cancelButton = document.getElementById(`cancel-tag-${tagId}-edit`);
-    
+
     const name = document.getElementById(`tag-${tagId}-name`);
     const originalName = name.value;
     const description = document.getElementById(`tag-${tagId}-description`);
@@ -83,7 +83,6 @@ function deleteTag() {
 }
 
 function deleteTagHandler() {
-    console.log(this.responseText);
     let confirmation = document.createElement("div");
     let tagTable = document.getElementById("tag-table");
     if (this.status == 200 || this.status == 201) {

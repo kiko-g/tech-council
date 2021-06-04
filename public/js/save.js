@@ -24,7 +24,6 @@ function saveHandler() {
 
     // change save button
     let saveButton = document.getElementById("save-" + response.content_id)
-    console.log(saveButton);
     saveButton.innerHTML = `<i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Saved`
     saveButton.classList.remove("bookmark")
     saveButton.classList.add("active-bookmark")
@@ -41,7 +40,6 @@ function unsaveHandler() {
     saveButton.innerHTML = `<i class="far fa-bookmark" aria-hidden="true"></i>&nbsp;Save`
     saveButton.classList.remove("active-bookmark")
     saveButton.classList.add("bookmark")
-    console.log(saveButton);
   }
   else { }
 }

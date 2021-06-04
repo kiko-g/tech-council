@@ -100,7 +100,6 @@ class SearchController extends Controller
 	 * @return |Illuminate\Http\Response
 	 */
     public function searchTags(Request $request) {
-        error_log("OLA");
         $request->validate([
             'query_string' => ['max:' . SearchController::MAX_QUERY_STRING_LENGTH],
             'rpp' => ['required', 'integer'],
@@ -162,8 +161,6 @@ class SearchController extends Controller
         ]);
 
         $results = User::searchFull($request->query_string, $request->rpp, $request->page);
-
-        error_log($results['count']);
 
         return view('partials.search.user', [
             'users' => User::hydrate($results['data']),
