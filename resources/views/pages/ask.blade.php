@@ -18,12 +18,14 @@
   <div class="card mb-4 p-2-0 border-0 rounded">
     <header id="create-question-header" class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
     <div class="card-body">
+      <div class="container" id="ask-errors"> 
+      </div>
       <form>
         <div>
-          <textarea id="input-title" class="form-control border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
+          <textarea id="input-title" class="form-control border border-2 bg-light mb-2" rows="1" placeholder="Question title" required></textarea>
         </div>
         <div class="textarea-container">
-          <textarea id="input-body" class="form-control border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
+          <textarea id="input-body" class="form-control border border-2 bg-light mb-2" rows="8" placeholder="Question body" required></textarea>
           <button id="toggle-stackedit" class="btn btn blue toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">StackEdit</button>
         </div>
         
@@ -38,10 +40,12 @@
               <a class="btn btn-danger wine border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
             <div id="ask-selected-tags">
+            </div>
+            <div>
+              <input id="ask-question" class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
+            </div>
           </div>
-        </div>
-        <input id="ask-question" class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
-
+          
         {{-- Select tags --}}
         <div class="card collapse" id="addTag" style="width: 18rem;">
           <div class="card-body">

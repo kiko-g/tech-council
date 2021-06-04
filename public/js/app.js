@@ -14,7 +14,7 @@ function formatParams(params) {
     .join("&");
 }
 
-function sendAjaxRequest(method, url, data, handler) {
+function sendAjaxRequest(method, url, data, handler, headers = []) {
   if (method === 'get' && data) {
     url += formatParams(data);
   }
@@ -23,6 +23,9 @@ function sendAjaxRequest(method, url, data, handler) {
   request.open(method, url, true);
   request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  for (let i = 0; i < headers.length; ++i) {
+    request.setRequestHeader(headers[i].type, headers[i].value);
+  }
   request.addEventListener('load', handler);
 
   if (method === 'get') {

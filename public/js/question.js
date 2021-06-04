@@ -263,20 +263,41 @@ function submitQuestion(event) {
             main: main,
             tags: tags
         },
-        createQuestionHandler
+        createQuestionHandler,
+        [{
+            type: 'Accept',
+            value: 'application/json'
+        }]
     );
 }
 
 function createQuestionHandler() {
     if (this.status != 200 && this.status != 201) {
-        let header = document.getElementById("create-question-header");
-        let confirmation = document.createElement("div");
-        confirmation.innerHTML = errorAlert("Question could not be created!");
-        header.parentNode.parentNode.insertBefore(confirmation, header.parentNode);
+
+        let responseErrors = JSON.parse(this.response).errors
+        let alertArea = document.getElementById("ask-errors");
+        let alert = document.createElement("div");
+        let alertErrors = document.createElement("ul");
+        alert.classList.add("alert", "alert-danger");
+
+        for (let e in responseErrors) {
+            let err = document.createElement("li");
+            err.innerHTML = responseErrors[e][0];
+            alertErrors.appendChild(err);
+        }
+
+        alert.innerHTML = "";
+        alertArea.innerHTML = "";
+
+        alert.appendChild(alertErrors);
+        alertArea.appendChild(alert);
     } else {
-        console.log("got here");
         document.documentElement.innerHTML = this.responseText;
     }
+}
+
+function validateAskQuestionForm() {
+
 }
 
 /**

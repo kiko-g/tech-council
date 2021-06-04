@@ -28,9 +28,11 @@ class QuestionController extends Controller
 
         $request->validate([
             'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'title' => ['required', 'min:' . Question::MIN_TITLE_LENGTH],
             'main' => ['required', 'max:' . Question::MAX_MAIN_LENGTH],
+            'main' => ['required', 'min:' . Question::MIN_MAIN_LENGTH],
             'tags' => ['required', function ($attribute, $value, $fail) {
-                $tags = explode(' ', $value);
+                $tags = explode(',', $value);
                 if(count($tags) !== count(array_flip($tags))) {
                     $fail('The '.$attribute.' must have unique tags.');
                 }
