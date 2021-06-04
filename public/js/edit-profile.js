@@ -1,34 +1,36 @@
 const saveEditButton = document.querySelector('[id^=save-edit]');
 const userID = saveEditButton.id.split("-").pop()
+let inputImage = document.getElementById('inputImage')
+let inputEmail = document.getElementById('inputEmail')
+let inputUsername = document.getElementById('inputUsername')
+let inputBio = document.getElementById('inputBio')
+
+let image;
+const reader = new FileReader();
+inputImage.addEventListener("change", function (event) {
+    image = inputImage.files[0]
+    document.getElementById("photoError").innerText = ""
+    const file = event.target.files[0]
+    inputImage.setAttribute('data-hasnewfile', "yes")
+    reader.readAsDataURL(file)
+})
 
 function submitEditProfile() {
     if (!isAuthenticated) return
-
-    let inputImage = document.getElementById('inputImage')
-    let inputEmail = document.getElementById('inputEmail')
-    let inputUsername = document.getElementById('inputUsername')
-    let inputBio = document.getElementById('inputBio')
-
-    // inputImage.value === undefined ? null : 
-    // inputEmail.value === originalEmail.value ? null :
-    // inputUsername.value === originalUsername.value ? null : 
-    // inputBio.value === originalBio.value ? null : 
-
-    let imageArg = inputImage.value
-    let emailArg = inputEmail.value
-    let usernameArg = inputUsername.value
-    let bioArg = inputBio.value
-    if (imageArg === undefined) imageArg = null;
+    let argEmail = inputEmail.value
+    let argUsername = inputUsername.value
+    let argBio = inputBio.value
+    if (inputImage.value === undefined) image = null;
 
     sendAjaxRequest(
         'put',
         "/user/" + userID + "/edit",
         {
             user_id: userID,
-            image: imageArg,
-            email: emailArg,
-            username: usernameArg,
-            bio: bioArg,
+            image: image,
+            email: argEmail,
+            username: argUsername,
+            bio: argBio,
         },
         editProfileHandler
     )

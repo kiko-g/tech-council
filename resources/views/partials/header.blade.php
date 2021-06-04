@@ -14,7 +14,7 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
           @auth
-            <li id="user-dropdown" class="nav-item dropdown dropbottom">
+            <li id="user-dropdown" class="nav-item dropdown dropstart">
               <a class="nav-link dropdown-toggle btn btn-outline-light nohover btn-sm border-0" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                 @php
                   if(!isset($user->profile_photo_obj->path)) {
@@ -40,14 +40,13 @@
                 <li><a class="dropdown-item" href="{{ route('about') }}">About&nbsp;<i class="fas fa-info-circle fa-sm"></i></a></li>
               </ul>
             </li>
-            {{-- <li class="nav-item"> <a href="{{ route('home') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-envelope fa-sm"></i>&nbsp;Inbox&nbsp;<span class="badge stack align-middle">24</span> </a> </li> --}}
             @if ($user->moderator)
               <li class="nav-item"> <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ url('moderator') }}"> <i class="fas fa-briefcase fa-sm"></i>&nbsp;Moderator Area</a> </li>
-              <li class="nav-item"> <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ url('user/' . $user->id) }}"><i class="fas fa-address-card"></i>&nbsp;Profile</a></li>
             @endif
+            <li class="nav-item"> <a class="nav-link hover-cute btn btn-outline-light btn-sm border-0" href="{{ url('user/' . $user->id) }}"><i class="fas fa-address-card"></i>&nbsp;Profile</a></li>
             @else
-            <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a> </li>
-            <li class="nav-item"> <a href="{{ route('register') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0" type="submit"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a> </li>
+            <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"><i class="fas fa-sign-in-alt fa-sm"></i>&nbsp;Login</a> </li>
+            <li class="nav-item"> <a href="{{ route('register') }}" class="nav-link hover-cute btn btn-outline-light btn-sm border-0"><i class="fas fa-user-plus fa-sm"></i>&nbsp;Register</a> </li>
           @endauth
         </ul>
       </div>
@@ -55,7 +54,6 @@
   </nav>
   <script>
     var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-    console.log(dropdownToggleEl);
     var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
       return new bootstrap.Dropdown(dropdownToggleEl);
     });

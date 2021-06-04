@@ -63,11 +63,13 @@
           <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
         </div>
       @endif
-      <div class="card-body btn-group @if($user->id != Auth::user()->id) {{ 'pt-0' }} @endif" role="group" aria-label="Second group">
+      @if(!$user->moderator)
+      <div class="card-body btn-group pt-0" role="group" aria-label="Second group">
         <a type="button" class="btn wine {{ $report_class }} {{ $report_availability }}" id="user-report-button-{{ $user->id }}"
          data-bs-toggle="modal" data-bs-target="#user-report-modal-{{ $user->id }}"> {{ $report_text }}
         </a>
       </div>
+      @endif
       @include('partials.user-report-modal', [
         "user_id" => $user->id,
       ])

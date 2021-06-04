@@ -1,4 +1,4 @@
-<div class="modal fade user-report-modal-{{ $user_id }}" id="user-report-modal-{{ $user_id }}" tabindex="-1">
+<div class="modal fade user-report-modal-{{ $user_id }} text-start" id="user-report-modal-{{ $user_id }}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-wine">

@@ -189,7 +189,7 @@ function submitAnswer(event) {
     sendAjaxRequest(
         "post",
         "/api/question/" + questionId + "/answer",
-        { main: md.render(fields.main) },
+        { main: fields.main },
         answerAddedHandler
     );
 }
@@ -245,7 +245,7 @@ function submitQuestion(event) {
     let title = document.getElementById("input-title").value;
     let main = document.getElementById("input-body").value;
     let tagElements = document.getElementById("ask-selected-tags").children;
-    
+
     let tags = [];
     for (const tag of tagElements) tags.push(tag.dataset.tag);
 
