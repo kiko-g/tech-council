@@ -15,21 +15,23 @@
   ]
 )
 
+<script src="{{ '/js/stackedit.js' }}" defer> </script>
+<script src={{ '/js/question-edit.js' }} defer></script>
+
 @section('content')
   <div class="card mb-4 p-2-0 border-0 rounded">
-    <header class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
+    <header class="card-header bg-petrol text-white font-source-sans-pro rounded-top" id="edit-question-header" data-id="{{ $question->content_id }}"> Edit question </header>
     <section class="card-body">
-      <form method="POST" action="{{ url('/api/question/insert') }}">
+      <form method="POST" action="{{ url('/api/edit/question/' . $question->content_id) }}">
+        @method('PUT')
+        @csrf
         <div>
-          <textarea id="input-title" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
+          <textarea id="input-title" class="form-control shadow-sm border border-2 bg-light mb-2" rows="1" placeholder="Question title">{{ $question->title }}</textarea>
         </div>
         <div class="textarea-container">
-          <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body"></textarea>
+          <textarea id="input-body" class="form-control shadow-sm border border-2 bg-light mb-2" rows="8" placeholder="Question body">{{ $question->content->main }}</textarea>
           <button id="toggle-stackedit" class="btn btn blue toggle-stackedit off" type="button" data-bs-original-title="Switch to stackedit">StackEdit</button>
         </div>
-        
-        <script src="{{ '/js/stackedit.js' }}" defer> </script>
-        <script src={{ '/js/question-edit.js' }} defer></script>
         <div class="row row-cols-auto mb-3">
           <div id="tags" class="col-lg-auto">
             <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false">
@@ -39,14 +41,14 @@
               <a class="btn btn-danger wine border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
             <div id="ask-selected-tags">
-              <!--
-              <div class="tag-selected btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
+              @foreach ($question->tags as $tag)
+              <div class="search-tag btn-group mt-1" data-tag="{{ $tag->name }}">
+                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;{{ $tag->name }}</a>
               </div>
-              -->
+              @endforeach
             </div>
           </div>
-          <input class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
+          <input id="edit-question-submit" class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
         </div>
 
         {{-- Select tags --}}

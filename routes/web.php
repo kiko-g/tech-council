@@ -85,6 +85,9 @@ Route::get('/create/question', function () {
     ]);
 })->name('create/question'); // could be 'ask/'?
 
+Route::get('/edit/question/{id}', 'QuestionController@edit');
+Route::put('/api/edit/question/{id}', 'QuestionController@update');
+
 Route::post('/api/follow/tag', 'FollowTagController@follow');
 Route::post('/api/unfollow/tag', 'FollowTagController@unfollow'); //TODO: delete
 Route::post('/api/save/question', 'SaveQuestionController@save');

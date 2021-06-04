@@ -50,9 +50,9 @@ if ($hasResported) {
         @if (Auth::user()->id == $question->content->author_id || Auth::user()->moderator)
           <div class="col-auto btn-group">
             @if (Auth::user()->id == $question->content->author_id && $include_comments)
-              <button type="button" class="btn p-0 collapse show edit-question-button">
+              <a type="button" class="btn p-0 collapse show edit-question-button" href={{ url("edit/question/" . $question->content_id) }}>
                 <i class="fas fa-pencil-alt text-yellow-400 hover mt-1 ms-2"></i>
-              </button>
+              </a>
             @elseif(Auth::user()->moderator && $include_comments)
               <button type="button" class="btn p-0 collapse show moderator-edit edit-question-button"
                 data-bs-toggle="collapse" data-bs-target=".moderator-edit" aria-expanded="false">
