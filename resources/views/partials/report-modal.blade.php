@@ -1,6 +1,6 @@
 <div class="modal fade report-modal-{{ $content_id }}" id="report-modal-{{ $content_id }}" tabindex="-1">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content border-1">
       <div class="modal-header bg-wine">
         <h5 class="modal-title" id="report-modal-label-{{ $content_id }}"><i class="fas fa-flag text-white"></i>&nbsp;
           Report {{ $type }}
@@ -43,21 +43,20 @@
                   It's abusive or harmful
                 </label>
               </div>
-              <p class="d-none text-red-400 mt-2" id="report-{{ $content_id }}-radio-invalid-feeback">
-                Please select a reason for reporting this content
-              </p>
             </div>
+            <p class="d-none text-red-400 mt-2" id="report-{{ $content_id }}-radio-invalid-feeback">
+              Please select a reason for reporting this content
+            </p>
           </section>
           <textarea class="form-control border border-2 bg-light mt-3" id="report-description-{{ $content_id }}"
           rows="3" placeholder="Talk us through the situation in more detail."></textarea>
           <div class="invalid-feedback"> Please enter a description with &gt; 10 and &lt; 1000 characters. </div>
         </form>
       </div>
-    </div>
-
-    <div class="modal-footer">
-      <button id="submit-report-button-{{ $content_id }}" onclick="submitContentReport(this.id)" type="button"
-        class="submit-report-button btn blue">Submit</button>
+      <div class="modal-footer">
+        <button id="submit-report-button-{{ $content_id }}" onclick="submitContentReport(this.id)" type="button"
+          class="submit-report-button btn blue">Submit</button>
+      </div>
     </div>
   </div>
 </div>
