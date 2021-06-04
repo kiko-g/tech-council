@@ -11,7 +11,7 @@
     </li>
 
     <li class="page-item">
-      <a id="{{$type ?? ''}}current" class="page-link blue active" page="{{$page}}" pages="{{$pages}}" rpp="{{$rpp ?? 6}}" href="#">
+      <a id="{{$type ?? ''}}current" class="page-link blue active" data-page="{{$page}}" data-pages="{{$pages}}" data-rpp="{{$rpp ?? 6}}" href="#">
         {{$page}} / {{$pages}}
       </a>
     </li>

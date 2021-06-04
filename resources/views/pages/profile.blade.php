@@ -12,7 +12,7 @@
       'report.js',
       'follow.js',
       'save.js',
-      'filters.js'
+      'profile-filters.js'
     ]
   ]
 )
@@ -20,9 +20,12 @@
 @section('content')
   @include('partials.filters.profile')
   <section id="user-questions">
-    @foreach ($user_questions as $question)
-      @include('partials.question.card', ['question' => $question, 'include_comments' => false, 'voteValue' => $question->getVoteValue()])
-    @endforeach
+    @include('partials.search.question', [
+      'questions' => $user_questions,
+      'count' => $question_count,
+      'page' => 1,
+      'rpp' => 6
+    ])
   </section>
 @endsection
 

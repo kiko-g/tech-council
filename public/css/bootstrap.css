@@ -748,3 +748,8 @@ button:focus {
 .hidden {
   display: none !important;
 }
+
+.clear-text {
+  color: black !important;
+  font-size: 16px !important;
+}

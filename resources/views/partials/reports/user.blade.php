@@ -23,9 +23,9 @@
               {{ $user_report->report->reporter->name }}
             </a>
             @if ($user_report->report->reporter->moderator)
-              @include('partials.moderator-badge')
+              @include('partials.icons.moderator')
             @elseif ($user_report->report->reporter->expert)
-              @include('partials.expert-badge')
+              @include('partials.icons.medal')
             @endif
           </td>
           <td>

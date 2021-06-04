@@ -1,47 +1,52 @@
 const saveEditButton = document.querySelector('[id^=save-edit]');
 const userID = saveEditButton.id.split("-").pop()
+let inputImage = document.getElementById('inputImage')
+let inputEmail = document.getElementById('inputEmail')
+let inputUsername = document.getElementById('inputUsername')
+let inputBio = document.getElementById('inputBio')
+
+let image;
+const reader = new FileReader();
+inputImage.addEventListener("change", function (event) {
+    image = inputImage.files[0]
+    document.getElementById("photoError").innerText = ""
+    const file = event.target.files[0]
+    inputImage.setAttribute('data-hasnewfile', "yes")
+    reader.readAsDataURL(file)
+})
 
 function submitEditProfile() {
     if (!isAuthenticated) return
+    let argEmail = inputEmail.value
+    let argUsername = inputUsername.value
+    let argBio = inputBio.value
+    if (inputImage.value === undefined) image = null;
 
-    let inputImage = document.getElementById('inputImage')
-    let inputEmail = document.getElementById('inputEmail')
-    let inputUsername = document.getElementById('inputUsername')
-    let inputBio = document.getElementById('inputBio')
-
-    // inputImage.value === undefined ? null : 
-    // inputEmail.value === originalEmail.value ? null :
-    // inputUsername.value === originalUsername.value ? null : 
-    // inputBio.value === originalBio.value ? null : 
-
-    let imageArg = inputImage.value
-    let emailArg = inputEmail.value
-    let usernameArg = inputUsername.value
-    let bioArg = inputBio.value
-    if (imageArg === undefined) imageArg = null;
-
-    console.log("hypocrticial people");
-    console.log("/user/" + userID + "/edit");
     sendAjaxRequest(
         'put',
         "/user/" + userID + "/edit",
         {
             user_id: userID,
-            image: imageArg,
-            email: emailArg,
-            username: usernameArg,
-            bio: bioArg,
+            image: image,
+            email: argEmail,
+            username: argUsername,
+            bio: argBio,
         },
         editProfileHandler
     )
-    console.log("be like");
-    console.log("yeah this one fucking sucks");
 }
 
 function editProfileHandler() {
     if (this.status == 200 || this.status == 201) {
         let response = JSON.parse(this.responseText)
-        console.log(response)
+        console.log(response);
+        let displayName = document.getElementById('user-name')
+        let displayEmail = document.getElementById('user-email')
+        let displayBio = document.getElementById('user-biography')
+
+        displayName.innerHTML = response.username;
+        displayEmail.innerHTML = `<strong> Email</strong>:&nbsp;` + response.email;
+        displayBio.innerHTML = response.bio;
     }
     else { }
 }

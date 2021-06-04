@@ -6,6 +6,7 @@ use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use PDOException;
 
 class UserController extends Controller
@@ -18,8 +19,13 @@ class UserController extends Controller
      */
     public function showProfile($id)
     {
-        $user = User::find($id);
-        $questions_result = Question::search('', 6, 1, null, null, $user->id);
+        try {
+            $user = User::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
+
+        $questions_result = Question::searchBest('', 6, 1, null, null, $user->id);
 
         return view('pages.profile', [
             'user' => $user,
@@ -36,7 +42,11 @@ class UserController extends Controller
      */
     public function showProfileSettings($id)
     {
-        $user = User::find($id);
+		try {
+            $user = User::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         $this->authorize('logged_in', $user);
         
         return view('pages.profile-settings', [
@@ -55,20 +65,24 @@ class UserController extends Controller
         $user = User::find($request->user_id);
         $this->authorize('logged_in', $user);
 
-        if($request->image == "null") error_log("save me");
+        if($request->image != "null") {
+            if ($request->file('image')) {
+                // error_log("need saving");
+                // $image = new
+                // Storage::put('assets/photos' . $request->user_id . '.png', $image);
+            }
+        }
+
         if($request->username != $user->name) {
             $user->name = $request->username;
-            error_log("Changed username");
         }
 
         if ($request->bio != $user->bio) {
             $user->bio = $request->bio;
-            error_log("Changed bio");
         }
 
         if ($request->email != $user->email) {
             $user->email = $request->email;
-            error_log("Changed email");
         }
 
         try {

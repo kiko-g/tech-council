@@ -12,12 +12,11 @@
       'follow.js',
       'save.js',
       'tag-search.js',
+      'question-edit.js',
+      'stackedit.js'
     ]
   ]
 )
-
-<script src="{{ '/js/stackedit.js' }}" defer> </script>
-<script src={{ '/js/question-edit.js' }} defer></script>
 
 @section('content')
   <div class="card mb-4 p-2-0 border-0 rounded">

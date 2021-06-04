@@ -80,7 +80,7 @@
   left: 0;
 }
 
-#toggle-stackedit {
+#toggle-stackedit, #toggle-stackedit-answer {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
@@ -110,7 +110,7 @@
   text-decoration: underline;
 }
 
-.toggle-stackedit.posrel {
+.toggle-stackedit.posrel, .toggle-stackedit-answer.posrel {
   position: relative !important;
   display: flex !important;
   top: 0 !important;
@@ -119,14 +119,13 @@
   bottom: 0 !important;
 }
 
-.toggle-stackedit.off {
+.toggle-stackedit.off, .toggle-stackedit-answer.off {
   color: #007aff;
   background-color: #fff;
 }
 
-.toggle-stackedit.on {
+.toggle-stackedit.on, .toggle-stackedit-answer.on {
   color: #fff;
-  <<<<<<< HEAD background-color: #007aff;
-  =======background-color: #1c5686;
-  >>>>>>>master
+  background-color: #007aff;
+  background-color: #1c5686;
 }

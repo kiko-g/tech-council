@@ -16,11 +16,6 @@
         <i class="fas fa-fire fa-xs text-orange-300"></i>&nbsp;Trending
       </label>
 
-      <input type="radio" class="btn-check" name="{{$filter_prefix}}_btnradio" id="filterRadio4_interactions">
-      <label class="btn blue-alt rounded-when-responsive text-start-responsive" for="filterRadio4_interactions">
-        <i class="fas fa-comments fa-xs text-gray"></i>&nbsp;Interactions
-        {{--  <span class="badge align-middle">57</span>  --}}
-      </label>
     </div>
 
     <div class="btn-group btn-group-vertical-when-responsive" role="group" aria-label="Basic radio toggle button group">

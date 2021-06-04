@@ -20,9 +20,9 @@
         <td>
           <span>{{ $tag->author->name }}</span>
           @if ($tag->author->moderator)
-            @include('partials.moderator-badge')
+            @include('partials.icons.moderator')
           @elseif ($tag->author->expert)
-            @include('partials.expert-badge')
+            @include('partials.icons.medal')
           @endif
         </td>
         <td>

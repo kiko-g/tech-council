@@ -28,9 +28,11 @@ class QuestionController extends Controller
 
         $request->validate([
             'title' => ['required', 'max:' . Question::MAX_TITLE_LENGTH],
+            'title' => ['required', 'min:' . Question::MIN_TITLE_LENGTH],
             'main' => ['required', 'max:' . Question::MAX_MAIN_LENGTH],
+            'main' => ['required', 'min:' . Question::MIN_MAIN_LENGTH],
             'tags' => ['required', function ($attribute, $value, $fail) {
-                $tags = explode(' ', $value);
+                $tags = explode(',', $value);
                 if(count($tags) !== count(array_flip($tags))) {
                     $fail('The '.$attribute.' must have unique tags.');
                 }
@@ -135,7 +137,11 @@ class QuestionController extends Controller
      */
     public function showPage($id)
     {
-        $question = Question::find($id);
+        try {
+            $question = Question::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         //echo $question->votes_difference;
         return view('pages.question', [
             'question' => $question,
@@ -151,7 +157,11 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::findOrFail($id);
+        try {
+            $question = Question::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         return view('pages.edit-question', ['question' => $question, 'user' => Auth::user()]);
     }
 

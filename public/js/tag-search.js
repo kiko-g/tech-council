@@ -15,7 +15,7 @@ function searchAskTags(event) {
             query_string: event.target.value,
             rpp: 10,
             page: 1,
-            type: 'popular',
+            type: 'follows',
             is_view: 0
         }, 
         tagSearchHandler

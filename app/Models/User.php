@@ -121,8 +121,11 @@ class User extends Authenticatable
                 plainto_tsquery('simple', ?)) as rank",
             [ $query_string ]
         );
-        $query->whereRaw("rank > 0");
-        $query->orderBy("rank");
+
+        if($query_string !== '') {
+            $query->whereRaw("rank > 0");
+            $query->orderBy("rank");
+        }
 
         return self::paginateQuery($query, $rpp, $page);
     }

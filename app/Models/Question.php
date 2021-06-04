@@ -29,6 +29,8 @@ class Question extends Model
 
     const MAX_TITLE_LENGTH = 100;
     const MAX_MAIN_LENGTH = 1000;
+    const MIN_TITLE_LENGTH = 15;
+    const MIN_MAIN_LENGTH = 25;
 
     public function content()
     {
@@ -86,7 +88,7 @@ class Question extends Model
         return $counter;
     }
 
-    public static function baseSearch($query_string) {
+    public static function baseSearch($query_string, $tag, $author, $saved) {
         $query = Question::query()
         ->select('q.*', 'rank')
         ->distinct();
@@ -111,12 +113,6 @@ class Question extends Model
             $query->order("rank");
         }
 
-        return $query;
-    }
-
-    public static function search($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
-        $query = self::baseSearch($query_string);
-
         if(isset($tag)) {
             $query->tag([$tag]);
         }
@@ -129,27 +125,33 @@ class Question extends Model
             $query->saved($saved);
         }
 
+        return $query;
+    }
+
+    public static function search($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
+        $query = self::baseSearch($query_string, $tag, $author, $saved);
+
         return self::paginateQuery($query, $rpp, $page);
     }
 
-    public static function searchBest($query_string, $rpp, $page) {
-        $query = self::baseSearch($query_string);
+    public static function searchBest($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
+        $query = self::baseSearch($query_string, $tag, $author, $saved);
 
         $query->order('numerical');
 
         return self::paginateQuery($query, $rpp, $page);
     }
 
-    public static function searchNew($query_string, $rpp, $page) {
-        $query = self::baseSearch($query_string);
+    public static function searchNew($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
+        $query = self::baseSearch($query_string, $tag, $author, $saved);
 
         $query->order('date');
 
         return self::paginateQuery($query, $rpp, $page);
     }
 
-    public static function searchTrending($query_string, $rpp, $page) {
-        $query = self::baseSearch($query_string);
+    public static function searchTrending($query_string, $rpp, $page, $tag=null, $author=null, $saved=null) {
+        $query = self::baseSearch($query_string, $tag, $author, $saved);
 
         # TODO: change base query
 
@@ -202,7 +204,7 @@ class Question extends Model
      */
     public function scopeAuthor($query, $author) {
         if ($author != null) {
-            $query->orWhere('u.id', $author);
+            $query->orWhere('c.author_id', $author);
         }
     }
 
@@ -225,7 +227,7 @@ class Question extends Model
 
     public function scopeTag($query, $tag) {
         if ($tag != null) {
-            $query->where('t.id', $tag);
+            $query->orWhere('t.id', $tag);
         }
     }
 
@@ -236,7 +238,7 @@ class Question extends Model
      */
     public function scopeSaved($query, $user) {
         if ($user != null) {
-            $query->where('sq.user_id', $user);
+            $query->orWhere('sq.user_id', $user);
         }
     }
 
