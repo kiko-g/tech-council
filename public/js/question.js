@@ -273,7 +273,6 @@ function submitQuestion(event) {
 
 function createQuestionHandler() {
     if (this.status != 200 && this.status != 201) {
-
         let responseErrors = JSON.parse(this.response).errors
         let alertArea = document.getElementById("ask-errors");
         let alert = document.createElement("div");
@@ -292,7 +291,9 @@ function createQuestionHandler() {
         alert.appendChild(alertErrors);
         alertArea.appendChild(alert);
     } else {
-        document.documentElement.innerHTML = this.responseText;
+        let response = JSON.parse(this.response);
+        window.location = `/question/${response.id}`;
+        //document.documentElement.innerHTML = this.responseText;
     }
 }
 

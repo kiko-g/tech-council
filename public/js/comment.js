@@ -1,8 +1,5 @@
 let addComments = document.getElementsByClassName("add-comment");
-for (const addComment of addComments) {
-    console.log(addComment);
-    addComment.addEventListener("click", addListeners);
-}
+for (const addComment of addComments) addComment.addEventListener("click", addListeners);
 
 function addListeners() {
     let id = this.dataset.parentId;
@@ -62,5 +59,6 @@ function submitCommentHandler() {
         let commentNode = document.createElement('div');
         commentNode.innerHTML = response.comment;
         comments.appendChild(commentNode);
+        document.getElementById(`comment-main-${response.parent_id}`).value = "";
     } else { }
 }
