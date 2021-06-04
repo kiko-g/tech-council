@@ -8,12 +8,12 @@
       <h3>Sign up</h3>
     </header>
     <div class="form-floating mb-4">
-      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-      <label for="floatingInput">Email address</label>
+      <input name="email" type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+      <label for="floatingEmail">Email address</label>
     </div>
     <div class="form-floating mb-4">
-      <input name="username" type="text" class="form-control" id="floatingInput" placeholder="username" required>
-      <label for="floatingInput">Username</label>
+      <input name="username" type="text" class="form-control" id="floatingUsername" placeholder="username" required>
+      <label for="floatingUsername">Username</label>
     </div>
     <div class="form-floating mb-4">
       <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
