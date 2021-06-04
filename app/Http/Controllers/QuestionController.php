@@ -137,7 +137,11 @@ class QuestionController extends Controller
      */
     public function showPage($id)
     {
-        $question = Question::find($id);
+        try {
+            $question = Question::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         //echo $question->votes_difference;
         return view('pages.question', [
             'question' => $question,
@@ -153,7 +157,11 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::findOrFail($id);
+        try {
+            $question = Question::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         return view('pages.edit-question', ['question' => $question, 'user' => Auth::user()]);
     }
 

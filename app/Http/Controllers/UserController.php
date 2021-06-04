@@ -18,7 +18,12 @@ class UserController extends Controller
      */
     public function showProfile($id)
     {
-        $user = User::find($id);
+        try {
+            $user = User::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
+
         $questions_result = Question::search('', 6, 1, null, null, $user->id);
 
         return view('pages.profile', [
@@ -36,7 +41,11 @@ class UserController extends Controller
      */
     public function showProfileSettings($id)
     {
-        $user = User::find($id);
+		try {
+            $user = User::findOrFail($id);
+        } catch (PDOException $e) {
+            abort('404', $e->getMessage());
+        }
         $this->authorize('logged_in', $user);
         
         return view('pages.profile-settings', [
