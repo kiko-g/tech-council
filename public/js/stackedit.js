@@ -1,7 +1,9 @@
+let stackedit = new Stackedit();
+let td = new TurndownService();
 let toggleButton = document.querySelector('#toggle-stackedit');
 let toggleButtonTip = document.querySelector('#toggle-stackedit-tip');
 let element = document.querySelector('#input-body');
-let stackedit = new Stackedit();
+element.value = td.turndown(element.value);
 
 toggleStackEdit = (event) => {
   if (toggleButton.classList.contains('off')) {

@@ -63,6 +63,7 @@
     @foreach ( $js as $script)
       <script src={{ asset('js/' . $script)}} defer></script>
     @endforeach
+    <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.js" integrity="sha512-QRrpZjZVcoHxp1kQn6MecUMg7rXIE2p8l6kPdlS786pgmsDzYc+x+tlZzui1Spbl6wzLqlCNzGwb4Gt0WM2mew==" crossorigin="anonymous"></script>
   @endisset
 </head>
