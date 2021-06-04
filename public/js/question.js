@@ -1,15 +1,14 @@
 function addQuestionEventListeners() {
-    let answerSubmitForm = document.getElementById("answer-submit-form");
-
-    try {
-        answerSubmitForm.addEventListener("submit", submitAnswer);
-    } catch (e) { }
-
     answerButtonsListeners();
     questionButtonsListeners();
 }
 
 function answerButtonsListeners(htmlNode = document) {
+    let answerSubmitForm = document.getElementById("answer-submit-form");
+    try {
+        answerSubmitForm.addEventListener("submit", submitAnswer);
+    } catch (e) { }
+
     let answerEditButtons = htmlNode.getElementsByClassName("answer-edit");
     for (answerEditButton of answerEditButtons)
         answerEditButton.addEventListener("click", editingAnswer);
@@ -24,6 +23,11 @@ function answerButtonsListeners(htmlNode = document) {
 }
 
 function questionButtonsListeners(htmlNode = document) {
+    let questionSubmit = document.getElementById("ask-question");
+    try {
+        questionSubmit.addEventListener("click", submitQuestion);
+    } catch (e) { }
+
     let questionDeleteButtons = htmlNode.getElementsByClassName(
         "delete-question-modal-trigger"
     );
@@ -233,6 +237,46 @@ function createAnswer(answerId) {
     // TODO: edit timestamp and user
 
     return newAnswer;
+}
+
+function submitQuestion(event) {
+    event.preventDefault();
+
+    let title = document.getElementById("input-title").value;
+    let main = document.getElementById("input-body").value;
+    let tagElements = document.getElementById("ask-selected-tags").children;
+    
+    let tags = [];
+    for (const tag of tagElements) tags.push(tag.dataset.tag);
+
+    console.log({
+        title: title,
+        main: main,
+        tags: tags
+    });
+
+    sendAjaxRequest(
+        "post",
+        "/api/create/question",
+        {
+            title: title,
+            main: main,
+            tags: tags
+        },
+        createQuestionHandler
+    );
+}
+
+function createQuestionHandler() {
+    if (this.status != 200 && this.status != 201) {
+        let header = document.getElementById("create-question-header");
+        let confirmation = document.createElement("div");
+        confirmation.innerHTML = errorAlert("Question could not be created!");
+        header.parentNode.parentNode.insertBefore(confirmation, header.parentNode);
+    } else {
+        console.log("got here");
+        document.documentElement.innerHTML = this.responseText;
+    }
 }
 
 /**

@@ -16,9 +16,9 @@
 
 @section('content')
   <div class="card mb-4 p-2-0 border-0 rounded">
-    <header class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
+    <header id="create-question-header" class="card-header bg-petrol text-white font-source-sans-pro rounded-top"> Ask a question </header>
     <section class="card-body">
-      <form method="POST" action="{{ url('/api/question/insert') }}">
+      <form>
         <div>
           <textarea id="input-title" class="form-control border border-2 bg-light mb-2" rows="1" placeholder="Question title"></textarea>
         </div>
@@ -38,14 +38,9 @@
               <a class="btn btn-danger wine border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
             <div id="ask-selected-tags">
-              <!--
-              <div class="tag-selected btn-group mt-1">
-                <a class="btn blue-alt border-0 my-btn-pad2"><i class="fas fa-minus-square"></i>&nbsp;node</a>
-              </div>
-              -->
             </div>
           </div>
-          <input class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
+          <input id="ask-question" class="btn btn-success teal text-white ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
         </div>
 
         {{-- Select tags --}}
