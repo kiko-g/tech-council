@@ -106,10 +106,6 @@ if ($hasResported) {
             <i class="fas fa-chevron-down"></i>
           </a>
         </div>
-        @include('partials.report-modal', [
-          "type" => "answer",
-          "content_id" => $answer->content_id,
-        ])
       </div>
 
       <div class="col-9 col-sm-10 col-md-11 col-lg-11 flex-wrap pe-0">

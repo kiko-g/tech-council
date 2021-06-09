@@ -33,7 +33,7 @@
       <nav class="user-search-nav navbar navbar-light">
         <form class="container-fluid">
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user text-teal-alt"></i></span>
+            <span class="input-group-text"><i class="fas fa-user text-teal-alt"></i></span>
             <input type="text" id="user-search-input" class="form-control" placeholder="Username" aria-label="Username">
           </div>
         </form>
@@ -55,7 +55,7 @@
       <nav class="tag-search-nav navbar navbar-light">
         <form class="container-fluid">
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon1"><i class="fas fa-tag text-dark-green"></i></span>
+            <span class="input-group-text"><i class="fas fa-tag text-dark-green"></i></span>
             <input type="text" id="tag-search-input" class="form-control" placeholder="Tag" aria-label="Tag">
           </div>
         </form>

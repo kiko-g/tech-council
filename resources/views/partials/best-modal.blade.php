@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-teal">
-        <h5 class="modal-title text-white" id="modalLabel"><i class="fa fa-check-circle text-white"></i>&nbsp;
+        <h5 class="modal-title text-white"><i class="fa fa-check-circle text-white"></i>&nbsp;
           Set Best Answer
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

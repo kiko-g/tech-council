@@ -56,11 +56,11 @@
       @endphp
 
       <div class="card-body btn-group @if($user->id == Auth::user()->id) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
-        <a type="button" href="mailto:{{ $user->email }}" class="btn blue-alt">Contact</a>
+        <a href="mailto:{{ $user->email }}" class="btn blue-alt">Contact</a>
       </div>
       @if($user->id == Auth::user()->id)
         <div class="card-body btn-group @if(Auth::user()->moderator && !$user->moderator) {{ 'pb-0' }} @endif" role="group" aria-label="Second group">
-          <a type="button" href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
+          <a href="{{ url('user/' . $user->id . '/settings') }}" class="btn blue-alt">Edit Profile</a>
         </div>
       @endif
       @if(!$user->moderator)

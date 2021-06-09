@@ -27,12 +27,14 @@
         <li class="list-group-item mb-3">
           <p class="card-text text-start">Joined <strong class="float-end">{{ $user->join_date }}</strong></p>
         </li>
-        @if(Auth::user()->moderator)
-          @if ($user->banned) <button class="btn blue-alt" disabled>Banned</a>
-          @else <button id="ban-card-{{ $user->id }}" class="ban-card btn blue-alt" data-user-id="{{ $user->id }}">Ban</a>
+        <li class="list-group-item">
+          @if(Auth::user()->moderator)
+            @if ($user->banned) <button class="btn blue-alt" disabled>Banned</button>
+            @else <button id="ban-card-{{ $user->id }}" class="ban-card btn blue-alt" data-user-id="{{ $user->id }}">Ban</button>
+            @endif
           @endif
-        @endif
-      </ul>      
+        </li>
+      </ul>
     </div>
   </div>
 </section>

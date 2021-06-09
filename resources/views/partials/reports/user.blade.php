@@ -2,18 +2,18 @@
   <table class="table table-responsive table-light tag-table table-hover">
     <thead class="table table-dark petrol">
       <tr>
-        <th scope="col col-auto">#</th>
-        <th scope="col col-auto">User</th>
-        <th scope="col col-auto">Reporter</th>
-        <th scope="col col-auto">Message</th>
-        <th scope="col col-auto">Actions</th>
+        <th class="col col-auto">#</th>
+        <th class="col col-auto">User</th>
+        <th class="col col-auto">Reporter</th>
+        <th class="col col-auto">Message</th>
+        <th class="col col-auto">Actions</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($user_reports as $user_report)
         @if (!$user_report->report->solved)
         <tr id="report-{{ $user_report->report->id }}">
-          <th scope="row">{{ $user_report->report->id }}</th>
+          <th class="row">{{ $user_report->report->id }}</th>
           <td>
             <a href="{{ route('user', ['id' => $user_report->reported_user->id]) }}">
               {{ $user_report->reported_user->name }}

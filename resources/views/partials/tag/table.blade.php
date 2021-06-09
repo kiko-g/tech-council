@@ -2,16 +2,16 @@
   <table id="tag-table" class="table table-light tag-table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Tag</th>
-        <th scope="col">Created by</th>
-        <th scope="col">Actions</th>
+        <th class="col">#</th>
+        <th class="col">Tag</th>
+        <th class="col">Created by</th>
+        <th class="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       @foreach($displayed_tags as $tag)
       <tr id="tag-{{ $tag->id }}-row">
-        <th scope="row">{{ $tag->id }}</th>
+        <th class="row">{{ $tag->id }}</th>
         <td>
           <a href="{{ route('tag', ['id' => $tag->id]) }}" id="tag-{{ $tag->id }}-redirect" class="collapse show tag-{{ $tag->id }}-edit btn blue-alt border-0 my-btn-pad2 flex-column">{{ $tag->name }}</a>
           <input id="tag-{{ $tag->id }}-name" type="text" class="collapse form-control border border-2 bg-light tag-{{ $tag->id }}-edit" placeholder="Tag name" value="{{ $tag->name }}" required>

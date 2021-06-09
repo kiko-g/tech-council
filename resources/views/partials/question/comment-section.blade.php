@@ -4,11 +4,11 @@
     $comment_count = 0;
   @endphp
 
-  <div id="comments-{{$id}}">
-  @foreach ($comments as $comment)
-    @php $comment_count++; @endphp
-    @include('partials.question.comment', ['comment' => $comment])
-  @endforeach
+  <div id="comments-{{ $id }}">
+    @foreach ($comments as $comment)
+      @php $comment_count++; @endphp
+      @include('partials.question.comment', ['comment' => $comment])
+    @endforeach
   </div>
 
 
@@ -25,8 +25,10 @@
     <textarea id="comment-main-{{ $id }}" class="form-control shadow-sm border border-2 bg-light" rows="2"
       placeholder="Type your comment"></textarea>
     <div class="float-end">
-      <a id="submit-comment-{{ $id }}" class="submit-comment btn btn-success teal text-white mt-2 me-2" role="button" aria-expanded="false" data-bs-toggle="collapse" href="#collapse{{ $id }}"
-      role="button" aria-expanded="false" aria-controls="collapse{{ $id }}" data-parent-id="{{ $id }}" data-parent-type="{{ $type }}">
+      <a id="submit-comment-{{ $id }}" class="submit-comment btn btn-success teal text-white mt-2 me-2"
+        data-bs-toggle="collapse" href="#collapse{{ $id }}" role="button" aria-expanded="false"
+        aria-controls="collapse{{ $id }}" data-parent-id="{{ $id }}"
+        data-parent-type="{{ $type }}">
         Submit
       </a>
       <a class="btn btn-danger wine text-white mt-2" data-bs-toggle="collapse" href="#collapse{{ $id }}"

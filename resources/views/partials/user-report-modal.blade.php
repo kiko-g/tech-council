@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-wine">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-flag text-white"></i>&nbsp;
+        <h5 class="modal-title"><i class="fas fa-flag text-white"></i>&nbsp;
           Report user {{ $user_id }}
         </h5>
         <button type="button" class="btn-close" id="btn-close-user-{{ $user_id }}" data-bs-dismiss="modal"

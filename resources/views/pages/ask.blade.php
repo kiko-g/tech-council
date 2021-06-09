@@ -1,18 +1,18 @@
-@extends('layouts.app', 
-  [
-    'user' => $user,
-    'js' => [
-      'input.js',
-      'components.js',
-      'question.js',
-      'comment.js',
-      'app.js',
-      'vote.js',
-      'follow.js',
-      'save.js',
-      'tag-search.js',
-    ]
-  ]
+@extends('layouts.app',
+[
+'user' => $user,
+'js' => [
+'input.js',
+'components.js',
+'question.js',
+'comment.js',
+'app.js',
+'vote.js',
+'follow.js',
+'save.js',
+'tag-search.js',
+]
+]
 )
 
 @section('content')
@@ -37,18 +37,18 @@
         <script src="{{ '/js/stackedit.js' }}" defer> </script>
         <div class="row row-cols-2 mb-3">
           <div id="add-tags" class="col-lg-9">
-            <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag"
+            <div id="tag-select" class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" role="banner"
               aria-expanded="false">
               <a class="btn blue-alt extra border-0 my-btn-pad2"><i class="fas fa-plus-square"></i>&nbsp;add tag</a>
             </div>
             <div class="btn-group mt-1" data-bs-toggle="collapse" data-bs-target="#addTag" aria-expanded="false"
-              id="tag-close">
+              role="banner" id="tag-close">
               <a class="btn btn-danger wine border-0 my-btn-pad2"><i class="fas fa-window-close"></i>&nbsp;close</a>
             </div>
             {{-- Select tags --}}
             <div class="card collapse mt-2" id="addTag" style="width: 18rem;">
               <div class="card-body">
-                <input id="ask-search-tag" type="text" class="form-control border border-2 bg-light mb-2" rows="1"
+                <input id="ask-search-tag" type="text" class="form-control border border-2 bg-light mb-2"
                   placeholder="Search tag" />
                 <div id="ask-tag-search-results" class="col-lg-auto">
                 </div>
@@ -58,12 +58,12 @@
             </div>
           </div>
           <div class="col-lg-3">
-            <input id="ask-question" class="btn btn-success teal text-white float-end ms-auto me-3 mt-1" type="submit" value="Submit" role="button" />
+            <input id="ask-question" class="btn btn-success teal text-white float-end ms-auto me-3 mt-1" type="submit"
+              value="Submit" />
           </div>
-          
-        </form>
+        </div>
+      </form>
     </div>
-  </div>
   </div>
 
   <script src="{{ '/js/toasts.js' }}" defer></script>
@@ -79,7 +79,7 @@
       </div>
       <div class="toast-body">
         We recommend trying the
-        <a id="toggle-stackedit-tip" class="" type="button" data-bs-original-title="Switch to stackedit">StackEdit
+        <a id="toggle-stackedit-tip" class="" role="button" data-bs-original-title="Switch to stackedit">StackEdit
           editor</a>
         to edit your question!
       </div>
