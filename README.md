@@ -2,7 +2,11 @@
 
 -   LBAW 2020/21 | Group 32
 -   Collaborative Q&A (deployed [here](https://lbaw2132.lbaw-prod.fe.up.pt/))
--   Check out the [wiki](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2132/-/wikis/home)!
+-   Check out the [wiki](https://github.com/kiko-g/feup-lbaw/wiki)!
+
+## Demonstration
+
+https://user-images.githubusercontent.com/40745490/139429861-0b86db10-d1d3-46b5-814b-a8b5cc563da3.mp4
 
 ## Documentation
 
